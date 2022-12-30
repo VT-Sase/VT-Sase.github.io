@@ -1,0 +1,20 @@
+.navbar-main {
+    background-color: #fff !important;
+}
+
+.sponsor-content {
+    display: grid;
+    padding: 20px 7%;
+    grid-template-columns: 1.5fr 3fr;
+}
+
+.sponsors {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+}
+
+.sponsor {
+    padding: 20px;
+}
