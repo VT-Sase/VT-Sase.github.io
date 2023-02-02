@@ -5,9 +5,9 @@
         <title>SASE at VT | Sponsors</title>
         <meta name="description" content="SASE at VT Sponsors">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/about.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="icon" href="../img/logos/icon.png">
+        <link rel="stylesheet" href="/css/about.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="icon" href="/assets/img/logos/icon.png">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
             integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -18,11 +18,10 @@
             <p style="margin: 0" id="hamburger">&#9776;</p>
             <a href="/" class="navbar-link left-link">Home</a>
             <a href="/about" class="navbar-link left-link">About</a>
-
             <div class="dropdown">
                 <div class="navbar-link left-link">Events</div>
                 <div class="dropdown-content">
-                    <a href="/events" class="navbar-link left-link">Events</a>
+                    <a href="/events" class="navbar-link left-link">Current Events</a>
                     <a href="/year-in-review" class="navbar-link left-link">Year in Review</a>
                 </div>
             </div>
@@ -33,10 +32,8 @@
             <div></div>
             <ul class="navbar-connect">
                 <li class="navbar-text">Connect:</li>
-                <li><a href="https://www.facebook.com/saseatvt/" class="navbar-link"><i class="fab fa-facebook-f"></i></a>
-                </li>
-                <li><a href="https://www.instagram.com/saseatvt/" class="navbar-link"><i
-                            class="fab fa-instagram"></i></i></a></li>
+                <li><a href="https://www.facebook.com/saseatvt/" class="navbar-link"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://www.instagram.com/saseatvt/" class="navbar-link"><i class="fab fa-instagram"></i></i></a></li>
                 <li><a href="mailto:vtsase@gmail.com" class="navbar-link"><i class="fas fa-envelope"></i></a></li>
             </ul>
         </nav>
@@ -53,19 +50,20 @@
         </nav>
 
         <section class="header"
-            style="background: url('../img/sponsors/sponsor.jpg') no-repeat left 10%; background-size: cover;">
+            style="background: url('/assets/img/sponsors-compressed-smaller/sponsor_title_background.jpg') no-repeat left 10%; background-size: cover;">
             <!-- <div class="overlay"></div> -->
             <h1>Sponsors</h1>
         </section>
+
         <section class="sponsor-content">
             <div class="bio">
                 <p>A special thanks to our sponsors for help making the mission of SASE possible here at Virginia Tech.</p>
                 <p>Interested in becoming a sponsor for SASE at Virginia Tech? Please see the following document for more
                     information.</p>
-                <button class="button"
-                    style="display: flex; justify-self: center; text-align:center; vertical-align:middle;display:table-cell"
-                    onclick="window.location.href='https://drive.google.com/open?id=1OWR4D7aeXuAbawvTIJLY_i9RYAn5lUOm'"><i
-                        class="fas fa-user-tie"></i>&nbsp;&nbsp; Sponsorship Packet </button>
+                <!-- NOTE: This is the sponsorship packet for every year. Each year's VIEW-ONLY Sponsorship Packet Link should be placed here. -->
+                <button id="sponsorship_packet_btn" class="button" style="display: flex; justify-self: center; text-align:center; vertical-align:middle;display:table-cell"
+                    onclick="window.open('https://drive.google.com/file/d/1xUgLNVhQhac2ifXUtLvVxzJwrx2qNbSX/view?usp=sharing', '_blank')">
+                        <i class="fas fa-user-tie"></i>&nbsp;&nbsp; Sponsorship Packet</button>
             </div>
 
             <div class="sponsors">
@@ -73,8 +71,9 @@
                     <div class="card">
                         <div class="sponsor">
                             <div class="card-content">
-                                <a href="https://www.capitalone.com/"><img src="../img/sponsors/Capital-one-logo.png" alt="Capital One"
-                                                                        class="card-img" style="width:200px; height:200px"></a>
+                                <a href="https://www.capitalone.com/">
+                                    <img src="/assets/img/sponsors-compressed-smaller/CapitalOne_Larger.png" alt="CapitalOne_Larger.png"
+                                        class="card-img" style="width:200px; height:200px"></a>
                                 <p style="text-align: center; font-size: 20px;"><b>Capital One</b></p>
                                 <p style="text-align: center; font-size:20px;">Diamond Sponsor</p>
                             </div>
@@ -85,8 +84,9 @@
                     <div class="card">
                         <div class="sponsor">
                             <div class="card-content">
-                                <a href="https://www.northropgrumman.com/"><img src="../img/sponsors/northrop_grumman.png"
-                                                                                alt="Northrop Grumman" class="responsive-img" style="width:200px; height:200px"></a>
+                                <a href="https://www.northropgrumman.com/">
+                                    <img src="/assets/img/sponsors-compressed-smaller/NorthropGrumman_Modern.png" alt="NorthropGrumman_Modern.png" 
+                                        class="responsive-img" style="width:200px; height:200px"></a>
                                 <p style="text-align: center; font-size: 20px;"><b>Northrop Grumman</b></p>
                                 <p style="text-align: center; font-size:20px;">Diamond Sponsor</p>
                             </div>
@@ -96,8 +96,9 @@
                     <div class="card">
                         <div class="sponsor">
                             <div class="card-content">
-                                <a href="https://www.westrock.com/"><img src="../img/sponsors/Westrock.png"
-                                                                                alt="Westrock" class="responsive-img" style="width:200px; height:200px"></a>
+                                <a href="https://www.westrock.com/">
+                                    <img src="/assets/img/sponsors-compressed-smaller/Westrock.png" alt="Westrock.png" 
+                                        class="responsive-img" style="width:200px; height:200px"></a>
                                 <p style="text-align: center; font-size: 20px;"><b>Westrock</b></p>
                                 <p style="text-align: center; font-size:20px;">Diamond Sponsor</p>
                             </div>
@@ -107,7 +108,8 @@
                     <div class="card">
                         <div class="sponsor">
                             <div class="card-content">
-                                <a href="https://www.altec.com"><img src="../img/sponsors/altec_logo.png" alt="Altec"
+                                <a href="https://www.altec.com">
+                                    <img src="/assets/img/sponsors-compressed-smaller/Altec.png" alt="Altec.png"
                                         class="responsive-img" style="width:200px; height:200px"></a>
                                 <p style="text-align: center; font-size: 20px;"><b>Altec</b></p>
                                 <p style="text-align: center; font-size:20px;">Gold Sponsor</p>
@@ -117,7 +119,8 @@
                     <div class="card">
                         <div class="sponsor">
                             <div class="card-content">
-                                <a href="https://www.ge.com/"><img src="../img/sponsors/GE_Logo.png" alt="General Electric"
+                                <a href="https://www.ge.com/">
+                                    <img src="/assets/img/sponsors-compressed-smaller/GeneralElectric.png" alt="GeneralElectric.png"
                                         class="responsive-img" style="width:200px; height:200px"></a>
                                 <p style="text-align: center; font-size: 20px;"><b>General Electric</b></p>
                                 <p style="text-align: center; font-size:20px;">Bronze Sponsor</p>
@@ -128,7 +131,8 @@
                     <div class="card">
                         <div class="sponsor">
                             <div class="card-content">
-                                <a href="https://www.metalchemy.tech/"><img src="../img/sponsors/Metalchemy.png" alt="Metalchemy"
+                                <a href="https://www.metalchemy.tech/">
+                                    <img src="/assets/img/sponsors-compressed-smaller/Metalchemy.png" alt="Metalchemy.png"
                                         class="responsive-img" style="width:200px; height:200px"></a>
                                 <p style="text-align: center; font-size: 20px;"><b>Metalchemy</b></p>
                                 <p style="text-align: center; font-size:20px;">Bronze Sponsor</p>
@@ -137,16 +141,15 @@
                     </div>
                 </div>
             </div>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="/js/script.js" async defer></script>
         </section>
 
         <footer>
-            <p>&copy; 2020 SASE at VT.</p>
-
+            <p>© 2023 SASE at Virginia Tech</p>
             <a href="https://www.saseconnect.org">Society of Asian Scientists and Engineers</a>
             <div></div>
         </footer>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="/js/script.js" async defer></script>
     </body>
 </html>
