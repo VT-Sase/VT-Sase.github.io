@@ -1,4 +1,82 @@
+/* General Styling */
+
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  background-color: #fff;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Asterisk == everything */
+* {
+  -webkit-box-sizing: border-box !important; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box !important; /* Firefox, other Gecko */
+  box-sizing: border-box !important; /* Opera/IE 8+ */
+}
+
+
+.header {
+    height: 900px;
+    width: 100vw;
+    padding: 0 7%;
+    display: flex;
+    justify-items: left;
+    color: #fff;
+    align-items: flex-end;
+    
+}
+
+.header-lable {
+    height: 1100px;
+    width: 100vw;
+    display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 30px;
+    /* justify-items: left; */
+    color: #fff;
+    align-items: flex-end;
+	border: 90px solid #283238;
+	padding: 0 7%;
+    
+}
+
+.header-lable-2 {
+    height: 800px;
+    width: 100vw;
+    display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 30px;
+    /* justify-items: left; */
+    color: #fff;
+    align-items: flex-end;
+	border: 90px solid #283238;
+	padding: 0 7%;
+    
+}
+
+.header h1 {
+    text-transform: uppercase;
+    font-size: 88px;
+}
+
+.header-lable h1 {
+    text-transform: uppercase;
+    font-size: 100px;
+}
+
+.header-lable-2 h1 {
+    text-transform: uppercase;
+    font-size: 100px;
+}
+
+
 /* Navbar */
+
 .navbar-connect {
     background-color: #283238;
     padding: 7px 10px;
@@ -92,6 +170,47 @@
     .officers {
         grid-template-columns: 1fr 1fr;
     }
+}
+
+@media only screen and (max-width: 700px) {
+    .gallery {
+        grid-template-columns: repeat(1, 1fr);
+    }
+	
+	.header {
+		height: 200px;
+		width: 100vw;
+		padding: 0 7%;
+		display: flex;
+		justify-items: center;
+		color: #fff;
+		align-items: flex-end;
+		
+	}
+
+	.header-lable {
+		height: 200px;
+		width: 100vw;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 30px;
+		/* justify-items: left; */
+		color: #fff;
+		align-items: flex-end;
+		border: 50px solid #283238;
+		padding: 0 7%;
+		
+	}
+
+	.header h1 {
+		text-transform: uppercase;
+		font-size: 30px;
+	}
+
+	.header-lable h1 {
+		text-transform: uppercase;
+		font-size: 25px;
+	}
 }
 
 .card, .card-2 {
