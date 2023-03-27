@@ -35,6 +35,8 @@ a {
 .officer-intro {
     padding: 40px 5% 0 5%;
     background-color: white;
+    bottom: 30px;
+    position: relative;
 }
 
 .officer-intro h3 {
@@ -191,9 +193,15 @@ a {
 
 /* SASE Committees - Labels and Images */
 
+/* Adjusting for the Top NavBar */
+.sase-officer-header-label {
+    top: 40px;
+}
+
+.sase-officer-header-label, 
 .sase-officer-committee-header-label {
     color: #283238;
-
+    position: relative;
     height: 800px;
     width: 100vw;
     display: grid;
@@ -203,8 +211,10 @@ a {
     align-items: flex-end;
     border: 90px solid #283238;
     padding: 7% 7%;
+    padding: 40px 5% 0 5%;
 }
 
+.sase-officer-header-label h1, 
 .sase-officer-committee-header-label h1 {
     text-transform: uppercase;
     font-size: 100px;
@@ -321,9 +331,8 @@ footer a:hover {
 /* Setting Displayed VT SASE Group Committee Images */
 
 #sase-overview.sase-officer-header-label {
-    
     padding: 40px 5% 0 5%;
-    background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/OFFICERS.jpg') no-repeat left 25%; 
+    background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/OFFICERS.jpg') no-repeat left 20%;
     background-size: cover;
 }
 
