@@ -78,14 +78,14 @@ a {
 /* Navbar */
 
 .navbar-connect {
-    background-color: #283238;
+    background-color: white;
     padding: 7px 10px;
     height: 100%;
     display: flex;
     align-items: center;
     border-radius: 9px;
 }
-
+  
 .navbar-connect li {
     list-style: none;
     display: inline-block;
@@ -93,23 +93,24 @@ a {
     vertical-align: middle;
     font-size: 17px;
     text-transform: uppercase;
-    color: lightgray;
+    color: #000000;
     font-weight: 600;
 }
-
+  
 .navbar-link {
     font-size: 17px;
     text-transform: uppercase;
     font-weight: 600;
     padding: 10px 0;
     border: none;
-    color: lightgray;
-
+    color: black;
+  
     /* For the hover effect */
     border-top: 2px solid transparent;
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.6s ease-in-out;
 }
+
 .navbar-link:hover {
     border-bottom: 2px solid grey;
 }
@@ -140,7 +141,7 @@ a {
 
 
     width: 100vw;
-    background-color: #283238;
+    background-color: white;
     z-index: 4;
     padding: 20px 20px 20px 40px;
     min-height: 107px;
@@ -211,6 +212,65 @@ a {
 		text-transform: uppercase;
 		font-size: 25px;
 	}
+}
+
+@media only screen and (min-width: 760px) {
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+  
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+  
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+  
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+}
+
+.navbar-hidden {
+    top: 85px;
+    display: none;
+    position: absolute;
+    background-color: white;
+    z-index: 30;
+    padding-bottom: 15px;
+}
+  
+.haha {
+    width: 100vw;
+    height: 50px;
+    display: inline-block;
+}
+  
+.navbar-hidden a {
+    margin-left: 80px;
+    text-align: left;
+    display: inline-block;
+}
+  
+@media only screen and (min-width: 800px) {
+    .navbar-hidden {
+      display: none !important;
+    }
 }
 
 .card, .card-2 {
