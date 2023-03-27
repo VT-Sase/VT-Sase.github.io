@@ -34,12 +34,12 @@ a {
 
 .officer-intro {
     padding: 40px 5% 0 5%;
-    background-color: #283238;
+    background-color: white;
 }
 
 .officer-intro h3 {
     text-align: center;
-    color: lightgray;
+    color: black;
     display: block;
     font-size: 1.17em;
     margin-block-start: 1em;
@@ -211,13 +211,6 @@ a {
     color: white;
     text-align: left;
 }
-
-/*
-.sase-officer-committee-header-label h1:hover {
-    background-color: pink;
-    color: black;
-}
-*/
   
 .content-image {
     width: 100%;
@@ -327,8 +320,10 @@ footer a:hover {
 
 /* Setting Displayed VT SASE Group Committee Images */
 
-.sase-officer-header-label {
-    background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/OFFICERS.jpg') no-repeat left 100%; 
+#sase-overview.sase-officer-header-label {
+    
+    padding: 40px 5% 0 5%;
+    background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/OFFICERS.jpg') no-repeat left 25%; 
     background-size: cover;
 }
 
