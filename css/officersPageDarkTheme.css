@@ -1,5 +1,12 @@
 /* General Styling */
 
+/* Asterisk == everything */
+* {
+    -webkit-box-sizing: border-box !important; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box !important; /* Firefox, other Gecko */
+    box-sizing: border-box !important; /* Opera/IE 8+ */
+}
+
 body {
   margin: 0;
   font-family: "Lato", sans-serif;
@@ -12,14 +19,37 @@ a {
   color: #fff;
 }
 
-/* Asterisk == everything */
-* {
-  -webkit-box-sizing: border-box !important; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box !important; /* Firefox, other Gecko */
-  box-sizing: border-box !important; /* Opera/IE 8+ */
+#hamburger {
+    display: none;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 10px 0;
+    border: none;
+    color: black;
+    cursor: pointer;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
 }
 
+.officer-intro {
+    padding: 40px 5% 0 5%;
+    background-color: #283238;
+}
 
+.officer-intro h3 {
+    text-align: center;
+    color: lightgray;
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    font-weight: bold;
+}
+
+/*
 .header {
     height: 900px;
     width: 100vw;
@@ -27,22 +57,21 @@ a {
     display: flex;
     justify-items: left;
     color: #fff;
-    align-items: flex-end;
-    
+    align-items: flex-end;   
 }
+*/
 
+/*
 .header-lable {
     height: 1100px;
     width: 100vw;
     display: grid;
 	grid-template-columns: 1fr;
 	grid-gap: 30px;
-    /* justify-items: left; */
     color: #fff;
     align-items: flex-end;
-	border: 90px solid #283238;
+	border: 90px solid white;
 	padding: 0 7%;
-    
 }
 
 .header-lable-2 {
@@ -51,19 +80,19 @@ a {
     display: grid;
 	grid-template-columns: 1fr;
 	grid-gap: 30px;
-    /* justify-items: left; */
     color: #fff;
     align-items: flex-end;
 	border: 90px solid #283238;
 	padding: 0 7%;
-    
 }
+*/
 
 .header h1 {
     text-transform: uppercase;
     font-size: 88px;
 }
 
+/*
 .header-lable h1 {
     text-transform: uppercase;
     font-size: 100px;
@@ -73,6 +102,7 @@ a {
     text-transform: uppercase;
     font-size: 100px;
 }
+*/
 
 
 /* Navbar */
@@ -115,19 +145,6 @@ a {
     border-bottom: 2px solid grey;
 }
 
-#hamburger {
-    display: none;
-    font-size: 17px;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 10px 0;
-    border: none;
-    color: black;
-    cursor: pointer;
-    border-top: 2px solid transparent;
-    border-bottom: 2px solid transparent;
-}
-
 .navbar-main {
     /* This allows the navbar to sit on top of the homepage content */
     position: absolute; 
@@ -161,6 +178,18 @@ a {
     border-bottom: 2px solid transparent;
 }
 
+.sase-officer-committee-header-label {
+    color: #283238;
+}
+
+.sase-officer-committee-header-label h1 {
+    text-transform: uppercase;
+    font-size: 88px;
+    color: white;
+    text-align: left;
+}
+
+/*
 @media only screen and (max-width: 1250px) {
     .officers {
         padding: 0 5%;
@@ -172,47 +201,7 @@ a {
         grid-template-columns: 1fr 1fr;
     }
 }
-
-@media only screen and (max-width: 700px) {
-    .gallery {
-        grid-template-columns: repeat(1, 1fr);
-    }
-	
-	.header {
-		height: 200px;
-		width: 100vw;
-		padding: 0 7%;
-		display: flex;
-		justify-items: center;
-		color: #fff;
-		align-items: flex-end;
-		
-	}
-
-	.header-lable {
-		height: 200px;
-		width: 100vw;
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-gap: 30px;
-		/* justify-items: left; */
-		color: #fff;
-		align-items: flex-end;
-		border: 50px solid #283238;
-		padding: 0 7%;
-		
-	}
-
-	.header h1 {
-		text-transform: uppercase;
-		font-size: 30px;
-	}
-
-	.header-lable h1 {
-		text-transform: uppercase;
-		font-size: 25px;
-	}
-}
+*/
 
 @media only screen and (min-width: 760px) {
     .dropdown {
@@ -272,21 +261,24 @@ a {
     }
 }
 
+/* Card CSS */
+
 .card, .card-2 {
     height: 100%;
+    background-color: #283238;
     box-shadow: 0 3px 9px rgba(0,0,0,0.22), 0 3px 6px rgba(0,0,0,0.54);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1), height 0.6s cubic-bezier(.25,.8,.25,1);
 }
 
 .card:hover {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     height: 102%;
+    background-color: #283238;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .card-content {
     padding: 30px;
 }
-
 
 .card-content-2 {
     padding: 20px 5px;
@@ -314,6 +306,8 @@ a {
     height: auto;
 }
 
+/* Footer */
+
 footer {
     display: grid;
     grid-template-columns: auto auto 1fr;
@@ -327,4 +321,40 @@ footer {
     color: #9ba1a6;
     border-top: 1px solid #bdc1c4;
     font-weight: 700;
+}
+
+footer a {
+    color: #9ba1a6;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Setting Displayed VT SASE Group Committee Images */
+
+.sase-officer-header-label {
+    background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/OFFICERS.jpg') no-repeat left 25%; 
+    background-size: cover;
+    background-color: #283238;
+}
+
+#sase-logistics.sase-officer-committee-header-label {
+    background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/LOGISTICS.jpg') no-repeat left 100%;
+    background-size: cover;
+}
+
+#sase-internal.sase-officer-committee-header-label {
+    background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/INTERNAL_2.jpg') no-repeat left 100%;
+    background-size: cover;
+}
+
+#sase-external.sase-officer-committee-header-label {
+    background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/EXTERNAL.jpg') no-repeat left 100%; 
+    background-size: cover;
+}
+
+#sase-media.sase-officer-committee-header-label {
+    background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/MEDIA.jpg') no-repeat left 100%; 
+    background-size: cover;
 }
