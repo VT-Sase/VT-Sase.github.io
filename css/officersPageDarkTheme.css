@@ -1,0 +1,99 @@
+#hamburger {
+    display: none;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 10px 0;
+    border: none;
+    color: black;
+    cursor: pointer;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar-main {
+    /* This allows the navbar to sit on top of the homepage content */
+    position: absolute;
+  
+    display: grid;
+    grid-template-columns: repeat(6, auto) 1fr auto;
+    grid-template-rows: auto;
+    align-items: center;
+    justify-items: center;
+    grid-gap: 20px;
+  
+    width: 100vw;
+    background-color: transparent;
+    z-index: 4;
+    padding: 20px 20px 20px 40px;
+    min-height: 107px;
+}
+
+@media only screen and (max-width: 1250px) {
+    .officers {
+        padding: 0 5%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .officers {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.card, .card-2 {
+    height: 100%;
+    box-shadow: 0 3px 9px rgba(0,0,0,0.22), 0 3px 6px rgba(0,0,0,0.54);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1), height 0.6s cubic-bezier(.25,.8,.25,1);
+}
+
+.card:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    height: 102%;
+}
+
+.card-content {
+    padding: 30px;
+}
+
+
+.card-content-2 {
+    padding: 20px 5px;
+}
+
+.card h2, .card-2 h2, .card-2 h3 {
+    text-align: center;
+}
+
+.card-2 h2, .card-2 h3 {
+	color: white;
+    margin: 7px 0;
+}
+
+.card-content-2 h3, .card-2 p {
+    color: grey;
+}
+
+.card-2 h3 {
+    font-style: italic;
+}
+
+.card-img {
+    width: 100%;
+    height: auto;
+}
+
+footer {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    justify-items: left;
+    grid-gap: 20px;
+    padding: 20px 40px;
+    position: relative;
+    bottom: 0;
+    background-color: #f2f3f3;
+    color: #9ba1a6;
+    border-top: 1px solid #bdc1c4;
+    font-weight: 700;
+}
