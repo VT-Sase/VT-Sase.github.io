@@ -12,7 +12,6 @@ $(document).ready(function(){
         autoplay: true,
         autoplayTimeout: 4000,
         autoplayHoverPause: false,
-        height: 100,
         items: 1
     });
 });
