@@ -235,7 +235,7 @@ footer a:hover {
 }
 
 .carousel-img {
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   object-fit: cover;
   display: inline-block;
@@ -251,6 +251,10 @@ footer a:hover {
   /* New Carousel: 50 Images (50 * ~4 sec = 200 sec) */
   /* Initial Delay of 8 sec needed for Loading First Image */
   animation: 200s carousel-slideshow 8s infinite;
+}
+
+.owl-carousel .owl-item img {
+  height: 100vh;
 }
 
 /* Old Carousel Keyframe (Reference):
