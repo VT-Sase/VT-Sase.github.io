@@ -721,7 +721,6 @@ footer a:hover {
   padding: 20px 7%;
   display: grid;
   grid-template-columns: 1.4fr 3fr;
-  align-items: center;
   grid-template-rows: auto;
   grid-gap: 20px;
   border: 20px solid white;
@@ -733,7 +732,10 @@ footer a:hover {
   align-items: center;
   grid-template-rows: auto;
   grid-gap: 20px;
+
 }
+
+/* Card CSS */
 
 .card,
 .card-2 {
@@ -741,6 +743,7 @@ footer a:hover {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
     height 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 15px;
 }
 
 .card:hover {
@@ -748,8 +751,12 @@ footer a:hover {
   height: 102%;
 }
 
+.card img {
+  border-radius: 15px 15px 0 0;
+}
+
 .card-content {
-  padding: 30px;
+  padding: 20px;
 }
 
 .card-content-2 {
@@ -760,6 +767,8 @@ footer a:hover {
 .card-2 h2,
 .card-2 h3 {
   text-align: center;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
 }
 
 .card-2 h2,
@@ -779,30 +788,30 @@ footer a:hover {
 .card-img {
   width: 100%;
   height: 40%;
-  object-fit: fill;
+  object-fit: contain;
 }
 
 /* Event Page Styles */
 
 .gallery {
+  top: 15px;
+  background-color: white;
   display: grid;
-  grid-template-columns: repeat(4, 25vw);
-  grid-template-rows: 20vw;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 2% 2%;
+  grid-gap: 20px;
+  border: 20px solid #283238;
 }
 
 .gallery-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 15px;
 }
-
-/* .gallery a:hover {
-  color: grey;
-} */
 
 .gallery-section {
   position: relative;
-  background-color: skyblue;
 }
 
 .gallery-section p {
@@ -814,6 +823,13 @@ footer a:hover {
   color: white;
   margin-bottom: 0;
   padding: 10px 7px;
+  border-radius: 0 0 15px 15px;
+}
+
+.gallery-section p:hover {
+  background-color: pink;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  color: black;
 }
 
 @media only screen and (max-width: 1200px) {
