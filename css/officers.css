@@ -262,6 +262,8 @@ a {
     background-color: #283238;
     box-shadow: 0 3px 9px rgba(0,0,0,0.22), 0 3px 6px rgba(0,0,0,0.54);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1), height 0.6s cubic-bezier(.25,.8,.25,1);
+    color: black;
+    border-radius: 15px;
 }
 
 .card-2:hover {
@@ -276,6 +278,10 @@ a {
 
 .card-content-2 {
     padding: 20px 5px;
+}
+
+.content-image {
+    border-radius: 15px 15px 0 0;
 }
 
 .card h2, .card-2 h2, .card-2 h3 {
@@ -348,6 +354,7 @@ footer a:hover {
 #sase-internal.sase-officer-committee-header-label {
     background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/INTERNAL_2.jpg') no-repeat left 100%;
     background-size: cover;
+    border-radius: 15px;
 }
 
 #sase-external.sase-officer-committee-header-label {
