@@ -1067,6 +1067,24 @@ footer a:hover {
   padding: 10px;
 }
 
+.year-in-review-intro {
+  padding: 40px 5% 0 5%;
+  background-color: white;
+  position: relative;
+}
+
+.year-in-review-intro p {
+  text-align: center;
+  color: black;
+  display: block;
+  font-size: 2.24em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
 .img__wrap {
   position: relative;
   height: 100%;
@@ -1084,6 +1102,7 @@ footer a:hover {
   visibility: hidden;
   opacity: 0;
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
   border-radius: 15px;
