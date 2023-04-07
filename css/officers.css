@@ -359,3 +359,8 @@ footer a:hover {
     background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/MEDIA.jpg') no-repeat left 100%; 
     background-size: cover;
 }
+
+#sase-freshman-interns.sase-officer-committee-header-label {
+    background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/INTERNS.jpg') no-repeat left 100%;
+    background-size: cover;
+}
