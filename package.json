@@ -1,0 +1,24 @@
+{
+  "name": "vt-sase.github.io",
+  "version": "1.0.0",
+  "description": "Link to Test Website: <a href=\"https://vt-sase.github.io/\" target=\"_blank\">https://vt-sase.github.io/</a>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VT-Sase/VT-Sase.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VT-Sase/VT-Sase.github.io/issues"
+  },
+  "homepage": "https://github.com/VT-Sase/VT-Sase.github.io#readme",
+  "dependencies": {
+    "vite": "^4.2.1"
+  }
+}
