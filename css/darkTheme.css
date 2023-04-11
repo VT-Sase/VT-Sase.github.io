@@ -5,6 +5,7 @@ body {
     font-family: 'Lato', sans-serif;
     background-color: #283238;
     color: lightgray;
+    overflow-x: hidden;
 }
 
 a {
@@ -47,17 +48,18 @@ a {
     object-fit: contain;
 }
 
-
-
 .header {
-    height: 900px;
+    top: 40px;
+    height: 800px;
     width: 100vw;
-    padding: 0 7%;
-    display: flex;
-    justify-items: left;
-    color: #fff;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 30px;
+    color: white;
     align-items: flex-end;
-    
+    padding: 40px 5% 0 5%;
+    border: 80px solid #283238;
+    position: relative;
 }
 
 .header-lable {
@@ -69,9 +71,8 @@ a {
     /* justify-items: left; */
     color: #fff;
     align-items: flex-end;
-	border: 90px solid #283238;
+	border: 80px solid #283238;
 	padding: 0 7%;
-    
 }
 
 .header-lable-2 {
@@ -83,9 +84,8 @@ a {
     /* justify-items: left; */
     color: #fff;
     align-items: flex-end;
-	border: 90px solid #283238;
+	border: 80px solid #283238;
 	padding: 0 7%;
-    
 }
 
 .header h1 {
@@ -106,7 +106,7 @@ a {
 /* Navbar */
 
 .navbar-connect {
-    background-color: #283238;
+    background-color: white;
     padding: 7px 10px;
     height: 100%;
     display: flex;
@@ -121,17 +121,9 @@ a {
     vertical-align: middle;
     font-size: 17px;
     text-transform: uppercase;
-    color: lightgray;
+    color: black;
     font-weight: 600;
 }
-
-/* .navbar-text {
-} */
-
-/* 
-.left-link {
-    background-color: #283238;
-} */
 
 .navbar-link {
     font-size: 17px;
@@ -139,7 +131,7 @@ a {
     font-weight: 600;
     padding: 10px 0;
     border: none;
-    color: lightgray;
+    color: black;
 
     /* For the hover effect */
     border-top: 2px solid transparent;
@@ -163,8 +155,23 @@ a {
     border-bottom: 2px solid transparent;
 }
 
-.navbar-main {
+.officer-intro {
+    padding: 40px 5% 0 5%;
+    position: relative;
+}
 
+.officer-intro h3 {
+    text-align: center;
+    display: block;
+    font-size: 1.76em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.navbar-main {
     /* This allows the navbar to sit on top of the homepage content */
     position: absolute; 
     
@@ -175,9 +182,8 @@ a {
     justify-items: center;
     grid-gap: 20px;
 
-
     width: 100vw;
-    background-color: #283238;
+    background-color: white;
     z-index: 4;
     padding: 20px 20px 20px 40px;
     min-height: 107px;
@@ -228,7 +234,6 @@ footer a:hover {
     border: 1px solid #6CABDD;
 }
 
-
 #home_page {
     display: grid;
     grid-template-columns: 43vw 57vw;
@@ -241,7 +246,6 @@ footer a:hover {
     height: 100%;
     width: 100%;
 }
-
 
 #home_page_bio {
     /* This is so the navbar doesn't intersect the text resizing vertically */
@@ -284,7 +288,6 @@ footer a:hover {
     top: 0;
 } */
 
-
 .bio {
     width: 80%;
     font-size: 18px;
@@ -318,6 +321,7 @@ footer a:hover {
     height: 100%;
     box-shadow: 0 3px 9px rgba(0,0,0,0.22), 0 3px 6px rgba(0,0,0,0.54);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1), height 0.6s cubic-bezier(.25,.8,.25,1);
+    border-radius: 15px;
 }
 
 .card:hover {
@@ -416,7 +420,6 @@ footer a:hover {
 		align-items: flex-end;
 		border: 50px solid #283238;
 		padding: 0 7%;
-		
 	}
 
 	.header h1 {
@@ -430,36 +433,30 @@ footer a:hover {
 	}
 }
 
-
-
 /* #footer {
     justify-self: left !important;
     align-self: end !important;
 } */
 
 
-
-
 .fadeIn-top{
     top: 20%;
 }
-  
 
 .container .title{
     color: #1a1a1a;
     text-align: center;
     margin-bottom: 10px;
-  }
-  
-  .content2 {
+}
+
+.content2 {
     position: relative;
     width: 100%;
-    
     /* margin: auto; */
     overflow: hidden;
-  }
-  
-  .content2 .content-overlay {
+}
+
+.content2 .content-overlay {
     background: rgba(0,0,0,0.7);
     position: absolute;
     height: 99%;
@@ -472,20 +469,21 @@ footer a:hover {
     -webkit-transition: all 0.4s ease-in-out 0s;
     -moz-transition: all 0.4s ease-in-out 0s;
     transition: all 0.4s ease-in-out 0s;
-  }
-  
-  .content2:hover .content-overlay{
+}
+
+.content2:hover .content-overlay{
     opacity: 1;
-  }
-  
-  .content-image{
+}
+
+.content-image{
     width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
-  }
-  
-  .content-details {
+    border-radius: 15px 15px 0 0;
+}
+
+.content-details {
     position: absolute;
     text-align: center;
     padding-left: 1em;
@@ -500,50 +498,43 @@ footer a:hover {
     -webkit-transition: all 0.3s ease-in-out 0s;
     -moz-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s;
-  }
-  
-  .content2:hover .content-details{
+}
+
+.content2:hover .content-details{
     top: 50%;
     left: 50%;
     opacity: 1;
-  }
-  
-  .content-details h3{
+}
+
+.content-details h3{
     color: #fff;
     font-weight: 500;
     letter-spacing: 0.15em;
     margin-bottom: 0.5em;
     /* text-transform: uppercase; */
-  }
-  
-  .content-details p{
+}
+
+.content-details p{
     color: #fff;
     font-size: 0.8em;
-  }
+}
 
-  .officers {
-      background-color: #283238;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding: 0 10%;
-      grid-gap: 30px;
-      border: 50px solid #283238;
-  }
-
-
-
+.officers {
+    background-color: #283238;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 10%;
+    grid-gap: 30px;
+    border: 50px solid #283238;
+}
 
 @media only screen and (max-width: 1250px) {
-
     .officers {
         padding: 0 5%;
-
     }
 }
 
-
 @media only screen and (max-width: 1100px) {
-
     #home_page {
         grid-template-columns: 1fr;
         grid-template-rows: 80vw 1fr;
@@ -560,9 +551,8 @@ footer a:hover {
         grid-row: 1;
     }
     
-
     .navbar-main {
-        background-color: #283238;
+        background-color: white;
     }
 
     .content, .sponsor-content {
@@ -573,14 +563,9 @@ footer a:hover {
     .bio {
         width: 100%;
     }
-
-
-
 }
 
 @media only screen and (max-width: 900px) {
-
-
     .content, .sponsor-content {
         grid-template-rows: repeat(4, auto);
     }
@@ -610,12 +595,9 @@ footer a:hover {
     .officers {
         grid-template-columns: 1fr 1fr;
     }
-
-
 }
 
 @media only screen and (max-width: 800px) {
-
     #hamburger {
         display: block;
     }
@@ -627,15 +609,12 @@ footer a:hover {
     .left-link {
         display: none;
     }
-
 }
-
 
 @media only screen and (max-width: 650px) {
     .officers {
         grid-template-columns: 1fr ;
     }
-
 
     .sponsors {
         grid-template-columns: 1fr ;
@@ -664,52 +643,53 @@ footer a:hover {
     display: inline-block;
 }
 
-
-
 @media only screen and (min-width: 800px) {
-
 	.navbar-hidden {
         display: none !important;
 	}
-
 }
 
-.event-content{
+.event-content {
     position: relative;
     height: 0;
     width: 80%;
     padding-bottom: 50%;
-  }
+}
   
-  .event-content iframe{
+.event-content iframe {
     position: absolute;
     top: 0;
     left: 10%;
     width: 100%;
     height: 100%;
-  }
+}
 
-  .dropdown { 
+.dropdown { 
     position: relative;
     display: inline-block;
-  }
+}
   
-  .dropdown-content {
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-  }
+}
   
-  .dropdown-content a {
+.dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  }
-  .dropdown-content a:hover {background-color: #ddd;}
+}
   
-  .dropdown:hover .dropdown-content {display: block;}
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+  
+.dropdown:hover .dropdown-content {
+    display: block;
+}
   
