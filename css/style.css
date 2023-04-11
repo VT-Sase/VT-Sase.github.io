@@ -749,6 +749,7 @@ footer a:hover {
 .card:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   height: 102%;
+  border-radius: 15px;
 }
 
 .card img {
@@ -875,6 +876,7 @@ footer a:hover {
   -webkit-transition: all 0.4s ease-in-out 0s;
   -moz-transition: all 0.4s ease-in-out 0s;
   transition: all 0.4s ease-in-out 0s;
+  border-radius: 15px 15px 0 0;
 }
 
 .content2:hover .content-overlay {
@@ -886,6 +888,7 @@ footer a:hover {
   height: auto;
   display: block;
   object-fit: cover;
+  border-radius: 15px 15px 0 0;
 }
 
 .content-details {
