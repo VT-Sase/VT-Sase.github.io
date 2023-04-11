@@ -846,11 +846,6 @@ footer a:hover {
   }
 }
 
-/* #footer {
-    justify-self: left !important;
-    align-self: end !important;
-} */
-
 .fadeIn-top {
   top: 20%;
 }
@@ -864,8 +859,6 @@ footer a:hover {
 .content2 {
   position: relative;
   width: 100%;
-
-  /* margin: auto; */
   overflow: hidden;
 }
 
@@ -923,7 +916,6 @@ footer a:hover {
   font-weight: 500;
   letter-spacing: 0.15em;
   margin-bottom: 0.5em;
-  /* text-transform: uppercase; */
 }
 
 .content-details p {
