@@ -9,7 +9,10 @@ pages:
     paths:
       - node_modules/
   script:
-    - npm install
+    - npm ci
+    - npm install 
+    - npm install --save owl.carousel
+    - npm install jquery
     - npm run build
     - cp -a dist/. public/
   artifacts:
