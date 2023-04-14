@@ -1,10 +1,12 @@
 //Hamburger Drop-Down Menu Functionality
 
+/*
 $(document).ready(function(){
     $("#hamburger").click(function() {
         $(".navbar-hidden").slideToggle(300);
     });
 });
+*/
 
 $(document).ready(function(){
     $(".owl-carousel").owlCarousel({
@@ -15,3 +17,5 @@ $(document).ready(function(){
         items: 1
     });
 });
+
+
