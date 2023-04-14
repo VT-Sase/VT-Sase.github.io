@@ -478,7 +478,7 @@ footer a:hover {
 
 .content-image{
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     object-fit: cover;
     border-radius: 15px 15px 0 0;
