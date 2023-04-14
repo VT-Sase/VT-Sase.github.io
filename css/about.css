@@ -1,0 +1,48 @@
+.navbar-main {
+    background-color: #fff !important;
+}
+
+.sponsor-content {
+    display: grid;
+    padding: 20px 7%;
+    grid-template-columns: 1.5fr 3fr;
+}
+
+.sponsors {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+}
+
+.sponsor {
+    padding: 20px;
+}
+
+.sase-chapter-picture-heading {
+    padding: 40px 5% 0 5%;
+    background-color: white;
+    bottom: 30px;
+    position: relative;
+    text-align: center;
+    color: black;
+    display: block;
+    font-size: 1.17em;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.sase-chapter-picture-heading h1 {
+    border-radius: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.sase-chapter-picture-heading h1 img {
+    border-radius: 0 0 15px 15px;
+}
+
+.sase-chapter-picture-heading h1:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    height: 102%;
+}
