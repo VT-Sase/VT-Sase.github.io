@@ -1,4 +1,4 @@
-//Hamburger Drop-Down Menu Functionality
+// Hamburger Drop-Down Menu Functionality
 
 /*
 $(document).ready(function(){
@@ -8,12 +8,14 @@ $(document).ready(function(){
 });
 */
 
+// Overriding Default Owl-Carousel Functionality
+
 $(document).ready(function(){
     $(".owl-carousel").owlCarousel({
         loop: true,
         autoplay: true,
         autoplayTimeout: 4000,
-        autoplayHoverPause: false,
+        autoplayHoverPause: true,
         items: 1
     });
 });
