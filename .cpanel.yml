@@ -12,16 +12,30 @@ deployment:
         - node_modules/
   tasks:
     - export DEPLOYPATH=/home/ilxabzuaup05/public_html/
-    # - /bin/cp -R about $DEPLOYPATH
-    # - /bin/cp -R alumni $DEPLOYPATH
-    # - /bin/cp -R assets $DEPLOYPATH
-    # - /bin/cp -R 
+    - /bin/cp -R about $DEPLOYPATH
+    - /bin/cp -R alumni $DEPLOYPATH
+    - /bin/cp -R assets $DEPLOYPATH
+    - /bin/cp -R archive $DEPLOYPATH
+    - /bin/cp -R css $DEPLOYPATH
+    - /bin/cp -R data-analytics $DEPLOYPATH
     - /bin/cp -R * $DEPLOYPATH
-    # - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp -R js $DEPLOYPATH
+    - /bin/cp -R officers $DEPLOYPATH
+    - /bin/cp -R sponsors $DEPLOYPATH
+    - /bin/cp -R year-in-review $DEPLOYPATH
+    - /bin/cp -R Vite-Original-Configuration-Files $DEPLOYPATH
+    - /bin/cp -R .github $DEPLOYPATH
+    - /bin/cp .gitignore $DEPLOYPATH
+    - /bin/cp package-lock.json $DEPLOYPATH
+    - /bin/cp package.json $DEPLOYPATH
+    - /bin/cp vite.config.js $DEPLOYPATH
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp -R * $DEPLOYPATH
     - /bin/cd /home/ilxabzuaup05/public_html/
     - npm install
     - npm run build
-    - cp -a dist/. public/
+    - /bin/cp -a dist/. public/
+    - /bin/cd public/
   artifacts:
     paths:
       - public
