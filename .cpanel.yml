@@ -12,10 +12,7 @@
             - node_modules/
     tasks:
       - export DEPLOY_PATH=/home/ilxabzuaup05/public_html/
-      - npm install
-      - npm run build
-      - cp -a dist/. public/
-      - /bin/cp -a * $DEPLOY_PATH
+      - /bin/cp -R * $DEPLOY_PATH
     # script:
       # - npm install
       # - npm run build
