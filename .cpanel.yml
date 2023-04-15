@@ -1,13 +1,13 @@
 ---
-  deployment:
-    tasks:
-      - export DEPLOYPATH=/home/ilxabzuaup05/public_html/
-      - /bin/cp index.html $DEPLOYPATH
-    # script:
-      # - npm install
-      # - npm run build
-      # - cp -a dist/. public/
-    # artifacts:
-      # paths:
-        # - public
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/ilxabzuaup05/public_html/
+    - /bin/cp index.html $DEPLOYPATH
+  # script:
+    # - npm install
+    # - npm run build
+    # - cp -a dist/. public/
+  # artifacts:
+    # paths:
+      # - public
 
