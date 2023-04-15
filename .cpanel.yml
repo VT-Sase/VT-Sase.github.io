@@ -1,0 +1,22 @@
+---
+  deployments:
+    image: node:16.5.0
+      pages:
+        stage: deploy
+        cache:
+          key:
+            files:
+              - package-lock.json
+            prefix: npm
+          paths:
+            - node_modules/
+    tasks:
+      - export DEPLOY_PATH=/home/ilxabzuaup05/public_html
+      - /bin/cp -R * $DEPLOY_PATH
+    script:
+      - npm install
+      - npm run build
+      - cp -a dist/. public/
+    artifacts:
+      paths:
+        - public
