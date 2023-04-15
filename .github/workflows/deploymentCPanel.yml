@@ -45,7 +45,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
       - name: FTP Deploy Action and Sync Files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.4
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
           ftp-server: ${{ secrets.FTP_SERVER }}
           ftp-username: ${{ secrets.FTP_USERNAME }}
