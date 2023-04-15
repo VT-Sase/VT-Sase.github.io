@@ -1,8 +1,8 @@
 ---
   deployments:
     tasks:
-      - export DEPLOY_PATH=/home/ilxabzuaup05/public_html/
-      - /bin/cp index.html $DEPLOY_PATH
+      - export DEPLOYPATH=/home/ilxabzuaup05/public_html/
+      - /bin/cp index.html $DEPLOYPATH
     # script:
       # - npm install
       # - npm run build
