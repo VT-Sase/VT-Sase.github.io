@@ -42,7 +42,7 @@ jobs:
           # Upload dist repository
           path: './dist'
       - name: FTP Deploy Action and Sync Files
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        uses: airvzxf/ftp-deployment-action@latest
         with:
           ftp-server: ${{ secrets.FTP_SERVER }}
           ftp-username: ${{ secrets.FTP_USERNAME }}
