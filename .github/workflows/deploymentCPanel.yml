@@ -11,7 +11,7 @@ on:
 
 # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -20,6 +20,10 @@ jobs:
   CPanel-Integration-with-GitHub:
     name: CPanel-Integration-with-GitHub
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./
     steps:
       - name: Checkout and Get Latest Code
         uses: actions/checkout@v3
@@ -42,8 +46,10 @@ jobs:
           # Upload dist repository
           path: './dist'
       - name: FTP Deploy Action and Sync Files
-        uses: airvzxf/ftp-deployment-action@latest
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
           server: ${{ secrets.FTP_SERVER }}
           user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          remote-dir: /home/ilxabzuaup05/public_html/
