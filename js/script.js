@@ -1,12 +1,11 @@
 // Hamburger Drop-Down Menu Functionality
 
-/*
 $(document).ready(function(){
     $("#hamburger").click(function() {
         $(".navbar-hidden").slideToggle(300);
     });
 });
-*/
+
 
 // Overriding Default Owl-Carousel Functionality
 
