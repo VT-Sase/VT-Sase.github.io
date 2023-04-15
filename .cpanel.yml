@@ -11,7 +11,7 @@
           paths:
             - node_modules/
     tasks:
-      - export DEPLOY_PATH=/home/ilxabzuaup05/public_html/website
+      - export DEPLOY_PATH=/home/ilxabzuaup05/public_html/sase-vt.org/
       - /bin/cp -R * $DEPLOY_PATH
     script:
       - npm install
