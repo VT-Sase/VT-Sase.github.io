@@ -9,7 +9,13 @@ $(document).ready(function(){
 
 // Overriding Default Owl-Carousel Functionality
 
-$(document).ready(function(){
+/*x
+$(document).ready(function() {
+    $('.owl-carousel').owlCarousel();
+});
+*/
+
+$(document).ready(function() {
     $(".owl-carousel").owlCarousel({
         loop: true,
         autoplay: true,
@@ -18,5 +24,3 @@ $(document).ready(function(){
         items: 1
     });
 });
-
-
