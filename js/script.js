@@ -9,9 +9,11 @@ $(document).ready(function(){
 
 // Overriding Default Owl-Carousel Functionality
 
+/*x
 $(document).ready(function(){
     $('.owl-carousel').owlCarousel();
 });
+*/
 
 $(document).ready(function(){
     $(".owl-carousel").owlCarousel({
