@@ -35,7 +35,6 @@ deployment:
     - npm install
     - npm run build
     - /bin/cp -a dist/. public/
-    - /bin/cd public/
   artifacts:
     paths:
       - public
