@@ -18,7 +18,6 @@ deployment:
     - /bin/cp -R archive $DEPLOYPATH
     - /bin/cp -R css $DEPLOYPATH
     - /bin/cp -R data-analytics $DEPLOYPATH
-    - /bin/cp -R * $DEPLOYPATH
     - /bin/cp -R js $DEPLOYPATH
     - /bin/cp -R officers $DEPLOYPATH
     - /bin/cp -R sponsors $DEPLOYPATH
@@ -31,11 +30,11 @@ deployment:
     - /bin/cp vite.config.js $DEPLOYPATH
     - /bin/cp index.html $DEPLOYPATH
     - /bin/cp -R * $DEPLOYPATH
-    - /bin/cd /home/ilxabzuaup05/public_html/
-    - npm install
-    - npm run build
-    - /bin/cp -a dist/. public/
-  artifacts:
-    paths:
-      - public
+  #   - /bin/cd /home/ilxabzuaup05/public_html/
+  #   - npm install
+  #   - npm run build
+  #   - /bin/cp -a dist/. public/
+  # artifacts:
+  #   paths:
+  #     - public
 
