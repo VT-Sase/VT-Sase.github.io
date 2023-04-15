@@ -9,6 +9,7 @@ export default defineConfig ({
                 main: resolve(__dirname, "index.html"),
                 about: resolve(__dirname, "about/index.html"),
                 alumni: resolve(__dirname, "alumni/index.html"),
+                events: resolve(__dirname, "events/index.html"),
                 officers: resolve(__dirname, "officers/index.html"),
                 officers_2021_22: resolve(__dirname, "officers/oldOfficers2021-22.html"),
                 officers_2019_20: resolve(__dirname, "officers/oldOfficers2019-20.html"),
