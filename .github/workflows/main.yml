@@ -41,11 +41,14 @@ jobs:
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v3
+      - name: Copy Files From 'Dist' to 'Public' Directory
+        run: |
+          cp -r ./dist ./public
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload dist repository
-          path: './dist'
+          # Upload public repository
+          path: './public'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
