@@ -267,7 +267,7 @@ footer a:hover {
 }
 
 .slideshow {
-    background-image: url("/img/slideshow/7.jpg");
+    /* background-image: url("/img/slideshow/7.jpg"); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50%;
