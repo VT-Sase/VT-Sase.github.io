@@ -23,4 +23,4 @@ function overrideFunctionality()
 
 // Reduces (Does Not 100% Avoid It Though) the Chance of the JavaScript Not 
 // Loading the Carousel By the Time of the Initial Page Load
-setTimeout(overrideFunctionality, 1000);
+setTimeout(overrideFunctionality, 0);
