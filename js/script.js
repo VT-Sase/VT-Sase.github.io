@@ -1,5 +1,5 @@
 
-// For Home index.html Page
+// Needed For Home index.html Page:
 function overrideFunctionality()
 {
     // Overriding Default Hamburger Drop-Down Menu Functionality (Mobile)
