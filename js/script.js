@@ -1,26 +1,24 @@
-// Hamburger Drop-Down Menu Functionality
 
-$(document).ready(function(){
-    $("#hamburger").click(function() {
-        $(".navbar-hidden").slideToggle(300);
+function overrideFunctionality() {
+    
+    // Hamburger Drop-Down Menu Functionality
+    $(document).ready(function(){
+        $("#hamburger").click(function() {
+            $(".navbar-hidden").slideToggle(300);
+        });
     });
-});
 
 
-// Overriding Default Owl-Carousel Functionality
-
-/*x
-$(document).ready(function() {
-    $('.owl-carousel').owlCarousel();
-});
-*/
-
-$(document).ready(function() {
-    $(".owl-carousel").owlCarousel({
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 4000,
-        autoplayHoverPause: true,
-        items: 1
+    // Overriding Default Owl-Carousel Functionality
+    $(document).ready(function() {
+        $(".owl-carousel").owlCarousel({
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            autoplayHoverPause: true,
+            items: 1
+        });
     });
-});
+}
+
+setTimeout(overrideFunctionality, 3000);
