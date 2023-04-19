@@ -9,30 +9,50 @@ function overrideFunctionality()
         });
     });
 
-    // Overriding Default Owl-Carousel Functionality
+    // Overriding Default Owl-Carousel Functionality (If Applicable)
     $(document).ready(function() {
 
         const owl = $('.owl-carousel');
         
-        owl.owlCarousel({
-            loop: true,
-            autoplay: true,
-            autoplayTimeout: 5000,
-            autoplayHoverPause: true,
-            items: 1,
-            nav: false,
-            dots: true
-        });
+        // No need to override if there is no class instance of this
+        if (owl != undefined && owl != null)
+        {
+            owl.owlCarousel({
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                items: 1,
+                nav: false,
+                dots: true,
+                navText: ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+            });
     
-        // Custom Navigation to Previous & Next Image in Carousel
-
-        $('.owl-carousel__prev').click(() => {
-            owl.trigger('prev.owl.carousel')
-        });
+            // Custom Navigation to Fast-Forward Previous, Previous, Next, Fast-Forward Next Image in Carousel
+            const fastBackwordForwardDuration = 5;
     
-        $('.owl-carousel__next').click(() => {
-            owl.trigger('next.owl.carousel')
-        });
+            $('.owl-carousel__fast_forward_prev').click(() => {
+                for (let i = 0; i < fastBackwordForwardDuration; i++)
+                {
+                    owl.trigger('prev.owl.carousel');
+                }
+            });
+    
+            $('.owl-carousel__prev').click(() => {
+                owl.trigger('prev.owl.carousel');
+            });
+        
+            $('.owl-carousel__next').click(() => {
+                owl.trigger('next.owl.carousel');
+            });
+    
+            $('.owl-carousel__fast_forward_next').click(() => {
+                for (let i = 0; i < fastBackwordForwardDuration; i++)
+                {
+                    owl.trigger('next.owl.carousel');
+                }
+            });
+        }
     });
 }
 
