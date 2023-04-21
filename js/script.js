@@ -3,14 +3,14 @@
 function overrideFunctionality()
 {
     // Overriding Default Hamburger Drop-Down Menu Functionality (Mobile)
-    $(document).ready(function(){
-        $("#hamburger").click(function() {
+    $(document).ready(() => {
+        $("#hamburger").click(() => {
             $(".navbar-hidden").slideToggle(300);
         });
     });
 
     // Overriding Default Owl-Carousel Functionality (If Applicable)
-    $(document).ready(function() {
+    $(document).ready(() => {
 
         const owl = $('.owl-carousel');
         
@@ -24,8 +24,7 @@ function overrideFunctionality()
                 autoplayHoverPause: true,
                 items: 1,
                 nav: false,
-                dots: true,
-                navText: ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+                dots: true
             });
     
             // Custom Navigation to Fast-Forward Previous, Previous, Next, Fast-Forward Next Image in Carousel
