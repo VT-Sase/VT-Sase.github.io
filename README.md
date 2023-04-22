@@ -169,7 +169,7 @@ For future Webmasters, we may need to consider placing protections on the branch
 ## Branch Structure of the GitHub Repository
 
 <ul>
-    <li> main - <b>DO NOT DEVELOP DIRECTLY ON THIS BRANCH.</b> This branch is the one actively being rendered publicly on our GoDaddy Website Domain.
-    <li> reg-website-no-optimizations - Branch that contains the Vanilla JS configuration BEFORE Vite was introduced into the GitHub Repository. <b>[Last Updated: 04/14/2023]</b>
-    <li> vite - Current Branch for <b>ACTIVE DEVELOPMENT</b>. Branch that contains the Vanilla JS configuration as well the most up-to-date Vite Configurations in our GitHub Repository. The conventional practice is to merge this branch's changes to the "main" branch after pushing local changes up.
+    <li> <b>main</b> - <u>DO NOT DEVELOP DIRECTLY ON THIS BRANCH.</u> This branch is the one actively being rendered publicly on our GoDaddy Website Domain.
+    <li> <b>reg-website-no-optimizations</b> - Branch that contains the Vanilla JS configuration BEFORE Vite was introduced into the GitHub Repository. <b>[Last Updated: 04/14/2023]</b>
+    <li> <b>vite</b> - Current Branch for <u>ACTIVE DEVELOPMENT</u>. Branch that contains the Vanilla JS configuration as well the most up-to-date Vite Configurations in our GitHub Repository. The conventional practice is to merge this branch's changes to the "main" branch after pushing local changes up.
 </ul> 
