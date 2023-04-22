@@ -118,3 +118,58 @@ Switches branches or can be used to restore working tree files.
 ### <b>Other Commands to Consider Looking Into (If Interested): `git stash`, `git restore`, `git log`.</b>
 
 Once more, for a reference on how to use any of these `git` commands or other more advanced ones as well, see this [page](https://git-scm.com/doc) written by Git for more information.
+
+## File Structure of the GitHub Repository
+
+### `index.html` (Outside Level)
+
+Home `index.html` Page of the SASE Website, serves as the main access point. Contains the carousel of slideshow images.
+
+### About, Alumni, Data-Analytics, Events, Officers, Sponsors, Year-in-Review Directories
+
+Contains the respective `index.html` pages for each of those static pages on the SASE Website as well as the older nested `HTML` pages (Officer folder).
+
+### CSS Directory
+
+Contains all of the `CSS` stylesheets, providing all of the styling pages used on the SASE Website.
+
+### JS Directory
+
+Contains all of the `JS` scripts, providing all of the dynamic content and rendering functionality for the SASE Website.
+
+### `Assets` Directory
+
+Includes all of the (static) images that are used on all of the pages of the SASE Website. It is organized into sub-directories by academic year and type of image: original (unoptimized), compressed (after running the original images through one/more of the image compression website(s)), and compressed-smaller (uses cropping tools on your local machine) that stores even further file-size-reduced images. \
+Highly recommend to only use the compressed-smaller images to keep the fully utilize and keep the Vite build as fast as possible!!! \
+[Message for Current and Future/Incoming Webmasters...] Please see the Webmaster Instruction Document in your SASE Officer Drive Directory for more information on suggested practices on how to follow this convention with the `Assets` Directory! Of course, you can organize the `Assets` Directory your own way if you are the current Webmaster, but these are merely recommendations on one way on how to optimize the SASE Website which have been proven to work!
+
+### `vite.config.js`
+
+Important file to specify which directories (as well as associated specific files) to include in the `vite` build for production. \
+See the section about [deployment](https://vitejs.dev/guide/build.html) for more information on how to create or modify this file appropriately for future use.
+
+### `.gitignore` File
+
+Elaborates which files or directories locally are not included when interacting with the remote repositories to avoid version conflicts on different operating system machines within the same academic school year or also between different school years. \
+As of right now, there 
+
+### `CNAME` File
+
+File necessary for specifying the URL integrated with our GoDaddy Web Domain and its associated configuraiton settings. See this [page](https://hackernoon.com/how-to-set-up-godaddy-domain-with-github-pages-a9300366c7b) for more information on understanding how our GoDaddy Website Domain was integrated with GitHub Pages and/or fix any issues with syncing between GoDaddy and GitHub Pages in the future.
+
+### `package.json` and `package-lock.json`
+
+Contains all of the NPM installed packages for this GitHub Repository. Please refer to the `Available Scripts for Development` Section above to see how it is used toward this SASE website's development.
+
+### `main.yml` (in "`/.github/workflows`" Directory)
+
+Specifies the basic CI/CD on GitHub whenever code changes are added to the index, committed with a log message, and pushed to the remote branch. Enables `npm` and `vite` commands be run to render the appropriate, optimized artifacts/assets onto our public SASE website domain. See the GitHub Action [documentation](https://docs.github.com/en/actions) page for more information on how GitHub handles deploying code from local to remote repositories generally work as well as the Vite [deployment](https://vitejs.dev/guide/static-deploy.html) page for more information on how our SASE website is running Vite on our GitHub repository when deployed. \
+For future Webmasters, we may need to consider placing protections on the branches to avoid committing and pushing code that will break the SASE website when rendered on Internet browsers.
+
+## Branch Structure of the GitHub Repository
+
+<ul>
+    <li> main - <b>DO NOT DEVELOP DIRECTLY ON THIS BRANCH.</b> This branch is the one actively being rendered publicly on our GoDaddy Website Domain.
+    <li> reg-website-no-optimizations - Branch that contains the Vanilla JS configuration BEFORE Vite was introduced into the GitHub Repository. <b>[Last Updated: 04/14/2023]</b>
+    <li> vite - Current Branch for <b>ACTIVE DEVELOPMENT</b>. Branch that contains the Vanilla JS configuration as well the most up-to-date Vite Configurations in our GitHub Repository. The conventional practice is to merge this branch's changes to the "main" branch after pushing local changes up.
+</ul>
