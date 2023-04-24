@@ -1,0 +1,48 @@
+* {
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+
+.alumni-page-content {
+    display: flex;
+    flex-direction: column;
+    object-fit: fill;
+}
+
+/* 
+.alumni-page-content-section-heading {
+    padding: 40px 0 0 0;
+} */
+
+.alumni-page-content-section-heading {
+    padding: 40px 0 0 0;
+    background-color: white;
+    bottom: 30px;
+    position: relative;
+    text-align: center;
+    color: black;
+    display: block;
+    font-size: 1.17em;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.alumni-page-content-section-heading h1 {
+    border-radius: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    display: flex;
+    flex-direction: column;
+    object-fit: cover;
+}
+
+.alumni-page-content-section-heading h1 img {
+    border-radius: 0 0 15px 15px;
+}
+
+.alumni-page-content-section-heading h1:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.22);
+    height: 50%; 
+    justify-content: center;
+}
