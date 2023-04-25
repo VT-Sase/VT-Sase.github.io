@@ -36,8 +36,15 @@
     margin: 10px;
 }
 
+.alumni-page-content-section-heading h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .alumni-page-content-section-heading h1 img {
     border-radius: 0 0 15px 15px;
+    align-content: center;
 }
 
 .alumni-page-content-section-heading:hover {
