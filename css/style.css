@@ -194,10 +194,9 @@ footer a:hover {
 
 #home_page_bio {
   /* This is so the navbar doesn't intersect the text resizing vertically */
-  padding-top: 107px !important;
-  padding-bottom: 107px !important;
-
-  padding: 0 10%;
+  padding-top: 110px !important;
+  padding-bottom: 10px !important;
+  padding: 0 5%;
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 1fr;
@@ -210,16 +209,6 @@ footer a:hover {
   font-size: 24px;
   text-align: center;
 }
-
-/* .slideshow {
-  background-image: url("/img/slideshow/7.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50%;
-  -webkit-transition: background-image 1s linear;
-  transition: background-image 1s linear;
-  background-color: transparent;
-} */
 
 .carousel {
   height: 100%;
@@ -242,7 +231,7 @@ footer a:hover {
   display: inline-flex;
   /* New Carousel: 50 Images (50 * ~4 sec = 200 sec) */
   /* Initial Delay of 8 sec needed for Loading First Image */
-  animation: 200s carousel-slideshow 8s infinite;
+  animation: 200s carousel-slideshow 8s infinite; /* NOT USED ANYMORE (as of 2022-23) */
 }
 
 .owl-carousel .item img {
@@ -272,6 +261,71 @@ footer a:hover {
   height: 102%;
   background-color: pink;
   color: #000000;
+}
+
+.slideshow .owl-nav button{
+    position: absolute;
+    top: 40%;
+}
+
+.slideshow .owl-prev,
+.slideshow .owl-next {
+    background-color: #0668b3 !important;
+    color: #fff !important; 
+    font-size: 40px !important;
+    height: 80px;
+}
+
+.slideshow .owl-prev {
+    left: 0;
+}
+
+.slideshow .owl-next {
+    right: 15px;
+}
+
+.webmaster-card-reveal-scroll-down-container {
+    border: 20px solid white;
+}
+
+.webmaster-card-reveal-scroll-down {
+    margin: auto; 
+    width: 50%;
+    background-color: #c0c0c0;
+}
+
+.webmaster-card-reveal-scroll-down-content h2 {
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* margin-block-start: 0.2em !important;
+    margin-block-end: 0.2em !important; */
+    /* margin-bottom: 0; */
+}
+
+.webmaster-card-container {
+    border: 20px solid white;
+}
+
+.webmaster-card {
+    margin: auto; 
+    width: 50%;
+}
+
+#webmaster-card-img {
+    object-fit: contain; 
+    height: auto;
+}
+
+.webmaster-card-content h1 {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.webmaster-card-content h2 {
+    font-weight: normal;
 }
 
 /* About Page Styles */
@@ -538,7 +592,7 @@ footer a:hover {
   }
 
   .slideshow {
-    margin-top: 107px;
+    margin-top: 110px;
     grid-row: 1;
   }
 
