@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "../assets/react.svg";
 import viteLogo from "/vite.svg";
 import "../App.css";
 
-const Example: React.FC = () => {
+const Home: React.FC = () => {
   const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log(count);
+  }, [count]);
 
   return (
     <>
@@ -20,7 +24,7 @@ const Example: React.FC = () => {
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
         <p>
-          Edit <code>src/components/Example.tsx</code> and save to test HMR
+          Edit <code>src/components/Home.tsx</code> and save to test HMR.
         </p>
       </div>
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
@@ -28,4 +32,4 @@ const Example: React.FC = () => {
   );
 };
 
-export default Example;
+export default Home;
