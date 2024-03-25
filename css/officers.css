@@ -198,6 +198,7 @@ a {
     top: 40px;
 }
 
+
 .sase-officer-header-label, 
 .sase-officer-committee-header-label {
     color: #283238;
@@ -228,7 +229,7 @@ a {
     display: block;
     object-fit: cover;
 }
-  
+
 .content-details {
     position: absolute;
     text-align: center;
@@ -278,6 +279,7 @@ a {
 
 .card-content-2 {
     padding: 20px 5px;
+
 }
 
 .content-image {
@@ -370,3 +372,44 @@ footer a:hover {
     background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/INTERNS.jpg') no-repeat left 100%;
     background-size: cover;
 }
+
+
+
+/* Setting Displayed VT SASE Group Committee Images 2023-2024*/
+
+#sase-overview23-24.sase-officer-header-label {
+    padding: 40px 5% 0 5%;
+    background: url('/assets/img/officers/2023-2024/officer-photos/OFFICERS.jpg') no-repeat center 20%;
+    background-size: cover;
+}
+
+#sase-leads23-24.sase-officer-committee-header-label {
+    background: url('/assets/img/officers/2023-2024/officer-photos/LEADS.jpg') no-repeat center 50%; 
+    background-size: cover;
+}
+
+#sase-logistics23-24.sase-officer-committee-header-label {
+    background: url('/assets/img/officers/2023-2024/officer-photos/LOGISTICS.jpg') no-repeat center 50%;
+    background-size: cover;
+}
+
+#sase-internal23-24.sase-officer-committee-header-label {
+    background: url('/assets/img/officers/2023-2024/officer-photos/INTERNAL.jpg') no-repeat center 50%;
+    background-size: cover;
+}
+
+#sase-external23-24.sase-officer-committee-header-label {
+    background: url('/assets/img/officers/2023-2024/officer-photos/EXTERNAL.jpg') no-repeat center 50%; 
+    background-size: cover;
+}
+
+#sase-media23-24.sase-officer-committee-header-label {
+    background: url('/assets/img/officers/2023-2024/officer-photos/MEDIA.jpg') no-repeat center 50%; 
+    background-size: cover;
+}
+
+#sase-freshman-interns23-24.sase-officer-committee-header-label {
+    background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/INTERNS.jpg') no-repeat left 100%;
+    background-size: cover;
+}
+
