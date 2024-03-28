@@ -1,0 +1,20 @@
+
+[
+    {
+      "name": "Cool Person",
+      "role": "Being Cool",
+      "academicYear": "2020",
+      "major": "Majoring in Cool",
+      "email": "Darren12email@vt.edu",
+      "imageUrl": "link-to-image"
+    },
+  
+    {
+      "name": "Officer Name",
+      "role": "Officer Role",
+      "academicYear": "Year",
+      "major": "Major/Minor",
+      "email": "email@vt.edu",
+      "imageUrl": "link-to-image"
+    }
+  ]
