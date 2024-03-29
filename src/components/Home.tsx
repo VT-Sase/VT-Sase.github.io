@@ -1,33 +1,59 @@
 import { useEffect, useState } from "react";
-import reactLogo from "../assets/react.svg";
-import viteLogo from "/vite.svg";
 import "../App.css";
+import { Footer, NavbarHeader } from ".";
+import React from "react";
 
+import EmblaCarousel from "./EmblaCarousel";
+import { EmblaOptionsType } from "embla-carousel";
+
+import "../styles/Home.css";
+
+interface BaseImageName {
+  base: string;
+  count: number;
+}
+
+//Setup image names
+const baseImageNames: BaseImageName[] = [
+  { base: "2022-23-SASE-End-of-Year-GBM", count: 24 },
+  { base: "2021-22-SASE-Mentor-Mentee-Reveal", count: 6 },
+  { base: "2021-22-Halloween-GBM", count: 1 },
+  { base: "2021-22-Lunar-New-Year-GBM", count: 3 },
+  { base: "2021-22-SASE-Gala", count: 5 },
+  { base: "2021-22-End-of-Year-GBM", count: 10 },
+  { base: "2022-23-Back-to-School-GBM", count: 4 },
+  { base: "2022-23-Fall-2022-SASE-Mentor-Mentee-Week-Picnic-Group-Image", count: 1 },
+  { base: "2022-23-Halloween-GBM", count: 1 },
+  { base: "2022-23-SASE-Mentor-Mentee-Reveal", count: 3 },
+  { base: "2022-23-Lunar-New-Year-GBM", count: 1 },
+  { base: "2022-23-SASE-Coffeehouse-Night", count: 1 },
+  { base: "2022-23-SASE-Gala", count: 5 },
+  { base: "2022-23-SASE-End-of-Year-GBM", count: 23 }
+];
+
+const generateImageNames = (baseImageNames: BaseImageName[]): string[] => {
+  const imageNames: string[] = [];
+
+  baseImageNames.forEach((item) => {
+    for (let i = 1; i <= item.count; i++) {
+      const imageName = `${item.base}-${i}.jpg`; // Assuming the images are in JPG format
+      imageNames.push(imageName);
+    }
+  });
+
+  return imageNames;
+};
+
+//Embla configs
+const OPTIONS: EmblaOptionsType = { loop: true };
+const images = generateImageNames(baseImageNames);
+console.log(images);
+//Home component
 const Home: React.FC = () => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    console.log(count);
-  }, [count]);
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/components/Home.tsx</code> and save to test HMR.
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+      <NavbarHeader />
+      <EmblaCarousel imageNames={images} options={OPTIONS} />
     </>
   );
 };
