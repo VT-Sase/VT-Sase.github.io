@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
-import { Footer, NavbarHeader } from ".";
+import { NavbarHeader } from ".";
 import React from "react";
 
 import EmblaCarousel from "./EmblaCarousel";
 import { EmblaOptionsType } from "embla-carousel";
 
 import "../styles/Home.css";
-
+import saseLogo from "/src/assets/img/logos/sase_logo.png";
 interface BaseImageName {
   base: string;
   count: number;
@@ -48,12 +48,43 @@ const generateImageNames = (baseImageNames: BaseImageName[]): string[] => {
 const OPTIONS: EmblaOptionsType = { loop: true };
 const images = generateImageNames(baseImageNames);
 console.log(images);
+
 //Home component
 const Home: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <NavbarHeader />
-      <EmblaCarousel imageNames={images} options={OPTIONS} />
+      <main id="home_page">
+        <section>
+          <div id="home_page_bio">
+            <img src={saseLogo} alt="SASE Logo" className="responsive-img" />
+            <div id="home_page_bio_text">
+              <h1>Welcome to SASE at Virginia Tech!</h1>
+              <p>
+                SASE is dedicated to advancing Asian heritage scientists and engineers in education and employment so
+                that they can achieve their full career potential.
+              </p>
+              <button className="button" onClick={() => navigate("/events")}>
+                <i className="fas fa-calendar-alt"></i>&nbsp;&nbsp; Upcoming Events
+              </button>
+              <button className="button" onClick={() => navigate("/about")}>
+                <i className="fas fa-plus"></i>&nbsp;&nbsp; Learn More
+              </button>
+              <button className="button" onClick={() => navigate("/sponsors")}>
+                <i className="fas fa-user-tie"></i>&nbsp;&nbsp; Be A Sponsor
+              </button>
+              <button className="button" onClick={() => navigate("/officers")}>
+                <i className="fas fa-users"></i>&nbsp;&nbsp; Meet the Current Officers
+              </button>
+            </div>
+          </div>
+        </section>
+        <section>
+          <EmblaCarousel imageNames={images} options={OPTIONS} />
+        </section>
+      </main>
     </>
   );
 };
