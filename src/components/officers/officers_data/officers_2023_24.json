@@ -5,12 +5,12 @@
       "subteam": "leads",
       "cardInfo": [
         {
-          "name": "Cool Person",
-          "role": "Being Cool",
-          "academicYear": "2020",
-          "major": "Majoring in Cool",
-          "email": "Darren12email@vt.edu",
-          "imageUrl": "link-to-image"
+          "name": "Annie Tran",
+          "role": "President",
+          "academicYear": "Junior",
+          "major": "Computer Science",
+          "email": "annietran@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/annie-tran.jpg"
         },
         {
           "name": "Officer Name 1",
@@ -18,7 +18,15 @@
           "academicYear": "Year 1",
           "major": "Major/Minor 1",
           "email": "email@vt.edu 1",
-          "imageUrl": "link-to-image 1"
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/abhay.jpg"
+        },
+        {
+          "name": "Officer Name 1",
+          "role": "Officer Role 1",
+          "academicYear": "Year 1",
+          "major": "Major/Minor 1",
+          "email": "email@vt.edu 1",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/namkhang.jpg"
         }
       ]
     },
@@ -31,7 +39,7 @@
           "academicYear": "Year 2",
           "major": "Major/Minor 2",
           "email": "email@vt.edu 2",
-          "imageUrl": "link-to-image 2"
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/erica.jpg"
         },
         {
           "name": "Officer Name 3",
@@ -39,7 +47,15 @@
           "academicYear": "Year 3",
           "major": "Major/Minor 3",
           "email": "email@vt.edu 3",
-          "imageUrl": "link-to-image 3"
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/huy.jpg"
+        },
+        {
+          "name": "Officer Name 3",
+          "role": "Officer Role 3",
+          "academicYear": "Year 3",
+          "major": "Major/Minor 3",
+          "email": "email@vt.edu 3",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/seneca.jpg"
         }
       ]
     },
@@ -52,7 +68,7 @@
           "academicYear": "Year 4",
           "major": "Major/Minor 4",
           "email": "email@vt.edu 4",
-          "imageUrl": "link-to-image 4"
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/kelly.jpg"
         },
         {
           "name": "Officer Name 5",
@@ -60,7 +76,7 @@
           "academicYear": "Year 5",
           "major": "Major/Minor 5",
           "email": "email@vt.edu 5",
-          "imageUrl": "link-to-image 5"
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/francis.jpg"
         }
       ]
     },
@@ -73,7 +89,7 @@
           "academicYear": "Year 6",
           "major": "Major/Minor 6",
           "email": "email@vt.edu 6",
-          "imageUrl": "link-to-image 6"
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/brian-kim.jpg"
         },
         {
           "name": "Officer Name 7",
@@ -81,7 +97,7 @@
           "academicYear": "Year 7",
           "major": "Major/Minor 7",
           "email": "email@vt.edu 7",
-          "imageUrl": "link-to-image 7"
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/daniel.jpg"
         }
       ]
     },
@@ -94,7 +110,7 @@
           "academicYear": "Year 8",
           "major": "Major/Minor 8",
           "email": "email@vt.edu 8",
-          "imageUrl": "link-to-image 8"
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/leanne.jpg"
         },
         {
           "name": "Officer Name 9",
@@ -102,7 +118,31 @@
           "academicYear": "Year 9",
           "major": "Major/Minor 9",
           "email": "email@vt.edu 9",
-          "imageUrl": "link-to-image 9"
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/mavryck.jpg"
+        },
+        {
+          "name": "Officer Name 8",
+          "role": "Officer Role 8",
+          "academicYear": "Year 8",
+          "major": "Major/Minor 8",
+          "email": "email@vt.edu 8",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/annie-lin.jpg"
+        },
+        {
+          "name": "Officer Name 9",
+          "role": "Officer Role 9",
+          "academicYear": "Year 9",
+          "major": "Major/Minor 9",
+          "email": "email@vt.edu 9",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/jess.jpg"
+        },
+        {
+          "name": "Officer Name 8",
+          "role": "Officer Role 8",
+          "academicYear": "Year 8",
+          "major": "Major/Minor 8",
+          "email": "email@vt.edu 8",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/pierre.jpg"
         }
       ]
     }

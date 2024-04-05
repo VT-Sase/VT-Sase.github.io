@@ -50,17 +50,21 @@ const Officers_2023_24: React.FC = () => {
             {v.subteam}
           </Typography>
           {v.cardInfo.map((officer: Officer, index) => (
-            <Card key={index} variant="outlined" style={{ margin: "20px" }}>
-              <CardContent>
-                <Typography variant="h5" component="div">
-                  {officer.name}
-                </Typography>
-                <Typography color="text.secondary">{officer.role}</Typography>
-                <Typography color="text.secondary">Academic Year: {officer.academicYear}</Typography>
-                <Typography color="text.secondary">Major: {officer.major}</Typography>
-                <Typography color="text.secondary">Email: {officer.email}</Typography>
-              </CardContent>
-            </Card>
+            <div>
+              <img src={officer.imageUrl} width="300px" height="auto" />
+              <Card key={index} variant="outlined" style={{ margin: "20px", width: "45vw" }}>
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    {officer.name}
+                  </Typography>
+                  <Typography color="text.secondary">{officer.role}</Typography>
+                  <Typography color="text.secondary">
+                    {officer.academicYear}, {officer.major}
+                  </Typography>
+                  <Typography color="text.secondary">{officer.email}</Typography>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </>
       ))}
