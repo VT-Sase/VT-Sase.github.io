@@ -5,16 +5,12 @@
 //   [K in keyof T]: T[K];
 // } & {};
 type Officer = {
-
-    name: string;
-    role: string;
-    academicYear: string;
-    major: string;
-    email: string;
-    imageUrl: string;
-}
-
-
-export {
-    Officer
+  name: string;
+  role: string;
+  academicYear: string;
+  major: string;
+  email: string;
+  imageUrl: string;
 };
+
+export { Officer };

@@ -1,20 +1,110 @@
-
-[
+{
+  "year": ["2023", "2024"],
+  "officerInfo": [
     {
-      "name": "Cool Person",
-      "role": "Being Cool",
-      "academicYear": "2020",
-      "major": "Majoring in Cool",
-      "email": "Darren12email@vt.edu",
-      "imageUrl": "link-to-image"
+      "subteam": "leads",
+      "cardInfo": [
+        {
+          "name": "Cool Person",
+          "role": "Being Cool",
+          "academicYear": "2020",
+          "major": "Majoring in Cool",
+          "email": "Darren12email@vt.edu",
+          "imageUrl": "link-to-image"
+        },
+        {
+          "name": "Officer Name 1",
+          "role": "Officer Role 1",
+          "academicYear": "Year 1",
+          "major": "Major/Minor 1",
+          "email": "email@vt.edu 1",
+          "imageUrl": "link-to-image 1"
+        }
+      ]
     },
-  
     {
-      "name": "Officer Name",
-      "role": "Officer Role",
-      "academicYear": "Year",
-      "major": "Major/Minor",
-      "email": "email@vt.edu",
-      "imageUrl": "link-to-image"
+      "subteam": "logistics",
+      "cardInfo": [
+        {
+          "name": "Officer Name 2",
+          "role": "Officer Role 2",
+          "academicYear": "Year 2",
+          "major": "Major/Minor 2",
+          "email": "email@vt.edu 2",
+          "imageUrl": "link-to-image 2"
+        },
+        {
+          "name": "Officer Name 3",
+          "role": "Officer Role 3",
+          "academicYear": "Year 3",
+          "major": "Major/Minor 3",
+          "email": "email@vt.edu 3",
+          "imageUrl": "link-to-image 3"
+        }
+      ]
+    },
+    {
+      "subteam": "internal",
+      "cardInfo": [
+        {
+          "name": "Officer Name 4",
+          "role": "Officer Role 4",
+          "academicYear": "Year 4",
+          "major": "Major/Minor 4",
+          "email": "email@vt.edu 4",
+          "imageUrl": "link-to-image 4"
+        },
+        {
+          "name": "Officer Name 5",
+          "role": "Officer Role 5",
+          "academicYear": "Year 5",
+          "major": "Major/Minor 5",
+          "email": "email@vt.edu 5",
+          "imageUrl": "link-to-image 5"
+        }
+      ]
+    },
+    {
+      "subteam": "external",
+      "cardInfo": [
+        {
+          "name": "Officer Name 6",
+          "role": "Officer Role 6",
+          "academicYear": "Year 6",
+          "major": "Major/Minor 6",
+          "email": "email@vt.edu 6",
+          "imageUrl": "link-to-image 6"
+        },
+        {
+          "name": "Officer Name 7",
+          "role": "Officer Role 7",
+          "academicYear": "Year 7",
+          "major": "Major/Minor 7",
+          "email": "email@vt.edu 7",
+          "imageUrl": "link-to-image 7"
+        }
+      ]
+    },
+    {
+      "subteam": "media",
+      "cardInfo": [
+        {
+          "name": "Officer Name 8",
+          "role": "Officer Role 8",
+          "academicYear": "Year 8",
+          "major": "Major/Minor 8",
+          "email": "email@vt.edu 8",
+          "imageUrl": "link-to-image 8"
+        },
+        {
+          "name": "Officer Name 9",
+          "role": "Officer Role 9",
+          "academicYear": "Year 9",
+          "major": "Major/Minor 9",
+          "email": "email@vt.edu 9",
+          "imageUrl": "link-to-image 9"
+        }
+      ]
     }
   ]
+}
