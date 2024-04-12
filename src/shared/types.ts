@@ -9,6 +9,7 @@ type Officer = {
   role: string;
   academicYear: string;
   major: string;
+  minor: string;
   email: string;
   imageUrl: string;
 };

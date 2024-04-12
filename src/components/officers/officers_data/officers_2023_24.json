@@ -1,147 +1,168 @@
 {
   "year": ["2023", "2024"],
+  "fullBoardURL": "../../../../src/assets/img/officers/2023-2024/officer-photos/OFFICERS.jpg",
   "officerInfo": [
     {
       "subteam": "leads",
+      "subteamURL": "../../../../src/assets/img/officers/2023-2024/officer-photos/LEADS.jpg",
       "cardInfo": [
         {
           "name": "Annie Tran",
           "role": "President",
           "academicYear": "Junior",
           "major": "Computer Science",
+          "minor": "Human-Computer Interaction",
           "email": "annietran@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/annie-tran.jpg"
         },
         {
-          "name": "Officer Name 1",
-          "role": "Officer Role 1",
-          "academicYear": "Year 1",
-          "major": "Major/Minor 1",
-          "email": "email@vt.edu 1",
+          "name": "Abhay Raghavan",
+          "role": "External Vice President",
+          "academicYear": "Junior",
+          "major": "Computer Engineering",
+          "minor": "Computer Science",
+          "email": "abhayrag@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/abhay.jpg"
         },
         {
-          "name": "Officer Name 1",
-          "role": "Officer Role 1",
-          "academicYear": "Year 1",
-          "major": "Major/Minor 1",
-          "email": "email@vt.edu 1",
+          "name": "Namkhang Dao",
+          "role": "Internal Taskforce Officer",
+          "academicYear": "Junior",
+          "major": "HNFE",
+          "minor": "Adaptive Brain and Behavior",
+          "email": "namkhangdao@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/namkhang.jpg"
         }
       ]
     },
     {
       "subteam": "logistics",
+      "subteamURL": "../../../../src/assets/img/officers/2023-2024/officer-photos/LOGISTICS.jpg",
       "cardInfo": [
         {
-          "name": "Officer Name 2",
-          "role": "Officer Role 2",
-          "academicYear": "Year 2",
-          "major": "Major/Minor 2",
-          "email": "email@vt.edu 2",
+          "name": "Erica Cheng",
+          "role": "Secretary",
+          "academicYear": "Junior",
+          "major": "Computer Science",
+          "minor": "",
+          "email": "ericac21@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/erica.jpg"
         },
         {
-          "name": "Officer Name 3",
-          "role": "Officer Role 3",
-          "academicYear": "Year 3",
-          "major": "Major/Minor 3",
-          "email": "email@vt.edu 3",
+          "name": "Huy Lam",
+          "role": "Treasurer",
+          "academicYear": "",
+          "major": "",
+          "minor": "",
+          "email": "huytnlam@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/huy.jpg"
         },
         {
-          "name": "Officer Name 3",
-          "role": "Officer Role 3",
-          "academicYear": "Year 3",
-          "major": "Major/Minor 3",
-          "email": "email@vt.edu 3",
+          "name": "Seneca Ung",
+          "role": "Senior Advisor",
+          "academicYear": "",
+          "major": "",
+          "minor": "",
+          "email": "seneca@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/seneca.jpg"
         }
       ]
     },
     {
       "subteam": "internal",
+      "subteamURL": "../../../../src/assets/img/officers/2023-2024/officer-photos/INTERNAL.jpg",
       "cardInfo": [
         {
-          "name": "Officer Name 4",
-          "role": "Officer Role 4",
-          "academicYear": "Year 4",
-          "major": "Major/Minor 4",
-          "email": "email@vt.edu 4",
-          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/kelly.jpg"
+          "name": "Kelly Kim",
+          "role": "Internal Taskforce Officer",
+          "academicYear": "",
+          "major": "",
+          "minor": "",
+          "email": "kkim02@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/kelly-kim.jpg"
         },
         {
-          "name": "Officer Name 5",
-          "role": "Officer Role 5",
-          "academicYear": "Year 5",
-          "major": "Major/Minor 5",
-          "email": "email@vt.edu 5",
+          "name": "Francis Nguyen",
+          "role": "Internal Taskforce Officer",
+          "academicYear": "",
+          "major": "",
+          "minor": "",
+          "email": "francisn@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/francis.jpg"
         }
       ]
     },
     {
       "subteam": "external",
+      "subteamURL": "../../../../src/assets/img/officers/2023-2024/officer-photos/EXTERNAL.jpg",
       "cardInfo": [
         {
-          "name": "Officer Name 6",
-          "role": "Officer Role 6",
-          "academicYear": "Year 6",
-          "major": "Major/Minor 6",
-          "email": "email@vt.edu 6",
+          "name": "Brian Kim",
+          "role": "External Taskforce Officer",
+          "academicYear": "Junior",
+          "major": "Computer Science",
+          "minor": "",
+          "email": "brianjk@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/brian-kim.jpg"
         },
         {
-          "name": "Officer Name 7",
-          "role": "Officer Role 7",
-          "academicYear": "Year 7",
-          "major": "Major/Minor 7",
-          "email": "email@vt.edu 7",
+          "name": "Daniel Koo",
+          "role": "External Taskforce Officer",
+          "academicYear": "Junior",
+          "major": "Computer Science",
+          "minor": "",
+          "email": "danieljhkoo@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/daniel.jpg"
         }
       ]
     },
     {
       "subteam": "media",
+      "subteamURL": "../../../../src/assets/img/officers/2023-2024/officer-photos/MEDIA.jpg",
       "cardInfo": [
         {
-          "name": "Officer Name 8",
-          "role": "Officer Role 8",
-          "academicYear": "Year 8",
-          "major": "Major/Minor 8",
-          "email": "email@vt.edu 8",
+          "name": "Leanne Lee",
+          "role": "Public Relations",
+          "academicYear": "Sophomore",
+          "major": "Business Information Technology - Cybersecurity",
+          "minor": "",
+          "email": "lleanne@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/leanne.jpg"
         },
         {
-          "name": "Officer Name 9",
-          "role": "Officer Role 9",
-          "academicYear": "Year 9",
-          "major": "Major/Minor 9",
-          "email": "email@vt.edu 9",
+          "name": "Mavryck Mora",
+          "role": "Public Relations",
+          "academicYear": "",
+          "major": "",
+          "minor": "",
+          "email": "mavryck@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/mavryck.jpg"
         },
         {
-          "name": "Officer Name 8",
-          "role": "Officer Role 8",
-          "academicYear": "Year 8",
-          "major": "Major/Minor 8",
-          "email": "email@vt.edu 8",
+          "name": "Annie Lin",
+          "role": "Historian",
+          "academicYear": "",
+          "major": "",
+          "minor": "",
+          "email": "anniel@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/annie-lin.jpg"
         },
         {
-          "name": "Officer Name 9",
-          "role": "Officer Role 9",
-          "academicYear": "Year 9",
-          "major": "Major/Minor 9",
-          "email": "email@vt.edu 9",
+          "name": "Jess Savage",
+          "role": "Historian",
+          "academicYear": "Junior",
+          "major": "Electrical Engineering and Mathematics",
+          "minor": "Physics",
+          "email": "jsavage03@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/jess.jpg"
         },
         {
-          "name": "Officer Name 8",
-          "role": "Officer Role 8",
-          "academicYear": "Year 8",
-          "major": "Major/Minor 8",
-          "email": "email@vt.edu 8",
+          "name": "Pierre Tran",
+          "role": "Webmaster",
+          "academicYear": "Junior",
+          "major": "Computer Science",
+          "minor": "",
+          "email": "pierretran@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/pierre.jpg"
         }
       ]

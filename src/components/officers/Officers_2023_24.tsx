@@ -1,7 +1,8 @@
 import React from "react";
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Typography, CardMedia, Grid, Box } from "@mui/material";
 import { Officer } from "../../shared/types";
 import officerData from "./officers_data/officers_2023_24.json";
+import "./Officers_2023_24.css";
 
 const Officers_2023_24: React.FC = () => {
   const year = officerData.year;
@@ -9,96 +10,89 @@ const Officers_2023_24: React.FC = () => {
 
   return (
     <div id="officer-page">
-      <Typography
-        variant="h1"
-        sx={{
-          textTransform: "uppercase",
-          fontSize: "100px",
-          color: "white",
-          textAlign: "left"
-        }}
-      >
-        {year[0]} - {year[1]} Officers
-      </Typography>
+      <Box sx={{ backgroundColor: "white", width: "100vw" }}>
+        <CardMedia sx={{ height: "100vh" }} image={officerData.fullBoardURL} title="full-board" />
+        <Typography
+          variant="h1"
+          sx={{
+            textTransform: "uppercase",
+            fontSize: "100px",
+            color: "white",
+            textAlign: "left",
+            position: "absolute",
+            top: "80vh",
+            left: "5vw"
+          }}
+        >
+          {year[0]} - {year[1]} Officers
+        </Typography>
+      </Box>
       <Typography
         variant="h3"
         sx={{
           textAlign: "center",
-          color: "black",
-          display: "block",
+          color: "white",
+          backgroundColor: "#283238",
           fontSize: "1.76em",
-          marginBlockStart: "1em",
-          marginBlockEnd: "1em",
-          marginInlineStart: "0px",
-          marginInlineEnd: "0px"
-          // fontWeight: "bold"
+          width: "100vw",
+          paddingTop: "50px",
+          paddingBottom: "50px",
+          fontWeight: "600"
         }}
       >
         SASE at VT would not be possible without our wonderful officer board. Meet the team!
       </Typography>
       {officers.map((v) => (
         <>
-          <Typography
-            variant="h1"
-            sx={{
-              textTransform: "uppercase",
-              fontSize: "100px",
-              color: "white",
-              textAlign: "left"
-            }}
-          >
-            {v.subteam}
-          </Typography>
-          {v.cardInfo.map((officer: Officer, index) => (
-            <div>
-              <img src={officer.imageUrl} width="300px" height="auto" />
-              <Card key={index} variant="outlined" style={{ margin: "20px", width: "45vw" }}>
-                <CardContent>
-                  <Typography variant="h5" component="div">
-                    {officer.name}
-                  </Typography>
-                  <Typography color="text.secondary">{officer.role}</Typography>
-                  <Typography color="text.secondary">
-                    {officer.academicYear}, {officer.major}
-                  </Typography>
-                  <Typography color="text.secondary">{officer.email}</Typography>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
+          <Box sx={{ backgroundColor: "white", width: "100vw", height: "100vh" }}>
+            <CardMedia sx={{ height: "100vh" }} image={v.subteamURL} title="full-board" />
+            <Typography
+              variant="h1"
+              sx={{
+                textTransform: "uppercase",
+                fontSize: "100px",
+                color: "white",
+                textAlign: "left",
+                position: "relative",
+                top: "-20vh",
+                left: "5vw"
+              }}
+            >
+              {v.subteam}
+            </Typography>
+          </Box>
+          <Grid container spacing={0.5}>
+            {v.cardInfo.map((officer: Officer, index) => (
+              <Grid>
+                <Card
+                  key={index}
+                  variant="outlined"
+                  sx={{ margin: "20px", minWidth: "30vw", backgroundColor: "#283238", borderRadius: "15px" }}
+                >
+                  <CardMedia sx={{ minHeight: "30vw" }} image={officer.imageUrl} title={officer.name} />
+                  <CardContent>
+                    <Typography variant="h5" component="div" sx={{ color: "white" }}>
+                      {officer.name}
+                    </Typography>
+                    <Typography color="text.secondary" sx={{ color: "grey", fontStyle: "italic", fontSize: "1.17em" }}>
+                      {officer.role}
+                    </Typography>
+                    <Typography color="text.secondary" sx={{ color: "grey" }}>
+                      {officer.academicYear}, {officer.major}
+                    </Typography>
+                    <Typography color="text.secondary" sx={{ color: "grey" }}>
+                      Minor in {officer.minor}
+                    </Typography>
+                    <Typography color="text.secondary" sx={{ color: "grey" }}>
+                      {officer.email}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
         </>
       ))}
-      ;
-      {/* <Typography
-        variant="h1"
-        sx={{
-          textTransform: "uppercase",
-          fontSize: "100px",
-          color: "white",
-          textAlign: "left"
-        }}
-      >{subteam[0]}</Typography>
-      {leads.map((officer: Officer, index) => (
-        <Card key={index} variant="outlined" style={{ margin: '20px' }}>
-          <CardContent>
-            <Typography variant="h5" component="div">
-              {officer.name}
-            </Typography>
-            <Typography color="text.secondary">
-              {officer.role}
-            </Typography>
-            <Typography color="text.secondary">
-              Academic Year: {officer.academicYear}
-            </Typography>
-            <Typography color="text.secondary">
-              Major: {officer.major}
-            </Typography>
-            <Typography color="text.secondary">
-              Email: {officer.email}
-            </Typography>
-          </CardContent>
-        </Card>
-      ))} */}
     </div>
   );
 };
