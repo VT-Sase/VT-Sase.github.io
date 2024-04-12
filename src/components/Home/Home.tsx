@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import "../App.css";
-import { NavbarHeader } from ".";
+import { NavbarHeader } from "..";
 import React from "react";
 
 import EmblaCarousel from "./EmblaCarousel";
 import { EmblaOptionsType } from "embla-carousel";
 
-import "../styles/Home.css";
+import "../../styles/Home.css";
+import "../../styles/Embla.css";
 import saseLogo from "/src/assets/img/logos/sase_logo.png";
+
 interface BaseImageName {
   base: string;
   count: number;
@@ -36,7 +37,8 @@ const generateImageNames = (baseImageNames: BaseImageName[]): string[] => {
 
   baseImageNames.forEach((item) => {
     for (let i = 1; i <= item.count; i++) {
-      const imageName = `${item.base}-${i}.jpg`; // Assuming the images are in JPG format
+      // Check if i is greater than 1 to decide whether to append the number
+      const imageName = i > 1 ? `${item.base}-${i}.jpg` : `${item.base}.jpg`;
       imageNames.push(imageName);
     }
   });
