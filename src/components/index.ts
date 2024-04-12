@@ -1,4 +1,4 @@
-import Home from "./Home";
+import Home from "./Home/Home";
 import About from "./About";
 import { Officers_2018_19, Officers_2019_20, Officers_2021_22, Officers_2022_23, Officers_2023_24 } from "./officers";
 import CurrentEvents from "./CurrentEvents";
