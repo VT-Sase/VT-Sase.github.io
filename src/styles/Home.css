@@ -1,0 +1,74 @@
+main {
+  display: flex;
+  justify-content: space-between;
+  align-items: start; /* Align items at the start of the container */
+}
+
+main > div {
+  flex: 1; /* Each child div will take equal width */
+  margin: 10px; /* Adds some space between the divs */
+}
+
+/* Additional styles to ensure content is properly spaced and aligned */
+#home_page_bio_text {
+  max-width: 100%; /* Prevents overflow and ensures padding is included in the width */
+  padding: 20px; /* Adds space inside the container */
+}
+
+.responsive-img {
+  max-width: 100%; /* Ensures the image is responsive and fits within its container */
+  height: auto; /* Keeps the aspect ratio of the image */
+}
+
+.button {
+  background-color: #0668b3;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: #fff;
+  height: 40px;
+  padding: 0 15px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  transition:
+    border ease-in 0.3s,
+    background-color ease-in 0.3s;
+  margin: 6px 3px;
+}
+
+.button:hover {
+  background-color: #6cabdd;
+  /* border: 1px solid #6cabdd; */
+}
+
+#home_page {
+  display: grid;
+  grid-template-columns: 43vw 57vw;
+  /* grid-template-rows: 100vh; */
+  align-items: center;
+  justify-items: center;
+}
+
+#home_page > div {
+  height: 100%;
+  width: 100%;
+}
+
+#home_page_bio {
+  /* This is so the navbar doesn't intersect the text resizing vertically */
+  padding-top: 110px !important;
+  padding-bottom: 10px !important;
+  padding: 0 5%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+#home_page_bio_text {
+  color: #000;
+  font-size: 24px;
+  text-align: center;
+}
