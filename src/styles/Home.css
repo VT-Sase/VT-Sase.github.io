@@ -1,23 +1,23 @@
 main {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: start; /* Align items at the start of the container */
+  align-items: center;
 }
 
-main > div {
-  flex: 1; /* Each child div will take equal width */
-  margin: 10px; /* Adds some space between the divs */
+main > section {
+  width: calc(50% - 10px);
+  margin: 0 10px;
 }
 
-/* Additional styles to ensure content is properly spaced and aligned */
 #home_page_bio_text {
-  max-width: 100%; /* Prevents overflow and ensures padding is included in the width */
-  padding: 20px; /* Adds space inside the container */
+  max-width: 100%;
+  padding: 20px;
 }
 
 .responsive-img {
-  max-width: 100%; /* Ensures the image is responsive and fits within its container */
-  height: auto; /* Keeps the aspect ratio of the image */
+  max-width: 100%;
+  height: auto;
 }
 
 .button {
@@ -39,36 +39,78 @@ main > div {
 
 .button:hover {
   background-color: #6cabdd;
-  /* border: 1px solid #6cabdd; */
 }
 
 #home_page {
-  display: grid;
-  grid-template-columns: 43vw 57vw;
-  /* grid-template-rows: 100vh; */
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
 }
 
-#home_page > div {
-  height: 100%;
-  width: 100%;
+#home_page > section {
+  width: calc(50% - 10px);
+  margin: 0 10px;
 }
 
 #home_page_bio {
-  /* This is so the navbar doesn't intersect the text resizing vertically */
   padding-top: 110px !important;
   padding-bottom: 10px !important;
   padding: 0 5%;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 1fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
 }
 
 #home_page_bio_text {
   color: #000;
   font-size: 24px;
   text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+  main {
+    flex-direction: column;
+  }
+
+  main > section {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  #home_page {
+    flex-direction: column;
+  }
+
+  #home_page > section {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+/* iPhone SE */
+@media screen and (max-width: 375px) {
+  #home_page_bio_text {
+    font-size: 20px;
+  }
+
+  .button {
+    font-size: 14px;
+    height: 36px;
+    padding: 0 12px;
+  }
+}
+
+/* Samsung Galaxy S8 */
+@media screen and (max-width: 360px) {
+  #home_page_bio_text {
+    font-size: 18px;
+  }
+
+  .button {
+    font-size: 12px;
+    height: 32px;
+    padding: 0 10px;
+  }
 }
