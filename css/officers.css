@@ -408,6 +408,11 @@ footer a:hover {
     background-size: cover;
 }
 
+#sase-service-chairs23-24.sase-officer-committee-header-label {
+    background: url('/assets/img/officers/2023-2024/officer-photos/SERVICECHAIRS.jpg') no-repeat center 50%; 
+    background-size: cover;
+}
+
 #sase-freshman-interns23-24.sase-officer-committee-header-label {
     background: url('/assets/img/officers/2022-2023/officer-photos-compressed-smaller/INTERNS.jpg') no-repeat left 100%;
     background-size: cover;
