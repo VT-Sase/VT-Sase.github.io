@@ -4,5 +4,14 @@
 // type Prettify<T> = {
 //   [K in keyof T]: T[K];
 // } & {};
+type Officer = {
+  name: string;
+  role: string;
+  academicYear: string;
+  major: string;
+  minor: string;
+  email: string;
+  imageUrl: string;
+};
 
-export {};
+export { Officer };
