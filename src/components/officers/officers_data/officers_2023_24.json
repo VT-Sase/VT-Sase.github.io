@@ -44,25 +44,25 @@
           "role": "Secretary",
           "academicYear": "Junior",
           "major": "Computer Science",
-          "minor": "",
+          "minor": null,
           "email": "ericac21@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/erica.jpg"
         },
         {
           "name": "Huy Lam",
           "role": "Treasurer",
-          "academicYear": "",
-          "major": "",
-          "minor": "",
+          "academicYear": null,
+          "major": null,
+          "minor": null,
           "email": "huytnlam@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/huy.jpg"
         },
         {
           "name": "Seneca Ung",
           "role": "Senior Advisor",
-          "academicYear": "",
-          "major": "",
-          "minor": "",
+          "academicYear": null,
+          "major": null,
+          "minor": null,
           "email": "seneca@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/seneca.jpg"
         }
@@ -75,18 +75,18 @@
         {
           "name": "Kelly Kim",
           "role": "Internal Taskforce Officer",
-          "academicYear": "",
-          "major": "",
-          "minor": "",
+          "academicYear": null,
+          "major": null,
+          "minor": null,
           "email": "kkim02@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/kelly-kim.jpg"
         },
         {
           "name": "Francis Nguyen",
           "role": "Internal Taskforce Officer",
-          "academicYear": "",
-          "major": "",
-          "minor": "",
+          "academicYear": null,
+          "major": null,
+          "minor": null,
           "email": "francisn@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/francis.jpg"
         }
@@ -101,7 +101,7 @@
           "role": "External Taskforce Officer",
           "academicYear": "Junior",
           "major": "Computer Science",
-          "minor": "",
+          "minor": null,
           "email": "brianjk@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/brian-kim.jpg"
         },
@@ -110,7 +110,7 @@
           "role": "External Taskforce Officer",
           "academicYear": "Junior",
           "major": "Computer Science",
-          "minor": "",
+          "minor": null,
           "email": "danieljhkoo@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/daniel.jpg"
         }
@@ -125,25 +125,25 @@
           "role": "Public Relations",
           "academicYear": "Sophomore",
           "major": "Business Information Technology - Cybersecurity",
-          "minor": "",
+          "minor": null,
           "email": "lleanne@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/leanne.jpg"
         },
         {
           "name": "Mavryck Mora",
           "role": "Public Relations",
-          "academicYear": "",
-          "major": "",
-          "minor": "",
+          "academicYear": null,
+          "major": null,
+          "minor": null,
           "email": "mavryck@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/mavryck.jpg"
         },
         {
           "name": "Annie Lin",
           "role": "Historian",
-          "academicYear": "",
-          "major": "",
-          "minor": "",
+          "academicYear": null,
+          "major": null,
+          "minor": null,
           "email": "anniel@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/annie-lin.jpg"
         },
@@ -161,7 +161,7 @@
           "role": "Webmaster",
           "academicYear": "Junior",
           "major": "Computer Science",
-          "minor": "",
+          "minor": "Mathematics",
           "email": "pierretran@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/pierre.jpg"
         }

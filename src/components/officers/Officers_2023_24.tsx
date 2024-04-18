@@ -44,8 +44,8 @@ const Officers_2023_24: React.FC = () => {
       </Typography>
       {officers.map((v) => (
         <>
-          <Box sx={{ backgroundColor: "white", width: "100vw", height: "100vh" }}>
-            <CardMedia sx={{ height: "100vh" }} image={v.subteamURL} title="full-board" />
+          <Box sx={{ backgroundColor: "white", width: "100vw", height: "60vh" }}>
+            <CardMedia sx={{ height: "60vh" }} image={v.subteamURL} title="full-board" />
             <Typography
               variant="h1"
               sx={{
@@ -61,15 +61,22 @@ const Officers_2023_24: React.FC = () => {
               {v.subteam}
             </Typography>
           </Box>
-          <Grid container spacing={0.5}>
+          <Grid
+            container
+            spacing={0.5}
+            columns={16}
+            sx={{ paddingBottom: "50px" }}
+            alignItems="center"
+            justifyContent="center"
+          >
             {v.cardInfo.map((officer: Officer, index) => (
-              <Grid>
+              <Grid item xs={6}>
                 <Card
                   key={index}
                   variant="outlined"
-                  sx={{ margin: "20px", minWidth: "30vw", backgroundColor: "#283238", borderRadius: "15px" }}
+                  sx={{ margin: "20px", width: "600px", backgroundColor: "#283238", borderRadius: "15px" }}
                 >
-                  <CardMedia sx={{ minHeight: "30vw" }} image={officer.imageUrl} title={officer.name} />
+                  <CardMedia sx={{ height: "600px" }} image={officer.imageUrl} title={officer.name} />
                   <CardContent>
                     <Typography variant="h5" component="div" sx={{ color: "white" }}>
                       {officer.name}
@@ -77,12 +84,16 @@ const Officers_2023_24: React.FC = () => {
                     <Typography color="text.secondary" sx={{ color: "grey", fontStyle: "italic", fontSize: "1.17em" }}>
                       {officer.role}
                     </Typography>
-                    <Typography color="text.secondary" sx={{ color: "grey" }}>
-                      {officer.academicYear}, {officer.major}
-                    </Typography>
-                    <Typography color="text.secondary" sx={{ color: "grey" }}>
-                      Minor in {officer.minor}
-                    </Typography>
+                    {officer.academicYear && officer.major && (
+                      <Typography color="text.secondary" sx={{ color: "grey" }}>
+                        {officer.academicYear}, {officer.major}
+                      </Typography>
+                    )}
+                    {officer.minor && (
+                      <Typography color="text.secondary" sx={{ color: "grey" }}>
+                        Minor in {officer.minor}
+                      </Typography>
+                    )}
                     <Typography color="text.secondary" sx={{ color: "grey" }}>
                       {officer.email}
                     </Typography>
