@@ -1,15 +1,8 @@
-//import Button from '@mui/material/Button';
-
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-
-/*function PicAndText () {
-  <Button variant="contained">Hello world</Button>
-  return <h1>using a function</h1>;
-}*/
 
 // Class for club photos
 class ClubPhoto {
@@ -44,7 +37,6 @@ const pic21 = new ClubPhoto("VT SASE 2021 - 2022", "vanilla-sase-website\\assets
 const pic18 = new ClubPhoto("VT SASE 2018 - 2019", "vanilla-sase-website\\assets\\img\\about\\idk.jpg");
 
 
-
 // Class for reason/ main points to join SASE cards
 class MainPoints {
   title: string;
@@ -60,69 +52,56 @@ class MainPoints {
 
 // Actual component
 const About: React.FC = () => {
-  return <>
-    <h1>SASE About Page!</h1>
-    <hr></hr>
-    
-    <Card sx={{ maxWidth: 280 }}>
-      <CardMedia
-        sx={{ height: 240 }}
-        component="img"
-        height="200"
-        image="vanilla-sase-website\assets\img\about\service-updated-big-event.png"
-        alt="Professional events"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Community Service
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          SASE takes the values of community very seriously and is always looking for different opportunities to give back to the Southwest Virginia area.
-        </Typography>
-      </CardContent>
-    </Card>
+  return (
+    <>
+      <h1>SASE About Page!</h1>
+      <hr />
 
-    <Card sx={{ maxWidth: 280 }}>
-      <CardMedia
-        sx={{ height: 240 }}
-        component="img"
-        height="200"
-        image="vanilla-sase-website\assets\img\about\prof.jpg"
-        alt="Professional events"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Professional Events
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          SASE is always excited to host events with their sponsors to work on professional skills such as resume building and networking.
-        </Typography>
-      </CardContent>
-    </Card>
-
-    <Card sx={{ maxWidth: 280 }}>
-      <CardMedia
-        sx={{ height: 240 }}
-        component="img"
-        height="200"
-        image="vanilla-sase-website\assets\img\about\2022-23-Mentor-Mentee-Display-Image.jpg"
-        alt="Professional events"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Mentor Mentee Program
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          SASE is glad to help create everlasting bonds between mentors and mentees while supporting their personal growth.
-        </Typography>
-      </CardContent>
-    </Card>
+      <Grid container spacing={25}>{[
+          {
+            title: 'Community Service',
+            img: 'vanilla-sase-website/assets/img/about/service-updated-big-event.png',
+            description: 'SASE takes the values of community very seriously and is always looking for different opportunities to give back to the Southwest Virginia area.'
+          },
+          {
+            title: 'Professional Events',
+            img: 'vanilla-sase-website/assets/img/about/prof.jpg',
+            description: 'SASE is always excited to host events with their sponsors to work on professional skills such as resume building and networking.'
+          },
+          {
+            title: 'Mentor Mentee Program',
+            img: 'vanilla-sase-website/assets/img/about/2022-23-Mentor-Mentee-Display-Image.jpg',
+            description: 'SASE is glad to help create everlasting bonds between mentors and mentees while supporting their personal growth.'
+          }
+        ].map((item, index) => (
+          <Grid key={index} item xs={12} sm={6} md={4}>
+            <Card sx={{ maxWidth: 280 }}>
+              <CardMedia
+                sx={{ height: 240 }}
+                component="img"
+                height="200"
+                image={item.img}
+                alt={item.title}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {item.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {item.description}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
 
     <br></br><hr></hr><br></br>
     {showClubPhoto(pic22)} <br></br>
     {showClubPhoto(pic21)} <br></br>
     {showClubPhoto(pic18)} <br></br>
-  </>;
+    </>
+  );
 };
 
 export default About;
