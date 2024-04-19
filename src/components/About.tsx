@@ -54,7 +54,7 @@ class MainPoints {
 const About: React.FC = () => {
   return (
     <>
-      <h1>SASE About Page!</h1>
+      <h1>About Us!</h1>
       <hr />
 
       <Grid container spacing={25}>{[
