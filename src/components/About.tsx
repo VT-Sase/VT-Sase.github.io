@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 
 /*function PicAndText () {
   <Button variant="contained">Hello world</Button>
@@ -57,60 +58,64 @@ class MainPoints {
   }
 }
 
-
-
 // Actual component
 const About: React.FC = () => {
   return <>
     <h1>SASE About Page!</h1>
     <hr></hr>
-    <Card>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-            Professional Events
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Sase has Professional Events (will elaborate later)
-          </Typography>
-      </CardContent>
+    
+    <Card sx={{ maxWidth: 280 }}>
       <CardMedia
-        component="img"
-        height="200"
-        image="vanilla-sase-website\assets\img\about\prof.jpg"
-        alt="Professional events"
-      />
-    </Card>
-    <Card>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-            Mentor Mentee Program
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-             (will elaborate later)
-          </Typography>
-      </CardContent>
-      <CardMedia
-        component="img"
-        height="200"
-        image="vanilla-sase-website\assets\img\about\2022-23-Mentor-Mentee-Display-Image.jpg"
-        alt="Professional events"
-      />
-    </Card>
-    <Card>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-            Community Service
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            (will elaborate later)
-          </Typography>
-      </CardContent>
-      <CardMedia
+        sx={{ height: 240 }}
         component="img"
         height="200"
         image="vanilla-sase-website\assets\img\about\service-updated-big-event.png"
         alt="Professional events"
       />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Community Service
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          SASE takes the values of community very seriously and is always looking for different opportunities to give back to the Southwest Virginia area.
+        </Typography>
+      </CardContent>
+    </Card>
+
+    <Card sx={{ maxWidth: 280 }}>
+      <CardMedia
+        sx={{ height: 240 }}
+        component="img"
+        height="200"
+        image="vanilla-sase-website\assets\img\about\prof.jpg"
+        alt="Professional events"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Professional Events
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          SASE is always excited to host events with their sponsors to work on professional skills such as resume building and networking.
+        </Typography>
+      </CardContent>
+    </Card>
+
+    <Card sx={{ maxWidth: 280 }}>
+      <CardMedia
+        sx={{ height: 240 }}
+        component="img"
+        height="200"
+        image="vanilla-sase-website\assets\img\about\2022-23-Mentor-Mentee-Display-Image.jpg"
+        alt="Professional events"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Mentor Mentee Program
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          SASE is glad to help create everlasting bonds between mentors and mentees while supporting their personal growth.
+        </Typography>
+      </CardContent>
     </Card>
 
     <br></br><hr></hr><br></br>
