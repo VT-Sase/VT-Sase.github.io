@@ -1,6 +1,7 @@
 import React from "react";
 import { EmblaOptionsType } from "embla-carousel";
 import { PrevButton, NextButton, usePrevNextButtons } from "./EmblaCarouselArrowButtons";
+import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 
 type PropType = {
@@ -9,8 +10,8 @@ type PropType = {
 };
 const baseImagePath = "src/assets/img/slideshow-compressed-smaller";
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { imageNames, options } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const { imageNames } = props;
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ number: 5000 })]);
 
   const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(emblaApi);
 

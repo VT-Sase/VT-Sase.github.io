@@ -3,7 +3,6 @@ import { NavbarHeader } from "..";
 import React from "react";
 
 import EmblaCarousel from "./EmblaCarousel";
-import { EmblaOptionsType } from "embla-carousel";
 
 import "../../styles/Home.css";
 import "../../styles/Embla.css";
@@ -46,10 +45,7 @@ const generateImageNames = (baseImageNames: BaseImageName[]): string[] => {
   return imageNames;
 };
 
-//Embla configs
-const OPTIONS: EmblaOptionsType = { loop: true };
 const images = generateImageNames(baseImageNames);
-console.log(images);
 
 //Home component
 const Home: React.FC = () => {
@@ -84,7 +80,7 @@ const Home: React.FC = () => {
           </div>
         </section>
         <section>
-          <EmblaCarousel imageNames={images} options={OPTIONS} />
+          <EmblaCarousel imageNames={images} />
         </section>
       </main>
     </>
