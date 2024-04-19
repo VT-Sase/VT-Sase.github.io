@@ -20,11 +20,11 @@ function showClubPhoto(p: ClubPhoto) {
   return <>
     <Card>
       <CardContent>
-        <Typography>{p.title}</Typography>
+        <Typography gutterBottom variant="h5" component="div">{p.title}</Typography>
       </CardContent>
       <CardMedia
         component="img"
-        height="800"
+        width="600"
         image={p.image}
         alt={p.title}
       />
@@ -56,7 +56,16 @@ const About: React.FC = () => {
     <>
       <h1>About Us!</h1>
       <hr />
-
+      <Typography>
+        <p>Members of SASE at Virginia Tech develop professional skills, celebrate diversity, contribute to the community, and network by 
+         connecting to new people. SASE membership is open to men and women of all ethnic backgrounds. Our chapter currently has over 120 members 
+         (as of 2022-2023).</p>
+         <p>
+         Workshops with various companies are provided by SASE at VT for its members to learn professional skills, such as mock interviews, 
+         resume reviews, and more. Our chapter also serves the Blacksburg, VA area by holding canned food drives and participating in The Big 
+         Event at Virginia Tech. Social events are frequently held to create a friendly environment and help members form lasting friendships.
+         </p>
+      </Typography>
       <Grid container spacing={25}>{[
           {
             title: 'Community Service',
