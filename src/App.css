@@ -40,3 +40,53 @@
 .read-the-docs {
   color: #888;
 }
+
+/* YearInReview.css */
+
+.img__wrap {
+  position: relative;
+  overflow: hidden;
+  margin-right: 20px;
+  width: 450px; /* Fixed width */
+}
+
+.img__wrap img {
+  width: 450px; /* Fixed width */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* Adjust the description layer to match the fixed width */
+.img__description_layer {
+  position: absolute;
+  top: 0;
+  height: 85%;
+  width: 92%; /* Match parent width */
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 25px;
+}
+
+.img__wrap:hover .img__description_layer {
+  opacity: 1;
+}
+
+/* Improve hover effect */
+.img__wrap:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Ensure grid layout does not override the fixed image size */
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center images */
+  gap: 20px;
+  padding: 20px;
+}
