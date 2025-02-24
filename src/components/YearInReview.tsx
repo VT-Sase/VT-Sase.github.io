@@ -63,6 +63,78 @@ const events: Event[] = [
     title: "SASE's Lunar New Year GBM (Image 2)",
     description: "Our members enjoying the new year, welcoming all of its joys and surprises!"
   },
+  {
+    img: "src/assets/img/year-in-review-compressed-smaller/2022-2023/GBM-lunar-new-year.jpg",
+    link: "https://www.facebook.com/media/set/?vanity=saseatvt&set=a.637934774999945",
+    title: "SASE's Lunar New Year GBM (Image 3)",
+    description: "Our wonderful Internal Vice-President Seneca" +
+    "tests egg-protecting contraptions made by each of the groups! Most do not succeed, but it's the effort that" +
+    "counts here!👍"
+  },
+  {
+    img: "src/assets/img/year-in-review-compressed-smaller/2022-2023/GBM-winter.jpg",
+    link: "https://www.facebook.com/media/set/?vanity=saseatvt&set=a.695162109277211",
+    title: "SASE Winter GBM",
+    description: "A night where we hear our wonderful President Duy read" + 
+    "an interesting MadLibs around a roaring fire!"
+  },
+  {
+    img: "src/assets/img/year-in-review-compressed-smaller/2022-2023/GBM-halloween.jpg",
+    link: "https://www.facebook.com/media/set/?vanity=saseatvt&set=a.552235133569910",
+    title: "SASE's Halloween GBM",
+    description: "BOO! A night for all members to enjoy dress up in" + 
+    "costumes, enjoy great tasing candy, and spookiness & surprises! "
+  },
+  {
+    img: "src/assets/img/year-in-review-compressed-smaller/2022-2023/mentor-mentee-reveal.jpg",
+    link: "https://www.facebook.com/media/set/?vanity=saseatvt&set=a.550527290407361",
+    title: "SASE's Mentor & Mentee Reveal",
+    description: "This is it! The moment you have been waiting" + 
+    "for...a night to love and happiness as SASE lineages grow! New and previous SASE mentors meet their new" + 
+    "mentees!"
+  },
+  {
+    img: "src/assets/img/year-in-review-compressed-smaller/2022-2023/mentor-mentee-week-picnic-2.jpg",
+    link: "https://www.facebook.com/media/set/?vanity=saseatvt&set=a.549387703854653",
+    title: "SASE's Mentor & Mentee Bonding Week (Outdoor Picnic)",
+    description: "A warm afternoon for" + 
+    "mentors & mentees to enjoy the summer-like atmosphere, relax from studying and the other stresses of the" + 
+    "life, and play sports as well as talk with their future SASE lineage members!"
+  },
+  {
+    img: "src/assets/img/year-in-review-compressed-smaller/2022-2023/mentor-mentee-week-scavenger-hunt.jpg",
+    link: "https://www.facebook.com/media/set/?vanity=saseatvt&set=a.548470060613084",
+    title: "SASE's Mentor & Mentee Bonding Week (Scavenger Hunt)",
+    description: "An afternoon of bonding" +
+    "with your SASE mentors/mentees/linage siblings through solving puzzles and looking for clues in a rigorous" +
+    "scavenger hunt!"
+  },
+  {
+    img: "src/assets/img/year-in-review-compressed-smaller/2022-2023/mentor-mentee-week-game-night.jpg",
+    link: "https://www.facebook.com/media/set/?vanity=saseatvt&set=a.547559694037454",
+    title: "SASE's Mentor & Mentee Bonding Week (Game Night)",
+    description: "A night of fun playing classic" + 
+    "video games and board games with their potential SASE mentors/mentees/linage siblings!"
+  },
+  {
+    img: "src/assets/img/year-in-review-compressed-smaller/2022-2023/mentor-mentee-week-speed-dating.jpg",
+    link: "https://www.facebook.com/media/set/?vanity=saseatvt&set=a.546726467454110",
+    title: "SASE's Mentor & Mentee Bonding Week (Speed Dating)",
+    description: "All of the nervous mentees and" +
+    "anxious mentors are going around to talk and eventually join/build their respective lineages!"
+  },
+  {
+    img: "src/assets/img/year-in-review-compressed-smaller/2022-2023/GBM-back-to-school.jpg",
+    link: "https://www.facebook.com/media/set/?vanity=saseatvt&set=a.521407833319307",
+    title: "SASE's Back to School GBM",
+    description: "Our members enjoying the new year, welcoming all of its joys and surprises!"
+  },
+  {
+    img: "src/assets/img/year-in-review-compressed-smaller/2022-2023/2021-22-officer-board-honorable-mention.jpg",
+    link: "https://www.facebook.com/saseatvt",
+    title: "A Message to Our Previous Officer Board (2021-2022)",
+    description: "Our members enjoying the new year, welcoming all of its joys and surprises!"
+  },
 ];
 
 const YearInReview: React.FC = () => {
