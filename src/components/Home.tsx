@@ -14,6 +14,7 @@ const Home: React.FC = () => {
   return (
     <>
       <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+      <h1>Welcome to SASE at Virginia Tech!</h1>
     </>
   );
 };

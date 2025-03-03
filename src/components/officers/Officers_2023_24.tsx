@@ -10,7 +10,7 @@ const Officers_2023_24: React.FC = () => {
 
   return (
     <div id="officer-page">
-      <Box sx={{ backgroundColor: "white", width: "100vw" }}>
+      <Box sx={{ backgroundColor: "white", width: "100%" }}>
         <CardMedia sx={{ height: "100vh" }} image={officerData.fullBoardURL} title="full-board" />
         <Typography
           variant="h1"

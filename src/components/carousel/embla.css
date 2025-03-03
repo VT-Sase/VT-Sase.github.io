@@ -1,9 +1,9 @@
 .embla {
     max-width: 100%;
     margin: auto;
-    --slide-height: 60%;
+    --slide-height: 100%;
     --slide-spacing: 1rem;
-    --slide-size: 80%;
+    --slide-size: 50%;
   }
   .embla__viewport {
     overflow: hidden;
@@ -34,11 +34,14 @@
     margin-top: 1.8rem;
   }
   .embla__buttons {
+    color: black;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.6rem;
     align-items: center;
+    border-color: black;
   }
+
   .embla__button {
     -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
     -webkit-appearance: none;
