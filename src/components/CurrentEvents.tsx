@@ -1,84 +1,68 @@
+import React from "react";
 import "../styles/CurrentEvents.css";
+
+const NavBar: React.FC = () => {
+  return (
+    <nav className="navbar-main">
+      <p style={{ margin: 0 }} id="hamburger">
+        &#9776;
+      </p>
+      <NavLink href="/" label="Home" />
+      <NavLink href="/about" label="About" />
+      <DropdownMenu label="Events">
+        <NavLink href="/events" label="Current Events" />
+        <NavLink href="/year-in-review" label="Year in Review" />
+      </DropdownMenu>
+      <DropdownMenu label="Officers">
+        <NavLink href="/officers/" label="Current Officers" />
+        <NavLink href="/officers/oldOfficers2021-22.html" label="2021-2022" />
+        <NavLink href="/officers/oldOfficers2019-20.html" label="2019-2020" />
+        <NavLink href="/officers/oldOfficers2018-19.html" label="2018-2019" />
+      </DropdownMenu>
+      <NavLink href="/sponsors" label="Sponsors" />
+      <NavLink href="/alumni" label="Alumni" />
+      <ConnectSection />
+    </nav>
+  );
+};
+
+const NavLink: React.FC<{ href: string, label: string }> = ({ href, label }) => (
+  <a href={href} className="navbar-link left-link">
+    {label}
+  </a>
+);
+
+const DropdownMenu: React.FC<{ label: string, children: React.ReactNode }> = ({ label, children }) => (
+  <div className="dropdown">
+    <div className="navbar-link left-link">{label}</div>
+    <div className="dropdown-content">{children}</div>
+  </div>
+);
+
+const ConnectSection: React.FC = () => (
+  <ul className="navbar-connect">
+    <li className="navbar-text">Connect:</li>
+    <li>
+      <a href="https://www.facebook.com/saseatvt/" className="navbar-link" target="_blank" rel="noopener noreferrer">
+        <i className="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.instagram.com/saseatvt/" className="navbar-link" target="_blank" rel="noopener noreferrer">
+        <i className="fab fa-instagram"></i>
+      </a>
+    </li>
+    <li>
+      <a href="mailto:vtsase@gmail.com" className="navbar-link" target="_blank" rel="noopener noreferrer">
+        <i className="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+);
 
 const CurrentEvents: React.FC = () => {
   return (
     <>
-      <nav className="navbar-main">
-        <p style={{ margin: 0 }} id="hamburger">
-          &#9776;
-        </p>
-        <a href="/" className="navbar-link left-link">
-          Home
-        </a>
-        <a href="/about" className="navbar-link left-link">
-          About
-        </a>
-        <div className="dropdown">
-          <div className="navbar-link left-link">Events</div>
-          <div className="dropdown-content">
-            <a href="/events" className="navbar-link left-link">
-              Current Events
-            </a>
-            <a href="/year-in-review" className="navbar-link left-link">
-              Year in Review
-            </a>
-          </div>
-        </div>
-        <div className="dropdown">
-          <div className="navbar-link left-link">Officers</div>
-          <div className="dropdown-content">
-            <a href="/officers/" className="navbar-link left-link">
-              Current Officers
-            </a>
-            <a href="/officers/oldOfficers2021-22.html" className="navbar-link left-link">
-              2021-2022
-            </a>
-            <a href="/officers/oldOfficers2019-20.html" className="navbar-link left-link">
-              2019-2020
-            </a>
-            <a href="/officers/oldOfficers2018-19.html" className="navbar-link left-link">
-              2018-2019
-            </a>
-          </div>
-        </div>
-        <a href="/sponsors" className="navbar-link left-link">
-          Sponsors
-        </a>
-        <a href="/alumni" className="navbar-link left-link">
-          Alumni
-        </a>
-
-        <div></div>
-        <ul className="navbar-connect">
-          <li className="navbar-text">Connect:</li>
-          <li>
-            <a
-              href="https://www.facebook.com/saseatvt/"
-              className="navbar-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-facebook-f"></i>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.instagram.com/saseatvt/"
-              className="navbar-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-instagram"></i>
-            </a>
-          </li>
-          <li>
-            <a href="mailto:vtsase@gmail.com" className="navbar-link" target="_blank" rel="noopener noreferrer">
-              <i className="fas fa-envelope"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
-
       {/* <!-- Hidden Navbar --> */}
       <nav className="navbar-hidden">
         <div className="navbar-select-option">
