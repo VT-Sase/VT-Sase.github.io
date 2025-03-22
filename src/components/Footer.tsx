@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
   return(
 
     <footer>
-      <Container maxWidth="sm" sx={{bgcolor: '#477259', padding: '0', bottom: '0', width: '100%'}}>
+      <Container sx={{bgcolor: '#477259', padding: '0', bottom: '0', width: '100%'}}>
         <Typography variant="body1">
           My sticky footer can be found here.
         </Typography>
