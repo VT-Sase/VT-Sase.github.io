@@ -39,3 +39,11 @@
 .read-the-docs {
   color: #888;
 }
+
+footer {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
