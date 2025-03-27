@@ -8,13 +8,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/css/about.css">
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/sponsors.css">
         <link rel="icon" href="/assets/img/logos/icon.png">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
             integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     
-            <script type="module" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script type="module" src="/js/script.js" defer></script>
+        <script type="module" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="module" src="/js/script.js" defer></script>
     </head>
     <body>
         <!-- Main Navbar -->
@@ -33,6 +34,7 @@
                 <div class="navbar-link left-link">Officers</div>
                 <div class="dropdown-content">
                     <a href="/officers/" class="navbar-link left-link">Current Officers</a>
+                    <a href="/officers/oldOfficers2022-23.html" class="navbar-link left-link">2022-2023</a>
                     <a href="/officers/oldOfficers2021-22.html" class="navbar-link left-link">2021-2022</a>
                     <a href="/officers/oldOfficers2019-20.html" class="navbar-link left-link">2019-2020</a>
                     <a href="/officers/oldOfficers2018-19.html" class="navbar-link left-link">2018-2019</a>
@@ -63,115 +65,47 @@
             <div class="navbar-select-option"><a href="/year-in-review" class="navbar-link">Year in Review</a></div>   
             <div class="navbar-select-option"><a href="/alumni" class="navbar-link">Alumni</a></div>   
         </nav>
-
-        <section class="header"
-            style="background: url('/assets/img/sponsors-compressed-smaller/sponsor_title_background.jpg') no-repeat left 10%; background-size: cover;">
-            <!-- <div class="overlay"></div> -->
+         <!-- sponsors section  -->
+        <section class="sponsors-section" style="padding-top: 120px;">
             <h1>Sponsors</h1>
-        </section>
-
-        <section class="sponsor-content">
-            <div class="bio">
-                <p>A special thanks to our sponsors for help making the mission of SASE possible here at Virginia Tech.</p>
-                <p>Interested in becoming a sponsor for SASE at Virginia Tech? Please see the following document for more
-                    information.</p>
-                <!-- NOTE: This is the sponsorship packet for every year. Each year's VIEW-ONLY Sponsorship Packet Link should be placed here. -->
-                <button id="sponsorship_packet_btn" class="button" style="display: flex; justify-self: center; text-align:center; vertical-align:middle;display:table-cell"
-                    onclick="window.open('https://drive.google.com/file/d/1xUgLNVhQhac2ifXUtLvVxzJwrx2qNbSX/view?usp=sharing', '_blank')">
-                        <i class="fas fa-user-tie"></i>&nbsp;&nbsp; Sponsorship Packet</button>
+            <h2>A special thanks to our sponsors for help making the mission of SASE possible here at Virginia Tech!</h2>
+            <div class="Diamond-Sponsor">
+                <h3>Diamond Sponsors</h3>
+                <a href="https://www.caterpillar.com">
+                    <img src="/assets/img/sponsors2025/CATLOGO2025.png" class="diamond-logo" alt="Caterpillar Logo">
+                </a>
+                <a href="https://www.fritolay.com/">
+                <img src="/assets/img/sponsors2025/FRITOLAY2025.png" class="diamond-logo" alt="Frito Lay Logo">
+                </a>
+                <a href="https://navalnuclearlab.energy.gov/">
+                    <img src="/assets/img/sponsors2025/NNL2025.png" class="diamond-logo" alt="NNL Logo">
+                </a>
+                <a href="https://www.blueorigin.com/">
+                    <img src="/assets/img/sponsors2025/BLUEORGIN2025.jpeg" class="diamond-logo" alt="BO Logo">
+                </a>
             </div>
-
-            <div class="sponsors">
-                <div class="page-content">
-                    <div class="card">
-                        <div class="sponsor">
-                            <div class="card-content">
-                                <a href="https://www.capitalone.com/">
-                                    <img src="/assets/img/sponsors-compressed-smaller/CapitalOne_Larger.png" alt="CapitalOne_Larger.png"
-                                        class="card-img" style="width:200px; height:200px; object-fit: contain;"></a>
-                                <p style="text-align: center; font-size: 20px;"><b>Capital One</b></p>
-                                <p style="text-align: center; font-size:20px;">Sponsor</p> 
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="card">
-                        <div class="sponsor">
-                            <div class="card-content">
-                                <a href="https://www.northropgrumman.com/">
-                                    <img src="/assets/img/sponsors-compressed-smaller/NorthropGrumman_Modern.png" alt="NorthropGrumman_Modern.png" 
-                                        class="responsive-img" style="width:200px; height:200px"></a>
-                                <p style="text-align: center; font-size: 20px;"><b>Northrop Grumman</b></p>
-                                <p style="text-align: center; font-size:20px;">Sponsor</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="sponsor">
-                            <div class="card-content">
-                                <a href="https://www.cia.gov/">
-                                    <img src="/assets/img/sponsors-compressed-smaller/Central_Intelligence_Agency.png" alt="Central_Intelligence_Agency.png" 
-                                        class="responsive-img" style="width:200px; height:200px"></a>
-                                <p style="text-align: center; font-size: 20px;"><b>US Central Intelligence Agency (CIA)</b></p>
-                                <p style="text-align: center; font-size:20px;">Sponsor</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="sponsor">
-                            <div class="card-content">
-                                <a href="https://www.altec.com/">
-                                    <img src="/assets/img/sponsors-compressed-smaller/Altec.png" alt="Altec.png" 
-                                        class="responsive-img" style="width:200px; height:200px"></a>
-                                <p style="text-align: center; font-size: 20px;"><b>Altec</b></p>
-                                <p style="text-align: center; font-size:20px;">Sponsor</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="sponsor">
-                            <div class="card-content">
-                                <a href="https://www.burnsmcd.com/">
-                                    <img src="/assets/img/sponsors-compressed-smaller/BurnsMcDonnell.png" alt="BurnsMcDonnell.png"
-                                        class="responsive-img" style="width:200px; height:200px"></a>
-                                <p style="text-align: center; font-size: 20px;"><b>Burns & McDonnell</b></p>
-                                <p style="text-align: center; font-size:20px;">Sponsor</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="sponsor">
-                            <div class="card-content">
-                                <a href="https://www.ge.com/">
-                                    <img src="/assets/img/sponsors-compressed-smaller/GeneralElectric.png" alt="GeneralElectric.png"
-                                        class="responsive-img" style="width:200px; height:200px"></a>
-                                <p style="text-align: center; font-size: 20px;"><b>General Electric</b></p>
-                                <p style="text-align: center; font-size:20px;">Sponsor</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="sponsor">
-                            <div class="card-content">
-                                <a href="https://www.shell.us/">
-                                    <img src="/assets/img/sponsors-compressed-smaller/Shell.jpeg" alt="Shell.jpeg"
-                                        class="responsive-img" style="width:200px; height:200px"></a>
-                                <p style="text-align: center; font-size: 20px;"><b>Shell</b></p>
-                                <p style="text-align: center; font-size:20px;">Sponsor</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="Gold-Sponsor">
+                <h3>Gold Sponsors</h3>
+                <a href="https://www.altec.com/">
+                    <img src="/assets/img/sponsors2025/ALTEC2025.jpeg" class="gold-logo" alt="Altec Logo">
+                </a>
+                <a href="https://www.boeing.com/">
+                <img src="/assets/img/sponsors2025/BOEING2025.jpeg" class="gold-logo" alt="Boeing Logo">
+                </a>
+            </div>
+            <div class="Bronze-Sponsor">
+                <h3>Bronze Sponsors</h3>
+                <a href="https://www.cmta.com/">
+                    <img src="/assets/img/sponsors2025/CMTA2025.jpeg" class="bronze-logo" alt="CMTA logo">
+                </a>
+                <a href="https://www.textron.com/">
+                    <img src="/assets/img/sponsors2025/TEXTRON2025.jpeg" class="bronze-logo" alt="TEXTRON logo">
+                </a>
             </div>
         </section>
 
         <footer>
-            <p>© 2023 SASE at Virginia Tech</p>
+            <p>© 2025 SASE at Virginia Tech</p>
             <a href="https://www.saseconnect.org">Society of Asian Scientists and Engineers</a>
             <div></div>
         </footer>
