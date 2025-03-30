@@ -1,0 +1,171 @@
+{
+  "year": ["2023", "2024"],
+  "fullBoardURL": "../../../../src/assets/img/officers/2023-2024/officer-photos/OFFICERS.jpg",
+  "officerInfo": [
+    {
+      "subteam": "leads",
+      "subteamURL": "../../../../src/assets/img/officers/2023-2024/officer-photos/LEADS.jpg",
+      "cardInfo": [
+        {
+          "name": "Annie Tran",
+          "role": "President",
+          "academicYear": "Junior",
+          "major": "Computer Science",
+          "minor": "Human-Computer Interaction",
+          "email": "annietran@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/annie-tran.jpg"
+        },
+        {
+          "name": "Abhay Raghavan",
+          "role": "External Vice President",
+          "academicYear": "Junior",
+          "major": "Computer Engineering",
+          "minor": "Computer Science",
+          "email": "abhayrag@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/abhay.jpg"
+        },
+        {
+          "name": "Namkhang Dao",
+          "role": "Internal Taskforce Officer",
+          "academicYear": "Junior",
+          "major": "HNFE",
+          "minor": "Adaptive Brain and Behavior",
+          "email": "namkhangdao@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/namkhang.jpg"
+        }
+      ]
+    },
+    {
+      "subteam": "logistics",
+      "subteamURL": "../../../../src/assets/img/officers/2023-2024/officer-photos/LOGISTICS.jpg",
+      "cardInfo": [
+        {
+          "name": "Erica Cheng",
+          "role": "Secretary",
+          "academicYear": "Junior",
+          "major": "Computer Science",
+          "minor": null,
+          "email": "ericac21@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/erica.jpg"
+        },
+        {
+          "name": "Huy Lam",
+          "role": "Treasurer",
+          "academicYear": null,
+          "major": null,
+          "minor": null,
+          "email": "huytnlam@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/huy.jpg"
+        },
+        {
+          "name": "Seneca Ung",
+          "role": "Senior Advisor",
+          "academicYear": null,
+          "major": null,
+          "minor": null,
+          "email": "seneca@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/seneca.jpg"
+        }
+      ]
+    },
+    {
+      "subteam": "internal",
+      "subteamURL": "../../../../src/assets/img/officers/2023-2024/officer-photos/INTERNAL.jpg",
+      "cardInfo": [
+        {
+          "name": "Kelly Kim",
+          "role": "Internal Taskforce Officer",
+          "academicYear": null,
+          "major": null,
+          "minor": null,
+          "email": "kkim02@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/kelly-kim.jpg"
+        },
+        {
+          "name": "Francis Nguyen",
+          "role": "Internal Taskforce Officer",
+          "academicYear": null,
+          "major": null,
+          "minor": null,
+          "email": "francisn@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/francis.jpg"
+        }
+      ]
+    },
+    {
+      "subteam": "external",
+      "subteamURL": "../../../../src/assets/img/officers/2023-2024/officer-photos/EXTERNAL.jpg",
+      "cardInfo": [
+        {
+          "name": "Brian Kim",
+          "role": "External Taskforce Officer",
+          "academicYear": "Junior",
+          "major": "Computer Science",
+          "minor": null,
+          "email": "brianjk@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/brian-kim.jpg"
+        },
+        {
+          "name": "Daniel Koo",
+          "role": "External Taskforce Officer",
+          "academicYear": "Junior",
+          "major": "Computer Science",
+          "minor": null,
+          "email": "danieljhkoo@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/daniel.jpg"
+        }
+      ]
+    },
+    {
+      "subteam": "media",
+      "subteamURL": "../../../../src/assets/img/officers/2023-2024/officer-photos/MEDIA.jpg",
+      "cardInfo": [
+        {
+          "name": "Leanne Lee",
+          "role": "Public Relations",
+          "academicYear": "Sophomore",
+          "major": "Business Information Technology - Cybersecurity",
+          "minor": null,
+          "email": "lleanne@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/leanne.jpg"
+        },
+        {
+          "name": "Mavryck Mora",
+          "role": "Public Relations",
+          "academicYear": null,
+          "major": null,
+          "minor": null,
+          "email": "mavryck@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/mavryck.jpg"
+        },
+        {
+          "name": "Annie Lin",
+          "role": "Historian",
+          "academicYear": null,
+          "major": null,
+          "minor": null,
+          "email": "anniel@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/annie-lin.jpg"
+        },
+        {
+          "name": "Jess Savage",
+          "role": "Historian",
+          "academicYear": "Junior",
+          "major": "Electrical Engineering and Mathematics",
+          "minor": "Physics",
+          "email": "jsavage03@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/jess.jpg"
+        },
+        {
+          "name": "Pierre Tran",
+          "role": "Webmaster",
+          "academicYear": "Junior",
+          "major": "Computer Science",
+          "minor": "Mathematics",
+          "email": "pierretran@vt.edu",
+          "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/pierre.jpg"
+        }
+      ]
+    }
+  ]
+}

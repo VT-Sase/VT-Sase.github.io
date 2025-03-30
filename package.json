@@ -1,18 +1,58 @@
 {
-    "name": "vt-sase-website",
-    "private": true,
-    "version": "0.0.0",
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "preview": "vite preview"
+  "name": "vt-sase-github-io",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "author": {
+    "name": "Vanessa Jones",
+    "email": "vanessaj22@vt.edu"
+  },
+  "contributors": [
+    {
+      "name": "Pierre Tran",
+      "email": "pierretran@vt.edu"
     },
-    "devDependencies": {
-        "vite": "^4.2.0"
-    },
-    "dependencies": {
-        "jquery": "^3.6.4",
-        "owl.carousel": "^2.3.4"
+    {
+      "name": "Andrew Tran",
+      "email": "andrewt03@vt.edu"
     }
+  ],
+  "description": "VT-SASE-Website Frontend",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build --debug --mode production --target esNext --clearScreen",
+    "format": "prettier --write \"**/*.ts*\" \"**/*.js*\" \"**/*.css\" \"**/*.html\"",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "embla-carousel-react": "^8.5.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^5.16.14",
+    "@types/d3": "^7.4.3",
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "@vitejs/plugin-react": "^4.2.1",
+    "axios": "^1.6.7",
+    "d3": "^7.8.5",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "prettier": "3.2.5",
+    "react-cookie": "^7.1.0",
+    "react-router-dom": "^6.22.2",
+    "socket.io-client": "^4.7.4",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4",
+    "zod": "^3.22.4",
+    "zod-validation-error": "^3.0.3"
+  }
 }
