@@ -3,7 +3,55 @@
 Link to Test Website: <a href="https://vt-sase.github.io/" target="_blank">https://vt-sase.github.io/</a> \
 Link to Actual VT SASE Website: <a href="https://sase-vt.org/" target="_blank">https://sase-vt.org/</a>
 
-## Getting Started with Vite and Node Package Manager (npm)
+## >> Getting Started << DO THIS FIRST!
+
+```shell
+# GitHub
+# HTTPS
+git clone https://github.com/VT-Sase/VT-Sase.github.io.git
+# SSH (Recommended)
+git clone git@github.com:VT-Sase/VT-Sase.github.io.git
+```
+
+```shell
+# Create a frontend terminal
+cd VT-Sase.github.io/
+npm install
+sh run_frontend.sh
+```
+
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+# Getting Started with Vite and Node Package Manager (npm)
 
 This project was created with [Vite](https://github.com/facebook/create-react-app) and uses packages from [npm](https://www.npmjs.com/). \
 If you do not have `npm` installed on your operating system, see this section about [installation](https://nodejs.org/en/download) for more information.
@@ -166,10 +214,3 @@ Contains all of the NPM installed packages for this GitHub Repository. Please re
 Specifies the basic CI/CD on GitHub whenever code changes are added to the index, committed with a log message, and pushed to the remote branch. Enables `npm` and `vite` commands be run to render the appropriate, optimized artifacts/assets onto our public SASE website domain. See the GitHub Action [documentation](https://docs.github.com/en/actions) page for more information on how GitHub handles deploying code from local to remote repositories generally work as well as the Vite [deployment](https://vitejs.dev/guide/static-deploy.html) page for more information on how our SASE website is running Vite on our GitHub repository when deployed. \
 For future Webmasters, we may need to consider placing protections on the branches to avoid committing and pushing code that will break the SASE website when rendered on Internet browsers.
 
-## Branch Structure of the GitHub Repository
-
-<ul>
-    <li> <b>main</b> - <u>DO NOT DEVELOP DIRECTLY ON THIS BRANCH.</u> This branch is the one actively being rendered publicly on our GoDaddy Website Domain.
-    <li> <b>reg-website-no-optimizations</b> - Branch that contains the Vanilla JS configuration BEFORE Vite was introduced into the GitHub Repository. <b>[Last Updated: 04/14/2023]</b>
-    <li> <b>vite</b> - Current Branch for <u>ACTIVE DEVELOPMENT</u>. Branch that contains the Vanilla JS configuration as well the most up-to-date Vite Configurations in our GitHub Repository. The conventional practice is to merge this branch's changes to the "main" branch after pushing local changes up.
-</ul> 
