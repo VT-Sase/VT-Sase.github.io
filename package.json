@@ -1,13 +1,18 @@
 {
+  "homepage": "https://sase-vt.org/",
   "name": "vt-sase-github-io",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "author": {
-    "name": "Pierre Tran",
-    "email": "pierretran@vt.edu"
+    "name": "Vanessa Jones",
+    "email": "vanessaj22@vt.edu"
   },
   "contributors": [
+    {
+      "name": "Vanessa Jones",
+      "email": "vanessj22@vt.edu"
+    },
     {
       "name": "Pierre Tran",
       "email": "pierretran@vt.edu"
@@ -23,7 +28,9 @@
     "build": "tsc && vite build --debug --mode production --target esNext --clearScreen",
     "format": "prettier --write \"**/*.ts*\" \"**/*.js*\" \"**/*.css\" \"**/*.html\"",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "embla-carousel-react": "^8.5.2",

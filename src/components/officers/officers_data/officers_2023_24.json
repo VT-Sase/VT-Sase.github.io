@@ -44,25 +44,25 @@
           "role": "Secretary",
           "academicYear": "Junior",
           "major": "Computer Science",
-          "minor": null,
+          "minor": "",
           "email": "ericac21@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/erica.jpg"
         },
         {
           "name": "Huy Lam",
           "role": "Treasurer",
-          "academicYear": null,
-          "major": null,
-          "minor": null,
+          "academicYear": "",
+          "major": "",
+          "minor": "",
           "email": "huytnlam@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/huy.jpg"
         },
         {
           "name": "Seneca Ung",
           "role": "Senior Advisor",
-          "academicYear": null,
-          "major": null,
-          "minor": null,
+          "academicYear": "",
+          "major": "",
+          "minor": "",
           "email": "seneca@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/seneca.jpg"
         }
@@ -75,18 +75,18 @@
         {
           "name": "Kelly Kim",
           "role": "Internal Taskforce Officer",
-          "academicYear": null,
-          "major": null,
-          "minor": null,
+          "academicYear": "Sophomore",
+          "major": "",
+          "minor": "",
           "email": "kkim02@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/kelly-kim.jpg"
         },
         {
           "name": "Francis Nguyen",
           "role": "Internal Taskforce Officer",
-          "academicYear": null,
-          "major": null,
-          "minor": null,
+          "academicYear": "Sophomore",
+          "major": "",
+          "minor": "",
           "email": "francisn@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/francis.jpg"
         }
@@ -101,7 +101,7 @@
           "role": "External Taskforce Officer",
           "academicYear": "Junior",
           "major": "Computer Science",
-          "minor": null,
+          "minor": "",
           "email": "brianjk@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/brian-kim.jpg"
         },
@@ -110,7 +110,7 @@
           "role": "External Taskforce Officer",
           "academicYear": "Junior",
           "major": "Computer Science",
-          "minor": null,
+          "minor": "",
           "email": "danieljhkoo@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/daniel.jpg"
         }
@@ -125,25 +125,25 @@
           "role": "Public Relations",
           "academicYear": "Sophomore",
           "major": "Business Information Technology - Cybersecurity",
-          "minor": null,
+          "minor": "",
           "email": "lleanne@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/leanne.jpg"
         },
         {
           "name": "Mavryck Mora",
           "role": "Public Relations",
-          "academicYear": null,
-          "major": null,
-          "minor": null,
+          "academicYear": "",
+          "major": "",
+          "minor": "",
           "email": "mavryck@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/mavryck.jpg"
         },
         {
           "name": "Annie Lin",
           "role": "Historian",
-          "academicYear": null,
-          "major": null,
-          "minor": null,
+          "academicYear": "",
+          "major": "",
+          "minor": "",
           "email": "anniel@vt.edu",
           "imageUrl": "../../../../src/assets/img/officers/2023-2024/officer-photos/annie-lin.jpg"
         },
