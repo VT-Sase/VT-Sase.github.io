@@ -2,11 +2,10 @@
     padding-bottom: 35px;
     text-align: center;
     font-family: aesthet-nova, serif;
-    background-image: linear-gradient(#ebf0ed, #f5fbf8);
+    background-color: #ebf0ed;
     color: white;
 }
 
-/* Main title  */
 .sponsors-section h1 {
     font-size: 3.5rem;
     font-weight: 700;
@@ -14,7 +13,6 @@
     letter-spacing: 1px;
 }
 
-/* Thank you message  */
 .sponsors-section h2 {
     font-size: 1.8rem;
     font-weight: 400;
@@ -24,7 +22,6 @@
     margin-right: auto;
 }
 
-/*  headings (Diamond, Gold, Bronze) */
 .sponsors-section h3 {
     font-size: 30px;
     font-weight: 600;
@@ -35,7 +32,7 @@
 .diamond-logo,
 .gold-logo,
 .bronze-logo {
-    width: 230px; 
+    width: 230px;
     height: 230px;
     border-radius: 50%;
     background-color: #6b8f7a;
@@ -54,7 +51,7 @@
 }
 
 .gold-logo {
-    width: 220px; 
+    width: 220px;
     height: 220px;
     border-radius: 50%;
     background-color: #88a192;
@@ -65,7 +62,7 @@
     margin-right: 20px;
 }
 .bronze-logo{
-    width: 190px; 
+    width: 190px;
     height: 190px;
     border-radius: 50%;
     background-color: #a4bbad;
@@ -74,6 +71,4 @@
     padding: 13px;
     object-fit: contain;
     margin-right: 20px;
-
-}
-
+} 
