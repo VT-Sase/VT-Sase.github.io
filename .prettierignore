@@ -1,0 +1,6 @@
+.next/
+node_modules/
+pnpm-lock.yaml
+public/
+*.min.js
+next-env.d.ts
