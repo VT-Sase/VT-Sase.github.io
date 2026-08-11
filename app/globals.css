@@ -1,17 +1,42 @@
+/**
+ * Global styles — applies to every page.
+ *
+ * Keep this file for resets and site-wide tokens only (colors, fonts,
+ * spacing). Page- and component-specific styles belong in a CSS Module
+ * next to the file that uses them, e.g. app/about/page.module.css.
+ *
+ * TODO: fill in the palette from Coolors and the fonts from Google Fonts
+ * once the designers lock them in. Change the values here and the whole
+ * site updates — don't hardcode colors anywhere else.
+ */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --muted: #57534e;
+  --border: #e5e2de;
+  --accent: #8a1f3d;
 }
 
+/* Dark mode: follows whatever the visitor's system is set to. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0e0e0e;
     --foreground: #ededed;
+    --muted: #a3a3a3;
+    --border: #2a2a2a;
+    --accent: #e8829c;
+  }
+
+  html {
+    color-scheme: dark;
   }
 }
 
-html {
-  height: 100%;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html,
@@ -21,20 +46,13 @@ body {
 }
 
 body {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  line-height: 1.6;
 }
 
 a {
@@ -42,8 +60,26 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Page content. Centered while the pages are still empty skeletons —
+   change this once real sections start going in. */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+
+main h1 {
+  font-size: 2.5rem;
+}
+
+main p {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
 }

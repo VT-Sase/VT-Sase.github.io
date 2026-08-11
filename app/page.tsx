@@ -1,16 +1,18 @@
-import styles from "./page.module.css";
-
+/**
+ * Home — route: /
+ *
+ * The trailer for the whole site. Sections to build:
+ *   1. Hero: club name, tagline, photo, "Join us" button → Linktree
+ *   2. Mission statement (short version)
+ *   3. "What is SASE" teaser (2–3 sentences) → links to /about
+ *   4. Next 2–3 upcoming events preview → links to /events
+ *   5. Sponsors logo strip
+ */
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <h1>VT SASE</h1>
-      <p>
-        Society of Asian Scientists and Engineers — Virginia Tech chapter. The
-        new website is under construction. 🚧
-      </p>
-      <p className={styles.hint}>
-        Edit <code>app/page.tsx</code> to start building this page.
-      </p>
-    </main>
+    <>
+      <h1>Home</h1>
+      <p>TODO</p>
+    </>
   );
 }

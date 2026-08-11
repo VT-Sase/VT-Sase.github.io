@@ -117,21 +117,50 @@ Compress images before adding them — large files make the site slow to load.
 
 ## Project Structure
 
-A Next.js **App Router** project. The folders you'll touch most:
+A Next.js **App Router** project. Every folder under `app/` is a route on the
+live site. This is the whole tree — if a file isn't listed here, it's config
+you can ignore:
 
 ```
 vt-sase-website/
-├── app/          pages and layouts (each folder = a route on the site)
-├── components/   reusable React components (navbar, cards, buttons, ...)
-├── public/       static files served as-is
-│   └── images/   site images (compressed); originals in images/original/
-└── ...config files
+├── app/                        every folder here = one page on the site
+│   ├── layout.tsx              wraps EVERY page (navbar + footer live here)
+│   ├── globals.css             site-wide styles: colors, fonts, resets
+│   ├── page.tsx                /            Home
+│   ├── about/page.tsx          /about       About
+│   ├── events/page.tsx         /events      Events
+│   ├── officers/page.tsx       /officers    Officers
+│   └── faqs/page.tsx           /faqs        FAQs
+├── components/                 shared UI reused across pages
+│   ├── Navbar.tsx
+│   └── Footer.tsx
+└── public/
+    └── images/                 compressed images; originals in images/original/
 ```
 
-- **`app/`** — add a page by creating a folder with a `page.tsx` inside.
-  `app/page.tsx` is the homepage; `app/layout.tsx` wraps every page.
-- **`components/`** — shared UI reused across pages. Import with `@/components/...`.
-- **`public/`** — served at the site root (e.g. `public/images/logo.png` → `/images/logo.png`).
+**Which file do I work in?**
+
+| I want to...                           | Edit this                                              |
+| -------------------------------------- | ------------------------------------------------------ |
+| Change what's on one page              | that page's `page.tsx`                                 |
+| Change the navbar or footer            | `components/Navbar.tsx` / `components/Footer.tsx`      |
+| Change something on _every_ page       | `app/layout.tsx`                                       |
+| Change colors, fonts, site-wide styles | `app/globals.css`                                      |
+| Style one page or component only       | a `page.module.css` next to that file                  |
+| Add a photo or logo                    | `public/images/` (see [Adding Images](#adding-images)) |
+| Add a brand-new page                   | new folder in `app/` with a `page.tsx` inside          |
+
+**Ground rules so we don't step on each other:**
+
+- One person per page at a time — claim yours in Discord before you start.
+- Shared files (`app/layout.tsx`, `app/globals.css`, `components/`) affect
+  everyone. Check in before changing them.
+- Page-specific styles go in a **CSS Module** (`page.module.css`) next to the
+  page, not in `globals.css`. That way your styles can't leak into someone
+  else's page.
+- Each `page.tsx` starts with a comment block listing the sections that page
+  needs. Build those sections, then delete the comment.
+- Import shared code with the `@/` prefix, e.g. `import Navbar from "@/components/Navbar"`.
 
 ## Commands
 
