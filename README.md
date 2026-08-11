@@ -184,7 +184,7 @@ vt-sase-website/
 - Read the [Next.js docs](https://nextjs.org/docs).
 - Contact the current **Webmaster**.
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) for contribution guidelines.
 
 ## Admin Setup (Webmaster Only)
 
