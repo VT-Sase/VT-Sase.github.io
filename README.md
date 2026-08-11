@@ -134,9 +134,16 @@ vt-sase-website/
 ├── components/                 shared UI reused across pages
 │   ├── Navbar.tsx
 │   └── Footer.tsx
-└── public/
-    └── images/                 compressed images; originals in images/original/
+├── public/
+│   └── images/                 compressed images; originals in images/original/
+└── .github/                    PR template, code owners, CI — Webmaster's area
 ```
+
+**Everything else in the repo root is config** — `package.json`,
+`tsconfig.json`, `next.config.ts`, `eslint.config.mjs`, and friends. These have
+to sit at the root because that's the only place the tools look for them. You
+can ignore all of it; if you ever do need to change one, ask the Webmaster
+first, since a broken config breaks the build for everybody.
 
 **Which file do I work in?**
 
