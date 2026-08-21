@@ -60,47 +60,19 @@ itself. Press **Ctrl+C** in the terminal to stop it.
 
 Color schema 
 
-Light	Dark (default)
-#D1E7B0	#0D314B
-#CCE792	#001727
-#F0F7E0	#0D2333
-#CFE7DC	#168AAD
-#A5D8E6	#46A7C4
-#D8F0F8	#9BE8FF
-#001727	#FFFFFF
-#1E6091	#00C4FF
-#366D34	#8FC53F
+| Light | Dark (default) |
+| ----- | -------------- |
+| `#D1E7B0` | `#0D314B` |
+| `#CCE792` | `#001727` |
+| `#F0F7E0` | `#0D2333` |
+| `#CFE7DC` | `#168AAD` |
+| `#A5D8E6` | `#46A7C4` |
+| `#D8F0F8` | `#9BE8FF` |
+| `#001727` | `#FFFFFF` |
+| `#1E6091` | `#00C4FF` |
+| `#366D34` | `#8FC53F` |
 
-**How the switch works** — same names, two sets of values, in `app/globals.css`:
 
-```css
-:root {
-  --bg-page: #0d314b; /* dark is our default */
-}
-
-[data-theme="light"] {
-  --bg-page: #d1e7b0; /* same name, light value */
-}
-```
-
-Flipping `data-theme` swaps every color at once. That's the whole trick, and it
-only works if nobody types a color code directly.
-
-> ⚠️ **These aren't in the code yet.** `app/globals.css` still has the Next.js
-> starter palette. Issue
-> [#28](https://github.com/VT-Sase/vt-sase-website/issues/28) puts these in, and
-> it blocks every page — so it goes first.
-
-**About the `*` values:** the designers gave us light-mode colors for five of
-nine. Those four are placeholders picked to fit the palette so light mode isn't
-blocked — all pass WCAG AA contrast. Swap in the real ones when they arrive
-([#37](https://github.com/VT-Sase/vt-sase-website/issues/37) tracks it).
-
-Also worth knowing: blue text on the page background is 5.0:1 and green text is
-4.7:1, against a 4.5:1 minimum. Both pass, but don't use either for small text.
-
-**Still to translate from Figma:** the gradients, the two blob shapes, and the
-card shadow effect.
 
 ## 🔤 Fonts
 
