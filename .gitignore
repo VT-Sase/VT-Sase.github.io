@@ -3,9 +3,9 @@
 # dependencies
 /node_modules
 
-# lockfiles — this project standardizes on pnpm, so pnpm-lock.yaml is the only
+# lockfiles — this project standardizes on npm, so package-lock.json is the only
 # lockfile we commit. Anything else means someone used the wrong package manager.
-package-lock.json
+pnpm-lock.yaml
 yarn.lock
 
 # next.js
