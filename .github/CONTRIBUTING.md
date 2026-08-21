@@ -19,9 +19,8 @@ page is just the short version.
    pnpm lint       # catch style problems and common mistakes
    pnpm typecheck  # catch TypeScript errors
    ```
-4. **Open a PR into `main`**, add screenshots for anything visual, paste the
-   preview link, and post it in Discord. One approval to merge, then **Squash
-   and merge**.
+4. **Open a PR into `main`**, add screenshots for anything visual, and post it
+   in Discord. The Webmaster reviews and merges — nothing else for you to do.
 
 ## The three rules people forget
 

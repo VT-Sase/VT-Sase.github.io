@@ -1,274 +1,205 @@
 # VT SASE Website
 
-The official website for the **Society of Asian Scientists and Engineers (SASE)**
-chapter at **Virginia Tech**, live at **[sase-vt.org](https://sase-vt.org/)**.
+The official website for the **Society of Asian Scientists and Engineers** at
+**Virginia Tech** — live at **[sase-vt.org](https://sase-vt.org/)**.
 
-Built with [Next.js](https://nextjs.org/) (App Router) and TypeScript.
+Built with [Next.js](https://nextjs.org/) (App Router) and TypeScript. We're
+rebuilding the old React + Vite site; this repo is the new version.
 
-**New to the committee?** Start with [Getting Started](#getting-started) and
-[Making Changes](#making-changes). They assume no prior experience with this repo.
+**New here?** Start with [Getting Started](#-getting-started), then pick something
+from the [Issues tab](https://github.com/VT-Sase/vt-sase-website/issues). No prior
+experience with this repo assumed.
 
 ## Contents
 
-- [About](#about)
-- [Getting Started](#getting-started)
-- [Picking Something to Work On](#picking-something-to-work-on)
-- [Making Changes](#making-changes)
-- [Branch Naming](#branch-naming)
-- [Adding Images](#adding-images)
-- [Project Structure](#project-structure)
-- [Colors and Fonts](#colors-and-fonts)
-- [Commands](#commands)
-- [Secrets](#secrets)
-- [Deployment](#deployment)
-- [Need Help?](#need-help)
-- [Admin Setup (Webmaster Only)](#admin-setup-webmaster-only)
+- [🚀 Getting Started](#-getting-started)
+- [📝 Content](#-content)
+- [🎨 Colors](#-colors)
+- [🔤 Fonts](#-fonts)
+- [🌿 How Git Works Here](#-how-git-works-here)
+- [📁 Project Structure](#-project-structure)
+- [📋 Issues](#-issues)
+- [🔗 Resources](#-resources)
+- [💻 Commands](#-commands)
+- [🔒 Secrets](#-secrets)
+- [🚢 Deployment](#-deployment)
+- [Admin Setup (Webmaster only)](#admin-setup-webmaster-only)
 
-## About
+## 🚀 Getting Started
 
-- The VT SASE chapter website: **https://sase-vt.org/**
-- Maintained by the **Webmaster** and the **Web Dev Committee**.
-- We're rebuilding the old React + Vite site in **Next.js**. This repo is the new version.
+You'll do this once. It takes about 15 minutes, most of which is waiting on
+downloads. Everything below runs in your **terminal** (Terminal on Mac, PowerShell
+on Windows).
 
-**Key links** — bookmark these:
+### First, three things you probably already have
 
-| What            | Where                                                                                                                       |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Live site       | [sase-vt.org](https://sase-vt.org/)                                                                                         |
-| Designs (Figma) | [Sase-website](https://www.figma.com/design/07019PjaxQ3sWgH0dXuSCK/Sase-website) — build against the **Final Version** page |
-| To-do list      | [Issues tab](https://github.com/VT-Sase/vt-sase-website/issues)                                                             |
+| What                 | Check it with   | If you don't have it                                                                            |
+| -------------------- | --------------- | ----------------------------------------------------------------------------------------------- |
+| A **GitHub account** | —               | [Sign up](https://github.com/signup), then tell the Webmaster your username so they can add you |
+| **Git**              | `git --version` | [git-scm.com/downloads](https://git-scm.com/downloads)                                          |
+| A **code editor**    | —               | [VS Code](https://code.visualstudio.com/) is what most of us use                                |
 
-Build what the Figma says. If the design and this README disagree about a color
-or a size, the design wins — but flag it to the Webmaster so the token gets fixed
-rather than worked around.
+### 1. Install Node
 
-## Getting Started
+Node is what lets your computer run JavaScript outside a browser. Next.js is built
+on it, so nothing works without it.
 
-Never touched this repo before? Do these once, in order:
-
-1. **Install Node.js** — download the **LTS** version from [nodejs.org](https://nodejs.org/en/download).
-   We build against **Node 22** (see `.nvmrc`); if you use `nvm`, run `nvm use`
-   in this folder and it picks the right version automatically.
-2. **Install pnpm** (our package manager):
-   ```bash
-   npm install -g pnpm
-   ```
-   > Only ever use `pnpm` in this repo — never `npm install` or `yarn`. They
-   > create a different lockfile and everyone ends up on different versions of
-   > the same packages. If you see a `package-lock.json` appear, delete it.
-3. **Clone the repo:**
-   ```bash
-   git clone https://github.com/VT-Sase/vt-sase-website.git
-   cd vt-sase-website
-   ```
-4. **Install dependencies:**
-   ```bash
-   pnpm install
-   ```
-5. **Start the dev server:**
-   ```bash
-   pnpm dev
-   ```
-
-Open **[http://localhost:3000](http://localhost:3000)** in your browser. The page
-auto-refreshes as you edit files. You're ready to code.
-
-## Picking Something to Work On
-
-The **[Issues tab](https://github.com/VT-Sase/vt-sase-website/issues)** is our
-to-do list. Everything we're building is there.
-
-1. Find an issue you want. Filter by **`good first issue`** if this is your first
-   time, or **`content`** if you'd rather do data entry (filling in `content/*.ts`)
-   than write React.
-2. **Comment on it and assign yourself**, so two people don't build the same thing
-   and the board shows who's on what.
-3. **One issue → one branch → one Pull Request.** Don't bundle several issues
-   into one PR — it makes review much harder.
-
-No open issue for your idea? Open one first, or ask in the Discord.
-
-## Making Changes
-
-We use a Pull Request (PR) workflow. Follow these steps every time you work on something:
-
-1. **Get the latest code:**
-   ```bash
-   git pull origin main
-   ```
-2. **Create a branch** named for what you're doing (see
-   [Branch Naming](#branch-naming)):
-   ```bash
-   git checkout -b feature/what-you-changed
-   # example: git checkout -b feature/officers-page
-   ```
-3. **Make your changes, then save (commit) them:**
-   ```bash
-   git add .
-   git commit -m "short description of what you changed"
-   ```
-4. **Push your branch** (same name you created in step 2):
-   ```bash
-   git push origin feature/what-you-changed
-   ```
-5. **Open a Pull Request** on [GitHub](https://github.com/VT-Sase/vt-sase-website):
-   click **"Compare & pull request"** and set the target to `main`. Fill in the
-   template, and **add screenshots for anything visual**.
-6. **Wait for 1 approval** from the Webmaster or another reviewer. Post the PR
-   link in Discord — we aim to review within 12 hours so nobody sits blocked.
-   Every PR gets an automatic **preview URL**; paste it in the PR so reviewers
-   and designers can click through the real thing instead of reading a diff.
-7. **Merge** once approved and CI passes (green check). Use **Squash and
-   merge** — your branch's commits get combined into one tidy commit on `main`,
-   so it doesn't matter if yours are named "fix" and "fix again".
-8. Your change **auto-deploys to the live site**.
-
-> **Never push directly to `main`.** All changes go through a Pull Request, so
-> the live site is protected and someone can double-check your work.
-
-**If your branch falls behind `main`** (someone else merged while you were
-working), pull their changes into your branch:
+Download the **Node 22 LTS** installer from
+[nodejs.org](https://nodejs.org/en/download) and run it. **Close and reopen your
+terminal afterwards** — it won't see Node until you do.
 
 ```bash
-git checkout main && git pull      # get the latest main
-git checkout your-branch           # back to your work
-git merge main                     # bring main's changes in
+node --version    # should print v22.something
 ```
 
-Use `merge`, not `rebase`. Rebase rewrites history and is much harder to undo
-if it goes sideways.
+> Already have a different Node version? Install [nvm](https://github.com/nvm-sh/nvm)
+> and run `nvm use` in this folder — `.nvmrc` picks the right one automatically.
 
-## Branch Naming
+### 2. Install pnpm
 
-Name your branch so everyone can tell what it's for:
+pnpm downloads and manages the code libraries this project depends on. `npm` comes
+free with Node, so use it once to install pnpm:
 
-| Prefix     | Use for                                    | Example                   |
-| ---------- | ------------------------------------------ | ------------------------- |
-| `feature/` | New features                               | `feature/alumni-page`     |
-| `fix/`     | Bug fixes                                  | `fix/broken-nav-link`     |
-| `update/`  | Content updates (event photos, text, etc.) | `update/fall-2026-events` |
-
-## Adding Images
-
-Compress images before adding them — large files make the site slow to load.
-
-1. Put the **original** (full-size) image in `public/images/original/`.
-2. **Compress it** with [compress2go.com](https://www.compress2go.com/) or
-   [compressor.io](https://compressor.io/).
-3. Put the **compressed** version in `public/images/`.
-4. Reference it from `/images/filename.ext`:
-   ```tsx
-   import Image from "next/image";
-
-   <Image
-     src="/images/team-photo.jpg"
-     alt="SASE team at nationals"
-     width={800}
-     height={600}
-   />;
-   ```
-5. Keep images **under 200 KB** when possible.
-
-## Project Structure
-
-A Next.js **App Router** project. Every folder under `app/` is a route on the
-live site. This is the whole tree — if a file isn't listed here, it's config
-you can ignore:
-
-```
-vt-sase-website/
-├── app/                        every folder here = one page on the site
-│   ├── layout.tsx              wraps EVERY page (navbar + footer live here)
-│   ├── globals.css             site-wide styles: colors, fonts, resets
-│   ├── page.tsx                /            Home
-│   ├── about/page.tsx          /about       About
-│   ├── events/page.tsx         /events      Events
-│   ├── officers/page.tsx       /officers    Officers
-│   └── faqs/page.tsx           /faqs        FAQs
-├── components/                 shared UI reused across pages
-│   ├── Navbar.tsx
-│   └── Footer.tsx
-├── content/                    page DATA (officers, events, FAQs, sponsors)
-│   ├── officers.ts             edit these to change what the site says —
-│   ├── events.ts               no React needed, just fill in the lists
-│   ├── faqs.ts
-│   └── sponsors.ts
-├── public/
-│   └── images/                 compressed images; originals in images/original/
-└── .github/                    PR template, code owners, CI — Webmaster's area
+```bash
+npm install -g pnpm
+pnpm --version    # should print a number
 ```
 
-**Everything else in the repo root is config** (`package.json`, `tsconfig.json`,
-`next.config.ts`, and friends). Ignore it — and ask the Webmaster before changing
-any of it, since a broken config breaks the build for everyone.
+> ⚠️ That's the **only** time you'll type `npm` in this project. After this, always
+> `pnpm`. `npm install` and `yarn` create a different lockfile and everyone ends up
+> on mismatched package versions. If a `package-lock.json` ever appears, delete it.
 
-**Which file do I work in?**
+### 3. Download the code
 
-| I want to...                              | Edit this                                                     |
-| ----------------------------------------- | ------------------------------------------------------------- |
-| Change what's on one page                 | that page's `page.tsx`                                        |
-| Add/edit officers, events, FAQs, sponsors | that list in `content/`                                       |
-| Change the navbar or footer               | `components/Navbar.tsx` / `components/Footer.tsx`             |
-| Change something on _every_ page          | `app/layout.tsx`                                              |
-| Change colors, fonts, site-wide styles    | `app/globals.css` (see [Colors and Fonts](#colors-and-fonts)) |
-| Style one page or component only          | a `page.module.css` next to that file                         |
-| Add a photo or logo                       | `public/images/` (see [Adding Images](#adding-images))        |
-| Add a brand-new page                      | new folder in `app/` with a `page.tsx` inside                 |
+```bash
+git clone https://github.com/VT-Sase/vt-sase-website.git
+cd vt-sase-website
+```
 
-**Ground rules so we don't step on each other:**
+That `cd` matters — every command from here runs **inside** that folder.
 
-- One person per page at a time — claim yours in Discord before you start.
-- Shared files (`app/layout.tsx`, `app/globals.css`, `components/`) affect
-  everyone. Check in before changing them.
-- Page-specific styles go in a **CSS Module** (`page.module.css`) next to the
-  page, not in `globals.css`. That way your styles can't leak into someone
-  else's page.
-- Each `page.tsx` starts with a comment block listing the sections that page
-  needs. Build those sections, then delete the comment.
-- Import shared code with the `@/` prefix, e.g. `import Navbar from "@/components/Navbar"`.
-- **Never hardcode a hex value.** Use the variables — `color: var(--foreground)`,
-  not `color: #fff`. Hardcoded colors are how a page ends up unreadable in dark mode.
-- **Run `pnpm format`, `pnpm lint`, and `pnpm typecheck` before you push.** CI runs
-  the same three and will fail your PR if you skip them.
-- **Text and data live in `content/`, not in the page.** If you're adding an
-  officer or an event, edit `content/officers.ts` or `content/events.ts` — the
-  page reads from those lists. This is also why two people can work on the same
-  page at once: one builds the layout, the other fills in the content.
+### 4. Install the project's libraries
 
-## Colors and Fonts
+```bash
+pnpm install
+```
 
-**Read this before you style anything.** Everything on the site uses the colors
-and text sizes below. They come from the Figma **local styles** panel, which is
-the source of truth — if something here disagrees with Figma, Figma wins and the
-Webmaster fixes this table.
+Takes a minute or two the first time. It creates a `node_modules/` folder with a
+few hundred packages in it. That folder is gitignored — never commit it, and don't
+worry about its size.
 
-### The one rule
+### 5. Run it
 
-**Never type a color code into your CSS.** Use a variable:
+```bash
+pnpm dev
+```
+
+Open **[localhost:3000](http://localhost:3000)**. 🎉
+
+Leave that command running while you work — save a file and the page updates by
+itself. Press **Ctrl+C** in the terminal to stop it.
+
+### If something goes wrong
+
+| Problem                             | Fix                                                         |
+| ----------------------------------- | ----------------------------------------------------------- |
+| `command not found: node` or `pnpm` | Close the terminal and open a new one                       |
+| Wrong Node version                  | `nvm use`, or reinstall Node 22                             |
+| `pnpm install` fails partway        | Delete `node_modules/`, run `pnpm install` again            |
+| Port 3000 already in use            | Something else is running — `pnpm dev` will offer port 3001 |
+| Still stuck                         | Ask in Discord and paste the actual error text 💬           |
+
+## 📝 Content
+
+Every word and photo on the site lives in `content/`, separate from the code.
+**You don't need to know React to edit these.**
+
+| File                  | What's in it                           |
+| --------------------- | -------------------------------------- |
+| `content/officers.ts` | Names, roles, majors, photos, LinkedIn |
+| `content/events.ts`   | Event names, dates, locations, blurbs  |
+| `content/faqs.ts`     | Questions and answers                  |
+| `content/sponsors.ts` | Sponsor names and logos                |
+
+Open one and copy the pattern already there. Keep the commas, quotes, and curly
+braces exactly as you found them — that's the part that breaks.
+
+**Pages read from these lists**, so adding next semester's events is a one-file
+change. It also means two people can work on the same page at once: one builds
+the layout, the other fills in the words.
+
+**Adding a photo:** compress it first at
+[compress2go.com](https://www.compress2go.com/) — aim for under 200 KB — then drop
+it in `public/images/` and reference it as `/images/yourfile.jpg`. Big photos make
+the site crawl on phones, which is where most people will see it.
+
+## 🎨 Colors
+
+**The one rule: never type a color code into your CSS.** Use a variable.
 
 ```css
 background: var(--bg-card); /* yes */
 background: #0d2333; /* no */
 ```
 
-Both of those produce the exact same dark blue today. The difference shows up
-later: when we add light mode, the first one switches automatically and the
-second one stays dark forever and has to be hunted down by hand.
+Both give the same dark blue today. The difference shows up when we add light
+mode — the first switches automatically, the second stays dark forever and has to
+be hunted down by hand.
 
-This is also why the variables are named after **what they are for**, not what
-color they are. `--bg-card` stays correct in light mode. `--dark-blue` would not.
+This is also why variables are named for **what they do**, not what color they
+are. `--bg-card` is still true in light mode. `--dark-blue` wouldn't be.
 
-### Fonts
+| Variable          | Dark (default) | Light        | What it is         |
+| ----------------- | -------------- | ------------ | ------------------ |
+| `--bg-page`       | `#0D314B`      | `#D1E7B0`    | Page background    |
+| `--bg-nav`        | `#001727`      | `#CCE792`    | Navbar and footer  |
+| `--bg-card`       | `#0D2333`      | `#F0F7E0` \* | Cards              |
+| `--button-bg`     | `#168AAD`      | `#CFE7DC`    | Buttons            |
+| `--blue-light`    | `#46A7C4`      | `#A5D8E6` \* | Lighter blue areas |
+| `--blue-lightest` | `#9BE8FF`      | `#D8F0F8` \* | Lightest blue      |
+| `--text-primary`  | `#FFFFFF`      | `#001727` \* | Normal text        |
+| `--text-blue`     | `#00C4FF`      | `#1E6091`    | Blue accent text   |
+| `--text-green`    | `#8FC53F`      | `#366D34`    | Green accent text  |
 
-We use two, both free from Google Fonts:
+**How the switch works** — same names, two sets of values, in `app/globals.css`:
 
-- **Instrument Sans** — all headings
-- **Onest** — all body text
+```css
+:root {
+  --bg-page: #0d314b; /* dark is our default */
+}
 
-They load through `next/font/google` in `app/layout.tsx`, so there is nothing to
-download and nothing to host.
+[data-theme="light"] {
+  --bg-page: #d1e7b0; /* same name, light value */
+}
+```
 
-| Style | Font            | Weight   | Desktop | Phone | Use it for             |
+Flipping `data-theme` swaps every color at once. That's the whole trick, and it
+only works if nobody types a color code directly.
+
+> ⚠️ **These aren't in the code yet.** `app/globals.css` still has the Next.js
+> starter palette. Issue
+> [#28](https://github.com/VT-Sase/vt-sase-website/issues/28) puts these in, and
+> it blocks every page — so it goes first.
+
+**About the `*` values:** the designers gave us light-mode colors for five of
+nine. Those four are placeholders picked to fit the palette so light mode isn't
+blocked — all pass WCAG AA contrast. Swap in the real ones when they arrive
+([#37](https://github.com/VT-Sase/vt-sase-website/issues/37) tracks it).
+
+Also worth knowing: blue text on the page background is 5.0:1 and green text is
+4.7:1, against a 4.5:1 minimum. Both pass, but don't use either for small text.
+
+**Still to translate from Figma:** the gradients, the two blob shapes, and the
+card shadow effect.
+
+## 🔤 Fonts
+
+Two typefaces, both free from Google Fonts, loaded via `next/font/google`:
+
+- **Instrument Sans** — headings
+- **Onest** — body text
+
+| Style | Font            | Weight   | Desktop | Phone | Use for                |
 | ----- | --------------- | -------- | ------- | ----- | ---------------------- |
 | `h2`  | Instrument Sans | Bold     | 48px    | 28px  | Major section headings |
 | `h3`  | Instrument Sans | SemiBold | 32px    | 22px  | Subsections            |
@@ -276,126 +207,173 @@ download and nothing to host.
 | `h5`  | Onest           | Regular  | 16px    | 14px  | Body text              |
 | `h6`  | Onest           | Light    | 12px    | 12px  | Small descriptor text  |
 
-Line height is **Auto** and letter spacing is **0%** on every one — don't set them.
+Line height **Auto**, letter spacing **0%** on all of them.
 
-**You should never write a phone font size yourself.** The switch happens
-automatically at the breakpoint. Write `<h2>` and it is 48px on a laptop and 28px
-on a phone with no extra work from you.
+**Never write a phone font size yourself.** The switch happens automatically at
+the breakpoint — write `<h2>` and it's 48px on a laptop, 28px on a phone.
 
-### Colors
+> 📌 Figma has no `h1` style, but every page needs exactly one `<h1>` for screen
+> readers and Google. Style it like `h2` unless the designers say otherwise.
 
-| Variable          | Dark (default) | Light      | What it is                    |
-| ----------------- | -------------- | ---------- | ----------------------------- |
-| `--bg-page`       | `#0D314B`      | `#D1E7B0`  | The page background           |
-| `--bg-nav`        | `#001727`      | `#CCE792`  | Navbar and footer background  |
-| `--bg-card`       | `#0D2333`      | `#F0F7E0`* | Cards (officers, events)      |
-| `--button-bg`     | `#168AAD`      | `#CFE7DC`  | Buttons                       |
-| `--blue-light`    | `#46A7C4`      | `#A5D8E6`* | Lighter blue background areas |
-| `--blue-lightest` | `#9BE8FF`      | `#D8F0F8`* | Lightest blue background      |
-| `--text-primary`  | `#FFFFFF`      | `#001727`* | Normal text                   |
-| `--text-blue`     | `#00C4FF`      | `#1E6091`  | Blue accent text              |
-| `--text-green`    | `#8FC53F`      | `#366D34`  | Green accent text             |
+## 🌿 How Git Works Here
 
-**\* These four are placeholders, not from Figma.** The designers gave us light
-values for five of the nine colors; these four are stand-ins so that light mode
-can be built and tested now instead of sitting blocked. They are chosen to fit
-the palette and all pass WCAG AA contrast against `--text-primary`:
+Every change goes through a **Pull Request** — a request to merge your work into
+the live site, so someone can look it over first.
 
-| Placeholder       | Value     | Contrast with text | Reasoning                                                  |
-| ----------------- | --------- | ------------------ | ---------------------------------------------------------- |
-| `--bg-card`       | `#F0F7E0` | 16.6:1             | Paler than the page, so cards lift off the background      |
-| `--text-primary`  | `#001727` | 13.7:1             | Reuses the dark navy already in the palette                |
-| `--blue-light`    | `#A5D8E6` | 11.8:1             | Same hue as the dark-mode blue, lightened for a light page |
-| `--blue-lightest` | `#D8F0F8` | 15.4:1             | The palest tint of that same blue                          |
-
-**Please still get the real values from the designers**, and swap them in when
-they arrive. Issue [#37](https://github.com/VT-Sase/vt-sase-website/issues/37) is
-tagged `blocked-by-design` as the reminder. If a design decision depends on one of
-these being exactly right, ask rather than trusting the placeholder.
-
-Two of the _real_ colors are close to the accessibility limit — blue text on the
-page background is 5.0:1 and green text is 4.7:1, against a 4.5:1 minimum. They
-pass, but do not use either for small text, and do not darken the page background
-without rechecking them.
-
-### Also in Figma, not yet in code
-
-These exist as Figma styles and still need someone to translate them into CSS:
-
-- **Gradients** — `dark mode gradient`, `light mode gradient`,
-  `blue-green-top/mid/bot-gradient`, `2-part-gradient-bottom`
-- **Blob fills** — two decorative shapes under the `shapes` group
-- **Card shadow** — one effect style, used on cards
-
-### Where this lives
-
-All of it is defined in `app/globals.css`, like this:
-
-```css
-:root {
-  --bg-page: #0d314b; /* dark is our default */
-  --bg-nav: #001727;
-}
-
-[data-theme="light"] {
-  --bg-page: #d1e7b0; /* same names, light values */
-  --bg-nav: #cce792;
-}
+```bash
+git pull origin main                      # 1. get the latest
+git checkout -b feature/officers-page     # 2. branch off
+                                          # 3. do your work
+git add .
+git commit -m "what you changed"          # 4. save it
+git push origin feature/officers-page     # 5. send it up
 ```
 
-Because both blocks use the same names, switching the theme swaps every color on
-the site at once. That is the whole trick, and it only works if nobody types a
-color code directly.
+Then on GitHub, click **"Compare & pull request"** and target `main`. Add
+screenshots for anything visual, and post the link in Discord.
 
-⚠️ `app/globals.css` is a **shared file** — it affects every page. Ask the
-Webmaster before changing it. Your own page's styles belong in a
-`page.module.css` next to that page.
+**That's it — the Webmaster reviews it and merges.** You don't need to do anything
+else. A PR just means someone looks it over before it goes to the live site.
 
-## Commands
+**Branch names:**
 
-| Command             | What it does                                        |
-| ------------------- | --------------------------------------------------- |
-| `pnpm dev`          | Start the local dev server at http://localhost:3000 |
-| `pnpm build`        | Build the production site (what CI runs)            |
-| `pnpm lint`         | Check for style problems and common mistakes        |
-| `pnpm format`       | Auto-format all files with Prettier                 |
-| `pnpm format:check` | Check formatting without changing files             |
-| `pnpm typecheck`    | Check TypeScript types without building             |
+| Prefix     | For             | Example                   |
+| ---------- | --------------- | ------------------------- |
+| `feature/` | New features    | `feature/alumni-page`     |
+| `fix/`     | Bug fixes       | `fix/broken-nav-link`     |
+| `update/`  | Content updates | `update/fall-2026-events` |
 
-## Secrets
+> 🚫 **Never push directly to `main`.** That's the live site.
 
-- **Never commit passwords, API keys, or tokens.**
-- Real secrets go in `.env.local`, which is gitignored and stays on your machine.
-- Add a placeholder to `.env.example` so everyone else knows the variable exists.
+**Fell behind main?** Someone merged while you were working:
 
-## Deployment
+```bash
+git checkout main && git pull
+git checkout your-branch
+git merge main
+```
 
-- Merging to `main` **auto-deploys to production** (the live site updates automatically).
-- **Domain:** [sase-vt.org](https://sase-vt.org/), registered on GoDaddy.
-- **If something breaks:** contact the **Webmaster immediately** so it can be rolled back.
+Use `merge`, not `rebase` — rebase rewrites history and is much harder to undo.
 
-## Need Help?
+## 📁 Project Structure
 
-- Ask in the **SASE Web Dev Discord** server — no question is too basic.
-- Read the [Next.js docs](https://nextjs.org/docs).
-- Contact the current **Webmaster**.
+Every folder under `app/` is a page on the live site.
 
-This README is the main guide — start here. [CONTRIBUTING.md](./.github/CONTRIBUTING.md)
-is a short summary of the same rules, shown to first-time contributors by GitHub.
+```
+vt-sase-website/
+├── app/                    every folder here = one page
+│   ├── layout.tsx          wraps EVERY page (navbar + footer)
+│   ├── globals.css         colors, fonts, resets
+│   ├── page.tsx            /            Home
+│   ├── about/page.tsx      /about       About
+│   ├── events/page.tsx     /events      Events
+│   ├── officers/page.tsx   /officers    Officers
+│   └── faqs/page.tsx       /faqs        FAQs
+├── components/             shared UI (Navbar, Footer)
+├── content/                the words and data ← you probably want this
+├── public/images/          compressed photos
+└── .github/                templates, CI — Webmaster's area
+```
 
-## Admin Setup (Webmaster Only)
+Everything else in the root is config. Ignore it, and ask the Webmaster before
+touching any of it — a broken config breaks the build for everyone.
 
-One-time GitHub settings the Webmaster configures. Committee members can skip this.
+**Which file do I work in?**
 
-**Branch protection** — Settings → Branches → add a rule for `main`:
+| I want to...                     | Edit this                                  |
+| -------------------------------- | ------------------------------------------ |
+| Change what a page says          | that list in `content/`                    |
+| Change how a page looks          | that page's `page.tsx` + `page.module.css` |
+| Change the navbar or footer      | `components/Navbar.tsx` / `Footer.tsx`     |
+| Change something on _every_ page | `app/layout.tsx`                           |
+| Change colors or fonts           | `app/globals.css`                          |
+| Add a brand-new page             | new folder in `app/` with a `page.tsx`     |
 
-- Require a pull request before merging, with **1 required approval**.
-- Require status checks to pass — select the **`Lint & Build`** check so nothing
-  merges unless CI is green.
-- Block direct pushes to `main` (don't allow bypassing the above).
+**So we don't step on each other:**
 
-**Auto-cleanup** — Settings → General → Pull Requests:
+- 🔒 **Shared files** — `app/layout.tsx`, `app/globals.css`, anything in
+  `components/` — affect everyone. Ask before changing them.
+- 🎨 **Page styles go in a CSS Module** (`page.module.css`) next to the page, never
+  in `globals.css`. That way your styles can't leak onto someone else's page.
+- 📦 **Import shared code with `@/`**, e.g. `import Navbar from "@/components/Navbar"`.
+- ✅ **Run `pnpm format`, `pnpm lint`, and `pnpm typecheck` before you push.** CI
+  runs the same three and will fail your PR if you skip them.
 
-- Enable **Automatically delete head branches** to remove merged branches.
+## 📋 Issues
 
-The default reviewer is set in [`.github/CODEOWNERS`](./.github/CODEOWNERS).
+The **[Issues tab](https://github.com/VT-Sase/vt-sase-website/issues)** is our
+to-do list, and it's how you know what everyone else is working on.
+
+**Before you start anything: comment on the issue and assign yourself.** That's
+the whole system — it's how two people avoid building the same page twice, and
+how the rest of us can see who's on what without asking in Discord.
+
+One issue → one branch → one PR. Don't bundle several together.
+
+**Useful labels:**
+
+| Label              | Means                                         |
+| ------------------ | --------------------------------------------- |
+| `good first issue` | Start here if it's your first time            |
+| `content`          | Data entry only — no React needed             |
+| `shared-file`      | Touches something everyone uses — check first |
+| `blocker`          | Other people are waiting on this              |
+
+No issue for your idea? Open one, or ask in Discord.
+
+## 🔗 Resources
+
+| What                   | Link                                                                                                      |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| 🎨 **Final designs**   | [Figma — Final Version](https://www.figma.com/design/07019PjaxQ3sWgH0dXuSCK/Sase-website?node-id=521-674) |
+| ✏️ **Draft designs**   | [Figma — Draft](https://www.figma.com/design/07019PjaxQ3sWgH0dXuSCK/Sase-website?node-id=0-1)             |
+| 📁 **Photos & assets** | [Google Drive](https://drive.google.com/drive/folders/1ZTxiOe26RPLd7_XP_3bpLmBrQPb1trzN?usp=drive_link)   |
+| 🌐 **Live site**       | [sase-vt.org](https://sase-vt.org/)                                                                       |
+| 📖 **Next.js docs**    | [nextjs.org/docs](https://nextjs.org/docs)                                                                |
+
+**Build against the Final Version** — that's the target. You can also download
+photos and assets straight from the **Draft** file.
+
+If the design and this README disagree, **the design wins** — but tell the
+Webmaster so the variable gets fixed rather than worked around.
+
+## 💻 Commands
+
+| Command             | What it does                        |
+| ------------------- | ----------------------------------- |
+| `pnpm dev`          | Start the local server              |
+| `pnpm build`        | Build for production (what CI runs) |
+| `pnpm lint`         | Catch style problems and mistakes   |
+| `pnpm format`       | Auto-format everything              |
+| `pnpm format:check` | Check formatting, change nothing    |
+| `pnpm typecheck`    | Check TypeScript types              |
+
+## 🔒 Secrets
+
+Never commit passwords, API keys, or tokens. Real secrets go in `.env.local`
+(gitignored, stays on your machine) with a placeholder in `.env.example` so
+everyone knows the variable exists.
+
+## 🚢 Deployment
+
+Merging to `main` auto-deploys to production. Domain is
+[sase-vt.org](https://sase-vt.org/), registered on GoDaddy. **If something
+breaks, tell the Webmaster immediately** so it can be rolled back.
+
+---
+
+Questions? Ask in the **SASE Web Dev Discord** — no question is too basic.
+[CONTRIBUTING.md](./.github/CONTRIBUTING.md) is the short version of this page.
+
+## Admin Setup (Webmaster only)
+
+**Branch protection** — Settings → Branches → rule for `main`:
+
+- Require a pull request before merging, with 1 approval
+- Require the **`Lint & Build`** status check to pass
+- Block direct pushes
+
+**Auto-cleanup** — Settings → General → Pull Requests → enable **Automatically
+delete head branches**.
+
+Default reviewer lives in [`.github/CODEOWNERS`](./.github/CODEOWNERS).
