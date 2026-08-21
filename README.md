@@ -21,39 +21,20 @@ experience with this repo assumed.
 - [📋 Issues](#-issues)
 - [🔗 Resources](#-resources)
 - [💻 Commands](#-commands)
-- [🔒 Secrets](#-secrets)
 - [🚢 Deployment](#-deployment)
 - [Admin Setup (Webmaster only)](#admin-setup-webmaster-only)
 
 ## 🚀 Getting Started
 
-You'll do this once. It takes about 15 minutes, most of which is waiting on
-downloads. Everything below runs in your **terminal** (Terminal on Mac, PowerShell
-on Windows).
-
-### First, three things you probably already have
-
-| What                 | Check it with   | If you don't have it                                                                            |
-| -------------------- | --------------- | ----------------------------------------------------------------------------------------------- |
-| A **GitHub account** | —               | [Sign up](https://github.com/signup), then tell the Webmaster your username so they can add you |
-| **Git**              | `git --version` | [git-scm.com/downloads](https://git-scm.com/downloads)                                          |
-| A **code editor**    | —               | [VS Code](https://code.visualstudio.com/) is what most of us use                                |
-
 ### 1. Install Node
 
 Node is what lets your computer run JavaScript outside a browser. Next.js is built
 on it, so nothing works without it.
-
-Download the **Node 22 LTS** installer from
-[nodejs.org](https://nodejs.org/en/download) and run it. **Close and reopen your
-terminal afterwards** — it won't see Node until you do.
+-- you can ask ai to install node for you!! -- should be quick 
 
 ```bash
 node --version    # should print v22.something
 ```
-
-> Already have a different Node version? Install [nvm](https://github.com/nvm-sh/nvm)
-> and run `nvm use` in this folder — `.nvmrc` picks the right one automatically.
 
 ### 2. Download the code
 
@@ -62,23 +43,7 @@ git clone https://github.com/VT-Sase/vt-sase-website.git
 cd vt-sase-website
 ```
 
-That `cd` matters — every command from here runs **inside** that folder.
-
-### 3. Install the project's libraries
-
-```bash
-npm install
-```
-
-Takes a minute or two the first time. It creates a `node_modules/` folder with a
-few hundred packages in it. That folder is gitignored — never commit it, and don't
-worry about its size.
-
-> ⚠️ Use **npm**, not `pnpm` or `yarn`. They create a different lockfile and
-> everyone ends up on mismatched package versions. If a `pnpm-lock.yaml` or
-> `yarn.lock` ever appears, delete it.
-
-### 4. Run it
+### 3. Run it
 
 ```bash
 npm run dev
@@ -89,67 +54,22 @@ Open **[localhost:3000](http://localhost:3000)**. 🎉
 Leave that command running while you work — save a file and the page updates by
 itself. Press **Ctrl+C** in the terminal to stop it.
 
-### If something goes wrong
 
-| Problem                            | Fix                                                            |
-| ---------------------------------- | -------------------------------------------------------------- |
-| `command not found: node` or `npm` | Close the terminal and open a new one                          |
-| Wrong Node version                 | `nvm use`, or reinstall Node 22                                |
-| `npm install` fails partway        | Delete `node_modules/`, run `npm install` again                |
-| Port 3000 already in use           | Something else is running — `npm run dev` will offer port 3001 |
-| Still stuck                        | Ask in Discord and paste the actual error text 💬              |
-
-## 📝 Content
-
-Every word and photo on the site lives in `content/`, separate from the code.
-**You don't need to know React to edit these.**
-
-| File                  | What's in it                           |
-| --------------------- | -------------------------------------- |
-| `content/officers.ts` | Names, roles, majors, photos, LinkedIn |
-| `content/events.ts`   | Event names, dates, locations, blurbs  |
-| `content/faqs.ts`     | Questions and answers                  |
-| `content/sponsors.ts` | Sponsor names and logos                |
-
-Open one and copy the pattern already there. Keep the commas, quotes, and curly
-braces exactly as you found them — that's the part that breaks.
-
-**Pages read from these lists**, so adding next semester's events is a one-file
-change. It also means two people can work on the same page at once: one builds
-the layout, the other fills in the words.
-
-**Adding a photo:** compress it first at
-[compress2go.com](https://www.compress2go.com/) — aim for under 200 KB — then drop
-it in `public/images/` and reference it as `/images/yourfile.jpg`. Big photos make
-the site crawl on phones, which is where most people will see it.
 
 ## 🎨 Colors
 
-**The one rule: never type a color code into your CSS.** Use a variable.
+Color schema 
 
-```css
-background: var(--bg-card); /* yes */
-background: #0d2333; /* no */
-```
-
-Both give the same dark blue today. The difference shows up when we add light
-mode — the first switches automatically, the second stays dark forever and has to
-be hunted down by hand.
-
-This is also why variables are named for **what they do**, not what color they
-are. `--bg-card` is still true in light mode. `--dark-blue` wouldn't be.
-
-| Variable          | Dark (default) | Light        | What it is         |
-| ----------------- | -------------- | ------------ | ------------------ |
-| `--bg-page`       | `#0D314B`      | `#D1E7B0`    | Page background    |
-| `--bg-nav`        | `#001727`      | `#CCE792`    | Navbar and footer  |
-| `--bg-card`       | `#0D2333`      | `#F0F7E0` \* | Cards              |
-| `--button-bg`     | `#168AAD`      | `#CFE7DC`    | Buttons            |
-| `--blue-light`    | `#46A7C4`      | `#A5D8E6` \* | Lighter blue areas |
-| `--blue-lightest` | `#9BE8FF`      | `#D8F0F8` \* | Lightest blue      |
-| `--text-primary`  | `#FFFFFF`      | `#001727` \* | Normal text        |
-| `--text-blue`     | `#00C4FF`      | `#1E6091`    | Blue accent text   |
-| `--text-green`    | `#8FC53F`      | `#366D34`    | Green accent text  |
+Light	Dark (default)
+#D1E7B0	#0D314B
+#CCE792	#001727
+#F0F7E0	#0D2333
+#CFE7DC	#168AAD
+#A5D8E6	#46A7C4
+#D8F0F8	#9BE8FF
+#001727	#FFFFFF
+#1E6091	#00C4FF
+#366D34	#8FC53F
 
 **How the switch works** — same names, two sets of values, in `app/globals.css`:
 
@@ -189,23 +109,8 @@ Two typefaces, both free from Google Fonts, loaded via `next/font/google`:
 - **Instrument Sans** — headings
 - **Onest** — body text
 
-| Style | Font            | Weight   | Desktop | Phone | Use for                |
-| ----- | --------------- | -------- | ------- | ----- | ---------------------- |
-| `h2`  | Instrument Sans | Bold     | 48px    | 28px  | Major section headings |
-| `h3`  | Instrument Sans | SemiBold | 32px    | 22px  | Subsections            |
-| `h4`  | Instrument Sans | SemiBold | 18px    | 16px  | Card titles            |
-| `h5`  | Onest           | Regular  | 16px    | 14px  | Body text              |
-| `h6`  | Onest           | Light    | 12px    | 12px  | Small descriptor text  |
 
-Line height **Auto**, letter spacing **0%** on all of them.
-
-**Never write a phone font size yourself.** The switch happens automatically at
-the breakpoint — write `<h2>` and it's 48px on a laptop, 28px on a phone.
-
-> 📌 Figma has no `h1` style, but every page needs exactly one `<h1>` for screen
-> readers and Google. Style it like `h2` unless the designers say otherwise.
-
-## 🌿 How Git Works Here
+##  How Git Works Here
 
 Every change goes through a **Pull Request** — a request to merge your work into
 the live site, so someone can look it over first.
@@ -300,16 +205,6 @@ how the rest of us can see who's on what without asking in Discord.
 
 One issue → one branch → one PR. Don't bundle several together.
 
-**Useful labels:**
-
-| Label              | Means                                         |
-| ------------------ | --------------------------------------------- |
-| `good first issue` | Start here if it's your first time            |
-| `content`          | Data entry only — no React needed             |
-| `shared-file`      | Touches something everyone uses — check first |
-| `blocker`          | Other people are waiting on this              |
-
-No issue for your idea? Open one, or ask in Discord.
 
 ## 🔗 Resources
 
@@ -324,8 +219,6 @@ No issue for your idea? Open one, or ask in Discord.
 **Build against the Final Version** — that's the target. You can also download
 photos and assets straight from the **Draft** file.
 
-If the design and this README disagree, **the design wins** — but tell the
-Webmaster so the variable gets fixed rather than worked around.
 
 ## 💻 Commands
 
@@ -338,11 +231,6 @@ Webmaster so the variable gets fixed rather than worked around.
 | `npm run format:check` | Check formatting, change nothing    |
 | `npm run typecheck`    | Check TypeScript types              |
 
-## 🔒 Secrets
-
-Never commit passwords, API keys, or tokens. Real secrets go in `.env.local`
-(gitignored, stays on your machine) with a placeholder in `.env.example` so
-everyone knows the variable exists.
 
 ## 🚢 Deployment
 
@@ -350,20 +238,3 @@ Merging to `main` auto-deploys to production. Domain is
 [sase-vt.org](https://sase-vt.org/), registered on GoDaddy. **If something
 breaks, tell the Webmaster immediately** so it can be rolled back.
 
----
-
-Questions? Ask in the **SASE Web Dev Discord** — no question is too basic.
-[CONTRIBUTING.md](./.github/CONTRIBUTING.md) is the short version of this page.
-
-## Admin Setup (Webmaster only)
-
-**Branch protection** — Settings → Branches → rule for `main`:
-
-- Require a pull request before merging, with 1 approval
-- Require the **`Lint & Build`** status check to pass
-- Block direct pushes
-
-**Auto-cleanup** — Settings → General → Pull Requests → enable **Automatically
-delete head branches**.
-
-Default reviewer lives in [`.github/CODEOWNERS`](./.github/CODEOWNERS).
