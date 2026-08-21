@@ -11,6 +11,15 @@ on:
   push:
     branches: [main]
 
+# Only run the newest commit on a branch. If you push twice in a row, the
+# first run is cancelled instead of both sitting in the queue.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
   lint-and-build:
     name: Lint & Build
@@ -39,6 +48,9 @@ jobs:
 
       - name: Lint
         run: pnpm lint
+
+      - name: Check types
+        run: pnpm typecheck
 
       - name: Build
         run: pnpm build
