@@ -15,9 +15,9 @@ page is just the short version.
 3. **Run the checks before you push.** CI runs the same three and will fail your
    PR if you skip them:
    ```bash
-   pnpm format     # auto-format with Prettier
-   pnpm lint       # catch style problems and common mistakes
-   pnpm typecheck  # catch TypeScript errors
+   npm run format     # auto-format with Prettier
+   npm run lint       # catch style problems and common mistakes
+   npm run typecheck  # catch TypeScript errors
    ```
 4. **Open a PR into `main`**, add screenshots for anything visual, and post it
    in Discord. The Webmaster reviews and merges — nothing else for you to do.

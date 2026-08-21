@@ -35,4 +35,4 @@ assignees: ""
 - [ ] Checked in both light and dark mode
 - [ ] Images are compressed and under 200 KB
 - [ ] No errors in the browser console
-- [ ] `pnpm lint` and `pnpm format` run clean before pushing
+- [ ] `npm run lint` and `npm run format` run clean before pushing

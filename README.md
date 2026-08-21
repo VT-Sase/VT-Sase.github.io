@@ -55,21 +55,7 @@ node --version    # should print v22.something
 > Already have a different Node version? Install [nvm](https://github.com/nvm-sh/nvm)
 > and run `nvm use` in this folder — `.nvmrc` picks the right one automatically.
 
-### 2. Install pnpm
-
-pnpm downloads and manages the code libraries this project depends on. `npm` comes
-free with Node, so use it once to install pnpm:
-
-```bash
-npm install -g pnpm
-pnpm --version    # should print a number
-```
-
-> ⚠️ That's the **only** time you'll type `npm` in this project. After this, always
-> `pnpm`. `npm install` and `yarn` create a different lockfile and everyone ends up
-> on mismatched package versions. If a `package-lock.json` ever appears, delete it.
-
-### 3. Download the code
+### 2. Download the code
 
 ```bash
 git clone https://github.com/VT-Sase/vt-sase-website.git
@@ -78,20 +64,24 @@ cd vt-sase-website
 
 That `cd` matters — every command from here runs **inside** that folder.
 
-### 4. Install the project's libraries
+### 3. Install the project's libraries
 
 ```bash
-pnpm install
+npm install
 ```
 
 Takes a minute or two the first time. It creates a `node_modules/` folder with a
 few hundred packages in it. That folder is gitignored — never commit it, and don't
 worry about its size.
 
-### 5. Run it
+> ⚠️ Use **npm**, not `pnpm` or `yarn`. They create a different lockfile and
+> everyone ends up on mismatched package versions. If a `pnpm-lock.yaml` or
+> `yarn.lock` ever appears, delete it.
+
+### 4. Run it
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 Open **[localhost:3000](http://localhost:3000)**. 🎉
@@ -101,13 +91,13 @@ itself. Press **Ctrl+C** in the terminal to stop it.
 
 ### If something goes wrong
 
-| Problem                             | Fix                                                         |
-| ----------------------------------- | ----------------------------------------------------------- |
-| `command not found: node` or `pnpm` | Close the terminal and open a new one                       |
-| Wrong Node version                  | `nvm use`, or reinstall Node 22                             |
-| `pnpm install` fails partway        | Delete `node_modules/`, run `pnpm install` again            |
-| Port 3000 already in use            | Something else is running — `pnpm dev` will offer port 3001 |
-| Still stuck                         | Ask in Discord and paste the actual error text 💬           |
+| Problem                            | Fix                                                            |
+| ---------------------------------- | -------------------------------------------------------------- |
+| `command not found: node` or `npm` | Close the terminal and open a new one                          |
+| Wrong Node version                 | `nvm use`, or reinstall Node 22                                |
+| `npm install` fails partway        | Delete `node_modules/`, run `npm install` again                |
+| Port 3000 already in use           | Something else is running — `npm run dev` will offer port 3001 |
+| Still stuck                        | Ask in Discord and paste the actual error text 💬              |
 
 ## 📝 Content
 
@@ -296,7 +286,7 @@ touching any of it — a broken config breaks the build for everyone.
 - 🎨 **Page styles go in a CSS Module** (`page.module.css`) next to the page, never
   in `globals.css`. That way your styles can't leak onto someone else's page.
 - 📦 **Import shared code with `@/`**, e.g. `import Navbar from "@/components/Navbar"`.
-- ✅ **Run `pnpm format`, `pnpm lint`, and `pnpm typecheck` before you push.** CI
+- ✅ **Run `npm run format`, `npm run lint`, and `npm run typecheck` before you push.** CI
   runs the same three and will fail your PR if you skip them.
 
 ## 📋 Issues
@@ -339,14 +329,14 @@ Webmaster so the variable gets fixed rather than worked around.
 
 ## 💻 Commands
 
-| Command             | What it does                        |
-| ------------------- | ----------------------------------- |
-| `pnpm dev`          | Start the local server              |
-| `pnpm build`        | Build for production (what CI runs) |
-| `pnpm lint`         | Catch style problems and mistakes   |
-| `pnpm format`       | Auto-format everything              |
-| `pnpm format:check` | Check formatting, change nothing    |
-| `pnpm typecheck`    | Check TypeScript types              |
+| Command                | What it does                        |
+| ---------------------- | ----------------------------------- |
+| `npm run dev`          | Start the local server              |
+| `npm run build`        | Build for production (what CI runs) |
+| `npm run lint`         | Catch style problems and mistakes   |
+| `npm run format`       | Auto-format everything              |
+| `npm run format:check` | Check formatting, change nothing    |
+| `npm run typecheck`    | Check TypeScript types              |
 
 ## 🔒 Secrets
 
