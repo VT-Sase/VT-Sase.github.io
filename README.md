@@ -58,21 +58,20 @@ itself. Press **Ctrl+C** in the terminal to stop it.
 
 ## 🎨 Colors
 
-Color schema 
+You can find the website's color palette in the Figma design:
 
-| Light | Dark (default) |
-| ----- | -------------- |
-| `#D1E7B0` | `#0D314B` |
-| `#CCE792` | `#001727` |
-| `#F0F7E0` | `#0D2333` |
-| `#CFE7DC` | `#168AAD` |
-| `#A5D8E6` | `#46A7C4` |
-| `#D8F0F8` | `#9BE8FF` |
-| `#001727` | `#FFFFFF` |
-| `#1E6091` | `#00C4FF` |
-| `#366D34` | `#8FC53F` |
+[Figma – SASE Website Color Styles](https://www.figma.com/design/07019PjaxQ3sWgH0dXuSCK/Sase-website?node-id=521-674)
 
+### How to Find the Colors
 
+1. Open the Figma link above.
+2. On the **right-hand sidebar**, make sure you are on the **Design** tab.
+3. Scroll down until you see **Color styles**.
+4. The colors used throughout the website will be listed there.
+5. To view the exact **hex code** (for example, `#0D314B`), click on the color.
+6. Figma will display the exact color value/hex code in the color details.
+
+Please use these Figma color styles as the source of truth when adding or updating colors on the website.
 
 ## 🔤 Fonts
 
