@@ -5,32 +5,109 @@
  * spacing). Page- and component-specific styles belong in a CSS Module
  * next to the file that uses them, e.g. app/about/page.module.css.
  *
- * TODO: fill in the palette from Coolors and the fonts from Google Fonts
- * once the designers lock them in. Change the values here and the whole
- * site updates — don't hardcode colors anywhere else.
+ * Dark is the default. Light mode redefines these semantic variable names,
+ * so components do not need separate markup for each theme.
  */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --muted: #57534e;
-  --border: #e5e2de;
-  --accent: #8a1f3d;
+  --theme-duration: 460ms;
+  --theme-easing: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Fixed gradient values used by the cross-fade layers. */
+  --dark-bg-start: #03253f;
+  --dark-bg-end: #1d5d8d;
+  --light-bg-start: #97d7cf;
+  --light-bg-middle: #e3f3ad;
+  --light-bg-end: #d8fcc8;
+
+  /* Surfaces */
+  --bg: #03253f;
+  --bg-gradient-end: #1d5d8d;
+  --surface: #0d2333; /* cards and translucent navbar */
+  --surface-deep: #001727;
+  --footer: #0d314b;
+  --footer-text: #ffffff;
+  --placeholder: rgba(255, 255, 255, 0.58);
+
+  /* Text */
+  --fg: #ffffff;
+  --fg-muted: rgba(255, 255, 255, 0.72);
+  --card-text: #ffffff;
+  --card-muted: rgba(255, 255, 255, 0.72);
+
+  /* Accents */
+  --green: #8fc53f; /* inactive navigation */
+  --green-selected: #d1e7b0;
+  --lime: #ebffa9; /* events headings */
+  --cyan: #00c4ff; /* active underline, links */
+  --cyan-pale: #9be8ff;
+  --teal: #168aad; /* Join Us / Sign Up buttons */
+  --teal-light: #46a7c4;
+  --divider: #ffffff;
+  --button-on-teal: #ffffff;
+  --signup-bg: rgb(22 138 173 / 78%);
+  --signup-text: #ffffff;
+  --signup-border: rgb(255 255 255 / 22%);
+  --mobile-menu-bg: rgb(13 49 75 / 78%);
+  --mobile-menu-hover: rgb(13 49 75 / 92%);
+  --mobile-menu-active: rgb(143 197 63 / 82%);
+  --mobile-menu-text: #ffffff;
+
+  --border: rgba(155, 232, 255, 0.25);
+  --card-border: #ffffff;
+  --card-shadow: 0 0.55rem 1.25rem rgb(0 0 0 / 28%);
+  --button-shadow: 0 0.25rem 0.65rem rgb(0 0 0 / 26%);
+
+  /* Fonts — the --font-* variables come from next/font in app/layout.tsx. */
+  --font-heading: var(--font-instrument-sans), system-ui, sans-serif;
+  --font-body: var(--font-onest), system-ui, sans-serif;
+
+  /* Layout */
+  --content-max: 75rem;
+  --gutter: 1.5rem;
 }
 
-/* Dark mode: follows whatever the visitor's system is set to. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0e0e0e;
-    --foreground: #ededed;
-    --muted: #a3a3a3;
-    --border: #2a2a2a;
-    --accent: #e8829c;
-  }
+:root[data-theme="light"] {
+  /* Surfaces */
+  --bg: #97d7cf;
+  --bg-gradient-end: #d8fcc8;
+  --surface: #ffffff;
+  --surface-deep: #ffffff;
+  --footer: #cce792;
+  --footer-text: #000000;
+  --placeholder: #c7c7c7;
 
-  html {
-    color-scheme: dark;
-  }
+  /* Text */
+  --fg: #323232;
+  --fg-muted: rgb(50 50 50 / 72%);
+  --card-text: #323232;
+  --card-muted: rgb(50 50 50 / 72%);
+
+  /* Accents */
+  --green: #8fc53f;
+  --green-selected: #366d34;
+  --lime: #194a65;
+  --divider: #0d314b;
+  --signup-bg: #cfe7dc;
+  --signup-text: #168aad;
+  --signup-border: rgb(22 138 173 / 28%);
+  --mobile-menu-bg: rgb(255 255 255 / 78%);
+  --mobile-menu-hover: rgb(255 255 255 / 92%);
+  --mobile-menu-active: rgb(143 197 63 / 82%);
+  --mobile-menu-text: #0d314b;
+
+  --border: rgb(13 49 75 / 25%);
+  --card-border: #000000;
+  --card-shadow: 0 0.55rem 1.25rem rgb(13 49 75 / 24%);
+  --button-shadow: 0 0.25rem 0.65rem rgb(13 49 75 / 24%);
+}
+
+html {
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
 }
 
 * {
@@ -46,13 +123,53 @@ body {
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--fg);
+  background-color: var(--dark-bg-start);
+  background-image: linear-gradient(
+    to bottom,
+    var(--dark-bg-start) 0%,
+    var(--dark-bg-end) 100%
+  );
+  background-attachment: fixed;
+  font-family: var(--font-body);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--light-bg-start) 0%,
+    var(--light-bg-middle) 55%,
+    var(--light-bg-end) 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--theme-duration) var(--theme-easing);
+}
+
+html[data-theme="light"] body::before {
+  opacity: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
 }
 
 a {
@@ -60,26 +177,28 @@ a {
   text-decoration: none;
 }
 
-/* Page content. Centered while the pages are still empty skeletons —
-   change this once real sections start going in. */
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
 main {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 4rem 1.5rem;
-  text-align: center;
 }
 
-main h1 {
-  font-size: 2.5rem;
+/* Visible only to screen readers. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
-main p {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: var(--accent);
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --theme-duration: 0ms;
+  }
 }

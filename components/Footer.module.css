@@ -1,18 +1,103 @@
 .footer {
   width: 100%;
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 1.5rem;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 0.9rem;
+  background: var(--footer);
+  color: var(--footer-text);
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing);
 }
 
-.todo {
-  margin-top: 0.35rem;
-  font-size: 0.75rem;
+.inner {
+  /* Two columns at every width — the mobile design keeps Contact beside the
+     links rather than under them. */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 2.5rem var(--gutter) 3rem;
+}
+
+.brandColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.brand img {
+  width: auto;
+  height: 2.5rem;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  list-style: none;
+}
+
+.link {
+  font-size: 1rem;
+  color: var(--footer-text);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.link:hover {
+  color: var(--cyan);
+}
+
+.contactColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  text-align: right;
+}
+
+.contactHeading {
+  font-size: 1.75rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
+}
+
+.socials {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.socialLink {
+  display: block;
+  color: var(--footer-text);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.socialLink:hover {
+  color: var(--cyan);
+}
+
+.socialIcon {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.textLink {
+  font-size: 1rem;
+  color: var(--footer-text);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.textLink:hover {
+  color: var(--cyan);
+}
+
+@media (min-width: 768px) {
+  .inner {
+    padding-top: 3rem;
+  }
+
+  .brand img {
+    height: 3rem;
+  }
 }
