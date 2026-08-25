@@ -33,7 +33,7 @@ export default function EventsPage() {
           </ul>
         ) : (
           <p className={styles.empty}>
-            No upcoming events right now — check back soon.
+            No upcoming events right now — check back soon!
           </p>
         )}
       </section>
