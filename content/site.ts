@@ -1,7 +1,7 @@
 /**
  * Site-wide bits that more than one component needs: the nav links and the
- * chapter's external URLs. Navbar and Footer both read from here, so a link
- * only has to be added in one place.
+ * chapter's external URLs. The navbar reads its links from here; the footer
+ * reads the socials.
  */
 
 export type NavLink = {
@@ -23,14 +23,6 @@ export const NAV_LINKS: NavLink[] = [
   SPONSORS_LINK,
   EVENTS_LINK,
   OFFICERS_LINK,
-];
-
-export const FOOTER_LINKS: NavLink[] = [
-  ABOUT_LINK,
-  EVENTS_LINK,
-  OFFICERS_LINK,
-  SPONSORS_LINK,
-  FAQS_LINK,
 ];
 
 export const SOCIALS = {

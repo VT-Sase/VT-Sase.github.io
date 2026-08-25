@@ -8,22 +8,23 @@
 }
 
 .inner {
-  /* Two columns at every width — the mobile design keeps Contact beside the
-     links rather than under them. */
+  /* Stacked on mobile: one shared left edge reads as aligned where two
+     ~147px columns cannot fit the tagline, six icons, and the copyright.
+     Side-by-side columns return at 768px. */
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: stretch;
   gap: 2rem;
   width: 100%;
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: 2.5rem var(--gutter) 3rem;
+  padding: 2.5rem var(--gutter) 2rem;
 }
 
 .brandColumn {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 0.75rem;
 }
 
 .brand img {
@@ -31,38 +32,38 @@
   height: 2.5rem;
 }
 
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  list-style: none;
-}
-
-.link {
-  font-size: 1rem;
-  color: var(--footer-text);
-  transition: color var(--theme-duration) var(--theme-easing);
-}
-
-.link:hover {
-  color: var(--cyan);
+/* Muted with opacity rather than a new color token, so it stays readable
+   against both --footer values without a light/dark override. */
+.tagline {
+  max-width: 18rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.78;
 }
 
 .contactColumn {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 0.5rem;
-  text-align: right;
+  text-align: left;
 }
 
+/* Small caps label rather than a headline — one large word left the column
+   looking bare. Matches the navbar Join button's typography. */
 .contactHeading {
-  font-size: 1.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .socials {
   display: flex;
+  /* Six icons need ~210px; they fit one row at full width, and wrap rather
+     than overflow on a 320px screen. */
+  flex-wrap: wrap;
+  justify-content: flex-start;
   gap: 1rem;
   list-style: none;
 }
@@ -82,22 +83,53 @@
   height: 1.35rem;
 }
 
-.textLink {
-  font-size: 1rem;
-  color: var(--footer-text);
-  transition: color var(--theme-duration) var(--theme-easing);
+.copyright {
+  padding-top: 0.75rem;
+  font-size: 0.8rem;
+  opacity: 0.7;
 }
 
-.textLink:hover {
-  color: var(--cyan);
+.bottomBar {
+  text-align: center;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 1rem var(--gutter);
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  opacity: 0.7;
+  transition: border-color var(--theme-duration) var(--theme-easing);
 }
 
 @media (min-width: 768px) {
   .inner {
+    flex-direction: row;
+    justify-content: space-between;
+    /* stretch, so the copyright can sit on the tagline's last line */
+    align-items: stretch;
     padding-top: 3rem;
+  }
+
+  .contactColumn {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .socials {
+    justify-content: flex-end;
+  }
+
+  /* Pushed to the bottom of its column so it lines up with the last line of
+     the tagline opposite it. */
+  .copyright {
+    margin-top: auto;
   }
 
   .brand img {
     height: 3rem;
+  }
+
+  .tagline {
+    font-size: 0.95rem;
   }
 }
