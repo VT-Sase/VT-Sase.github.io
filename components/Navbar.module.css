@@ -106,8 +106,8 @@
   padding: 0.25rem 0.9rem;
   border: 1px solid rgb(255 255 255 / 22%);
   border-radius: 9999px;
-  background: rgb(22 138 173 / 78%);
-  color: var(--button-on-teal);
+  background-color: color-mix(in srgb, var(--green) 78%, transparent);
+  color: var(--lime);
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 600;
@@ -116,10 +116,18 @@
   white-space: nowrap;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing);
 }
 
 .join:hover {
   filter: brightness(1.12);
+}
+
+:global(html[data-theme="light"]) .join {
+  background-color: color-mix(in srgb, var(--teal) 78%, transparent);
+  color: var(--button-on-teal);
 }
 
 .menuButton {
@@ -197,6 +205,10 @@
   background: var(--mobile-menu-active);
   color: var(--mobile-menu-text);
   font-weight: 600;
+}
+
+:global(html[data-theme="light"]) .mobileLinkActive {
+  background: color-mix(in srgb, var(--teal) 82%, transparent);
 }
 
 .themeControl {
@@ -482,9 +494,24 @@
     color: var(--green-selected);
   }
 
+  :global(html[data-theme="light"]) .link {
+    color: var(--lime);
+  }
+
+  :global(html[data-theme="light"]) .link:hover {
+    color: var(--teal);
+  }
+
+  :global(html[data-theme="light"]) .linkActive {
+    color: var(--teal);
+  }
+
+  :global(html[data-theme="light"]) .links::after {
+    background: var(--teal);
+  }
+
   .join {
     padding: 0.55rem 1.6rem;
-    color: var(--button-on-teal);
     font-size: 0.85rem;
   }
 
