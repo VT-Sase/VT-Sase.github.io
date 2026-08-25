@@ -1,14 +1,26 @@
+/* Three stacked layers, bottom to top: the dark gradient on .page itself, the
+   light gradient on ::before (crossfaded by theme), and the doodle tile on
+   ::after. The doodle used to be painted straight onto the gradients, which
+   left no way to turn it down independently — it competed with the type in the
+   same tonal band. Its own layer is what makes the knock-back below possible. */
+
 .page {
+  /* Where the doodle fade finishes: the content column's left edge, so the
+     pattern is quiet everywhere a word can land and full strength only out in
+     the margin. Percentage stops alone can't do this — the margin is a
+     different fraction of the page at every viewport width. */
+  --doodle-fade: max(var(--gutter), calc((100% - var(--content-max)) / 2));
+
   position: relative;
   isolation: isolate;
   background-color: var(--dark-bg-start);
-  background-image:
-    url("/images/doodles-tile.png"),
-    linear-gradient(to bottom, var(--dark-bg-start) 0%, var(--dark-bg-end) 100%);
-  background-repeat: repeat, no-repeat;
-  background-size:
-    34rem,
-    100% 100%;
+  background-image: linear-gradient(
+    to bottom,
+    var(--dark-bg-start) 0%,
+    var(--dark-bg-end) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   margin-top: -2.8rem;
   padding: calc(2.5rem + 2.8rem) 0 4rem;
 }
@@ -18,19 +30,14 @@
   position: absolute;
   z-index: 0;
   inset: 0;
-  background-image:
-    url("/images/doodles-tile.png"),
-    linear-gradient(
-      to bottom,
-      var(--light-bg-start) 0%,
-      var(--light-bg-middle) 55%,
-      var(--light-bg-end) 100%
-    );
-  background-repeat: repeat, no-repeat;
-  background-size:
-    34rem,
-    100% 100%;
-  background-blend-mode: screen, normal;
+  background-image: linear-gradient(
+    to bottom,
+    var(--light-bg-start) 0%,
+    var(--light-bg-middle) 55%,
+    var(--light-bg-end) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--theme-duration) var(--theme-easing);
@@ -38,6 +45,48 @@
 
 :global(html[data-theme="light"]) .page::before {
   opacity: 1;
+}
+
+/* Light theme keeps the doodles exactly as designed: screen blend, no fade.
+   The mask below is a dark-mode fix and light mode does not need it — there the
+   type is dark navy and the strokes are white, so the two sit at opposite ends
+   of the tonal range and never compete. It is only in dark mode, where the text
+   and the pattern are both light, that they collide. */
+:global(html[data-theme="light"]) .page::after {
+  mix-blend-mode: screen;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* The doodles. The tile's own art already tops out at 50% alpha, so this
+   opacity compounds with it — the pattern reads as texture rather than
+   illustration. The mask is the scrim: full strength out at the margins,
+   dropping to roughly a third of that across the middle where the headline,
+   divider and body copy sit. Horizontal only, so the tile still runs
+   uninterrupted from the top of the page to the bottom. */
+.page::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-image: url("/images/doodles-tile.png");
+  background-repeat: repeat;
+  background-size: 34rem;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgb(0 0 0 / 100%) 0,
+    rgb(0 0 0 / 34%) var(--doodle-fade),
+    rgb(0 0 0 / 34%) calc(100% - var(--doodle-fade)),
+    rgb(0 0 0 / 100%) 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgb(0 0 0 / 100%) 0,
+    rgb(0 0 0 / 34%) var(--doodle-fade),
+    rgb(0 0 0 / 34%) calc(100% - var(--doodle-fade)),
+    rgb(0 0 0 / 100%) 100%
+  );
 }
 
 .section {

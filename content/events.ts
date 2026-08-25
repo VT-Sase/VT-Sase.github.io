@@ -62,15 +62,7 @@ export const TERM_LABEL = "Fall 2026";
 const TIME_ZONE = "America/New_York";
 
 // Events are sorted by date automatically. Add new events to the array below.
-export const events: SaseEvent[] = [
-  {
-    name: "Event name",
-    date: "2026-09-14T18:00:00-04:00",
-    endDate: "2026-09-14T20:00:00-04:00",
-    location: "Squires Student Center",
-    description: "A short description of the event.",
-  },
-];
+export const events: SaseEvent[] = [];
 
 export function upcomingEvents(limit?: number): SaseEvent[] {
   const now = Date.now();
