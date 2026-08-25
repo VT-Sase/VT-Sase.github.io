@@ -30,7 +30,7 @@ experience with this repo assumed.
 
 Node is what lets your computer run JavaScript outside a browser. Next.js is built
 on it, so nothing works without it.
--- you can ask ai to install node for you!! -- should be quick 
+-- you can ask ai to install node for you!! -- should be quick
 
 ```bash
 node --version    # should print v22.something
@@ -53,8 +53,6 @@ Open **[localhost:3000](http://localhost:3000)**. 🎉
 
 Leave that command running while you work — save a file and the page updates by
 itself. Press **Ctrl+C** in the terminal to stop it.
-
-
 
 ## 🎨 Colors
 
@@ -80,8 +78,7 @@ Two typefaces, both free from Google Fonts, loaded via `next/font/google`:
 - **Instrument Sans** — headings
 - **Onest** — body text
 
-
-##  How Git Works Here
+## How Git Works Here
 
 Every change goes through a **Pull Request** — a request to merge your work into
 the live site, so someone can look it over first.
@@ -176,7 +173,6 @@ how the rest of us can see who's on what without asking in Discord.
 
 One issue → one branch → one PR. Don't bundle several together.
 
-
 ## 🔗 Resources
 
 | What                   | Link                                                                                                      |
@@ -190,7 +186,6 @@ One issue → one branch → one PR. Don't bundle several together.
 **Build against the Final Version** — that's the target. You can also download
 photos and assets straight from the **Draft** file.
 
-
 ## 💻 Commands
 
 | Command                | What it does                        |
@@ -202,10 +197,8 @@ photos and assets straight from the **Draft** file.
 | `npm run format:check` | Check formatting, change nothing    |
 | `npm run typecheck`    | Check TypeScript types              |
 
-
 ## 🚢 Deployment
 
 Merging to `main` auto-deploys to production. Domain is
 [sase-vt.org](https://sase-vt.org/), registered on GoDaddy. **If something
 breaks, tell the Webmaster immediately** so it can be rolled back.
-

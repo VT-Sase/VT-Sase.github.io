@@ -39,7 +39,8 @@ export const SOCIALS = {
   facebook: "https://www.facebook.com/saseatvt",
   instagram: "https://www.instagram.com/saseatvt/",
   linktree: "https://linktr.ee/saseatvt?lt_utm_source=lt_share_link#101665511",
-  remind: "https://docs.google.com/document/d/1k5AisFW_AxTSkM8GuMJk6hXfWscg0nJ1tfRwWpbW24w/edit?tab=t.0#heading=h.14m38v9fpa6t",
+  remind:
+    "https://docs.google.com/document/d/1k5AisFW_AxTSkM8GuMJk6hXfWscg0nJ1tfRwWpbW24w/edit?tab=t.0#heading=h.14m38v9fpa6t",
 };
 
 /** Where the "Join Us" button in the navbar points. */
