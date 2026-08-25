@@ -62,7 +62,10 @@ export const TERM_LABEL = "Fall 2026";
 const TIME_ZONE = "America/New_York";
 
 // Events are sorted by date automatically. Add new events to the array below.
+// SAMPLE DATA — delete everything between the markers below before launch.
+// ---- BEGIN SAMPLE EVENTS ----
 export const events: SaseEvent[] = [];
+// ---- END SAMPLE EVENTS ----
 
 export function upcomingEvents(limit?: number): SaseEvent[] {
   const now = Date.now();
