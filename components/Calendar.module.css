@@ -3,13 +3,13 @@
   --calendar-grid: #03253f;
   --calendar-text: #ffffff;
   --calendar-muted: rgba(255, 255, 255, 0.58);
-  --calendar-line: #949494;
+  --calendar-line: rgb(255 255 255 / 14%);
   --calendar-event: #168aad;
 
   color-scheme: dark;
   overflow: hidden;
   padding: 0.75rem 0.85rem 0.85rem;
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   background: var(--calendar-panel);
   color: var(--calendar-text);
   transition:
@@ -22,7 +22,7 @@
   --calendar-grid: #ffffff;
   --calendar-text: #323232;
   --calendar-muted: rgb(50 50 50 / 58%);
-  --calendar-line: #949494;
+  --calendar-line: rgb(13 49 75 / 18%);
   --calendar-event: #168aad;
 
   color-scheme: light;
@@ -81,7 +81,7 @@
   gap: 0;
   overflow: hidden;
   border: 1px solid var(--calendar-line);
-  border-radius: 0.65rem;
+  border-radius: 0.9rem;
 }
 
 .weekday,
@@ -104,10 +104,13 @@
   border-bottom: 0;
 }
 
+/* Faint ground so the header row reads as a header, not another week. */
 .weekday {
-  padding: 0.25rem 0.1rem;
+  padding: 0.4rem 0.1rem;
+  background: color-mix(in srgb, var(--calendar-text) 6%, var(--calendar-grid));
   color: var(--calendar-text);
-  font-size: clamp(0.45rem, 1.6vw, 0.62rem);
+  font-size: clamp(0.62rem, 1.8vw, 0.78rem);
+  letter-spacing: 0.06em;
   line-height: 1;
   text-align: center;
   text-transform: uppercase;
@@ -119,8 +122,8 @@
   flex-direction: column;
   gap: 0.2rem;
   min-width: 0;
-  min-height: clamp(3.2rem, 9vw, 4.75rem);
-  padding: 0.25rem;
+  min-height: clamp(3.6rem, 9.5vw, 5rem);
+  padding: 0.35rem;
   color: var(--calendar-text);
 }
 
@@ -130,12 +133,12 @@
 
 .dayNumber {
   align-self: flex-start;
-  min-width: 1.15rem;
-  height: 1.15rem;
-  padding: 0 0.15rem;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.2rem;
   border-radius: 9999px;
-  font-size: clamp(0.55rem, 1.8vw, 0.72rem);
-  line-height: 1.15rem;
+  font-size: clamp(0.75rem, 2.1vw, 0.9rem);
+  line-height: 1.4rem;
   text-align: center;
 }
 
@@ -154,15 +157,15 @@
 .eventLabel,
 .moreEvents {
   overflow: hidden;
-  font-size: clamp(0.42rem, 1.35vw, 0.62rem);
+  font-size: clamp(0.58rem, 1.5vw, 0.72rem);
   line-height: 1.25;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .eventLabel {
-  padding: 0.1rem 0.2rem;
-  border-radius: 0.2rem;
+  padding: 0.15rem 0.3rem;
+  border-radius: 0.35rem;
   background: var(--calendar-event);
   color: #ffffff;
 }
@@ -177,6 +180,6 @@
   }
 
   .cell {
-    padding: 0.15rem;
+    padding: 0.25rem;
   }
 }

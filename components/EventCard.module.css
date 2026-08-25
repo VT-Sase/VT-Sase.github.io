@@ -4,8 +4,10 @@
 .card {
   display: flex;
   overflow: hidden;
-  border: 0.63px solid var(--card-border);
-  border-radius: 1rem;
+  /* 1px, not the 0.63px the mock exported — subpixel borders alias into a
+     harder line than a full pixel at low alpha. */
+  border: 1px solid var(--card-border);
+  border-radius: 1.25rem;
   background: var(--surface);
   color: var(--card-text);
   box-shadow: var(--card-shadow);
@@ -72,6 +74,27 @@
   transition: color var(--theme-duration) var(--theme-easing);
 }
 
+/* Only the desktop card clamps, so the toggle only exists there. */
+.showMore {
+  display: none;
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--card-text);
+  font: inherit;
+  font-size: 0.75rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.showMore:hover,
+.showMore:focus-visible {
+  color: var(--cyan);
+}
+
 .signup,
 .signupDisabled {
   /* Pushed to the bottom so the buttons line up across a row of cards
@@ -118,6 +141,18 @@
     height: 506px;
   }
 
+  /* Expanded, the card grows past the mock's fixed height; its grid row
+     stretches to match and the Sign Up button stays pinned to the bottom. */
+  .cardExpanded {
+    height: auto;
+    min-height: 506px;
+  }
+
+  .showMore {
+    display: block;
+    align-self: center;
+  }
+
   .image,
   .imagePlaceholder {
     flex: 0 0 auto;
@@ -129,6 +164,9 @@
   .body {
     align-items: center;
     gap: 0.5rem;
+    /* Lets the description shrink inside the fixed-height card instead of
+       pushing the Sign Up button past the clipped edge. */
+    min-height: 0;
     padding: 1rem 1.1rem 1.25rem;
     text-align: center;
   }
@@ -148,7 +186,22 @@
 
   .description {
     /* Keeps a long description from stretching one card taller than its
-       neighbours; the full text still shows on the event's own page later. */
+       neighbours; the full text still shows on mobile, where the card has no
+       fixed height, and on the event's own page later. Four lines is what the
+       506px card leaves once the image, name, meta row and button are placed. */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
+    min-height: 0;
     width: 100%;
+  }
+
+  .cardExpanded .description {
+    display: block;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: visible;
   }
 }

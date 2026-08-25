@@ -27,7 +27,7 @@
   --surface-deep: #001727;
   --footer: #0d314b;
   --footer-text: #ffffff;
-  --placeholder: rgba(255, 255, 255, 0.58);
+  --placeholder: rgb(255 255 255 / 12%);
 
   /* Text */
   --fg: #ffffff;
@@ -54,8 +54,8 @@
   --mobile-menu-text: #ffffff;
 
   --border: rgba(155, 232, 255, 0.25);
-  --card-border: #ffffff;
-  --card-shadow: 0 0.55rem 1.25rem rgb(0 0 0 / 28%);
+  --card-border: rgb(255 255 255 / 14%);
+  --card-shadow: 0 0.65rem 1.6rem -0.4rem rgb(0 0 0 / 32%);
   --button-shadow: 0 0.25rem 0.65rem rgb(0 0 0 / 26%);
 
   /* Fonts — the --font-* variables come from next/font in app/layout.tsx. */
@@ -75,7 +75,7 @@
   --surface-deep: #ffffff;
   --footer: #cce792;
   --footer-text: #000000;
-  --placeholder: #c7c7c7;
+  --placeholder: rgb(13 49 75 / 10%);
 
   /* Text */
   --fg: #323232;
@@ -97,8 +97,8 @@
   --mobile-menu-text: #0d314b;
 
   --border: rgb(13 49 75 / 25%);
-  --card-border: #000000;
-  --card-shadow: 0 0.55rem 1.25rem rgb(13 49 75 / 24%);
+  --card-border: rgb(13 49 75 / 14%);
+  --card-shadow: 0 0.65rem 1.6rem -0.4rem rgb(13 49 75 / 20%);
   --button-shadow: 0 0.25rem 0.65rem rgb(13 49 75 / 24%);
 }
 

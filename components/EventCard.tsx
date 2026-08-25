@@ -1,11 +1,30 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import { CalendarIcon, PinIcon } from "./icons";
 import styles from "./EventCard.module.css";
 import { formatEventDate, type SaseEvent } from "@/content/events";
 
+/**
+ * Roughly what fits in the four clamped lines of a 343px card. Counting
+ * characters keeps this decision on the server, where measuring the rendered
+ * text would need an effect; the threshold sits high enough that "Show more"
+ * never appears on a description that already fits.
+ */
+const CLAMP_LIMIT = 170;
+
 export default function EventCard({ event }: { event: SaseEvent }) {
+  const [expanded, setExpanded] = useState(false);
+  const canExpand = event.description.length > CLAMP_LIMIT;
+  const descriptionId = `event-description-${event.name}-${event.date}`;
+
   return (
-    <article className={styles.card}>
+    <article
+      className={
+        expanded ? `${styles.card} ${styles.cardExpanded}` : styles.card
+      }
+    >
       {event.image ? (
         <Image
           className={styles.image}
@@ -33,7 +52,21 @@ export default function EventCard({ event }: { event: SaseEvent }) {
           </span>
         </p>
 
-        <p className={styles.description}>{event.description}</p>
+        <p className={styles.description} id={descriptionId}>
+          {event.description}
+        </p>
+
+        {canExpand ? (
+          <button
+            type="button"
+            className={styles.showMore}
+            onClick={() => setExpanded((value) => !value)}
+            aria-expanded={expanded}
+            aria-controls={descriptionId}
+          >
+            {expanded ? "Show less" : "Show more"}
+          </button>
+        ) : null}
 
         {event.signupUrl ? (
           <a
