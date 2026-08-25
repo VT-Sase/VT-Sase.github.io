@@ -1,39 +1,370 @@
-.nav {
+/* Mobile is the base case here; the desktop pill lives in the media query
+   at the bottom. Breakpoint is 768px, same as the footer. */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100vw;
+}
+
+.bar {
+  position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-  width: 100%;
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  gap: 0.75rem;
+  padding: 0.6rem var(--gutter);
+  font-family: var(--font-body);
+  background: transparent;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgb(13 35 51 / 92%) 0%,
+    rgb(13 35 51 / 68%) 50%,
+    rgb(13 35 51 / 92%) 100%
+  );
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity var(--theme-duration) var(--theme-easing);
+}
+
+.bar::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 44%) 0%,
+    rgb(255 255 255 / 30%) 50%,
+    rgb(255 255 255 / 44%) 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--theme-duration) var(--theme-easing);
+}
+
+:global(html[data-theme="light"]) .bar::before {
+  opacity: 1;
+}
+
+:global(html[data-theme="light"]) .bar::after {
+  opacity: 0;
 }
 
 .brand {
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.links {
+  flex: 1;
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
+}
+
+.brand img {
+  width: auto;
+  height: 1.6rem;
+}
+
+/* The horizontal link row is desktop-only — mobile uses .mobileMenu. */
+.links {
+  display: none;
+}
+
+.join {
+  padding: 0.25rem 0.9rem;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 9999px;
+  background: rgb(22 138 173 / 78%);
+  color: var(--button-on-teal);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.join:hover {
+  filter: brightness(1.12);
+}
+
+.menuButton {
+  display: grid;
+  place-items: center;
+  padding: 0.25rem;
+  border: 0;
+  background: none;
+  color: var(--mobile-menu-text);
+  cursor: pointer;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.menuIcon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.mobileMenuShell {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    max-height 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease,
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 300ms;
+}
+
+.mobileMenuShellOpen {
+  max-height: 26rem;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.mobileMenu {
   list-style: none;
+  font-family: var(--font-body);
+  background: var(--mobile-menu-bg);
+  border-bottom: 1px solid var(--border);
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing);
 }
 
-.link {
-  color: var(--muted);
+.mobileLink,
+.mobileLinkActive {
+  display: block;
+  padding: 0.6rem var(--gutter);
+  background: var(--mobile-menu-bg);
+  color: var(--mobile-menu-text);
+  font-size: 1rem;
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing);
 }
 
-.link:hover {
-  color: var(--foreground);
+.mobileLink:hover,
+.mobileLink:focus-visible {
+  background: var(--mobile-menu-hover);
 }
 
-/* Highlights the page you're currently on. */
-.active {
-  color: var(--accent);
-  font-weight: 700;
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 2px;
+.mobileLinkActive {
+  background: var(--mobile-menu-active);
+  color: var(--mobile-menu-text);
+  font-weight: 600;
+}
+
+.themeControl {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: var(--gutter);
+  z-index: 1;
+}
+
+.themeToggle {
+  position: relative;
+  overflow: hidden;
+  width: 4.5rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid #ffffff;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 16%);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 180ms ease;
+}
+
+.themeToggle:hover,
+.themeToggle:focus-visible {
+  background: rgb(255 255 255 / 24%);
+}
+
+.themeThumb {
+  position: absolute;
+  top: 0.15rem;
+  left: 0.15rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: #ffffff;
+  transform: translateX(2.5rem);
+  transition: transform var(--theme-duration) var(--theme-easing);
+}
+
+.sunIcon,
+.moonIcon {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  color: currentColor;
+  transform: translateY(-50%);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.sunIcon {
+  left: 0.15rem;
+  color: #ffffff;
+}
+
+.sunIcon::before {
+  content: "";
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow:
+    0 -0.52rem 0 -0.14rem currentColor,
+    0.37rem -0.37rem 0 -0.14rem currentColor,
+    0.52rem 0 0 -0.14rem currentColor,
+    0.37rem 0.37rem 0 -0.14rem currentColor,
+    0 0.52rem 0 -0.14rem currentColor,
+    -0.37rem 0.37rem 0 -0.14rem currentColor,
+    -0.52rem 0 0 -0.14rem currentColor,
+    -0.37rem -0.37rem 0 -0.14rem currentColor;
+}
+
+.moonIcon {
+  right: 0.15rem;
+  background-color: rgb(3 37 63 / 76%);
+  -webkit-mask: url("/images/moon.svg") center / 1rem 1rem no-repeat;
+  mask: url("/images/moon.svg") center / 1rem 1rem no-repeat;
+  transition: background-color var(--theme-duration) var(--theme-easing);
+}
+
+:global(html[data-theme="light"]) .themeThumb {
+  transform: translateX(0);
+}
+
+:global(html[data-theme="light"]) .sunIcon {
+  color: var(--light-bg-start);
+}
+
+:global(html[data-theme="light"]) .moonIcon {
+  background-color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 1rem var(--gutter) 0;
+  }
+
+  .bar {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    gap: 1.5rem;
+    border-radius: 9999px;
+  }
+
+  .brand {
+    flex: 0 0 auto;
+  }
+
+  .brand img {
+    height: 2.5rem;
+  }
+
+  .links {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    list-style: none;
+  }
+
+  .links::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: var(--indicator-width, 0);
+    height: 2px;
+    border-radius: 9999px;
+    background: var(--green-selected);
+    opacity: var(--indicator-opacity, 0);
+    pointer-events: none;
+    transform: translateX(var(--indicator-x, 0));
+    transition:
+      width 280ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 160ms ease,
+      background-color var(--theme-duration) var(--theme-easing);
+  }
+
+  .link,
+  .linkActive {
+    font-size: 1.05rem;
+    padding-bottom: 2px;
+    white-space: nowrap;
+    transition: color var(--theme-duration) var(--theme-easing);
+  }
+
+  .link {
+    color: var(--green);
+  }
+
+  .link:hover {
+    color: var(--green-selected);
+  }
+
+  /* Current page: lighter green text and underline from the final palette. */
+  .linkActive {
+    color: var(--green-selected);
+  }
+
+  .join {
+    padding: 0.55rem 1.6rem;
+    color: var(--button-on-teal);
+    font-size: 0.85rem;
+  }
+
+  .join:hover {
+    filter: brightness(1.12);
+  }
+
+  .menuButton,
+  .mobileMenuShell {
+    display: none;
+  }
+
+  .themeControl {
+    right: max(var(--gutter), calc((100vw - var(--content-max)) / 2 + 0.5rem));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobileMenuShell,
+  .links::after,
+  .themeThumb {
+    transition: none;
+  }
 }

@@ -1,0 +1,154 @@
+/* Mobile first: image on the left, text on the right. The stacked desktop
+   card is in the media query at the bottom. */
+
+.card {
+  display: flex;
+  overflow: hidden;
+  border: 0.63px solid var(--card-border);
+  border-radius: 1rem;
+  background: var(--surface);
+  color: var(--card-text);
+  box-shadow: var(--card-shadow);
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing),
+    box-shadow var(--theme-duration) var(--theme-easing);
+}
+
+.image,
+.imagePlaceholder {
+  flex: 0 0 45%;
+  align-self: stretch;
+  width: 45%;
+  height: auto;
+  min-height: 9rem;
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  background: var(--placeholder);
+  transition: background-color var(--theme-duration) var(--theme-easing);
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.85rem 1rem 1rem;
+  min-width: 0;
+}
+
+.name {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.75rem;
+  color: var(--card-muted);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.metaIcon {
+  flex: 0 0 auto;
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.description {
+  font-size: 0.8rem;
+  color: var(--card-muted);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.signup,
+.signupDisabled {
+  /* Pushed to the bottom so the buttons line up across a row of cards
+     whose descriptions are different lengths. */
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 0.3rem 1.1rem;
+  border: 1px solid var(--signup-border);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  color: var(--signup-text);
+  box-shadow: var(--button-shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing),
+    box-shadow var(--theme-duration) var(--theme-easing),
+    filter 180ms ease;
+}
+
+.signup {
+  background: var(--signup-bg);
+}
+
+.signup:hover,
+.signup:focus-visible {
+  filter: brightness(1.12);
+  box-shadow: 0 0.35rem 0.85rem rgb(0 0 0 / 30%);
+}
+
+.signupDisabled {
+  background: var(--signup-bg);
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+  .card {
+    flex-direction: column;
+    width: 343.2px;
+    max-width: 100%;
+    height: 506px;
+  }
+
+  .image,
+  .imagePlaceholder {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 280px;
+    min-height: 0;
+  }
+
+  .body {
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.1rem 1.25rem;
+    text-align: center;
+  }
+
+  .meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .signup,
+  .signupDisabled {
+    align-self: center;
+    margin-top: auto;
+  }
+
+  .description {
+    /* Keeps a long description from stretching one card taller than its
+       neighbours; the full text still shows on the event's own page later. */
+    width: 100%;
+  }
+}
