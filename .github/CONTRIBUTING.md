@@ -12,8 +12,8 @@ page is just the short version.
    and assign yourself. Filter by `good first issue` if it's your first time.
 2. **Branch off `main`** — `feature/`, `fix/`, or `update/` (see
    [Branch Naming](../README.md#branch-naming)).
-3. **Run the checks before you push.** CI runs the same three and will fail your
-   PR if you skip them:
+3. **Run the checks before you push.** Nothing runs them automatically, so this
+   is on you:
    ```bash
    npm run format     # auto-format with Prettier
    npm run lint       # catch style problems and common mistakes

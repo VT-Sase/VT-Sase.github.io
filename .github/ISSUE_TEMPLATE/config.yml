@@ -1,8 +1,0 @@
-# Every issue should use one of the templates so the board stays readable.
-blank_issues_enabled: false
-# Uncomment and paste the chapter Discord invite so people have somewhere to
-# ask questions that aren't really issues.
-# contact_links:
-#   - name: Ask in Discord
-#     url: https://discord.gg/REPLACE_ME
-#     about: Quick questions, claiming work, or anything you're stuck on.

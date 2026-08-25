@@ -135,7 +135,7 @@ vt-sase-website/
 ├── components/             shared UI (Navbar, Footer)
 ├── content/                the words and data ← you probably want this
 ├── public/images/          compressed photos
-└── .github/                templates, CI — Webmaster's area
+└── .github/                contributor guide — Webmaster's area
 ```
 
 Everything else in the root is config. Ignore it, and ask the Webmaster before
@@ -159,8 +159,8 @@ touching any of it — a broken config breaks the build for everyone.
 - 🎨 **Page styles go in a CSS Module** (`page.module.css`) next to the page, never
   in `globals.css`. That way your styles can't leak onto someone else's page.
 - 📦 **Import shared code with `@/`**, e.g. `import Navbar from "@/components/Navbar"`.
-- ✅ **Run `npm run format`, `npm run lint`, and `npm run typecheck` before you push.** CI
-  runs the same three and will fail your PR if you skip them.
+- ✅ **Run `npm run format`, `npm run lint`, and `npm run typecheck` before you push.**
+  Nothing checks this automatically, so catching it locally is on you.
 
 ## 📋 Issues
 
@@ -188,14 +188,14 @@ photos and assets straight from the **Draft** file.
 
 ## 💻 Commands
 
-| Command                | What it does                        |
-| ---------------------- | ----------------------------------- |
-| `npm run dev`          | Start the local server              |
-| `npm run build`        | Build for production (what CI runs) |
-| `npm run lint`         | Catch style problems and mistakes   |
-| `npm run format`       | Auto-format everything              |
-| `npm run format:check` | Check formatting, change nothing    |
-| `npm run typecheck`    | Check TypeScript types              |
+| Command                | What it does                      |
+| ---------------------- | --------------------------------- |
+| `npm run dev`          | Start the local server            |
+| `npm run build`        | Build for production              |
+| `npm run lint`         | Catch style problems and mistakes |
+| `npm run format`       | Auto-format everything            |
+| `npm run format:check` | Check formatting, change nothing  |
+| `npm run typecheck`    | Check TypeScript types            |
 
 ## 🚢 Deployment
 
