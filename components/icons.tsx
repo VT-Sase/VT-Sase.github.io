@@ -163,3 +163,36 @@ export function InstagramIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+/* Seven-spoke asterisk with a detached stem — proportions measured off
+   Linktree's own mark: bars ~1/3 the arm length, diagonals at 45deg. */
+export function LinktreeIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className} viewBox="0 0 24 24" fill="none">
+      <g stroke="currentColor" strokeWidth="2.9">
+        <path d="M12 2.4V10.4" />
+        <path d="M4 10.4H20" />
+        <path d="M6.34 4.74L17.66 16.06" />
+        <path d="M17.66 4.74L6.34 16.06" />
+        <path d="M12 15.6V22" />
+      </g>
+    </svg>
+  );
+}
+
+/* The R is the first two subpaths of Remind's own wordmark SVG — outer form
+   plus its counter — recolored to currentColor and inset to match the other
+   brand glyphs. */
+export function RemindIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className} viewBox="0 0 24 24" fill="none">
+      <g transform="translate(2.1 2) scale(0.83)">
+        <path
+          fill="currentColor"
+          fillRule="evenodd"
+          d="M0.288638 2.34586e-05C3.33044 -0.0551388 5.05561 1.20697 5.40197 3.79078C6.72971 1.26434 8.72353 2.34586e-05 10.6885 2.34586e-05C18.1687 2.34586e-05 16.0882 10.7059 8.4682 12.63C9.90695 16.0478 14.7316 21.5596 20.4267 21.4449L20.1092 24C15.1402 24.0861 8.69911 19.5495 5.67729 12.919L4.72478 12.833L3.48142 18.6029H0.548412L2.83087 8.41337C3.08051 7.42643 3.22562 6.41625 3.26383 5.39931C3.26383 3.44656 2.39792 2.35656 0 2.41392L0.288638 2.34586e-05ZM6.23902 10.6508C11.8719 10.6508 14.8982 2.47129 10.7462 2.47129C8.11739 2.47129 6.03698 6.84015 5.1422 10.536C5.50446 10.6011 5.87107 10.6395 6.23902 10.6508V10.6508Z"
+        />
+      </g>
+    </svg>
+  );
+}

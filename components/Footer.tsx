@@ -5,9 +5,11 @@ import {
   FacebookIcon,
   InstagramIcon,
   LinkedInIcon,
+  LinktreeIcon,
+  RemindIcon,
 } from "./icons";
 import styles from "./Footer.module.css";
-import { FOOTER_LINKS, SOCIALS } from "@/content/site";
+import { SOCIALS } from "@/content/site";
 
 const socialIcons = [
   {
@@ -34,14 +36,30 @@ const socialIcons = [
     href: SOCIALS.instagram,
     Icon: InstagramIcon,
   },
+  {
+    key: "linktree",
+    label: "Linktree",
+    href: SOCIALS.linktree,
+    Icon: LinktreeIcon,
+  },
+  {
+    key: "remind",
+    label: "Remind",
+    href: SOCIALS.remind,
+    Icon: RemindIcon,
+  },
 ];
 
 /**
  * Site-wide footer. Appears on every page via app/layout.tsx.
  *
- * Links and social URLs come from content/site.ts — edit them there, not here.
+ * Deliberately does not repeat the navbar's links — it is the logo, who we
+ * are in one line, and every channel the chapter can be reached on. Social
+ * URLs come from content/site.ts.
  */
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
@@ -55,19 +73,13 @@ export default function Footer() {
             />
           </Link>
 
-          <ul className={styles.links}>
-            {FOOTER_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className={styles.link}>
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <p className={styles.tagline}>
+            Society of Asian Scientists and Engineers — Virginia Tech chapter
+          </p>
         </div>
 
         <div className={styles.contactColumn}>
-          <h2 className={styles.contactHeading}>Contact</h2>
+          <h2 className={styles.contactHeading}>Connect</h2>
 
           <ul className={styles.socials}>
             {socialIcons.map(({ key, label, href, Icon }) => (
@@ -85,23 +97,12 @@ export default function Footer() {
             ))}
           </ul>
 
-          <a
-            className={styles.textLink}
-            href={SOCIALS.linktree}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Linktree
-          </a>
-          <a
-            className={styles.textLink}
-            href={SOCIALS.remind}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Remind
-          </a>
+          <p className={styles.copyright}>© {year} SASE at Virginia Tech</p>
         </div>
+      </div>
+
+      <div className={styles.bottomBar}>
+        Designed &amp; developed by the SASE Web Development Team
       </div>
     </footer>
   );
