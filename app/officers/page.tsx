@@ -9,10 +9,7 @@
  * Headshots go in public/images (compress them first — see the README).
  */
 import styles from "./officers.module.css";
-import {
-  officersByCommittee,
-  type Officer,
-} from "../../content/officers";
+import { officersByCommittee, type Officer } from "../../content/officers";
 
 function OfficerCard({ officer }: { officer: Officer }) {
   return (
@@ -20,13 +17,9 @@ function OfficerCard({ officer }: { officer: Officer }) {
       <div className={styles.photoPlaceholder} />
 
       <div className={styles.cardInfo}>
-        <span className={styles.role}>
-          {officer.role}
-        </span>
+        <span className={styles.role}>{officer.role}</span>
 
-        <p className={styles.name}>
-          {officer.name}
-        </p>
+        <p className={styles.name}>{officer.name}</p>
       </div>
     </div>
   );
@@ -37,64 +30,42 @@ export default function OfficersPage() {
 
   return (
     <div className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1>Officers</h1>
-          <p>
-            Meet the students leading SASE at Virginia Tech
-            this year.
-          </p>
-        </div>
+      <section className={styles.intro}>
+        <h1>Officers</h1>
+        <p>Meet the students leading SASE at Virginia Tech this year.</p>
       </section>
 
-      <main className={styles.board}>
-        <div className={styles.boardContent}>
-          {groups.map(({ committee, members }) => {
-            const isWebDev = committee === "Web Dev";
+      <div className={styles.board}>
+        {groups.map(({ committee, members }) => {
+          const isWebDev = committee === "Web Dev";
 
-            return (
-              <section
-                key={committee}
-                className={styles.committee}
-              >
-                <h2>
-                  {isWebDev
-                    ? "Web Development Team"
-                    : committee}
-                </h2>
+          return (
+            <section key={committee} className={styles.committee}>
+              <h2>{isWebDev ? "Web Development Team" : committee}</h2>
 
-                {isWebDev ? (
-                  <div className={styles.webGrid}>
-                    {members.map((officer) => (
-                      <div
-                        key={officer.name}
-                        className={styles.webCard}
-                      >
-                        {officer.name}
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div
-                    className={`${styles.grid} ${
-                      committee === "Leads"
-                        ? styles.leadsGrid
-                        : ""
-                    }`}
-                  >
-                    {members.map((officer) => (
-                      <OfficerCard
-                        key={officer.name}
-                        officer={officer}
-                      />
-                    ))}
-                  </div>
-                )}
-              </section>
-            );
-          })}
-        </div>
-      </main>
+              {isWebDev ? (
+                <div className={styles.webGrid}>
+                  {members.map((officer) => (
+                    <div key={officer.name} className={styles.webCard}>
+                      {officer.name}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div
+                  className={`${styles.grid} ${
+                    committee === "Leads" ? styles.leadsGrid : ""
+                  }`}
+                >
+                  {members.map((officer) => (
+                    <OfficerCard key={officer.name} officer={officer} />
+                  ))}
+                </div>
+              )}
+            </section>
+          );
+        })}
+      </div>
     </div>
   );
 }

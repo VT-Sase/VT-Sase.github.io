@@ -1,221 +1,217 @@
+/* Background lives on the body (see app/globals.css) — this page used to paint
+   its own opaque navy over it, which is why it was the one route that neither
+   matched the others nor responded to the light/dark toggle. Everything here
+   is layout and theme tokens now. */
+
 .page {
-  width: 100%;
-  min-height: 100vh;
-  background: #073d59;
-  color: white;
+  composes: pageShell from global;
 }
 
-.hero {
-  min-height: 230px;
-  display: flex;
-  align-items: flex-end;
-  background: #062d43;
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.intro {
+  composes: pageSection from global;
 }
 
-.heroContent {
-  width: min(1100px, 92%);
-  margin: 0 auto;
-  padding-bottom: 35px;
-}
-
-.hero h1 {
+.intro h1 {
   margin: 0;
-  font-size: clamp(42px, 6vw, 68px);
+
+  color: var(--lime);
+
+  font-size: clamp(2rem, 6vw, 3.25rem);
   font-weight: 800;
   line-height: 1;
-  color: white;
+
+  transition: color var(--theme-duration) var(--theme-easing);
 }
 
-.hero p {
-  margin: 10px 0 0;
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.82);
+.intro p {
+  margin: 0.75rem 0 0;
+
+  color: var(--fg-muted);
+
+  font-size: 1rem;
+
+  transition: color var(--theme-duration) var(--theme-easing);
 }
 
-/* DARK DOODLE BACKGROUND */
+/* =========================================================
+   BOARD
+   ========================================================= */
+
 .board {
-  min-height: 100vh;
-
-  background:
-    linear-gradient(
-      rgba(8, 80, 111, 0.88),
-      rgba(7, 65, 91, 0.92)
-    ),
-    url("/images/doodles-tile.png");
-
-  background-repeat: repeat;
-  background-size: 500px;
+  composes: pageSection from global;
 }
 
-.boardContent {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 55px 20px 100px;
-}
-
-.committee {
-  margin-bottom: 72px;
+.committee + .committee {
+  margin-top: 3.5rem;
 }
 
 .committee h2 {
-  margin: 0 0 26px;
-  text-align: center;
-  color: white;
-  font-size: 30px;
+  margin: 0 0 1.6rem;
+
+  color: var(--cyan-pale);
+
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
   font-weight: 700;
+
+  text-align: center;
+
+  transition: color var(--theme-duration) var(--theme-easing);
 }
 
-/* DEFAULT CARD LAYOUT */
+/* =========================================================
+   OFFICER CARDS
+   ========================================================= */
 
 .grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 18px;
+
+  gap: 1.15rem;
 }
 
 .card {
-  width: 150px;
-  flex: 0 0 150px;
+  width: 9.4rem;
+  flex: 0 0 9.4rem;
+
   overflow: hidden;
 
-  background: #062f46;
-  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
 
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.28);
+  box-shadow: var(--card-shadow);
+
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing);
 }
 
 /* PHOTO AREA FOR NOW */
 .photoPlaceholder {
   width: 100%;
-  height: 145px;
-  background: #d4d4d4;
+  height: 9rem;
+
+  background: var(--placeholder);
+
+  transition: background-color var(--theme-duration) var(--theme-easing);
 }
 
 .cardInfo {
-  min-height: 53px;
-  padding: 0 6px 9px;
+  min-height: 3.3rem;
+  padding: 0 0.4rem 0.6rem;
+
   text-align: center;
 }
 
 /* CYAN ROLE PILL */
 .role {
   position: relative;
-  top: -8px;
+  top: -0.5rem;
 
   display: inline-block;
-  padding: 3px 9px;
+  padding: 0.2rem 0.6rem;
 
-  background: #19b7cf;
+  background: var(--teal);
   border-radius: 999px;
 
-  color: white;
-  font-size: 10px;
+  color: var(--button-on-teal);
+  font-size: 0.65rem;
   font-weight: 700;
   line-height: 1;
 }
 
 .name {
-  margin: -2px 0 0;
-  color: white;
+  margin: -0.12rem 0 0;
 
-  font-size: 11px;
+  color: var(--card-text);
+
+  font-size: 0.7rem;
   font-weight: 600;
   line-height: 1.25;
+
+  transition: color var(--theme-duration) var(--theme-easing);
 }
 
 /* LEADS */
-/* President centered by itself,
-   then 3 VP cards below */
+/* President centered by itself, then 3 VP cards below */
 .leadsGrid {
-  max-width: 530px;
+  max-width: 33rem;
   margin: 0 auto;
 }
 
 .leadsGrid .card:first-child {
-  margin-left: calc(50% - 75px);
-  margin-right: calc(50% - 75px);
+  margin-left: calc(50% - 4.7rem);
+  margin-right: calc(50% - 4.7rem);
 }
 
-/* WEB DEVELOPMENT */
+/* =========================================================
+   WEB DEVELOPMENT
+   ========================================================= */
 
 .webGrid {
-  max-width: 520px;
+  max-width: 32.5rem;
   margin: 0 auto;
 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+
+  gap: 1rem;
 }
 
 .webCard {
-  width: 150px;
-  min-height: 70px;
-  flex: 0 0 150px;
+  width: 9.4rem;
+  min-height: 4.4rem;
+  flex: 0 0 9.4rem;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 12px;
+  padding: 0.75rem;
 
-  background: #062f46;
-  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
 
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.28);
+  box-shadow: var(--card-shadow);
 
-  color: white;
+  color: var(--card-text);
   text-align: center;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 600;
+
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing);
 }
 
-/* MOBILE */
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+:global(html[data-theme="light"]) .committee h2 {
+  color: var(--card-text);
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 650px) {
-  .hero {
-    min-height: 180px;
-  }
-
-  .heroContent {
-    padding-bottom: 28px;
-  }
-
-  .boardContent {
-    width: 94%;
-    padding: 45px 10px 80px;
-  }
-
-  .committee {
-    margin-bottom: 55px;
-  }
-
-  .committee h2 {
-    font-size: 26px;
+  .committee + .committee {
+    margin-top: 2.75rem;
   }
 
   .grid {
-    gap: 12px;
-  }
-
-  .card {
-    width: 135px;
-    flex-basis: 135px;
-  }
-
-  .photoPlaceholder {
-    height: 130px;
-  }
-
-  .leadsGrid .card:first-child {
-    margin-left: calc(50% - 67.5px);
-    margin-right: calc(50% - 67.5px);
-  }
-
-  .webCard {
-    width: 135px;
-    flex-basis: 135px;
+    gap: 0.75rem;
   }
 }

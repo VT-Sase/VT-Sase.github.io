@@ -65,6 +65,17 @@
   /* Layout */
   --content-max: 75rem;
   --gutter: 1.5rem;
+
+  /* Where the doodle fade finishes: the content column's left edge, so the
+     pattern is quiet everywhere a word can land and full strength only out in
+     the margin. Percentage stops alone can't do this — the margin is a
+     different fraction of the page at every viewport width. */
+  --doodle-fade: max(var(--gutter), calc((100% - var(--content-max)) / 2));
+
+  /* Vertical rhythm every page shell shares, so no page sets its own. */
+  --page-top: 3rem;
+  --page-bottom: 4.5rem;
+  --section-gap: 3.5rem;
 }
 
 :root[data-theme="light"] {
@@ -104,6 +115,9 @@
 
 html {
   color-scheme: dark;
+  /* The navbar's FAQs and Sponsors links scroll to sections of the home page
+     rather than navigating, so the jump is animated. */
+  scroll-behavior: smooth;
 }
 
 html[data-theme="light"] {
@@ -116,10 +130,14 @@ html[data-theme="light"] {
   margin: 0;
 }
 
+/* clip rather than hidden: `overflow-x: hidden` turns the body into a scroll
+   container, and the sticky navbar then sticks to that container instead of
+   the viewport — which is to say it scrolls away. `clip` cuts off stray
+   horizontal overflow the same way without creating one. */
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -162,6 +180,52 @@ html[data-theme="light"] body::before {
   opacity: 1;
 }
 
+/* The doodles — the third and topmost background layer, above the two
+   gradients and below every bit of content. Absolute rather than fixed so the
+   texture scrolls with the page, and anchored to the body box so it runs the
+   full document height, including behind the translucent navbar.
+
+   The tile's own art already tops out at 50% alpha, so the mask compounds with
+   it — the pattern reads as texture rather than illustration. The mask is a
+   scrim: full strength out at the margins, dropping to roughly a third of that
+   across the middle where headlines and body copy sit. Horizontal only, so the
+   tile still runs uninterrupted from the top of the page to the bottom. */
+body::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: url("/images/doodles-tile.png");
+  background-repeat: repeat;
+  background-size: 34rem;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgb(0 0 0 / 100%) 0,
+    rgb(0 0 0 / 34%) var(--doodle-fade),
+    rgb(0 0 0 / 34%) calc(100% - var(--doodle-fade)),
+    rgb(0 0 0 / 100%) 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgb(0 0 0 / 100%) 0,
+    rgb(0 0 0 / 34%) var(--doodle-fade),
+    rgb(0 0 0 / 34%) calc(100% - var(--doodle-fade)),
+    rgb(0 0 0 / 100%) 100%
+  );
+}
+
+/* Light theme keeps the doodles exactly as designed: screen blend, no fade.
+   The mask above is a dark-mode fix and light mode does not need it — there the
+   type is dark navy and the strokes are white, so the two sit at opposite ends
+   of the tonal range and never compete. It is only in dark mode, where the text
+   and the pattern are both light, that they collide. */
+html[data-theme="light"] body::after {
+  mix-blend-mode: screen;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
 h1,
 h2,
 h3,
@@ -187,6 +251,43 @@ main {
   flex: 1;
 }
 
+/* Every route's root element. Pages own their content, not their background:
+   the three background layers live on the body above, and a page that paints
+   its own opaque background would hide them. */
+.pageShell {
+  width: 100%;
+  padding: var(--page-top) 0 var(--page-bottom);
+  overflow-x: hidden;
+}
+
+/* A page whose first section is a full-bleed hero starts flush instead. */
+.pageShellFlush {
+  padding-top: 0;
+}
+
+/* The centered content column shared by every section on every page. The
+   scroll offset clears the sticky navbar, so a section linked from the nav
+   lands below it rather than under it. */
+.pageSection {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  scroll-margin-top: 6.5rem;
+}
+
+.pageSection + .pageSection {
+  margin-top: var(--section-gap);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-top: 4rem;
+    --page-bottom: 5rem;
+    --section-gap: 5rem;
+  }
+}
+
 /* Visible only to screen readers. */
 .srOnly {
   position: absolute;
@@ -200,5 +301,9 @@ main {
 @media (prefers-reduced-motion: reduce) {
   :root {
     --theme-duration: 0ms;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }
