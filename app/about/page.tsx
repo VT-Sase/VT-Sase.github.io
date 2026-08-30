@@ -47,7 +47,6 @@ export default function AboutPage() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1>About SASE</h1>
-
           <p>
             Empowering Asian heritage students in STEM to connect, grow, and
             succeed.
@@ -75,8 +74,8 @@ export default function AboutPage() {
                 The <strong>Virginia Tech</strong> SASE chapter, established in
                 2010, continues this mission by bringing together over 200
                 members. Through chapter events and initiatives, SASE creates a
-                welcoming environment where students can connect, grow, and
-                make an impact within the STEM community.
+                welcoming environment where students can connect, grow, and make
+                an impact within the STEM community.
               </p>
             </div>
 
@@ -200,8 +199,8 @@ export default function AboutPage() {
                     <Image
                       src={chapter.logo}
                       alt={`${chapter.name} logo`}
-                      width={140}
-                      height={90}
+                      width={160}
+                      height={100}
                       className={styles.chapterLogoImage}
                     />
                   </div>

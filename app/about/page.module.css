@@ -3,9 +3,10 @@
     overflow-x: hidden;
   }
   
-  /* =========================================================
-     SHARED
-     ========================================================= */
+  :global(body):has(.page) :global(header > nav) {
+    width: calc(100% - (2 * var(--gutter)));
+    max-width: none;
+  }
   
   .content {
     width: min(100% - (2 * var(--gutter)), var(--content-max));
@@ -17,7 +18,7 @@
      ========================================================= */
   
   .hero {
-    min-height: 23rem;
+    min-height: 29rem;
   
     display: flex;
     align-items: center;
@@ -27,16 +28,17 @@
   
     background:
       linear-gradient(
-        color-mix(in srgb, var(--surface-deep) 70%, transparent),
-        color-mix(in srgb, var(--surface-deep) 70%, transparent)
+        color-mix(in srgb, var(--surface-deep) 58%, transparent),
+        color-mix(in srgb, var(--surface-deep) 58%, transparent)
       ),
-      url("/images/DSC_0211.JPG");
+      url("/images/about/about-hero.JPG");
   
     background-size: cover;
     background-position: center;
   }
   
   .heroContent {
+    max-width: 48rem;
     text-align: center;
   }
   
@@ -46,18 +48,19 @@
     color: var(--fg);
   
     font-family: var(--font-heading);
-    font-size: clamp(3.3rem, 7vw, 5.5rem);
+    font-size: clamp(3.4rem, 7vw, 5.4rem);
     font-weight: 700;
     line-height: 1;
     letter-spacing: -0.04em;
   }
   
   .heroContent p {
-    margin: 1rem 0 0;
+    max-width: 40rem;
+    margin: 1rem auto 0;
   
     color: var(--fg);
   
-    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    font-size: clamp(1rem, 2vw, 1.15rem);
     line-height: 1.5;
   }
   
@@ -66,7 +69,8 @@
      ========================================================= */
   
   .aboutSection {
-    padding: 5.5rem 0 7rem;
+    padding: 5.5rem 0 6rem;
+  
     background: var(--surface-deep);
   }
   
@@ -83,7 +87,7 @@
   }
   
   .aboutCopy {
-    max-width: 36rem;
+    max-width: 35rem;
   }
   
   .aboutCopy h2 {
@@ -123,7 +127,7 @@
   
     overflow: hidden;
   
-    border-radius: 1.2rem;
+    border-radius: 0.85rem;
   
     box-shadow: var(--card-shadow);
   }
@@ -138,13 +142,13 @@
      ========================================================= */
   
   .missionSection {
-    padding: 4rem 0 7rem;
+    padding: 4.5rem 0 6.5rem;
   
     background:
-      radial-gradient(
-        circle at center bottom,
-        color-mix(in srgb, var(--cyan) 25%, transparent),
-        transparent 58%
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--teal) 26%, var(--surface-deep)),
+        color-mix(in srgb, var(--teal-light) 20%, var(--surface-deep))
       ),
       url("/images/doodles-tile.png");
   
@@ -160,18 +164,19 @@
     font-size: clamp(2.8rem, 5vw, 4rem);
     font-weight: 700;
     line-height: 1;
+  
     text-align: center;
   }
   
   .missionIntro {
-    max-width: 48rem;
-  
-    margin: 1.2rem auto 3rem;
+    max-width: 46rem;
+    margin: 1.15rem auto 2.8rem;
   
     color: var(--fg);
   
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     line-height: 1.6;
+  
     text-align: center;
   }
   
@@ -181,24 +186,24 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   
-    gap: 2.5rem;
+    gap: 2rem;
   
     margin: 0 auto;
   }
   
   .missionCard {
-    min-height: 22rem;
+    min-height: 21rem;
   
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
   
-    padding: 4rem 1.5rem 2rem;
+    padding: 4rem 1.4rem 1.8rem;
   
     overflow: hidden;
   
-    border-radius: 0.9rem;
+    border-radius: 0.85rem;
   
     background-image: url("/images/doodles-tile.png");
     background-repeat: repeat;
@@ -215,14 +220,13 @@
     color: var(--footer-text);
   
     font-family: var(--font-heading);
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.15;
   }
   
   .missionCard p {
     max-width: 14rem;
-  
     margin: 0;
   
     color: var(--surface-deep);
@@ -240,7 +244,11 @@
   }
   
   .connectionsCard {
-    background-color: var(--green-selected);
+    background-color: color-mix(
+      in srgb,
+      var(--green) 72%,
+      var(--teal)
+    );
   }
   
   /* =========================================================
@@ -248,30 +256,26 @@
      ========================================================= */
   
   .southeastSection {
-    padding: 5.5rem 0 7rem;
+    padding: 5rem 0 6.5rem;
   
     background:
-      radial-gradient(
-        circle at 50% 80%,
-        color-mix(in srgb, var(--teal-light) 38%, transparent),
-        transparent 52%
-      ),
-      var(--surface-deep);
+      linear-gradient(
+        to bottom,
+        var(--surface-deep),
+        color-mix(in srgb, var(--teal-light) 20%, var(--surface-deep))
+      );
   }
   
   .southeastGrid {
-    max-width: 70rem;
-    margin: 0 auto;
+    max-width: 68rem;
   
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+    align-items: center;
   
-    gap: 5rem;
-    align-items: start;
-  }
+    gap: 4rem;
   
-  .southeastCopy {
-    padding-top: 1rem;
+    margin: 0 auto;
   }
   
   .southeastCopy h2 {
@@ -280,20 +284,19 @@
     color: var(--cyan);
   
     font-family: var(--font-heading);
-    font-size: clamp(3rem, 5vw, 4.25rem);
+    font-size: clamp(3rem, 5vw, 4rem);
     font-weight: 700;
     line-height: 1;
   }
   
   .southeastCopy p {
-    max-width: 40rem;
-  
+    max-width: 39rem;
     margin: 0;
   
     color: var(--fg);
   
-    font-size: 0.98rem;
-    line-height: 1.75;
+    font-size: 0.95rem;
+    line-height: 1.7;
   }
   
   .southeastCopy strong {
@@ -304,15 +307,14 @@
     position: relative;
   
     width: 100%;
-    max-width: 24rem;
-    aspect-ratio: 1.1 / 1;
+    max-width: 22rem;
+    aspect-ratio: 1.05 / 1;
   
     justify-self: end;
   }
   
   .mapImagePhoto {
     object-fit: contain;
-    object-position: center top;
   }
   
   /* =========================================================
@@ -320,47 +322,42 @@
      ========================================================= */
   
   .chaptersSection {
-    max-width: 70rem;
+    max-width: 68rem;
   
-    margin: 3.5rem auto 0;
+    margin: 2.2rem auto 0;
   }
   
   .chaptersSection h3 {
-    margin: 0 0 2.25rem;
+    margin: 0 0 2rem;
   
     color: var(--fg);
   
     font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-size: clamp(1.8rem, 3vw, 2.35rem);
     font-weight: 600;
   }
   
   /*
-    12 columns lets us reproduce the Figma:
-  
-    Row 1: 3 cards
-    Row 2: 4 cards
-  */
+   * Desktop:
+   *
+   * 3 cards
+   * 4 cards
+   */
   
   .chapterGrid {
-    width: min(100%, 60rem);
+    width: min(100%, 58rem);
   
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
   
-    column-gap: 1.5rem;
-    row-gap: 2rem;
+    gap: 1.5rem;
   }
-  
-  /* first row */
   
   .chapterCard:nth-child(1),
   .chapterCard:nth-child(2),
   .chapterCard:nth-child(3) {
     grid-column: span 4;
   }
-  
-  /* second row */
   
   .chapterCard:nth-child(4),
   .chapterCard:nth-child(5),
@@ -370,17 +367,17 @@
   }
   
   .chapterCard {
-    min-height: 12rem;
+    min-height: 10.5rem;
   
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
   
-    padding: 1rem;
+    padding: 0.8rem;
   
     border: 2px solid var(--border);
-    border-radius: 0.85rem;
+    border-radius: 0.75rem;
   
     background: var(--footer-text);
   
@@ -388,9 +385,7 @@
   
     text-decoration: none;
   
-    transition:
-      transform 160ms ease,
-      box-shadow 160ms ease;
+    transition: transform 160ms ease;
   }
   
   .chapterCard:hover {
@@ -399,7 +394,7 @@
   
   .chapterLogo {
     width: 100%;
-    min-height: 8rem;
+    min-height: 7rem;
   
     display: flex;
     align-items: center;
@@ -408,8 +403,8 @@
   
   .chapterLogoImage {
     width: 100%;
-    max-width: 9rem;
-    height: 6.5rem;
+    max-width: 8.5rem;
+    height: 5.8rem;
   
     object-fit: contain;
   }
@@ -417,16 +412,17 @@
   .visitButton {
     width: 100%;
   
-    padding: 0.38rem 0.65rem;
+    padding: 0.35rem 0.6rem;
   
     border: 1px solid var(--cyan);
     border-radius: 999px;
   
     color: var(--teal);
   
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     line-height: 1;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.18em;
+  
     text-align: center;
   }
   
@@ -434,8 +430,8 @@
     display: block;
     width: fit-content;
   
-    margin: 2.4rem auto 0;
-    padding: 0.6rem 1.9rem;
+    margin: 2.25rem auto 0;
+    padding: 0.55rem 1.8rem;
   
     border: 1px solid var(--cyan);
     border-radius: 999px;
@@ -443,8 +439,8 @@
     background: var(--surface-deep);
     color: var(--cyan);
   
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
   
     text-decoration: none;
   
@@ -465,7 +461,7 @@
     }
   
     .missionGrid {
-      gap: 1.5rem;
+      gap: 1.4rem;
     }
   
     .southeastGrid {
@@ -476,9 +472,8 @@
   
     .chapterGrid {
       width: 100%;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
   
-      gap: 1.25rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   
     .chapterCard:nth-child(n) {
@@ -491,11 +486,19 @@
      ========================================================= */
   
   @media (max-width: 700px) {
-    .hero {
-      min-height: 18rem;
+    /*
+     * Return the navbar to its normal mobile width.
+     */
+    :global(body):has(.page) :global(header > nav) {
+      width: calc(100% - (2 * var(--gutter)));
+    }
   
-      padding-top: 3.5rem;
-      padding-bottom: 3.5rem;
+    .hero {
+      min-height: 23rem;
+  
+      padding: 3rem var(--gutter);
+  
+      background-position: center;
     }
   
     .heroContent h1 {
@@ -503,8 +506,7 @@
     }
   
     .aboutSection {
-      padding-top: 3.5rem;
-      padding-bottom: 4.5rem;
+      padding: 3.5rem 0 4.5rem;
     }
   
     .aboutGrid {
@@ -526,12 +528,11 @@
     }
   
     .missionSection {
-      padding-top: 3.5rem;
-      padding-bottom: 5rem;
+      padding: 3.5rem 0 5rem;
     }
   
     .missionIntro {
-      margin-bottom: 2.25rem;
+      margin-bottom: 2.2rem;
     }
   
     .missionGrid {
@@ -543,12 +544,13 @@
     }
   
     .missionCard {
-      min-height: 20rem;
+      min-height: 19rem;
+  
+      padding: 3.25rem 1.25rem 1.5rem;
     }
   
     .southeastSection {
-      padding-top: 4rem;
-      padding-bottom: 5rem;
+      padding: 4rem 0 5rem;
     }
   
     .southeastGrid {
@@ -584,7 +586,7 @@
     .chapterCard {
       min-height: 9rem;
   
-      padding: 0.75rem;
+      padding: 0.7rem;
     }
   
     .chapterLogo {
@@ -597,11 +599,7 @@
     }
   
     .visitButton {
-      font-size: 0.68rem;
-    }
-  
-    .allChaptersButton {
-      margin-top: 1.75rem;
+      font-size: 0.66rem;
     }
   }
   
@@ -617,7 +615,7 @@
     .chapterCard {
       min-height: 8.5rem;
   
-      padding: 0.7rem;
+      padding: 0.65rem;
     }
   
     .chapterLogo {
