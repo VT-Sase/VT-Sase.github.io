@@ -1,17 +1,16 @@
+/* Background lives on the body (see app/globals.css). The bands below used to
+   paint their own opaque navy over it — that is what made this page read as a
+   different site from /events. They are transparent now; only the photo hero
+   still paints, because that is content rather than a background wash. */
+
 .page {
-    width: 100%;
-    overflow-x: hidden;
-  }
-  
-  :global(body):has(.page) :global(header > nav) {
-    width: calc(100% - (2 * var(--gutter)));
-    max-width: none;
-  }
-  
-  .content {
-    width: min(100% - (2 * var(--gutter)), var(--content-max));
-    margin: 0 auto;
-  }
+  composes: pageShell from global;
+  composes: pageShellFlush from global;
+}
+
+.content {
+  composes: pageSection from global;
+}
   
   /* =========================================================
      HERO
@@ -69,9 +68,7 @@
      ========================================================= */
   
   .aboutSection {
-    padding: 5.5rem 0 6rem;
-  
-    background: var(--surface-deep);
+    padding: var(--section-gap) 0 0;
   }
   
   .aboutGrid {
@@ -142,17 +139,7 @@
      ========================================================= */
   
   .missionSection {
-    padding: 4.5rem 0 6.5rem;
-  
-    background:
-      linear-gradient(
-        to bottom,
-        color-mix(in srgb, var(--teal) 26%, var(--surface-deep)),
-        color-mix(in srgb, var(--teal-light) 20%, var(--surface-deep))
-      ),
-      url("/images/doodles-tile.png");
-  
-    background-repeat: no-repeat, repeat;
+    padding: var(--section-gap) 0 0;
   }
   
   .sectionTitle {
@@ -214,10 +201,13 @@
     text-align: center;
   }
   
+  /* The mission cards are teal/green in both themes, so their type is pinned
+     to fixed colors rather than the theme's --footer-text / --surface-deep,
+     which invert and made the light theme illegible here. */
   .missionCard h3 {
     margin: 0;
   
-    color: var(--footer-text);
+    color: var(--button-on-teal);
   
     font-family: var(--font-heading);
     font-size: 1.3rem;
@@ -229,7 +219,7 @@
     max-width: 14rem;
     margin: 0;
   
-    color: var(--surface-deep);
+    color: var(--dark-bg-start);
   
     font-size: 0.82rem;
     line-height: 1.45;
@@ -256,14 +246,7 @@
      ========================================================= */
   
   .southeastSection {
-    padding: 5rem 0 6.5rem;
-  
-    background:
-      linear-gradient(
-        to bottom,
-        var(--surface-deep),
-        color-mix(in srgb, var(--teal-light) 20%, var(--surface-deep))
-      );
+    padding: var(--section-gap) 0 0;
   }
   
   .southeastGrid {
@@ -379,7 +362,9 @@
     border: 2px solid var(--border);
     border-radius: 0.75rem;
   
-    background: var(--footer-text);
+    /* The chapter logos are dark artwork on transparent PNGs — this card stays
+       white in both themes so they stay readable. */
+    background: var(--button-on-teal);
   
     box-shadow: var(--card-shadow);
   
@@ -436,7 +421,7 @@
     border: 1px solid var(--cyan);
     border-radius: 999px;
   
-    background: var(--surface-deep);
+    background: var(--surface);
     color: var(--cyan);
   
     font-size: 0.75rem;
@@ -449,6 +434,12 @@
   
   .allChaptersButton:hover {
     transform: translateY(-2px);
+  }
+  
+  /* Cyan on a white surface is too pale to read in the light theme. */
+  :global(html[data-theme="light"]) .allChaptersButton {
+    border-color: var(--teal);
+    color: var(--teal);
   }
   
   /* =========================================================
@@ -486,13 +477,6 @@
      ========================================================= */
   
   @media (max-width: 700px) {
-    /*
-     * Return the navbar to its normal mobile width.
-     */
-    :global(body):has(.page) :global(header > nav) {
-      width: calc(100% - (2 * var(--gutter)));
-    }
-  
     .hero {
       min-height: 23rem;
   
@@ -503,10 +487,6 @@
   
     .heroContent h1 {
       font-size: 3rem;
-    }
-  
-    .aboutSection {
-      padding: 3.5rem 0 4.5rem;
     }
   
     .aboutGrid {

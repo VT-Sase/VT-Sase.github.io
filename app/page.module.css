@@ -1,557 +1,512 @@
+/* Background lives on the body (see app/globals.css). Every top-level section
+   here composes the shared .pageSection column, so the content edges line up
+   with the other routes and the spacing between sections comes from one
+   global rule instead of per-section margins. */
+
 .page {
-    width: 100%;
-    overflow-x: hidden;
-  }
-  
-  /* =========================================================
-     HERO
-     ========================================================= */
-  
-  .hero {
-    padding: 4.5rem var(--gutter) 5.5rem;
-  }
-  
+  composes: pageShell from global;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  composes: pageSection from global;
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 4.5rem;
+}
+
+.heroPhoto {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 3 / 2;
+
+  overflow: hidden;
+  border-radius: 1.75rem;
+
+  box-shadow: var(--card-shadow);
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.heroTitle {
+  margin: 0;
+
+  font-family: var(--font-heading);
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+}
+
+.heroTitle span {
+  display: block;
+}
+
+.heroTitle span:first-child {
+  color: var(--cyan);
+}
+
+.heroTitle span:last-child {
+  margin-top: 0.25rem;
+
+  color: var(--cyan-pale);
+  font-size: 0.58em;
+  letter-spacing: -0.035em;
+}
+
+.heroText {
+  max-width: 31rem;
+
+  margin: 1.75rem 0 0;
+
+  color: var(--fg-muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.heroButtons {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 1rem;
+
+  margin-top: 2rem;
+}
+
+.joinButton,
+.aboutButton {
+  min-width: 8.5rem;
+  min-height: 3rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.7rem 1.5rem;
+
+  border-radius: 999px;
+
+  font-weight: 700;
+  text-decoration: none;
+
+  transition:
+    transform 160ms ease,
+    opacity 160ms ease;
+}
+
+.joinButton {
+  background: var(--lime);
+  color: var(--surface-deep);
+
+  box-shadow: var(--button-shadow);
+}
+
+.aboutButton {
+  border: 2px solid var(--teal-light);
+
+  color: var(--fg);
+}
+
+.joinButton:hover,
+.aboutButton:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   MISSION + ABOUT CARDS
+   ========================================================= */
+
+.infoGrid {
+  composes: pageSection from global;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas: "about mission";
+
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.aboutCard {
+  grid-area: about;
+}
+
+.missionCard {
+  grid-area: mission;
+}
+
+.infoCard {
+  display: flex;
+  flex-direction: column;
+
+  padding: 1.5rem;
+
+  border-radius: 1.75rem;
+
+  background: var(--surface);
+  color: var(--card-text);
+
+  box-shadow: var(--card-shadow);
+
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing);
+}
+
+.infoCard h2 {
+  align-self: flex-start;
+
+  margin: 0 0 1.25rem;
+  padding: 0.55rem 1.25rem;
+
+  border-radius: 999px;
+
+  background: var(--green-selected);
+  color: var(--surface-deep);
+
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.1;
+}
+
+.infoCard p {
+  margin: 0;
+
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.textLink {
+  align-self: flex-start;
+
+  margin-top: 1rem;
+
+  color: var(--cyan);
+
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.textLink:hover {
+  text-decoration: underline;
+}
+
+.cardPhoto {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 16 / 10;
+
+  margin-top: 1.5rem;
+
+  overflow: hidden;
+  border-radius: 1.25rem;
+}
+
+.cardImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* =========================================================
+   EVENTS
+   ========================================================= */
+
+.eventsSection {
+  composes: pageSection from global;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  margin-bottom: 1.75rem;
+}
+
+.sectionHeading h2 {
+  margin: 0;
+  padding: 0.6rem 1.5rem;
+
+  border-radius: 999px;
+
+  background: var(--green-selected);
+  color: var(--surface-deep);
+
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+}
+
+.sectionLink {
+  color: var(--fg);
+
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sectionLink:hover {
+  text-decoration: underline;
+}
+
+.eventsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 1.5rem;
+}
+
+.emptyState {
+  margin: 1rem 0 0;
+
+  color: var(--fg-muted);
+  text-align: center;
+}
+
+/* =========================================================
+   SPONSORS
+   ========================================================= */
+
+.sponsorsSection {
+  composes: pageSection from global;
+}
+
+.sponsorsTitle {
+  width: min(100%, 58rem);
+
+  margin: 0 auto 0.75rem;
+  padding: 0.7rem 1.5rem;
+
+  border-radius: 999px;
+
+  /* A fixed white wash rather than --footer-text, which flips to black in
+     light mode and turned this pill into a black bar. */
+  background: color-mix(in srgb, var(--button-on-teal) 78%, transparent);
+
+  box-shadow: var(--card-shadow);
+}
+
+.sponsorsTitle h2 {
+  margin: 0;
+
+  color: var(--teal);
+
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4.5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
+.sponsorsPanel {
+  width: min(100%, 58rem);
+
+  margin: 0 auto;
+  padding: 1.5rem 2.5rem 1.8rem;
+
+  border-radius: 1.25rem;
+
+  background: color-mix(in srgb, var(--teal) 78%, transparent);
+
+  box-shadow: var(--card-shadow);
+}
+
+.sponsorsText {
+  margin: 0 0 1.5rem;
+
+  color: var(--footer-text);
+
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.sponsorGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  align-items: center;
+
+  gap: 1.4rem 2rem;
+}
+
+.sponsorItem {
+  height: 5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.25rem;
+
+  text-decoration: none;
+
+  transition: transform 160ms ease;
+}
+
+.sponsorItem:hover {
+  transform: translateY(-2px);
+}
+
+.sponsorLogo {
+  width: 100%;
+  max-width: 11.5rem;
+  height: 4.5rem;
+
+  object-fit: contain;
+}
+
+/* =========================================================
+   LIGHT MODE
+   ========================================================= */
+
+/* The sponsor panels are translucent over the page gradient, so their text
+   needs a fixed light color rather than the theme's --footer-text, which
+   flips to black. */
+:global(html[data-theme="light"]) .sponsorsText {
+  color: var(--button-on-teal);
+}
+
+:global(html[data-theme="light"]) .textLink {
+  color: var(--teal);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
   .heroInner {
-    width: min(100%, var(--content-max));
-    margin: 0 auto;
-  
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    align-items: center;
-    gap: 4.5rem;
+    gap: 2.5rem;
   }
-  
+
+  .eventsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .sponsorsPanel {
+    padding: 1.4rem 1.5rem 1.7rem;
+  }
+
+  .sponsorGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sponsorLogo {
+    max-width: 10rem;
+    height: 4rem;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .heroInner {
+    grid-template-columns: 1fr;
+
+    gap: 2rem;
+  }
+
   .heroPhoto {
-    position: relative;
-  
-    width: 100%;
-    aspect-ratio: 3 / 2;
-  
-    overflow: hidden;
-    border-radius: 1.75rem;
-  
-    box-shadow: var(--card-shadow);
+    border-radius: 1.25rem;
   }
-  
-  .heroImage {
-    object-fit: cover;
-    object-position: center;
-  }
-  
+
   .heroContent {
-    display: flex;
+    align-items: center;
+
+    text-align: center;
+  }
+
+  .heroTitle {
+    font-size: clamp(3.2rem, 17vw, 5rem);
+  }
+
+  .heroText {
+    margin-top: 1.25rem;
+  }
+
+  .heroButtons {
+    justify-content: center;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "mission"
+      "about";
+  }
+
+  .infoCard {
+    padding: 1.1rem;
+
+    border-radius: 1.4rem;
+  }
+
+  .cardPhoto {
+    border-radius: 1rem;
+  }
+
+  .sectionHeading {
     flex-direction: column;
     align-items: flex-start;
   }
-  
-  .heroTitle {
-    margin: 0;
-  
-    font-family: var(--font-heading);
-    font-size: clamp(3.5rem, 7vw, 6.5rem);
-    line-height: 0.92;
-    letter-spacing: -0.05em;
-  }
-  
-  .heroTitle span {
-    display: block;
-  }
-  
-  .heroTitle span:first-child {
-    color: var(--cyan);
-  }
-  
-  .heroTitle span:last-child {
-    margin-top: 0.25rem;
-  
-    color: var(--cyan-pale);
-    font-size: 0.58em;
-    letter-spacing: -0.035em;
-  }
-  
-  .heroText {
-    max-width: 31rem;
-  
-    margin: 1.75rem 0 0;
-  
-    color: var(--fg-muted);
-    font-size: 1.05rem;
-    line-height: 1.65;
-  }
-  
-  .heroButtons {
-    display: flex;
-    flex-wrap: wrap;
-  
-    gap: 1rem;
-  
-    margin-top: 2rem;
-  }
-  
-  .joinButton,
-  .aboutButton {
-    min-width: 8.5rem;
-    min-height: 3rem;
-  
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  
-    padding: 0.7rem 1.5rem;
-  
-    border-radius: 999px;
-  
-    font-weight: 700;
-    text-decoration: none;
-  
-    transition:
-      transform 160ms ease,
-      opacity 160ms ease;
-  }
-  
-  .joinButton {
-    background: var(--lime);
-    color: var(--surface-deep);
-  
-    box-shadow: var(--button-shadow);
-  }
-  
-  .aboutButton {
-    border: 2px solid var(--teal-light);
-  
-    color: var(--fg);
-  }
-  
-  .joinButton:hover,
-  .aboutButton:hover {
-    transform: translateY(-2px);
-  }
-  
-  /* =========================================================
-     PATTERNED AREA
-     ========================================================= */
-  
-  .patternSection {
-    padding: 5rem var(--gutter) 6rem;
-  
-    background-image: url("/images/doodles-tile.png");
-    background-repeat: repeat;
-  }
-  
-  /* =========================================================
-     MISSION + ABOUT CARDS
-     ========================================================= */
-  
-  .infoGrid {
-    width: min(100%, var(--content-max));
-    margin: 0 auto;
-  
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas: "about mission";
-  
-    gap: 2rem;
-    align-items: stretch;
-  }
-  
-  .aboutCard {
-    grid-area: about;
-  }
-  
-  .missionCard {
-    grid-area: mission;
-  }
-  
-  .infoCard {
-    display: flex;
-    flex-direction: column;
-  
-    padding: 1.5rem;
-  
-    border-radius: 1.75rem;
-  
-    background: var(--card-text);
-    color: var(--surface-deep);
-  
-    box-shadow: var(--card-shadow);
-  }
-  
-  .infoCard h2 {
-    align-self: flex-start;
-  
-    margin: 0 0 1.25rem;
-    padding: 0.55rem 1.25rem;
-  
-    border-radius: 999px;
-  
-    background: var(--green-selected);
-    color: var(--surface-deep);
-  
-    font-family: var(--font-heading);
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    line-height: 1.1;
-  }
-  
-  .infoCard p {
-    margin: 0;
-  
-    font-size: 1rem;
-    line-height: 1.65;
-  }
-  
-  .textLink {
-    align-self: flex-start;
-  
-    margin-top: 1rem;
-  
-    color: var(--teal);
-  
-    font-weight: 700;
-    text-decoration: none;
-  }
-  
-  .textLink:hover {
-    text-decoration: underline;
-  }
-  
-  .cardPhoto {
-    position: relative;
-  
-    width: 100%;
-    aspect-ratio: 16 / 10;
-  
-    margin-top: 1.5rem;
-  
-    overflow: hidden;
-    border-radius: 1.25rem;
-  }
-  
-  .cardImage {
-    object-fit: cover;
-    object-position: center;
-  }
-  
-  /* =========================================================
-     EVENTS
-     ========================================================= */
-  
-  .eventsSection {
-    width: min(100%, var(--content-max));
-  
-    margin: 5rem auto 0;
-  }
-  
-  .sectionHeading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  
-    gap: 1rem;
-  
-    margin-bottom: 1.75rem;
-  }
-  
-  .sectionHeading h2 {
-    margin: 0;
-    padding: 0.6rem 1.5rem;
-  
-    border-radius: 999px;
-  
-    background: var(--green-selected);
-    color: var(--surface-deep);
-  
-    font-family: var(--font-heading);
-    font-size: clamp(1.6rem, 3vw, 2.25rem);
-  }
-  
-  .sectionLink {
-    color: var(--fg);
-  
-    font-weight: 700;
-    text-decoration: none;
-  }
-  
-  .sectionLink:hover {
-    text-decoration: underline;
-  }
-  
+
   .eventsGrid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
   }
-  
-  .emptyState {
-    margin: 1rem 0 0;
-  
-    color: var(--fg-muted);
-    text-align: center;
-  }
-  
-  /* =========================================================
-     SPONSORS
-     ========================================================= */
-  
-  .sponsorsSection {
-    margin-top: 4rem;
-  }
-  
-  .sponsorsInner {
-    width: min(100%, var(--content-max));
-    margin: 0 auto;
-  }
-  
+}
+
+@media (max-width: 500px) {
   .sponsorsTitle {
-    width: min(88%, 58rem);
-  
-    margin: 0 auto 0.75rem;
-    padding: 0.7rem 1.5rem;
-  
-    border-radius: 999px;
-  
-    background: color-mix(
-      in srgb,
-      var(--footer-text) 78%,
-      transparent
-    );
-  
-    box-shadow: var(--card-shadow);
+    padding: 0.65rem 1rem;
   }
-  
+
   .sponsorsTitle h2 {
-    margin: 0;
-  
-    color: var(--teal);
-  
-    font-family: var(--font-heading);
-    font-size: clamp(2.2rem, 4.5vw, 3.25rem);
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
+    font-size: 2.1rem;
   }
-  
+
   .sponsorsPanel {
-    width: min(88%, 58rem);
-  
-    margin: 0 auto;
-    padding: 1.5rem 2.5rem 1.8rem;
-  
-    border-radius: 1.25rem;
-  
-    background: color-mix(
-      in srgb,
-      var(--teal) 78%,
-      transparent
-    );
-  
-    box-shadow: var(--card-shadow);
+    padding: 1.25rem 1rem 1.5rem;
   }
-  
+
   .sponsorsText {
-    margin: 0 0 1.5rem;
-  
-    color: var(--footer-text);
-  
-    font-size: 1rem;
-    line-height: 1.4;
-    text-align: center;
+    margin-bottom: 1.25rem;
+
+    font-size: 0.9rem;
   }
-  
+
   .sponsorGrid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  
-    align-items: center;
-  
-    gap: 1.4rem 2rem;
+    gap: 1rem;
   }
-  
+
   .sponsorItem {
-    height: 5rem;
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    padding: 0.25rem;
-  
-    text-decoration: none;
-  
-    transition: transform 160ms ease;
+    height: 4rem;
   }
-  
-  .sponsorItem:hover {
-    transform: translateY(-2px);
-  }
-  
+
   .sponsorLogo {
-    width: 100%;
-    max-width: 11.5rem;
-    height: 4.5rem;
-  
-    object-fit: contain;
+    max-width: 8rem;
+    height: 3.5rem;
   }
-  
-  /* =========================================================
-     LIGHT MODE
-     ========================================================= */
-  
-  :global(html[data-theme="light"]) .infoCard {
-    background: var(--surface);
-    color: var(--card-text);
-  }
-  
-  :global(html[data-theme="light"]) .infoCard h2 {
-    color: var(--card-text);
-  }
-  
-  :global(html[data-theme="light"]) .textLink {
-    color: var(--teal);
-  }
-  
-  /* =========================================================
-     TABLET
-     ========================================================= */
-  
-  @media (max-width: 900px) {
-    .heroInner {
-      gap: 2.5rem;
-    }
-  
-    .eventsGrid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  
-  @media (max-width: 800px) {
-    .sponsorsTitle,
-    .sponsorsPanel {
-      width: 94%;
-    }
-  
-    .sponsorsPanel {
-      padding: 1.4rem 1.5rem 1.7rem;
-    }
-  
-    .sponsorGrid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  
-    .sponsorLogo {
-      max-width: 10rem;
-      height: 4rem;
-    }
-  }
-  
-  /* =========================================================
-     MOBILE
-     ========================================================= */
-  
-  @media (max-width: 700px) {
-    .hero {
-      padding-top: 2rem;
-      padding-bottom: 3.5rem;
-    }
-  
-    .heroInner {
-      grid-template-columns: 1fr;
-  
-      gap: 2rem;
-    }
-  
-    .heroPhoto {
-      border-radius: 1.25rem;
-    }
-  
-    .heroContent {
-      align-items: center;
-  
-      text-align: center;
-    }
-  
-    .heroTitle {
-      font-size: clamp(3.2rem, 17vw, 5rem);
-    }
-  
-    .heroText {
-      margin-top: 1.25rem;
-    }
-  
-    .heroButtons {
-      justify-content: center;
-    }
-  
-    .patternSection {
-      padding-top: 3rem;
-      padding-bottom: 4rem;
-    }
-  
-    .infoGrid {
-      grid-template-columns: 1fr;
-  
-      grid-template-areas:
-        "mission"
-        "about";
-    }
-  
-    .infoCard {
-      padding: 1.1rem;
-  
-      border-radius: 1.4rem;
-    }
-  
-    .cardPhoto {
-      border-radius: 1rem;
-    }
-  
-    .eventsSection {
-      margin-top: 3.5rem;
-    }
-  
-    .sectionHeading {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .eventsGrid {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  @media (max-width: 500px) {
-    .sponsorsSection {
-      margin-top: 3rem;
-    }
-  
-    .sponsorsTitle {
-      padding: 0.65rem 1rem;
-    }
-  
-    .sponsorsTitle h2 {
-      font-size: 2.1rem;
-    }
-  
-    .sponsorsPanel {
-      padding: 1.25rem 1rem 1.5rem;
-    }
-  
-    .sponsorsText {
-      margin-bottom: 1.25rem;
-  
-      font-size: 0.9rem;
-    }
-  
-    .sponsorGrid {
-      gap: 1rem;
-    }
-  
-    .sponsorItem {
-      height: 4rem;
-    }
-  
-    .sponsorLogo {
-      max-width: 8rem;
-      height: 3.5rem;
-    }
-  }
+}

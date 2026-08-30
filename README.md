@@ -130,8 +130,7 @@ vt-sase-website/
 │   ├── page.tsx            /            Home
 │   ├── about/page.tsx      /about       About
 │   ├── events/page.tsx     /events      Events
-│   ├── officers/page.tsx   /officers    Officers
-│   └── faqs/page.tsx       /faqs        FAQs
+│   └── officers/page.tsx   /officers    Officers
 ├── components/             shared UI (Navbar, Footer)
 ├── content/                the words and data ← you probably want this
 ├── public/images/          compressed photos

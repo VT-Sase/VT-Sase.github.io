@@ -1,0 +1,202 @@
+.section {
+  composes: pageSection from global;
+}
+
+.heading {
+  margin: 0 0 1.75rem;
+
+  color: var(--lime);
+
+  font-size: clamp(1.6rem, 4vw, 2.25rem);
+  font-weight: 800;
+  text-align: center;
+
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.list {
+  width: min(100%, 56rem);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.9rem;
+
+  margin: 0 auto;
+}
+
+.item {
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+
+  background: var(--surface);
+
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing);
+}
+
+.question {
+  min-height: 4.2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1.25rem;
+
+  padding: 0.95rem 0.95rem 0.95rem 1.4rem;
+
+  color: var(--cyan-pale);
+
+  font-size: 1.05rem;
+  line-height: 1.35;
+
+  cursor: pointer;
+  list-style: none;
+
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.question::-webkit-details-marker {
+  display: none;
+}
+
+.question::marker {
+  content: "";
+}
+
+.question:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -2px;
+}
+
+/* =========================================================
+   OPEN / CLOSE ICON
+   ========================================================= */
+
+.icon {
+  flex: 0 0 auto;
+
+  width: 2.1rem;
+  height: 2.1rem;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: var(--cyan-pale);
+
+  transition: background-color var(--theme-duration) var(--theme-easing);
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+
+  border-left: 0.32rem solid transparent;
+  border-right: 0.32rem solid transparent;
+  border-top: 0.42rem solid var(--surface-deep);
+
+  transition: transform 180ms ease;
+}
+
+.item[open] .arrow {
+  transform: rotate(180deg);
+}
+
+/* =========================================================
+   ANSWERS
+   ========================================================= */
+
+.answer {
+  padding: 0 4.25rem 1.25rem 1.4rem;
+
+  color: var(--fg);
+
+  font-size: 1rem;
+  line-height: 1.65;
+
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.answer p {
+  margin: 0;
+}
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
+.contact {
+  margin: 2rem 0 0;
+
+  color: var(--fg-muted);
+
+  font-size: 1rem;
+  text-align: center;
+
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.contactLink {
+  color: var(--cyan);
+
+  font-weight: 700;
+
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.contactLink:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+:global(html[data-theme="light"]) .question {
+  color: var(--card-text);
+}
+
+:global(html[data-theme="light"]) .icon {
+  background: var(--teal);
+}
+
+/* The circle turns teal in light mode, so the arrow needs to stay white
+   against it rather than following --surface-deep, which is white there. */
+:global(html[data-theme="light"]) .arrow {
+  border-top-color: var(--button-on-teal);
+}
+
+:global(html[data-theme="light"]) .contactLink {
+  color: var(--teal);
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .question {
+    min-height: 3.5rem;
+
+    padding: 0.75rem 0.75rem 0.75rem 0.95rem;
+
+    font-size: 0.95rem;
+  }
+
+  .icon {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
+
+  .answer {
+    padding: 0 1rem 1rem 0.95rem;
+
+    font-size: 0.92rem;
+  }
+}

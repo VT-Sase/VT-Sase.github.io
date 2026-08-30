@@ -7,22 +7,43 @@
 export type NavLink = {
   href: string;
   label: string;
+  /**
+   * Set when the link points at a section of the home page rather than at a
+   * route of its own. The navbar uses it to highlight the link while that
+   * section is the one on screen.
+   */
+  sectionId?: string;
 };
 
 const HOME_LINK: NavLink = { href: "/", label: "Home" };
 const ABOUT_LINK: NavLink = { href: "/about", label: "About" };
-const FAQS_LINK: NavLink = { href: "/faqs", label: "FAQs" };
-const SPONSORS_LINK: NavLink = { href: "/sponsors", label: "Sponsors" };
 const EVENTS_LINK: NavLink = { href: "/events", label: "Events" };
 const OFFICERS_LINK: NavLink = { href: "/officers", label: "Officers" };
 
+/* FAQs and Sponsors are sections of the home page, not routes. The navbar
+   scrolls to them rather than navigating away, which is why they carry a
+   sectionId. Their old /faqs and /sponsors URLs redirect here — see
+   next.config.ts. */
+const FAQS_LINK: NavLink = {
+  href: "/#faqs",
+  label: "FAQs",
+  sectionId: "faqs",
+};
+const SPONSORS_LINK: NavLink = {
+  href: "/#sponsors",
+  label: "Sponsors",
+  sectionId: "sponsors",
+};
+
+/** In the order the reader meets them: the four routes, then the two home
+    page sections, FAQs before Sponsors as they appear on the page. */
 export const NAV_LINKS: NavLink[] = [
   HOME_LINK,
   ABOUT_LINK,
-  FAQS_LINK,
-  SPONSORS_LINK,
   EVENTS_LINK,
   OFFICERS_LINK,
+  FAQS_LINK,
+  SPONSORS_LINK,
 ];
 
 export const SOCIALS = {
