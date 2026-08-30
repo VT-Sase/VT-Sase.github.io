@@ -26,35 +26,157 @@ export type Officer = {
   name: string;
   role: string;
   committee: Committee;
-  major: string;
-  year: string;
-  /** Path under public/, e.g. "/images/jane-doe.jpg" */
-  photo: string;
-  email?: string;
-  linkedin?: string;
 };
 
-/** TODO: replace this example with the real board. */
 export const officers: Officer[] = [
+  // LEADS
   {
-    name: "Example Officer",
+    name: "Ritisha Ghimire Kshetri",
     role: "President",
     committee: "Leads",
-    major: "Computer Science",
-    year: "Senior",
-    photo: "/images/placeholder.jpg",
-    email: "example@vt.edu",
-    linkedin: "https://www.linkedin.com/in/example",
+  },
+  {
+    name: "Aarya Ghimire",
+    role: "Internal VP",
+    committee: "Leads",
+  },
+  {
+    name: "Rhea Rajmanna",
+    role: "Media VP",
+    committee: "Leads",
+  },
+  {
+    name: "Han Nguyen",
+    role: "External VP",
+    committee: "Leads",
+  },
+
+  // EXTERNAL
+  {
+    name: "Andrew Kee",
+    role: "External Task Force",
+    committee: "External",
+  },
+  {
+    name: "Zachary Zhu",
+    role: "External Task Force",
+    committee: "External",
+  },
+  {
+    name: "Andrew Marquez",
+    role: "Service Chair",
+    committee: "External",
+  },
+  {
+    name: "Evelyn Kim",
+    role: "Service Chair",
+    committee: "External",
+  },
+
+  // INTERNAL
+  {
+    name: "Tuan Phan",
+    role: "Internal Task Force",
+    committee: "Internal",
+  },
+  {
+    name: "Vismaya Vinod",
+    role: "Internal Task Force",
+    committee: "Internal",
+  },
+
+  // MEDIA
+  {
+    name: "Elizabeth Ho",
+    role: "Webmaster",
+    committee: "Media",
+  },
+  {
+    name: "David Luu",
+    role: "Historian",
+    committee: "Media",
+  },
+  {
+    name: "Ellen Lee",
+    role: "Historian",
+    committee: "Media",
+  },
+  {
+    name: "Shruthika Saravanakumar",
+    role: "PR Chair",
+    committee: "Media",
+  },
+  {
+    name: "Luz Pinto",
+    role: "PR Chair",
+    committee: "Media",
+  },
+  {
+    name: "Arwen Downum",
+    role: "PR Chair",
+    committee: "Media",
+  },
+
+  // LOGISTICS
+  {
+    name: "Alvin Zheng",
+    role: "Treasurer",
+    committee: "Logistics",
+  },
+  {
+    name: "Jilliane Dela Vega",
+    role: "Secretary",
+    committee: "Logistics",
+  },
+  {
+    name: "Indulekha Sanil",
+    role: "Senior Advisor",
+    committee: "Logistics",
+  },
+  {
+    name: "Snehitha Ravella",
+    role: "Senior Advisor",
+    committee: "Logistics",
+  },
+  {
+    name: "Deya Singh",
+    role: "Graduate Advisor",
+    committee: "Logistics",
+  },
+
+  // WEB DEVELOPMENT
+  {
+    name: "Joseph Trinh",
+    role: "Web Dev",
+    committee: "Web Dev",
+  },
+  {
+    name: "Vanesha Hari",
+    role: "Web Dev",
+    committee: "Web Dev",
+  },
+  {
+    name: "Ritvik Navil",
+    role: "Web Dev",
+    committee: "Web Dev",
+  },
+  {
+    name: "Bhavya Chebattina",
+    role: "Web Designer",
+    committee: "Web Dev",
+  },
+  {
+    name: "Jocelyn Chu",
+    role: "Web Designer",
+    committee: "Web Dev",
   },
 ];
 
-/** Officers grouped by committee, in COMMITTEES order, skipping empty ones. */
-export function officersByCommittee(): {
-  committee: Committee;
-  members: Officer[];
-}[] {
+export function officersByCommittee() {
   return COMMITTEES.map((committee) => ({
     committee,
-    members: officers.filter((o) => o.committee === committee),
-  })).filter((group) => group.members.length > 0);
+    members: officers.filter(
+      (officer) => officer.committee === committee
+    ),
+  }));
 }

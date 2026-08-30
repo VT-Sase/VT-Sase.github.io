@@ -1,0 +1,204 @@
+.page {
+  width: 100%;
+  min-height: 100vh;
+  background: #9fded8;
+  color: white;
+}
+
+.hero {
+  min-height: 230px;
+  display: flex;
+  align-items: flex-end;
+  background: #063a57;
+}
+
+.heroContent {
+  width: min(1100px, 90%);
+  margin: 0 auto;
+  padding-bottom: 35px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(42px, 6vw, 70px);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.hero p {
+  margin: 10px 0 0;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.board {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      rgba(117, 204, 198, 0.78),
+      rgba(204, 248, 183, 0.78)
+    ),
+    url("/images/doodles-tile.png");
+
+  background-repeat: repeat;
+  background-size: 550px;
+}
+
+.boardContent {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 55px 0 100px;
+}
+
+.committee {
+  margin-bottom: 65px;
+}
+
+.committee h2 {
+  margin: 0 0 28px;
+  text-align: center;
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 750;
+  color: white;
+}
+
+/* regular officer card grid */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* Leads needs President above the 3 VPs */
+.leadsGrid {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* make first Leads card its own row */
+.leadsGrid .card:first-child {
+  margin-left: calc(50% - 85px);
+  margin-right: calc(50% - 85px);
+}
+
+.card {
+  width: 170px;
+  overflow: hidden;
+
+  border-radius: 11px;
+  border: 4px solid #092f45;
+
+  background: #092f45;
+
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.22);
+}
+
+.photoPlaceholder {
+  width: 100%;
+  height: 150px;
+
+  background: #d8d8d8;
+}
+
+.cardInfo {
+  min-height: 55px;
+  padding: 0 8px 8px;
+  text-align: center;
+}
+
+.role {
+  position: relative;
+  top: -8px;
+
+  display: inline-block;
+
+  padding: 2px 9px;
+
+  border-radius: 999px;
+
+  background: #1fa9c8;
+  color: white;
+
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.name {
+  margin: -3px 0 0;
+
+  color: white;
+
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+/* WEB DEV — NO PHOTOS */
+.webGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.webCard {
+  width: 165px;
+  min-height: 85px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px;
+
+  border-radius: 11px;
+
+  background: #073c58;
+
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+
+  color: white;
+
+  text-align: center;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: 180px;
+  }
+
+  .boardContent {
+    width: 94%;
+    padding-top: 40px;
+  }
+
+  .committee {
+    margin-bottom: 50px;
+  }
+
+  .grid {
+    gap: 12px;
+  }
+
+  .card {
+    width: 145px;
+  }
+
+  .photoPlaceholder {
+    height: 130px;
+  }
+
+  .leadsGrid .card:first-child {
+    margin-left: calc(50% - 72.5px);
+    margin-right: calc(50% - 72.5px);
+  }
+
+  .webCard {
+    width: 145px;
+  }
+}
