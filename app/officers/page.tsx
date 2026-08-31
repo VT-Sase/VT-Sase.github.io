@@ -8,6 +8,7 @@
  *
  * Headshots go in public/images (compress them first — see the README).
  */
+import Reveal from "@/components/Reveal";
 import styles from "./officers.module.css";
 import { officersByCommittee, type Officer } from "../../content/officers";
 
@@ -30,17 +31,17 @@ export default function OfficersPage() {
 
   return (
     <div className={styles.page}>
-      <section className={styles.intro}>
+      <Reveal className={styles.intro}>
         <h1>Officers</h1>
         <p>Meet the students leading SASE at Virginia Tech this year.</p>
-      </section>
+      </Reveal>
 
       <div className={styles.board}>
         {groups.map(({ committee, members }) => {
           const isWebDev = committee === "Web Dev";
 
           return (
-            <section key={committee} className={styles.committee}>
+            <Reveal key={committee} className={styles.committee}>
               <h2>{isWebDev ? "Web Development Team" : committee}</h2>
 
               {isWebDev ? (
@@ -62,7 +63,7 @@ export default function OfficersPage() {
                   ))}
                 </div>
               )}
-            </section>
+            </Reveal>
           );
         })}
       </div>

@@ -1,41 +1,69 @@
+"use client";
+
+import { useState } from "react";
 import { faqs } from "@/content/faqs";
 import { SOCIALS } from "@/content/site";
+import { toggleFaqIndex } from "./faq-state";
+import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
 import styles from "./FaqSection.module.css";
 
-/**
- * The FAQ accordion, rendered as a section of the home page.
- *
- * Native <details>/<summary> rather than React state — that gives us keyboard
- * and screen reader support for free, with no JavaScript. Questions live in
- * content/faqs.ts.
- *
- * The socials are deliberately not repeated here: the footer sits directly
- * below this section and already lists every channel, so this block only needs
- * the one call to action.
- */
 export default function FaqSection() {
+  const [openFaqs, setOpenFaqs] = useState<Set<number>>(() => new Set());
+
   return (
-    <section id="faqs" className={styles.section} aria-labelledby="faq-heading">
-      <h2 id="faq-heading" className={styles.heading}>
-        Frequently Asked Questions
-      </h2>
+    <Reveal id="faqs" className={styles.section} aria-labelledby="faq-heading">
+      <SectionHeading
+        title="Frequently Asked Questions"
+        id="faq-heading"
+      />
 
       <div className={styles.list}>
-        {faqs.map((faq) => (
-          <details key={faq.question} className={styles.item}>
-            <summary className={styles.question}>
-              <span>{faq.question}</span>
+        {faqs.map((faq, index) => {
+          const isOpen = openFaqs.has(index);
+          const questionId = `faq-question-${index}`;
+          const answerId = `faq-answer-${index}`;
 
-              <span className={styles.icon} aria-hidden="true">
-                <span className={styles.arrow} />
-              </span>
-            </summary>
+          return (
+            <div
+              key={faq.question}
+              className={`${styles.item} ${isOpen ? styles.itemOpen : ""}`}
+            >
+              <h3 className={styles.questionHeading}>
+                <button
+                  id={questionId}
+                  type="button"
+                  className={styles.question}
+                  aria-expanded={isOpen}
+                  aria-controls={answerId}
+                  onClick={() =>
+                    setOpenFaqs((current) => toggleFaqIndex(current, index))
+                  }
+                >
+                  <span>{faq.question}</span>
 
-            <div className={styles.answer}>
-              <p>{faq.answer}</p>
+                  <span className={styles.icon} aria-hidden="true">
+                    <span className={styles.arrow} />
+                  </span>
+                </button>
+              </h3>
+
+              <div
+                id={answerId}
+                role="region"
+                aria-labelledby={questionId}
+                aria-hidden={!isOpen}
+                className={`${styles.answerPanel} ${
+                  isOpen ? styles.answerPanelOpen : ""
+                }`}
+              >
+                <div className={styles.answer}>
+                  <p>{faq.answer}</p>
+                </div>
+              </div>
             </div>
-          </details>
-        ))}
+          );
+        })}
       </div>
 
       <p className={styles.contact}>
@@ -49,6 +77,6 @@ export default function FaqSection() {
           DM us on Instagram
         </a>
       </p>
-    </section>
+    </Reveal>
   );
 }
