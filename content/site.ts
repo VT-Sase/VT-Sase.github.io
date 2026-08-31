@@ -40,10 +40,10 @@ const SPONSORS_LINK: NavLink = {
 export const NAV_LINKS: NavLink[] = [
   HOME_LINK,
   ABOUT_LINK,
-  EVENTS_LINK,
-  OFFICERS_LINK,
   FAQS_LINK,
   SPONSORS_LINK,
+  EVENTS_LINK,
+  OFFICERS_LINK,
 ];
 
 export const SOCIALS = {

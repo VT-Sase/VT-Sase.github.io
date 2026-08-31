@@ -16,20 +16,10 @@ function toggleTheme() {
   try {
     localStorage.setItem("vt-sase-theme", nextTheme);
   } catch {
-    // The theme still works when browser storage is unavailable.
+    // Ignore localStorage errors
   }
 }
 
-/**
- * Site-wide navigation. Appears on every page via app/layout.tsx.
- *
- * Two layouts, one component: a translucent rounded pill on desktop and a
- * translucent bar with a hamburger-driven dropdown on mobile.
- *
- * Links live in content/site.ts so the footer can share them. Some of them
- * point at routes and some at sections of the home page; both kinds highlight
- * the same way, the section ones driven by the scroll spy below.
- */
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,11 +28,6 @@ export default function Navbar() {
 
   const onHome = pathname === "/";
 
-  /**
-   * A link is current when its route is open, or — for the home page sections
-   * — when that section is the one the reader is looking at. "Home" holds the
-   * highlight until the first of those sections comes into view.
-   */
   function isCurrent(link: NavLink) {
     if (link.sectionId) return onHome && activeSection === link.sectionId;
     if (link.href === "/") return onHome && activeSection === null;
@@ -77,13 +62,9 @@ export default function Navbar() {
           else onScreen.delete(entry.target.id);
         }
 
-        // sections is in document order, so the topmost visible one wins.
         const current = sections.find((section) => onScreen.has(section.id));
         setActiveSection(current?.id ?? null);
       },
-      // Only the band across the middle of the viewport counts, so a link
-      // lights up as the reader arrives at its section rather than as the
-      // section first peeks in at the bottom.
       { rootMargin: "-45% 0px -45% 0px" }
     );
 
@@ -91,8 +72,6 @@ export default function Navbar() {
 
     return () => {
       observer.disconnect();
-      // Leaving the home page retires the sections with it, so the highlight
-      // goes back to the route links.
       setActiveSection(null);
     };
   }, [onHome]);
