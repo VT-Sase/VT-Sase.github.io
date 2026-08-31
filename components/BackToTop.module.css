@@ -1,0 +1,94 @@
+.button {
+  position: fixed;
+  right: max(1.25rem, env(safe-area-inset-right));
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  z-index: 45;
+
+  width: 3rem;
+  height: 3rem;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  border: 1px solid color-mix(in srgb, var(--green-selected) 55%, transparent);
+  border-radius: 50%;
+
+  background: color-mix(in srgb, var(--green) 88%, var(--surface));
+  color: var(--surface-deep);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  transform: translateY(0.75rem) scale(0.92);
+
+  transition:
+    opacity 180ms ease,
+    transform 220ms var(--theme-easing),
+    visibility 0s linear 220ms,
+    background-color var(--theme-duration) var(--theme-easing);
+}
+
+.buttonVisible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateY(0) scale(1);
+  transition-delay: 0s;
+}
+
+.buttonVisible:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.buttonVisible:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.icon {
+  width: 1.35rem;
+  height: 1.35rem;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+:global(html[data-theme="light"]) .button {
+  border-color: color-mix(in srgb, var(--teal) 70%, transparent);
+  background: var(--teal);
+  color: var(--button-on-teal);
+}
+
+@media (max-width: 700px) {
+  .button {
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .buttonVisible:hover,
+  .buttonVisible:active {
+    transform: none;
+  }
+}

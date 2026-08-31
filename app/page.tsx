@@ -1,37 +1,20 @@
 import Image from "next/image";
-import Link from "next/link";
-
-import EventCard from "@/components/EventCard";
 import FaqSection from "@/components/FaqSection";
-import { events } from "@/content/events";
-import { JOIN_URL } from "@/content/site";
+import HeroSlides from "@/components/HeroSlides";
+import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
+import { sisterChapters } from "@/content/chapters";
 import { sponsors } from "@/content/sponsors";
 
 import styles from "./page.module.css";
 
 export default function Home() {
-  const now = new Date();
-
-  const upcomingEvents = events
-    .filter((event) => new Date(event.date) >= now)
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    .slice(0, 3);
-
   return (
     <div className={styles.page}>
       {/* HERO */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <div className={styles.heroPhoto}>
-            <Image
-              src="/images/outdoors.JPG"
-              alt="SASE at Virginia Tech members spending time together outdoors"
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className={styles.heroImage}
-            />
-          </div>
+          <HeroSlides />
 
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
@@ -39,31 +22,12 @@ export default function Home() {
               <span>at Virginia Tech</span>
             </h1>
 
-            <p className={styles.heroText}>
-              Welcome to the Society of Asian Scientists and Engineers at
-              Virginia Tech.
-            </p>
-
-            <div className={styles.heroButtons}>
-              <a
-                href={JOIN_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.joinButton}
-              >
-                Join Us
-              </a>
-
-              <Link href="/about" className={styles.aboutButton}>
-                About
-              </Link>
-            </div>
           </div>
         </div>
       </section>
 
       {/* INFO CARDS */}
-      <div className={styles.infoGrid}>
+      <div id="about" className={styles.infoGrid}>
         <section className={`${styles.infoCard} ${styles.missionCard}`}>
           <h2>Our Mission</h2>
 
@@ -95,10 +59,6 @@ export default function Home() {
             development, and a close-knit community at Virginia Tech.
           </p>
 
-          <Link href="/about" className={styles.textLink}>
-            Learn more about us →
-          </Link>
-
           <div className={styles.cardPhoto}>
             <Image
               src="/images/intro.JPG"
@@ -111,65 +71,117 @@ export default function Home() {
         </section>
       </div>
 
-      {/* EVENTS */}
-      <section className={styles.eventsSection}>
-        <div className={styles.sectionHeading}>
-          <h2>Upcoming Events</h2>
+      {/* ABOUT — the regional network and the chapters in it */}
+      <Reveal className={styles.aboutSection}>
+        <SectionHeading title="SASE Southeast" />
 
-          <Link href="/events" className={styles.sectionLink}>
-            View all events →
-          </Link>
-        </div>
-
-        {upcomingEvents.length > 0 ? (
-          <div className={styles.eventsGrid}>
-            {upcomingEvents.map((event) => (
-              <EventCard key={`${event.name}-${event.date}`} event={event} />
-            ))}
+        <div className={styles.southeastGrid}>
+          <div className={styles.southeastCopy}>
+            <p>
+              Virginia Tech SASE is proud to be part of the{" "}
+              <strong>SASE Southeast Region</strong>, a network of collegiate
+              chapters across the southeastern United States. Through regional
+              conferences, leadership summits, and collaborative events, members
+              have opportunities to connect with students from other
+              universities, develop professionally, and build lasting
+              friendships beyond campus.
+            </p>
           </div>
-        ) : (
-          <p className={styles.emptyState}>
-            No upcoming events have been posted yet.
-          </p>
-        )}
-      </section>
 
-      {/* FAQS */}
-      <FaqSection />
-
-      {/* SPONSORS */}
-      <section id="sponsors" className={styles.sponsorsSection}>
-        <div className={styles.sponsorsTitle}>
-          <h2>Our Sponsors</h2>
+          <div className={styles.mapImage}>
+            <Image
+              src="/images/about/southeast-map.png"
+              alt="Map of the SASE Southeast Region"
+              fill
+              sizes="(max-width: 700px) 80vw, 30vw"
+              className={styles.mapImagePhoto}
+            />
+          </div>
         </div>
 
-        <div className={styles.sponsorsPanel}>
-          <p className={styles.sponsorsText}>
-            We are grateful for and appreciate our sponsors!
-          </p>
+        <div className={styles.chaptersSection}>
+          <h3>Meet Our Sister Chapters</h3>
 
-          <div className={styles.sponsorGrid}>
-            {sponsors.map((sponsor) => (
+          <div className={styles.chapterGrid}>
+            {sisterChapters.map((chapter) => (
               <a
-                key={sponsor.name}
-                href={sponsor.url}
+                key={chapter.name}
+                href={chapter.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.sponsorItem}
-                aria-label={`Visit ${sponsor.name}`}
+                className={styles.chapterCard}
+                aria-label={`Visit ${chapter.name} SASE`}
               >
-                <Image
-                  src={sponsor.logo}
-                  alt={`${sponsor.name} logo`}
-                  width={260}
-                  height={120}
-                  className={styles.sponsorLogo}
-                />
+                <div className={styles.chapterLogo}>
+                  <Image
+                    src={chapter.logo}
+                    alt={`${chapter.name} logo`}
+                    width={160}
+                    height={100}
+                    className={styles.chapterLogoImage}
+                  />
+                </div>
+
+                <span className={styles.visitButton}>visit site</span>
               </a>
             ))}
           </div>
+
+          <a
+            href="https://www.saseconnect.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.allChaptersButton}
+          >
+            View all chapters
+          </a>
         </div>
-      </section>
+      </Reveal>
+
+      {/* SPONSORS */}
+      <Reveal id="sponsors" className={styles.sponsorsSection}>
+        <SectionHeading title="Our Sponsors" />
+
+        {/* The logo list is rendered twice so the track can loop seamlessly:
+            the animation slides it exactly half its width, at which point the
+            second copy sits where the first began. Only the first copy is read
+            aloud. */}
+        <div className={styles.marquee}>
+          <div className={styles.track}>
+            {[false, true].map((isDuplicate) => (
+              <ul
+                key={isDuplicate ? "duplicate" : "sponsors"}
+                className={styles.trackGroup}
+                aria-hidden={isDuplicate || undefined}
+              >
+                {sponsors.map((sponsor) => (
+                  <li key={sponsor.name}>
+                    <a
+                      href={sponsor.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.sponsorItem}
+                      aria-label={`Visit ${sponsor.name}`}
+                      tabIndex={isDuplicate ? -1 : undefined}
+                    >
+                      <Image
+                        src={sponsor.logo}
+                        alt={isDuplicate ? "" : `${sponsor.name} logo`}
+                        width={260}
+                        height={120}
+                        className={styles.sponsorLogo}
+                      />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
+      {/* FAQS */}
+      <FaqSection />
     </div>
   );
 }

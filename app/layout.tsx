@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Instrument_Sans, Onest } from "next/font/google";
+import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import PageTransition from "@/components/PageTransition";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -28,6 +30,11 @@ export const metadata: Metadata = {
   title: "VT SASE",
   description:
     "Society of Asian Scientists and Engineers — Virginia Tech chapter.",
+  icons: {
+    icon: "/images/favicon.png",
+    shortcut: "/images/favicon.png",
+    apple: "/images/favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -47,7 +54,10 @@ export default function RootLayout({
       </head>
       <body>
         <Navbar />
-        <main>{children}</main>
+        <main>
+          <PageTransition>{children}</PageTransition>
+        </main>
+        <BackToTop />
         <Footer />
       </body>
     </html>

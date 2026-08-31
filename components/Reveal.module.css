@@ -1,0 +1,27 @@
+/* Hidden until the observer in Reveal.tsx reveals it — and only when
+   JavaScript is actually running, since nothing would ever reveal it
+   otherwise. html[data-js] is set by the initializer in app/layout.tsx before
+   the first paint, so there is no flash of visible content.
+
+   The transition lives on the element rather than in a keyframe so a section
+   already on screen at load can be switched on without visible movement. */
+:global(html[data-js="on"]) .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 620ms var(--theme-easing),
+    transform 620ms var(--theme-easing);
+}
+
+:global(html[data-js="on"]) .revealIn {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html[data-js="on"]) .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

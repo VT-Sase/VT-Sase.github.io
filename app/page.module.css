@@ -1,10 +1,18 @@
-/* Background lives on the body (see app/globals.css). Every top-level section
-   here composes the shared .pageSection column, so the content edges line up
-   with the other routes and the spacing between sections comes from one
-   global rule instead of per-section margins. */
+@keyframes pageFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 .page {
   composes: pageShell from global;
+  animation: pageFadeUp 620ms var(--theme-easing) both;
 }
 
 /* =========================================================
@@ -22,23 +30,6 @@
   gap: 4.5rem;
 }
 
-.heroPhoto {
-  position: relative;
-
-  width: 100%;
-  aspect-ratio: 3 / 2;
-
-  overflow: hidden;
-  border-radius: 1.75rem;
-
-  box-shadow: var(--card-shadow);
-}
-
-.heroImage {
-  object-fit: cover;
-  object-position: center;
-}
-
 .heroContent {
   display: flex;
   flex-direction: column;
@@ -50,82 +41,46 @@
 
   font-family: var(--font-heading);
   font-size: clamp(3.5rem, 7vw, 6.5rem);
-  line-height: 0.92;
+  font-weight: 800;
+  line-height: 0.98;
   letter-spacing: -0.05em;
 }
 
 .heroTitle span {
   display: block;
+  text-shadow: var(--button-shadow);
 }
 
 .heroTitle span:first-child {
-  color: var(--cyan);
+  color: var(--green);
+  text-shadow:
+    0 0 1.5rem color-mix(in srgb, var(--green) 28%, transparent),
+    var(--button-shadow);
 }
 
 .heroTitle span:last-child {
-  margin-top: 0.25rem;
+  margin-top: 0.4rem;
+  color: var(--green-selected);
+  font-size: 0.66em;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
 
-  color: var(--cyan-pale);
-  font-size: 0.58em;
-  letter-spacing: -0.035em;
+:global(html[data-theme="light"]) .heroTitle span:first-child {
+  color: var(--teal);
+  text-shadow: var(--button-shadow);
+}
+
+:global(html[data-theme="light"]) .heroTitle span:last-child {
+  color: var(--lime);
 }
 
 .heroText {
   max-width: 31rem;
-
   margin: 1.75rem 0 0;
-
   color: var(--fg-muted);
   font-size: 1.05rem;
   line-height: 1.65;
-}
-
-.heroButtons {
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 1rem;
-
-  margin-top: 2rem;
-}
-
-.joinButton,
-.aboutButton {
-  min-width: 8.5rem;
-  min-height: 3rem;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0.7rem 1.5rem;
-
-  border-radius: 999px;
-
-  font-weight: 700;
-  text-decoration: none;
-
-  transition:
-    transform 160ms ease,
-    opacity 160ms ease;
-}
-
-.joinButton {
-  background: var(--lime);
-  color: var(--surface-deep);
-
-  box-shadow: var(--button-shadow);
-}
-
-.aboutButton {
-  border: 2px solid var(--teal-light);
-
-  color: var(--fg);
-}
-
-.joinButton:hover,
-.aboutButton:hover {
-  transform: translateY(-2px);
 }
 
 /* =========================================================
@@ -134,11 +89,9 @@
 
 .infoGrid {
   composes: pageSection from global;
-
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-areas: "about mission";
-
   gap: 2rem;
   align-items: stretch;
 }
@@ -154,16 +107,11 @@
 .infoCard {
   display: flex;
   flex-direction: column;
-
   padding: 1.5rem;
-
   border-radius: 1.75rem;
-
   background: var(--surface);
   color: var(--card-text);
-
   box-shadow: var(--card-shadow);
-
   transition:
     background-color var(--theme-duration) var(--theme-easing),
     color var(--theme-duration) var(--theme-easing);
@@ -171,18 +119,28 @@
 
 .infoCard h2 {
   align-self: flex-start;
-
   margin: 0 0 1.25rem;
-  padding: 0.55rem 1.25rem;
-
-  border-radius: 999px;
-
-  background: var(--green-selected);
-  color: var(--surface-deep);
-
+  padding-bottom: 0.65rem;
+  color: var(--card-text);
   font-family: var(--font-heading);
-  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
   line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.infoCard h2::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  margin-top: 0.65rem;
+  border-radius: 999px;
+  background: var(--green);
+}
+
+:global(html[data-theme="light"]) .infoCard h2::after {
+  background: var(--teal);
 }
 
 .infoCard p {
@@ -192,29 +150,11 @@
   line-height: 1.65;
 }
 
-.textLink {
-  align-self: flex-start;
-
-  margin-top: 1rem;
-
-  color: var(--cyan);
-
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.textLink:hover {
-  text-decoration: underline;
-}
-
 .cardPhoto {
   position: relative;
-
   width: 100%;
   aspect-ratio: 16 / 10;
-
   margin-top: 1.5rem;
-
   overflow: hidden;
   border-radius: 1.25rem;
 }
@@ -225,59 +165,143 @@
 }
 
 /* =========================================================
-   EVENTS
+   ABOUT — SASE Southeast and the sister chapters
    ========================================================= */
 
-.eventsSection {
+.aboutSection {
   composes: pageSection from global;
 }
 
-.sectionHeading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 1rem;
-
-  margin-bottom: 1.75rem;
-}
-
-.sectionHeading h2 {
-  margin: 0;
-  padding: 0.6rem 1.5rem;
-
-  border-radius: 999px;
-
-  background: var(--green-selected);
-  color: var(--surface-deep);
-
-  font-family: var(--font-heading);
-  font-size: clamp(1.6rem, 3vw, 2.25rem);
-}
-
-.sectionLink {
-  color: var(--fg);
-
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.sectionLink:hover {
-  text-decoration: underline;
-}
-
-.eventsGrid {
+.southeastGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  align-items: start;
+  gap: 4rem;
+}
 
+.southeastCopy p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--fg);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.southeastCopy strong {
+  font-weight: 700;
+}
+
+.mapImage {
+  position: relative;
+  width: 100%;
+  max-width: 14.5rem;
+  aspect-ratio: 1.05 / 1;
+  justify-self: end;
+}
+
+.mapImagePhoto {
+  object-fit: contain;
+}
+
+.chaptersSection {
+  margin-top: 0.75rem;
+}
+
+.chaptersSection h3 {
+  margin: 0 0 2rem;
+  color: var(--fg);
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+}
+
+.chapterGrid {
+  width: min(100%, 58rem);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
-.emptyState {
-  margin: 1rem 0 0;
+.chapterCard:nth-child(1),
+.chapterCard:nth-child(2),
+.chapterCard:nth-child(3) {
+  grid-column: span 4;
+}
 
-  color: var(--fg-muted);
+.chapterCard:nth-child(4),
+.chapterCard:nth-child(5),
+.chapterCard:nth-child(6),
+.chapterCard:nth-child(7) {
+  grid-column: span 3;
+}
+
+.chapterCard {
+  min-height: 10.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  background: var(--button-on-teal);
+  box-shadow: var(--card-shadow);
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.chapterCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 1rem 2rem -0.5rem rgb(0 0 0 / 38%);
+}
+
+.chapterLogo {
+  width: 100%;
+  min-height: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chapterLogoImage {
+  width: 100%;
+  max-width: 8.5rem;
+  height: 5.8rem;
+  object-fit: contain;
+}
+
+.visitButton {
+  width: 100%;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--chapter-button-green);
+  border-radius: 999px;
+  color: var(--chapter-button-green);
+  font-size: 0.72rem;
+  line-height: 1;
+  letter-spacing: 0.18em;
   text-align: center;
+}
+
+.allChaptersButton {
+  display: block;
+  width: fit-content;
+  margin: 2.25rem auto 0;
+  padding: 0.55rem 1.8rem;
+  border: 1px solid var(--green);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--green-selected);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  transition: transform 160ms ease;
+}
+
+.allChaptersButton:hover {
+  transform: translateY(-2px);
 }
 
 /* =========================================================
@@ -288,104 +312,104 @@
   composes: pageSection from global;
 }
 
-.sponsorsTitle {
-  width: min(100%, 58rem);
-
-  margin: 0 auto 0.75rem;
-  padding: 0.7rem 1.5rem;
-
-  border-radius: 999px;
-
-  /* A fixed white wash rather than --footer-text, which flips to black in
-     light mode and turned this pill into a black bar. */
-  background: color-mix(in srgb, var(--button-on-teal) 78%, transparent);
-
-  box-shadow: var(--card-shadow);
-}
-
-.sponsorsTitle h2 {
-  margin: 0;
-
-  color: var(--teal);
-
-  font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 4.5vw, 3.25rem);
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-}
-
-.sponsorsPanel {
-  width: min(100%, 58rem);
-
-  margin: 0 auto;
-  padding: 1.5rem 2.5rem 1.8rem;
-
+/* The band the logos travel through. The mask fades them out at both ends so
+   they arrive and leave rather than being cut off at a hard edge. */
+.marquee {
+  overflow: hidden;
+  padding: 1.75rem 0;
+  border: 1px solid var(--marquee-border);
   border-radius: 1.25rem;
-
-  background: color-mix(in srgb, var(--teal) 78%, transparent);
-
-  box-shadow: var(--card-shadow);
+  background: var(--marquee-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000000 4rem,
+    #000000 calc(100% - 4rem),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000000 4rem,
+    #000000 calc(100% - 4rem),
+    transparent 100%
+  );
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing);
 }
 
-.sponsorsText {
-  margin: 0 0 1.5rem;
-
-  color: var(--footer-text);
-
-  font-size: 1rem;
-  line-height: 1.4;
-  text-align: center;
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
 }
 
-.sponsorGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee:hover .track,
+.marquee:focus-within .track {
+  animation-play-state: paused;
+}
 
+.trackGroup {
+  display: flex;
   align-items: center;
-
-  gap: 1.4rem 2rem;
+  gap: 3.5rem;
+  margin: 0;
+  padding: 0 1.75rem;
+  list-style: none;
 }
 
 .sponsorItem {
-  height: 5rem;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  padding: 0.25rem;
-
   text-decoration: none;
-
-  transition: transform 160ms ease;
+  transition:
+    transform 160ms ease,
+    filter 160ms ease;
 }
 
 .sponsorItem:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
 }
 
 .sponsorLogo {
-  width: 100%;
+  width: auto;
   max-width: 11.5rem;
-  height: 4.5rem;
-
+  height: 3.5rem;
   object-fit: contain;
+  filter: grayscale(1) opacity(0.75);
+  transition: filter 220ms ease;
+}
+
+.sponsorItem:hover .sponsorLogo,
+.sponsorItem:focus-visible .sponsorLogo {
+  filter: none;
 }
 
 /* =========================================================
    LIGHT MODE
    ========================================================= */
 
-/* The sponsor panels are translucent over the page gradient, so their text
-   needs a fixed light color rather than the theme's --footer-text, which
-   flips to black. */
-:global(html[data-theme="light"]) .sponsorsText {
-  color: var(--button-on-teal);
+:global(html[data-theme="light"]) .visitButton {
+  border-color: var(--teal);
+  color: var(--teal);
 }
 
-:global(html[data-theme="light"]) .textLink {
+:global(html[data-theme="light"]) .allChaptersButton {
+  border-color: var(--teal);
   color: var(--teal);
+}
+
+:global(html[data-theme="light"]) .chapterCard:hover {
+  box-shadow: 0 1rem 2rem -0.5rem rgb(13 49 75 / 26%);
 }
 
 /* =========================================================
@@ -397,23 +421,18 @@
     gap: 2.5rem;
   }
 
-  .eventsGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 800px) {
-  .sponsorsPanel {
-    padding: 1.4rem 1.5rem 1.7rem;
+  .southeastGrid {
+    grid-template-columns: 1fr 0.8fr;
+    gap: 2.5rem;
   }
 
-  .sponsorGrid {
+  .chapterGrid {
+    width: 100%;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .sponsorLogo {
-    max-width: 10rem;
-    height: 4rem;
+  .chapterCard:nth-child(n) {
+    grid-column: auto;
   }
 }
 
@@ -424,17 +443,11 @@
 @media (max-width: 700px) {
   .heroInner {
     grid-template-columns: 1fr;
-
     gap: 2rem;
-  }
-
-  .heroPhoto {
-    border-radius: 1.25rem;
   }
 
   .heroContent {
     align-items: center;
-
     text-align: center;
   }
 
@@ -446,13 +459,8 @@
     margin-top: 1.25rem;
   }
 
-  .heroButtons {
-    justify-content: center;
-  }
-
   .infoGrid {
     grid-template-columns: 1fr;
-
     grid-template-areas:
       "mission"
       "about";
@@ -460,7 +468,6 @@
 
   .infoCard {
     padding: 1.1rem;
-
     border-radius: 1.4rem;
   }
 
@@ -468,45 +475,84 @@
     border-radius: 1rem;
   }
 
-  .sectionHeading {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .eventsGrid {
+  .southeastGrid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 500px) {
-  .sponsorsTitle {
-    padding: 0.65rem 1rem;
+    gap: 2rem;
   }
 
-  .sponsorsTitle h2 {
-    font-size: 2.1rem;
+  .mapImage {
+    max-width: 18rem;
+    justify-self: center;
   }
 
-  .sponsorsPanel {
-    padding: 1.25rem 1rem 1.5rem;
+  .chaptersSection {
+    margin-top: 1.5rem;
   }
 
-  .sponsorsText {
-    margin-bottom: 1.25rem;
-
-    font-size: 0.9rem;
-  }
-
-  .sponsorGrid {
+  .chapterGrid {
     gap: 1rem;
   }
 
-  .sponsorItem {
-    height: 4rem;
+  .chapterCard {
+    min-height: 9rem;
+    padding: 0.7rem;
+  }
+
+  .marquee {
+    padding: 1.25rem 0;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000000 1.5rem,
+      #000000 calc(100% - 1.5rem),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000000 1.5rem,
+      #000000 calc(100% - 1.5rem),
+      transparent 100%
+    );
+  }
+
+  .trackGroup {
+    gap: 2.25rem;
+    padding: 0 1.125rem;
   }
 
   .sponsorLogo {
     max-width: 8rem;
-    height: 3.5rem;
+    height: 2.75rem;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .page {
+    animation: none;
+  }
+
+  .marquee {
+    overflow-x: auto;
+  }
+
+  .track {
+    animation: none;
+  }
+
+  .chapterCard,
+  .allChaptersButton,
+  .sponsorItem,
+  .sponsorLogo {
+    transition: none;
+  }
+
+  .chapterCard:hover,
+  .sponsorItem:hover {
+    transform: none;
   }
 }

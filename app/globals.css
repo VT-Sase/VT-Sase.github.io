@@ -38,6 +38,7 @@
   /* Accents */
   --green: #8fc53f; /* inactive navigation */
   --green-selected: #d1e7b0;
+  --chapter-button-green: #366d34;
   --lime: #ebffa9; /* events headings */
   --cyan: #00c4ff; /* active underline, links */
   --cyan-pale: #9be8ff;
@@ -52,6 +53,11 @@
   --mobile-menu-hover: rgb(13 49 75 / 92%);
   --mobile-menu-active: rgb(143 197 63 / 82%);
   --mobile-menu-text: #ffffff;
+
+  /* The sponsor marquee: a neutral wash rather than an accent, so the logos
+     inside it are the only color in the band. */
+  --marquee-bg: rgb(255 255 255 / 7%);
+  --marquee-border: rgb(255 255 255 / 12%);
 
   --border: rgba(155, 232, 255, 0.25);
   --card-border: rgb(255 255 255 / 14%);
@@ -76,6 +82,7 @@
   --page-top: 3rem;
   --page-bottom: 4.5rem;
   --section-gap: 3.5rem;
+  --nav-offset: 3rem;
 }
 
 :root[data-theme="light"] {
@@ -107,6 +114,9 @@
   --mobile-menu-active: rgb(143 197 63 / 82%);
   --mobile-menu-text: #0d314b;
 
+  --marquee-bg: rgb(13 49 75 / 6%);
+  --marquee-border: rgb(13 49 75 / 12%);
+
   --border: rgb(13 49 75 / 25%);
   --card-border: rgb(13 49 75 / 14%);
   --card-shadow: 0 0.65rem 1.6rem -0.4rem rgb(13 49 75 / 20%);
@@ -115,9 +125,6 @@
 
 html {
   color-scheme: dark;
-  /* The navbar's FAQs and Sponsors links scroll to sections of the home page
-     rather than navigating, so the jump is animated. */
-  scroll-behavior: smooth;
 }
 
 html[data-theme="light"] {
@@ -265,15 +272,12 @@ main {
   padding-top: 0;
 }
 
-/* The centered content column shared by every section on every page. The
-   scroll offset clears the sticky navbar, so a section linked from the nav
-   lands below it rather than under it. */
 .pageSection {
   width: 100%;
   max-width: var(--content-max);
   margin: 0 auto;
   padding: 0 var(--gutter);
-  scroll-margin-top: 6.5rem;
+  scroll-margin-top: var(--nav-offset);
 }
 
 .pageSection + .pageSection {
@@ -285,6 +289,7 @@ main {
     --page-top: 4rem;
     --page-bottom: 5rem;
     --section-gap: 5rem;
+    --nav-offset: 3rem;
   }
 }
 
@@ -301,9 +306,5 @@ main {
 @media (prefers-reduced-motion: reduce) {
   :root {
     --theme-duration: 0ms;
-  }
-
-  html {
-    scroll-behavior: auto;
   }
 }
