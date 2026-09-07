@@ -1,3 +1,8 @@
+/* Background lives on the body (see app/globals.css) — this page used to paint
+   its own opaque navy over it, which is why it was the one route that neither
+   matched the others nor responded to the light/dark toggle. Everything here
+   is layout and theme tokens now. */
+
 .page {
   width: 100%;
   min-height: 100vh;
@@ -90,9 +95,18 @@
   letter-spacing: 0.16em;
 
   text-transform: uppercase;
+  composes: pageShell from global;
 }
 
-.hero h1 {
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.intro {
+  composes: pageSection from global;
+}
+
+.intro h1 {
   margin: 0;
 
   color: white;
@@ -375,6 +389,54 @@
 /* =========================
    CARD GRID
    ========================= */
+  color: var(--lime);
+
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1;
+
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.intro p {
+  margin: 0.75rem 0 0;
+
+  color: var(--fg-muted);
+
+  font-size: 1rem;
+
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* =========================================================
+   BOARD
+   ========================================================= */
+
+.board {
+  composes: pageSection from global;
+}
+
+.committee + .committee {
+  margin-top: 3.5rem;
+}
+
+.committee h2 {
+  margin: 0 0 1.6rem;
+
+  color: var(--cyan-pale);
+
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+  font-weight: 700;
+
+  text-align: center;
+
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* =========================================================
+   OFFICER CARDS
+   ========================================================= */
 
 .grid {
   display: flex;
@@ -384,6 +446,7 @@
   align-items: flex-start;
 
   gap: 18px;
+  gap: 1.15rem;
 }
 
 /* =========================
@@ -448,6 +511,20 @@
 
   object-fit: cover;
   object-position: center;
+  width: 9.4rem;
+  flex: 0 0 9.4rem;
+
+  overflow: hidden;
+
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+
+  box-shadow: var(--card-shadow);
+
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing);
 }
 
 .photoPlaceholder {
@@ -466,6 +543,16 @@
   height: 53px;
 
   padding: 0 6px 9px;
+  height: 9rem;
+
+  background: var(--placeholder);
+
+  transition: background-color var(--theme-duration) var(--theme-easing);
+}
+
+.cardInfo {
+  min-height: 3.3rem;
+  padding: 0 0.4rem 0.6rem;
 
   text-align: center;
 
@@ -488,6 +575,16 @@
   color: white;
 
   font-size: 10px;
+  top: -0.5rem;
+
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+
+  background: var(--teal);
+  border-radius: 999px;
+
+  color: var(--button-on-teal);
+  font-size: 0.65rem;
   font-weight: 700;
 
   line-height: 1;
@@ -497,11 +594,16 @@
   margin: -2px 0 0;
 
   color: white;
+  margin: -0.12rem 0 0;
 
-  font-size: 11px;
+  color: var(--card-text);
+
+  font-size: 0.7rem;
   font-weight: 600;
 
   line-height: 1.25;
+
+  transition: color var(--theme-duration) var(--theme-easing);
 }
 
 /* =========================
@@ -582,12 +684,16 @@
 .leadsGrid {
   max-width: 530px;
 
+/* LEADS */
+/* President centered by itself, then 3 VP cards below */
+.leadsGrid {
+  max-width: 33rem;
   margin: 0 auto;
 }
 
 .leadsGrid .card:first-child {
-  margin-left: calc(50% - 75px);
-  margin-right: calc(50% - 75px);
+  margin-left: calc(50% - 4.7rem);
+  margin-right: calc(50% - 4.7rem);
 }
 
 /* =========================
@@ -598,6 +704,13 @@
   max-width: 520px;
 
   margin: 25px auto 0;
+/* =========================================================
+   WEB DEVELOPMENT
+   ========================================================= */
+
+.webGrid {
+  max-width: 32.5rem;
+  margin: 0 auto;
 
   display: flex;
   flex-wrap: wrap;
@@ -614,6 +727,13 @@
   min-height: 74px;
 
   flex: 0 0 150px;
+  gap: 1rem;
+}
+
+.webCard {
+  width: 9.4rem;
+  min-height: 4.4rem;
+  flex: 0 0 9.4rem;
 
   display: flex;
   flex-direction: column;
@@ -707,10 +827,32 @@
 
     background-position: center;
   }
+  padding: 0.75rem;
 
-  .heroContent {
-    padding-bottom: 28px;
-  }
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+
+  box-shadow: var(--card-shadow);
+
+  color: var(--card-text);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing);
+}
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+:global(html[data-theme="light"]) .committee h2 {
+  color: var(--card-text);
+}
 
   .hero h1 {
     font-size: 46px;
@@ -800,5 +942,18 @@
 
   .heroOverlay {
     transition: none;
+  }
+}
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+  .committee + .committee {
+    margin-top: 2.75rem;
+  }
+
+  .grid {
+    gap: 0.75rem;
   }
 }

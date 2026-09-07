@@ -1,5 +1,6 @@
 import Calendar from "@/components/Calendar";
 import EventCard from "@/components/EventCard";
+import Reveal from "@/components/Reveal";
 import styles from "./page.module.css";
 import { TERM_LABEL, events, upcomingEvents } from "@/content/events";
 
@@ -8,7 +9,7 @@ export default function EventsPage() {
 
   return (
     <div className={styles.page}>
-      <section className={styles.section}>
+      <Reveal className={styles.section}>
         <h1 className={styles.heading}>
           Upcoming
           <br />
@@ -36,9 +37,9 @@ export default function EventsPage() {
             No upcoming events right now — check back soon!
           </p>
         )}
-      </section>
+      </Reveal>
 
-      <section className={styles.section}>
+      <Reveal className={styles.section}>
         <h2 className={styles.calendarHeading}>Calendar</h2>
         <p className={styles.calendarSubtitle}>
           View all upcoming events throughout the months
@@ -46,7 +47,7 @@ export default function EventsPage() {
         <div className={styles.calendarWrap}>
           <Calendar siteEvents={events} />
         </div>
-      </section>
+      </Reveal>
     </div>
   );
 }

@@ -1,0 +1,195 @@
+.section {
+  composes: pageSection from global;
+}
+
+.list {
+  width: min(100%, 56rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 0 auto;
+}
+
+.item {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  background: var(--surface);
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing);
+}
+
+.questionHeading {
+  margin: 0;
+  font: inherit;
+}
+
+.question {
+  width: 100%;
+  min-height: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 0.95rem 0.95rem 0.95rem 1.4rem;
+  border: 0;
+  background: none;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.35;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.question:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: -2px;
+}
+
+/* =========================================================
+   OPEN / CLOSE ICON
+   ========================================================= */
+
+.icon {
+  flex: 0 0 auto;
+  width: 2.1rem;
+  height: 2.1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green-selected);
+  transition: background-color var(--theme-duration) var(--theme-easing);
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-left: 0.32rem solid transparent;
+  border-right: 0.32rem solid transparent;
+  border-top: 0.42rem solid var(--surface-deep);
+  transition: transform 180ms ease;
+}
+
+.itemOpen .arrow {
+  transform: rotate(180deg);
+}
+
+/* =========================================================
+   ANSWERS
+   ========================================================= */
+
+.answerPanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    grid-template-rows 300ms var(--theme-easing),
+    opacity 200ms ease,
+    visibility 0s linear 300ms;
+}
+
+.answerPanelOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.answer {
+  min-height: 0;
+  overflow: hidden;
+  color: var(--fg);
+  font-size: 1rem;
+  line-height: 1.65;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.answer p {
+  margin: 0;
+  padding: 0 4.25rem 1.25rem 1.4rem;
+}
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
+.contact {
+  margin: 2rem 0 0;
+  color: var(--fg-muted);
+  font-size: 1rem;
+  text-align: center;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.contactLink {
+  color: var(--cyan);
+  font-weight: 700;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.contactLink:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+:global(html[data-theme="light"]) .question {
+  color: var(--card-text);
+}
+
+:global(html[data-theme="light"]) .question:focus-visible {
+  outline-color: var(--teal);
+}
+
+:global(html[data-theme="light"]) .icon {
+  background: var(--teal);
+}
+
+:global(html[data-theme="light"]) .arrow {
+  border-top-color: var(--button-on-teal);
+}
+
+:global(html[data-theme="light"]) .contactLink {
+  color: var(--teal);
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .question {
+    min-height: 3.5rem;
+    padding: 0.75rem 0.75rem 0.75rem 0.95rem;
+    font-size: 0.95rem;
+  }
+
+  .icon {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
+
+  .answer {
+    font-size: 0.92rem;
+  }
+
+  .answer p {
+    padding: 0 1rem 1rem 0.95rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .answerPanel,
+  .arrow {
+    transition: none;
+  }
+}

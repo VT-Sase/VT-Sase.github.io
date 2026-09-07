@@ -1,26 +1,39 @@
-/**
- * Site-wide bits that more than one component needs: the nav links and the
- * chapter's external URLs. The navbar reads its links from here; the footer
- * reads the socials.
- */
-
 export type NavLink = {
   href: string;
   label: string;
+  sectionId?: string;
 };
 
-const HOME_LINK: NavLink = { href: "/", label: "Home" };
-const ABOUT_LINK: NavLink = { href: "/about", label: "About" };
-const FAQS_LINK: NavLink = { href: "/faqs", label: "FAQs" };
-const SPONSORS_LINK: NavLink = { href: "/sponsors", label: "Sponsors" };
+const HOME_LINK: NavLink = { 
+  href: "/", 
+  label: "Home" 
+};
+
+const ABOUT_LINK: NavLink = {
+  href: "/#about",
+  label: "About",
+  sectionId: "about",
+};
+const SPONSORS_LINK: NavLink = {
+  href: "/#sponsors",
+  label: "Sponsors",
+  sectionId: "sponsors",
+};
+
+const FAQS_LINK: NavLink = {
+  href: "/#faqs",
+  label: "FAQs",
+  sectionId: "faqs",
+};
+
 const EVENTS_LINK: NavLink = { href: "/events", label: "Events" };
 const OFFICERS_LINK: NavLink = { href: "/officers", label: "Officers" };
 
 export const NAV_LINKS: NavLink[] = [
   HOME_LINK,
   ABOUT_LINK,
-  FAQS_LINK,
   SPONSORS_LINK,
+  FAQS_LINK,
   EVENTS_LINK,
   OFFICERS_LINK,
 ];
@@ -34,6 +47,26 @@ export const SOCIALS = {
   remind:
     "https://docs.google.com/document/d/1k5AisFW_AxTSkM8GuMJk6hXfWscg0nJ1tfRwWpbW24w/edit?tab=t.0#heading=h.14m38v9fpa6t",
 };
+
+export type HeroSlide = {
+  src: string;
+  alt: string;
+};
+
+export const HERO_SLIDES: HeroSlide[] = [
+  {
+    src: "/images/outdoors.JPG",
+    alt: "SASE at Virginia Tech members spending time together outdoors",
+  },
+  {
+    src: "/images/about/about-hero.JPG",
+    alt: "SASE at Virginia Tech members gathered at a chapter event",
+  },
+  {
+    src: "/images/about/what-is-sase.JPG",
+    alt: "SASE at Virginia Tech members posing together after a meeting",
+  },
+];
 
 /** Where the "Join Us" button in the navbar points. */
 export const JOIN_URL = SOCIALS.linktree;
