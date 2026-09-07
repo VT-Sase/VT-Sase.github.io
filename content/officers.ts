@@ -26,6 +26,7 @@ export type Officer = {
   name: string;
   role: string;
   committee: Committee;
+  photo?: string;
 };
 
 export const officers: Officer[] = [
@@ -34,21 +35,25 @@ export const officers: Officer[] = [
     name: "Ritisha Ghimire Kshetri",
     role: "President",
     committee: "Leads",
+    photo: "/images/officers/ritisha.JPG",
   },
   {
     name: "Aarya Ghimire",
     role: "Internal VP",
     committee: "Leads",
+    photo: "/images/officers/aarya.JPG",
   },
   {
     name: "Rhea Rajmanna",
     role: "Media VP",
     committee: "Leads",
+    photo: "/images/officers/rhea.JPG",
   },
   {
     name: "Han Nguyen",
     role: "External VP",
     committee: "Leads",
+    photo: "/images/officers/han.JPG",
   },
 
   // EXTERNAL
@@ -56,6 +61,7 @@ export const officers: Officer[] = [
     name: "Andrew Kee",
     role: "External Task Force",
     committee: "External",
+    photo: "/images/officers/andrew.JPG",
   },
   {
     name: "Zachary Zhu",
@@ -66,11 +72,13 @@ export const officers: Officer[] = [
     name: "Andrew Marquez",
     role: "Service Chair",
     committee: "External",
+    photo: "/images/officers/andrew.JPG",
   },
   {
     name: "Evelyn Kim",
     role: "Service Chair",
     committee: "External",
+    photo: "/images/officers/evelyn.JPG",
   },
 
   // INTERNAL
@@ -105,6 +113,7 @@ export const officers: Officer[] = [
     name: "Shruthika Saravanakumar",
     role: "PR Chair",
     committee: "Media",
+    photo: "/images/officers/shruthika.JPG",
   },
   {
     name: "Luz Pinto",
@@ -115,6 +124,7 @@ export const officers: Officer[] = [
     name: "Arwen Downum",
     role: "PR Chair",
     committee: "Media",
+    photo: "/images/officers/arwen.JPG",
   },
 
   // LOGISTICS
@@ -122,6 +132,7 @@ export const officers: Officer[] = [
     name: "Alvin Zheng",
     role: "Treasurer",
     committee: "Logistics",
+    photo: "/images/officers/alvin.JPG",
   },
   {
     name: "Jilliane Dela Vega",
@@ -132,16 +143,19 @@ export const officers: Officer[] = [
     name: "Indulekha Sanil",
     role: "Senior Advisor",
     committee: "Logistics",
+    photo: "/images/officers/indu.JPG",
   },
   {
     name: "Snehitha Ravella",
     role: "Senior Advisor",
     committee: "Logistics",
+    photo: "/images/officers/sne.JPG",
   },
   {
     name: "Deya Singh",
     role: "Graduate Advisor",
     committee: "Logistics",
+    photo: "/images/officers/deya.JPG",
   },
 
   // WEB DEVELOPMENT
@@ -178,5 +192,5 @@ export function officersByCommittee() {
     members: officers.filter(
       (officer) => officer.committee === committee
     ),
-  }));
+  })).filter((group) => group.members.length > 0);
 }
