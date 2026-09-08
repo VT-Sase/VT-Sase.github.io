@@ -1,6 +1,6 @@
 # VT SASE Website
 
-The official website for the **Society of Asian Scientists and Engineers** at
+The official website for the **Society of Asian Scientists and Engineers** a
 **Virginia Tech** — live at **[sase-vt.org](https://sase-vt.org/)**.
 
 Built with [Next.js](https://nextjs.org/) (App Router) and TypeScript. We're
