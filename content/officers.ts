@@ -69,7 +69,8 @@ export const officers: Officer[] = [
     name: "Andrew Kee",
     role: "External Task Force",
     committee: "External",
-    photo: "/images/officers/andrew.JPG",
+    // andrew.JPG is Andrew Marquez, so this showed the same face twice. Add a
+    // headshot of Andrew Kee to public/images/officers/ and point `photo` here.
   },
   {
     name: "Zachary Zhu",
@@ -121,7 +122,9 @@ export const officers: Officer[] = [
     name: "Shruthika Saravanakumar",
     role: "PR Chair",
     committee: "Media",
-    photo: "/images/officers/shruthika.JPG",
+    // No headshot on file yet — the card shows the placeholder until one is
+    // added. Drop shruthika.JPG into public/images/officers/ and restore:
+    // photo: "/images/officers/shruthika.JPG",
   },
   {
     name: "Luz Pinto",
@@ -202,8 +205,6 @@ export function leads() {
 export function officersByCommittee() {
   return COMMITTEES.map((committee) => ({
     committee,
-    members: officers.filter(
-      (officer) => officer.committee === committee
-    ),
+    members: officers.filter((officer) => officer.committee === committee),
   })).filter((group) => group.members.length > 0);
 }

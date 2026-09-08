@@ -32,12 +32,10 @@ export default function SisterChapters() {
         <h2 className={styles.title}>SASE Southeast</h2>
 
         <p className={styles.body}>
-          Virginia Tech SASE is proud to be part of the{" "}
-          <strong>SASE Southeast Region</strong>, a network of collegiate
-          chapters across the southeastern United States. Through regional
-          conferences, leadership summits, and collaborative events, members
-          have opportunities to connect with students from other universities,
-          develop professionally, and build lasting friendships beyond campus.
+          Being part of SASE connects us with chapters all across the Southeast!
+          Through conferences, leadership events, and collaborations, our
+          members get to meet students from other schools and be part of a
+          community that goes way beyond Virginia Tech.
         </p>
       </header>
 
@@ -74,7 +72,7 @@ export default function SisterChapters() {
       </div>
 
       <div className={styles.chapters}>
-        <h3 className={styles.chaptersTitle}>Meet Our Sister Chapters:</h3>
+        <h3 className={styles.chaptersTitle}>Our sister chapters</h3>
 
         <ul className={styles.grid}>
           {sisterChapters.map((chapterItem, index) => (
@@ -96,13 +94,17 @@ export default function SisterChapters() {
                 onFocus={() => setActive(index)}
                 onBlur={() => setActive(null)}
               >
-                <Image
-                  src={chapterItem.logo}
-                  alt=""
-                  width={200}
-                  height={130}
-                  className={styles.logo}
-                />
+                {/* The tile is what carries the school's two colours: its
+                    border is transparent and the gradient shows through it. */}
+                <span className={styles.tile}>
+                  <Image
+                    src={chapterItem.logo}
+                    alt=""
+                    width={200}
+                    height={130}
+                    className={styles.logo}
+                  />
+                </span>
 
                 <span className={styles.visit} aria-hidden="true">
                   <span className={styles.tracked}>visit site</span>

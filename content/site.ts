@@ -4,9 +4,9 @@ export type NavLink = {
   sectionId?: string;
 };
 
-const HOME_LINK: NavLink = { 
-  href: "/", 
-  label: "Home" 
+const HOME_LINK: NavLink = {
+  href: "/",
+  label: "Home",
 };
 
 const ABOUT_LINK: NavLink = {
@@ -143,9 +143,8 @@ export const HOME_STATS = [
  * the centered statement that opens the Our Mission band.
  */
 export const MISSION_STATEMENT =
-  "Our mission is to help Asian heritage scientific and engineering " +
-  "professionals achieve their full career potential while contributing to " +
-  "the development of the next generation of leaders.";
+  "SASE is built around helping our members grow professionally, stay " +
+  "connected to their culture, and give back to the communities around them.";
 
 /**
  * The three cards under the mission statement, one per SASE pillar. Three
@@ -156,21 +155,29 @@ export const MISSION_CARDS = [
   {
     title: "Professional Development",
     body:
-      "R\u00e9sum\u00e9 reviews, mock interviews, and info sessions with the " +
-      "companies that sponsor us — so members are ready well before " +
-      "recruiting season starts.",
+      "Workshops, company events, mentorship, and plenty of chances to build " +
+      "the skills that actually matter when it comes time to apply for " +
+      "internships and jobs.",
+    photo: "/images/pillar-professional.jpg",
+    alt: "SASE members listening at a company info session",
   },
   {
     title: "Cultural Awareness",
     body:
-      "A chapter where Asian heritage is something you share rather than " +
-      "something you explain, and where everyone is welcome at the table.",
+      "We celebrate the cultures and experiences that bring our community " +
+      "together through events, conversations, food, traditions, and just " +
+      "spending time with one another.",
+    photo: "/images/pillar-cultural.jpg",
+    alt: "Two SASE members cooking together at a chapter food event",
   },
   {
     title: "Community Service",
     body:
-      "Giving time back to Blacksburg and to the students coming up behind " +
-      "us, because a network is only worth having if it points both ways.",
+      "We make time to give back too, whether that means supporting the " +
+      "Blacksburg community, helping younger students, or creating " +
+      "opportunities for the people coming after us.",
+    photo: "/images/pillar-service.jpg",
+    alt: "SASE members talking with students at an outdoor involvement fair",
   },
 ] as const;
 

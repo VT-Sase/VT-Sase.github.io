@@ -12,31 +12,40 @@ export const faqs: Faq[] = [
   {
     question: "Do I have to be Asian to join SASE?",
     answer:
-      "No. SASE is open to everyone regardless of background, identity, major, or year! Anyone interested in our community and events is welcome to join.",
+      "No! SASE is open to everyone regardless of background, identity, " +
+      "major, or year. Anyone interested in our community and events is " +
+      "welcome to join.",
   },
   {
     question: "Do I have to be an engineering major?",
     answer:
-      "No. While SASE has a strong STEM focus, students from all majors are welcome to participate in our events and become members.",
+      "No! SASE is open to students across different majors and backgrounds, " +
+      "especially anyone interested in STEM, professional development, or " +
+      "our community.",
   },
   {
     question: "Do I have to pay the membership fee every year?",
     answer:
-      "Membership dues are typically paid for each academic year. They help support chapter events, professional development opportunities, and other member activities.",
+      "Membership details can change from year to year, so check our current " +
+      "membership information or reach out to us if you have questions.",
   },
   {
     question: "How do I join SASE at Virginia Tech?",
     answer:
-      "Come to one of our general body meetings or events and connect with the chapter and our members! You can also follow our social media pages to stay updated on meetings and membership information.",
+      "Come to one of our events, join our Discord, or check out our " +
+      "Linktree to stay updated and get involved!",
   },
   {
     question: "What kinds of events does SASE host?",
     answer:
-      "SASE hosts professional development events, company information sessions, social events, community service opportunities, workshops, and regional or national conference activities.",
+      "We host professional development workshops, company info sessions, " +
+      "socials, cultural events, community service opportunities, " +
+      "conferences, and more throughout the year.",
   },
   {
     question: "Can I join if I have never attended a SASE event before?",
     answer:
-      "Absolutely! New members are welcome throughout the year, and you do not need any previous involvement with SASE to attend an event or get involved.",
+      "Of course! You can come to your first event at any point in the year. " +
+      "You do not need to know anyone beforehand.",
   },
 ];

@@ -22,7 +22,8 @@ export default function FaqSection() {
         </h2>
 
         <p className={styles.tagline}>
-          Everything you might want to know before your first meeting.
+          New to SASE? Here are a few things people usually ask before joining
+          us!
         </p>
       </header>
 

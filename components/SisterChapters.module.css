@@ -1,6 +1,7 @@
 /* Centred, like every other section title on the page — the band's own header
    pattern, not a variant of it. */
 .header {
+  grid-column: 1;
   text-align: center;
 }
 
@@ -28,8 +29,16 @@
   font-weight: 700;
 }
 
+/* The map spans the whole right-hand side rather than sitting in one row of
+   it. Before this it set the height of row one, so the chapter list — which
+   comes after it in the grid — could only ever start below the map, leaving a
+   gap under the paragraph. Spanning lets the list sit straight under the copy
+   while the map keeps its size. */
 .mapRow {
+  grid-column: 2;
+  grid-row: 1 / span 3;
   display: flex;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -39,7 +48,7 @@
 .map {
   position: relative;
   width: 100%;
-  max-width: 20rem;
+  max-width: 26rem;
   aspect-ratio: 1322 / 1374;
 }
 
@@ -103,24 +112,34 @@
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  text-align: center;
+  text-align: left;
   transition: color var(--theme-duration) var(--theme-easing);
 }
 
 /* The heading and the card row are one block, spaced tighter than the band's
    own rhythm between children — a list and its label, not two sections. */
 .chapters {
+  /* The left column: the tile row is capped well inside it, so this changes
+     where the block sits without changing how big it is. */
+  grid-column: 1;
   display: flex;
   flex-direction: column;
-  gap: 1.35rem;
+  gap: 1rem;
 }
 
-/* All seven on one row, so the region reads as a set rather than as a grid
-   with a straggler on a line of its own. */
+/* Four across, then the remaining three centred beneath them. Flex rather
+   than grid: with `justify-content: center` the short last row centres itself,
+   which a 4-column grid would leave hanging to the left. */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: clamp(0.7rem, 1.5vw, 1.1rem);
+  --chapter-gap: clamp(0.9rem, 2vw, 1.5rem);
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: var(--chapter-gap);
+  /* Capped here rather than on the tile: a max-width on the cell undercuts the
+     flex basis and lets a fifth tile onto the row. */
+  max-width: 38rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -128,6 +147,8 @@
 
 .cell {
   display: flex;
+  /* Exactly four per row, whatever the band's width. */
+  flex: 0 0 calc((100% - 3 * var(--chapter-gap)) / 4);
 }
 
 .card {
@@ -189,21 +210,28 @@
 }
 
 .allChaptersRow {
+  grid-column: 1;
   display: flex;
-  justify-content: center;
+  /* Without this the anchor stretches to the row's height, and a 999px radius
+     on a tall box renders as a giant ellipse rather than a pill. */
+  align-items: center;
+  justify-content: flex-start;
 }
 
+/* A quiet text link rather than a heavy pill — it matches the other
+   section links on the page and stops competing with the chapter tiles. */
 .allChapters {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.7rem 1.6rem;
-  border: 2px solid var(--panel-border);
-  border-radius: 999px;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--rule-strong);
+  border-radius: 0;
   color: var(--fg);
   font-family: var(--font-heading);
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   transition:
     border-color 200ms ease,
     background-color 200ms ease,
@@ -219,8 +247,7 @@
 .allChapters:hover,
 .allChapters:focus-visible {
   border-color: var(--panel-border-hover);
-  background: var(--tile-bg);
-  transform: translateY(-2px);
+  color: var(--accent);
 }
 
 .allChapters:hover::after,

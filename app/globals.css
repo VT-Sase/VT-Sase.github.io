@@ -129,7 +129,7 @@
   --button-shadow: 0 0.25rem 0.65rem rgb(0 0 0 / 26%);
 
   /* Fonts — the --font-* variables come from next/font in app/layout.tsx. */
-  --font-heading: var(--font-instrument-sans), system-ui, sans-serif;
+  --font-heading: var(--font-onest), system-ui, sans-serif;
   --font-body: var(--font-onest), system-ui, sans-serif;
 
   /* Layout */
@@ -234,11 +234,6 @@ html[data-theme="light"] {
    horizontal overflow the same way without creating one. */
 html,
 body {
-  max-width: 100%;
-  overflow-x: clip;
-}
-
-body {
   position: relative;
   isolation: isolate;
   display: flex;
@@ -255,9 +250,16 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  transition: color var(--theme-duration) var(--theme-easing);
+  transition:
+    background-color var(--theme-duration),
+    color var(--theme-duration);
 }
 
+/* The site's three background layers, restored. The dark gradient sits on the
+   body itself; ::before is the light-theme gradient that cross-fades over it
+   on the toggle; ::after is the doodle tile — absolute rather than fixed so the
+   texture scrolls with the page and runs the full document height, including
+   behind the translucent navbar. */
 body::before {
   content: "";
   position: fixed;
@@ -278,16 +280,8 @@ html[data-theme="light"] body::before {
   opacity: 1;
 }
 
-/* The doodles — the third and topmost background layer, above the two
-   gradients and below every bit of content. Absolute rather than fixed so the
-   texture scrolls with the page, and anchored to the body box so it runs the
-   full document height, including behind the translucent navbar.
-
-   The tile's own art already tops out at 50% alpha, so the mask compounds with
-   it — the pattern reads as texture rather than illustration. The mask is a
-   scrim: full strength out at the margins, dropping to roughly a third of that
-   across the middle where headlines and body copy sit. Horizontal only, so the
-   tile still runs uninterrupted from the top of the page to the bottom. */
+/* The mask is a scrim: full strength at the margins, dropping to about a third
+   across the middle where headlines and body copy sit. */
 body::after {
   content: "";
   position: absolute;
@@ -317,11 +311,6 @@ body::after {
   );
 }
 
-/* Light theme keeps the doodles exactly as designed: screen blend, no fade.
-   The mask above is a dark-mode fix and light mode does not need it — there the
-   type is dark navy and the strokes are white, so the two sit at opposite ends
-   of the tonal range and never compete. It is only in dark mode, where the text
-   and the pattern are both light, that they collide. */
 html[data-theme="light"] body::after {
   opacity: 1;
   filter: brightness(1);
@@ -391,6 +380,83 @@ main {
   }
 }
 
+/* =========================================================
+   SHARED PAGE SYSTEM
+
+   The home page's type scale and card face, lifted out so every route reads
+   as the same site. Global class names (like .pageShell and .srOnly above),
+   used as plain strings in JSX. The home page keeps its own copies of these
+   token values on .page, which are identical — so nothing there changes.
+   ========================================================= */
+
+:root {
+  --card-face: #f1f4ea;
+  --card-face-ink: #0d314b;
+  --card-face-muted: rgb(13 49 75 / 68%);
+  --card-face-rule: rgb(13 49 75 / 14%);
+  --card-lift: none;
+}
+
+html[data-theme="light"] {
+  --card-face: #ffffff;
+  --card-face-ink: #0d314b;
+  --card-face-muted: rgb(13 49 75 / 70%);
+  --card-face-rule: rgb(13 49 75 / 12%);
+  --card-lift: 0 10px 26px -14px rgb(13 49 75 / 22%);
+}
+
+.pageTitle {
+  font-size: clamp(48px, 6vw, 82px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+}
+
+.sectionTitle {
+  font-size: clamp(32px, 3.7vw, 47px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+
+.pageEyebrow {
+  display: block;
+  margin-bottom: 13px;
+  color: var(--fg-muted);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.pageLede {
+  color: var(--fg-muted);
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.pageBody {
+  color: var(--fg-muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+/* Heading left, supporting copy right — the home page's section rhythm. */
+.headRow {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 700px) {
+  .headRow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
 /* Visible only to screen readers. */
 .srOnly {
   position: absolute;
@@ -419,14 +485,8 @@ html.theme-transitioning *::after {
   transition-duration: var(--theme-color-duration) !important;
   transition-timing-function: var(--theme-easing) !important;
   transition-property:
-    background-color,
-    border-color,
-    color,
-    fill,
-    stroke,
-    box-shadow,
-    outline-color,
-    opacity !important;
+    background-color, border-color, color, fill, stroke, box-shadow,
+    outline-color, opacity !important;
 }
 
 /* View Transition API: dissolve the old palette into the new one. */
@@ -436,4 +496,58 @@ html.theme-transitioning *::after {
     animation-duration: var(--theme-color-duration);
     animation-timing-function: var(--theme-easing);
   }
+}
+
+/* Shared SASE palette: navy structure, teal and lime contained accents. */
+:root {
+  --font-heading: var(--font-onest), system-ui, sans-serif;
+  --bg: #0b2435;
+  --fg: #edf4f2;
+  --fg-muted: #adc0c8;
+  --surface: #123145;
+  --surface-deep: #0b2435;
+  --footer: #081d2d;
+  --footer-text: #edf4f2;
+  --rule: rgb(218 238 238 / 15%);
+  --rule-strong: rgb(218 238 238 / 35%);
+  --badge-bg: #24483f;
+  --heading-accent: #badb8b;
+  --mint-surface: #c7e7e3;
+  --lime-surface: #e4edc7;
+  --feature-ink: #0d314b;
+  --feature-muted: #415d67;
+  --cta-bg: #d5e9b4;
+  --cta-fg: #0d314b;
+  --card-shadow:
+    0 8px 24px -12px rgb(13 49 75 / 8%), 0 0 0 1px rgb(13 49 75 / 4%);
+  --map-land: #7da9b6;
+  --nav-offset: 6rem;
+}
+:root[data-theme="light"] {
+  --bg: #f5f7f3;
+  --fg: #0d314b;
+  --fg-muted: #536974;
+  --surface: #fff;
+  --surface-deep: #f5f7f3;
+  --footer: #0d314b;
+  --footer-text: #edf4f2;
+  --rule: rgb(13 49 75 / 13%);
+  --rule-strong: rgb(13 49 75 / 32%);
+  --badge-bg: #e1edce;
+  --heading-accent: #397969;
+  --mint-surface: #dceeea;
+  --lime-surface: #eaf0d7;
+  --cta-bg: #0d314b;
+  --cta-fg: #fff;
+  --map-land: #7da9b6;
+  --card-shadow:
+    0 8px 24px -12px rgb(13 49 75 / 8%), 0 0 0 1px rgb(13 49 75 / 4%);
+}
+:focus-visible {
+  outline: 2px solid var(--heading-accent);
+  outline-offset: 4px;
+}
+::selection {
+  background: #c9e7b0;
+  color: #0d314b;
 }

@@ -10,52 +10,6 @@
   composes: pageSection from global;
 }
 
-.heading {
-  font-size: clamp(2rem, 6vw, 3.25rem);
-  font-weight: 800;
-  color: var(--lime);
-  transition: color var(--theme-duration) var(--theme-easing);
-}
-
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 1.25rem 0 1.75rem;
-}
-
-.dividerDot {
-  flex: 0 0 auto;
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  background: var(--divider);
-  transition: background-color var(--theme-duration) var(--theme-easing);
-}
-
-.dividerRule,
-.dividerRuleShort {
-  height: 1px;
-  background: var(--divider);
-  transition: background-color var(--theme-duration) var(--theme-easing);
-}
-
-.dividerRule {
-  flex: 1;
-}
-
-.dividerRuleShort {
-  flex: 0 0 1.5rem;
-}
-
-.dividerLabel {
-  font-family: var(--font-heading);
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  white-space: nowrap;
-  color: var(--divider);
-  transition: color var(--theme-duration) var(--theme-easing);
-}
-
 .grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -65,10 +19,11 @@
 
 .empty {
   padding: 2.5rem 1.5rem;
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  background: var(--surface);
-  color: var(--fg-muted);
+  border: 1px solid var(--card-face-rule);
+  border-radius: 18px;
+  background: var(--card-face);
+  box-shadow: var(--card-lift);
+  color: var(--card-face-muted);
   text-align: center;
   transition:
     background-color var(--theme-duration) var(--theme-easing),
@@ -76,31 +31,23 @@
     color var(--theme-duration) var(--theme-easing);
 }
 
-.calendarHeading {
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
-  font-weight: 800;
-  color: var(--lime);
-  transition: color var(--theme-duration) var(--theme-easing);
+/* Same grid shape as the home page's card rows: columns that fill the content
+   column rather than fixed-width cards centred in it. */
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 20px;
+  }
 }
 
-.calendarSubtitle {
-  margin-bottom: 1.25rem;
-  font-size: 0.8rem;
-  color: var(--fg);
-  transition: color var(--theme-duration) var(--theme-easing);
+@media (min-width: 980px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 768px) {
-  .heading {
-    max-width: 20rem;
-  }
-
-  .grid {
-    grid-template-columns: repeat(auto-fit, 343.2px);
-    justify-content: center;
-    gap: 1.5rem;
-  }
-
   .calendarWrap {
     max-width: 52rem;
     margin: 0 auto;

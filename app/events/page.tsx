@@ -10,19 +10,21 @@ export default function EventsPage() {
   return (
     <div className={styles.page}>
       <Reveal className={styles.section}>
-        <h1 className={styles.heading}>
-          Upcoming
-          <br />
-          Events
-        </h1>
-
-        <div className={styles.divider} aria-hidden="true">
-          <span className={styles.dividerDot} />
-          <span className={styles.dividerRule} />
-          <span className={styles.dividerLabel}>{TERM_LABEL}</span>
-          <span className={styles.dividerRuleShort} />
-          <span className={styles.dividerDot} />
-        </div>
+        <header className="headRow">
+          <div>
+            <span className="pageEyebrow">{TERM_LABEL}</span>
+            <h1 className="pageTitle">
+              Upcoming
+              <br />
+              events
+            </h1>
+          </div>
+          <p className="pageLede">
+            Everything the chapter has on the calendar right now — general body
+            meetings, company info sessions, socials, and collaborations with
+            the other orgs on campus.
+          </p>
+        </header>
 
         {upcoming.length > 0 ? (
           <ul className={styles.grid}>
@@ -40,10 +42,15 @@ export default function EventsPage() {
       </Reveal>
 
       <Reveal className={styles.section}>
-        <h2 className={styles.calendarHeading}>Calendar</h2>
-        <p className={styles.calendarSubtitle}>
-          View all upcoming events throughout the months
-        </p>
+        <header className="headRow">
+          <div>
+            <h2 className="sectionTitle">Calendar</h2>
+          </div>
+          <p className="pageBody">
+            Every event, month by month. Dates here stay in step with the cards
+            above.
+          </p>
+        </header>
         <div className={styles.calendarWrap}>
           <Calendar siteEvents={events} />
         </div>

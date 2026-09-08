@@ -2,6 +2,8 @@
    card is in the media query at the bottom. */
 
 .card {
+  /* The band behind a contained flyer. */
+  --flyer-mat: rgb(255 255 255 / 6%);
   display: flex;
   overflow: hidden;
   /* 1px, not the 0.63px the mock exported — subpixel borders alias into a
@@ -21,11 +23,18 @@
 .image,
 .imagePlaceholder {
   flex: 0 0 45%;
-  align-self: stretch;
+  align-self: start;
   width: 45%;
   height: auto;
-  min-height: 9rem;
-  object-fit: cover;
+  aspect-ratio: 4 / 5;
+  /* contain, not cover: the whole flyer has to be readable, so a poster that
+     is not 4:5 sits on the mat rather than losing its edges. */
+  object-fit: contain;
+  background: var(--flyer-mat);
+}
+
+:global(html[data-theme="light"]) .card {
+  --flyer-mat: rgb(13 49 75 / 5%);
 }
 
 .imagePlaceholder {
@@ -68,6 +77,34 @@
   height: 0.85rem;
 }
 
+/* The collaborating orgs, each linked to their own account. */
+.partners {
+  font-size: 0.72rem;
+  color: var(--card-muted);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.partnersLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+.partnerLink {
+  color: var(--card-text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--card-muted);
+  transition:
+    color var(--theme-duration) var(--theme-easing),
+    text-decoration-color 160ms ease;
+}
+
+.partnerLink:hover,
+.partnerLink:focus-visible {
+  text-decoration-color: currentColor;
+}
+
 .description {
   font-size: 0.8rem;
   color: var(--card-muted);
@@ -95,11 +132,31 @@
   color: var(--cyan);
 }
 
+/* Pushed to the bottom so the buttons line up across a row of cards whose
+   descriptions are different lengths. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.postLink {
+  color: var(--card-muted);
+  font-size: 0.75rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.postLink:hover,
+.postLink:focus-visible {
+  color: var(--card-text);
+}
+
 .signup,
 .signupDisabled {
-  /* Pushed to the bottom so the buttons line up across a row of cards
-     whose descriptions are different lengths. */
-  margin-top: auto;
   align-self: flex-start;
   padding: 0.3rem 1.1rem;
   border: 1px solid var(--signup-border);
@@ -136,15 +193,12 @@
 @media (min-width: 768px) {
   .card {
     flex-direction: column;
-    width: 343.2px;
+    /* The grid sizes the column now, so the card fills it. */
+    width: 100%;
     max-width: 100%;
-    height: 506px;
-  }
-
-  /* Expanded, the card grows past the mock's fixed height; its grid row
-     stretches to match and the Sign Up button stays pinned to the bottom. */
-  .cardExpanded {
-    height: auto;
+    /* Fills its grid row, so cards whose flyers differ in height still end
+       level and their Sign Up buttons line up. */
+    height: 100%;
     min-height: 506px;
   }
 
@@ -156,9 +210,9 @@
   .image,
   .imagePlaceholder {
     flex: 0 0 auto;
+    align-self: stretch;
     width: 100%;
-    height: 280px;
-    min-height: 0;
+    height: auto;
   }
 
   .body {
@@ -178,10 +232,13 @@
     gap: 0.75rem;
   }
 
+  .actions {
+    justify-content: center;
+  }
+
   .signup,
   .signupDisabled {
     align-self: center;
-    margin-top: auto;
   }
 
   .description {

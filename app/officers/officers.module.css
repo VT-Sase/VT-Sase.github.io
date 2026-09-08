@@ -1,363 +1,84 @@
-/* Background lives on the body (see app/globals.css) — this page used to paint
-   its own opaque navy over it, which is why it was the one route that neither
-   matched the others nor responded to the light/dark toggle. Everything here
-   is layout and theme tokens now. */
+/* Background lives on the body (see app/globals.css) — the dark gradient, the
+   light-theme crossfade and the doodle tile are painted once, site-wide.
+
+   Two things are deliberately kept apart in this file:
+   - The officer cards and their grids are the original design, unchanged.
+   - The hero, the section headings and the supporting copy use the shared
+     page system in globals.css, so this route's type matches the home page.
+   The decorative layers that used to sit behind the board — blurred glow
+   blobs and floating glyphs — are gone with the old hero. */
 
 .page {
   composes: pageShell from global;
-  composes: pageShellFlush from global;
-
-  overflow: hidden;
 }
 
-/* =========================
-   HERO
-   ========================= */
+/* =========================================================
+   HERO — copy left, photograph right, as on the home page
+   ========================================================= */
 
 .hero {
-  position: relative;
-
-  min-height: 320px;
-
-  display: flex;
-  align-items: flex-end;
-
-  overflow: hidden;
-
-  background-image: url("/images/officers/full_officers.JPG");
-  background-size: cover;
-  background-position: center 43%;
-}
-
-.heroOverlay {
-  position: absolute;
-  inset: 0;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(5, 31, 47, 0.62),
-      rgba(6, 45, 67, 0.9)
-    );
-
-  transition: background 0.7s ease;
-}
-
-.hero:hover .heroOverlay {
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(5, 31, 47, 0.48),
-      rgba(6, 45, 67, 0.74)
-    );
-}
-
-.heroGlow {
-  position: absolute;
-
-  width: 420px;
-  height: 420px;
-
-  right: -110px;
-  bottom: -220px;
-
-  border-radius: 50%;
-
-  background: rgba(25, 183, 207, 0.14);
-
-  filter: blur(70px);
-
-  pointer-events: none;
-}
-
-.heroContent {
-  position: relative;
-  z-index: 2;
-
-  width: min(1100px, 92%);
-
-  margin: 0 auto;
-
-  padding-bottom: 40px;
-}
-
-.eyebrow {
-  margin: 0 0 8px;
-
-  color: #6ee7f2;
-
-  font-size: 12px;
-  font-weight: 700;
-
-  letter-spacing: 0.16em;
-
-  text-transform: uppercase;
-}
-
-.heroSubtitle {
-  margin: 12px 0 0;
-
-  max-width: 500px;
-
-  color: rgba(255, 255, 255, 0.84);
-
-  font-size: 15px;
-
-  line-height: 1.5;
-}
-
-/* =========================
-   BOARD BACKGROUND
-   ========================= */
-
-.board {
-  position: relative;
-
-  overflow: hidden;
-}
-
-/* =========================
-   GLOW BACKGROUNDS
-   ========================= */
-
-.backgroundGlowOne,
-.backgroundGlowTwo,
-.backgroundGlowThree {
-  position: absolute;
-
-  border-radius: 50%;
-
-  filter: blur(80px);
-
-  pointer-events: none;
-
-  z-index: 0;
-}
-
-.backgroundGlowOne {
-  width: 420px;
-  height: 420px;
-
-  top: 250px;
-  left: -210px;
-
-  background: rgba(25, 183, 207, 0.12);
-}
-
-.backgroundGlowTwo {
-  width: 500px;
-  height: 500px;
-
-  top: 1050px;
-  right: -260px;
-
-  background: rgba(80, 195, 210, 0.1);
-}
-
-.backgroundGlowThree {
-  width: 420px;
-  height: 420px;
-
-  bottom: 300px;
-  left: -180px;
-
-  background: rgba(25, 183, 207, 0.08);
-}
-
-/* =========================
-   LARGE BACKGROUND SYMBOLS
-   ========================= */
-
-.backgroundSymbols span {
-  position: absolute;
-
-  z-index: 0;
-
-  color: rgba(255, 255, 255, 0.055);
-
-  font-weight: 700;
-
-  pointer-events: none;
-
-  user-select: none;
-
-  animation: slowFloat 8s ease-in-out infinite;
-}
-
-.bgSymbolOne {
-  top: 170px;
-  right: 7%;
-
-  font-size: 95px;
-}
-
-.bgSymbolTwo {
-  top: 720px;
-  left: 6%;
-
-  font-size: 72px;
-
-  animation-delay: -2s !important;
-}
-
-.bgSymbolThree {
-  top: 1250px;
-  right: 5%;
-
-  font-size: 72px;
-
-  animation-delay: -4s !important;
-}
-
-.bgSymbolFour {
-  top: 1820px;
-  left: 6%;
-
-  font-size: 95px;
-
-  animation-delay: -1s !important;
-}
-
-.bgSymbolFive {
-  bottom: 300px;
-  right: 7%;
-
-  font-size: 110px;
-
-  animation-delay: -3s !important;
-}
-
-/* =========================
-   MAIN CONTENT
-   ========================= */
-
-.boardContent {
-  position: relative;
-  z-index: 2;
-
-  max-width: 720px;
-
-  margin: 0 auto;
-
-  padding: 65px 20px 110px;
-}
-
-/* =========================
-   COMMITTEE SECTIONS
-   ========================= */
-
-.committee {
-  position: relative;
-
-  margin-bottom: 90px;
-}
-
-.sectionHeading {
-  display: flex;
-
+  composes: pageSection from global;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
-
-  gap: 14px;
-
-  margin-bottom: 5px;
+  gap: 28px;
 }
 
-.sectionHeading h2 {
-  margin: 0;
-
-  color: white;
-
-  text-align: center;
-
-  font-size: 30px;
-  font-weight: 700;
-
-  white-space: nowrap;
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 56px;
+  }
 }
 
-.headingLine {
-  width: 42px;
-  height: 1px;
-
-  background: rgba(99, 224, 236, 0.55);
+.heroCopy p {
+  max-width: 34rem;
 }
 
-.flipHint {
-  margin: 0 0 25px;
-
-  text-align: center;
-
-  color: rgba(255, 255, 255, 0.45);
-
-  font-size: 10px;
-
-  letter-spacing: 0.05em;
-
-  text-transform: uppercase;
+/* The same pastel frame the home page's hero photograph sits in. */
+.heroVisual {
+  padding: 18px 18px 0;
+  border-radius: 24px;
+  background: radial-gradient(
+    ellipse at 25% 15%,
+    #d3ecc0,
+    #a5d9d3 65%,
+    #77bfc8
+  );
 }
 
-/* =========================
-   SECTION DECORATIONS
-   ========================= */
-
-.sectionDecor {
-  position: absolute;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  z-index: -1;
+.heroPhoto {
+  position: relative;
+  height: clamp(240px, 30vw, 400px);
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: var(--card-shadow);
 }
 
-.floatingIcon {
-  position: absolute;
-
-  color: rgba(255, 255, 255, 0.08);
-
-  animation: floatIcon 7s ease-in-out infinite;
-
-  user-select: none;
+.heroPhoto img {
+  object-fit: cover;
+  object-position: center 43%;
 }
 
-.iconOne {
-  top: 30px;
-  left: -70px;
-
-  font-size: 34px;
+.photoCaption {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  padding: 14px 2px;
+  color: #0d314b;
+  font-size: 11px;
+  font-weight: 500;
 }
 
-.iconTwo {
-  top: 130px;
-  right: -60px;
-
-  font-size: 30px;
-
-  animation-delay: -2.5s;
+.photoCaption > span:last-child {
+  margin-left: auto;
 }
 
-.iconThree {
-  bottom: 10px;
-  left: -45px;
-
-  font-size: 25px;
-
-  animation-delay: -4s;
-}
-
-/* =========================
-   HERO TITLE
-   ========================= */
-
-.hero h1 {
-  color: var(--lime);
-
-  font-size: clamp(2rem, 6vw, 3.25rem);
-  font-weight: 800;
-  line-height: 1;
-
-  transition: color var(--theme-duration) var(--theme-easing);
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #366d34;
 }
 
 /* =========================================================
@@ -372,18 +93,24 @@
   margin-top: 3.5rem;
 }
 
-.committee h2 {
-  margin: 0 0 1.6rem;
+/* Heading sits left at the page's own scale, so the flanking rules and the
+   centred, cyan, weight-700 treatment are gone. */
+.committeeHeading {
+  margin-bottom: 1.4rem;
+}
 
-  color: var(--cyan-pale);
-
-  font-family: var(--font-heading);
-  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
-  font-weight: 700;
-
-  text-align: center;
-
+/* Said once above the whole board, in the page's muted body voice. */
+.flipHint {
+  margin: 0 0 2.5rem;
+  color: var(--fg-muted);
+  font-size: 13px;
   transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* The first committee heading follows the hint, so it does not also need the
+   full section gap above it. */
+.flipHint + .committee {
+  margin-top: 0;
 }
 
 /* =========================================================
@@ -483,12 +210,7 @@
   width: 100%;
   height: 145px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #24495c,
-      #163a4d
-    );
+  background: linear-gradient(135deg, #24495c, #163a4d);
 }
 
 .cardInfo {
@@ -543,12 +265,12 @@
 }
 
 .name {
-  margin: -2px 0 0;
-
-  color: white;
   margin: -0.12rem 0 0;
 
-  color: var(--card-text);
+  /* The card front is a fixed navy in both themes, so the name is a fixed
+     white — the themed --card-text it used to take is near-black in light
+     mode, which made the names disappear on the card. */
+  color: #ffffff;
 
   font-size: 0.7rem;
   font-weight: 600;
@@ -575,12 +297,7 @@
 
   padding: 15px;
 
-  background:
-    linear-gradient(
-      145deg,
-      #073b54,
-      #052b40
-    );
+  background: linear-gradient(145deg, #073b54, #052b40);
 
   border: 1px solid rgba(25, 183, 207, 0.42);
 
@@ -685,12 +402,7 @@
 
   padding: 12px;
 
-  background:
-    linear-gradient(
-      145deg,
-      #073b54,
-      #062f46
-    );
+  background: linear-gradient(145deg, #073b54, #062f46);
 
   border: 1px solid rgba(25, 183, 207, 0.16);
 
@@ -714,12 +426,7 @@
 .webCard:hover {
   transform: translateY(-5px);
 
-  background:
-    linear-gradient(
-      145deg,
-      #084864,
-      #07354c
-    );
+  background: linear-gradient(145deg, #084864, #07354c);
 
   border-color: rgba(25, 183, 207, 0.5);
 }
@@ -735,72 +442,11 @@
    ANIMATIONS
    ========================= */
 
-@keyframes floatIcon {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-12px) rotate(5deg);
-  }
-}
-
-@keyframes slowFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-18px);
-  }
-}
-
 /* =========================
    MOBILE
    ========================= */
 
 @media (max-width: 650px) {
-  .hero {
-    min-height: 235px;
-
-    background-position: center;
-  }
-  .hero h1 {
-    font-size: 46px;
-  }
-
-  .eyebrow {
-    font-size: 10px;
-  }
-
-  .boardContent {
-    width: 94%;
-
-    box-sizing: border-box;
-
-    padding: 48px 10px 80px;
-  }
-
-  .committee {
-    margin-bottom: 65px;
-  }
-
-  .sectionHeading {
-    gap: 8px;
-  }
-
-  .sectionHeading h2 {
-    font-size: 25px;
-
-    white-space: normal;
-  }
-
-  .headingLine {
-    width: 25px;
-  }
-
   .grid {
     gap: 12px;
   }
@@ -827,25 +473,11 @@
 
     flex-basis: 135px;
   }
-
-  .iconOne,
-  .iconTwo,
-  .iconThree {
-    display: none;
-  }
-
-  .backgroundSymbols span {
-    opacity: 0.6;
-  }
 }
 
 /* =========================================================
    LIGHT THEME
    ========================================================= */
-
-:global(html[data-theme="light"]) .committee h2 {
-  color: var(--card-text);
-}
 
 :global(html[data-theme="light"]) .webCard {
   padding: 0.75rem;
@@ -867,22 +499,12 @@
     color var(--theme-duration) var(--theme-easing);
 }
 
-
 /* =========================
    REDUCED MOTION
    ========================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .floatingIcon,
-  .backgroundSymbols span {
-    animation: none;
-  }
-
   .cardInner {
-    transition: none;
-  }
-
-  .heroOverlay {
     transition: none;
   }
 }

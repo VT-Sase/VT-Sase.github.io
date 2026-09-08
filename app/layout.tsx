@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, Onest } from "next/font/google";
+import { Onest } from "next/font/google";
 import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import PageTransition from "@/components/PageTransition";
 import "./globals.css";
-
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-instrument-sans",
-});
 
 const onest = Onest({
   subsets: ["latin"],
@@ -20,9 +15,9 @@ const clientInitializer = `
   try {
     const savedTheme = localStorage.getItem("vt-sase-theme");
     document.documentElement.dataset.theme =
-      savedTheme === "light" ? "light" : "dark";
+      savedTheme === "dark" ? "dark" : "light";
   } catch {
-    document.documentElement.dataset.theme = "dark";
+    document.documentElement.dataset.theme = "light";
   }
 
   // Reveal hides a section until its observer shows it, so it must only arm
@@ -50,9 +45,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       suppressHydrationWarning
-      className={`${instrumentSans.variable} ${onest.variable}`}
+      className={onest.variable}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: clientInitializer }} />

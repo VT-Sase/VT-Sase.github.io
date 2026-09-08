@@ -1,15 +1,21 @@
 /**
  * Officers — route: /officers
  *
- * Sections to build:
- *   1. Executive board — grid of cards: photo, name, role, major/year,
- *      email or LinkedIn
- *   2. Web dev team — same card layout
+ * The officer cards, their flip, and the grids that arrange them are the
+ * original design, kept as they were. The hero, the section headings and the
+ * supporting copy use the shared page system from globals.css, so this route's
+ * type reads the same as the home page.
  *
- * Headshots go in public/images (compress them first — see the README).
+ * Headshots go in public/images/officers (compress them first — see README).
  */
+import Image from "next/image";
 import styles from "./officers.module.css";
-import { officersByCommittee, type Officer } from "../../content/officers";
+import { officersByCommittee, type Officer } from "@/content/officers";
+
+/** Web Dev is the only committee whose display name differs from its key. */
+function committeeTitle(committee: string): string {
+  return committee === "Web Dev" ? "Web Development Team" : committee;
+}
 
 function OfficerCard({ officer }: { officer: Officer }) {
   return (
@@ -17,6 +23,7 @@ function OfficerCard({ officer }: { officer: Officer }) {
       <div className={styles.cardInner}>
         <div className={styles.cardFront}>
           {officer.photo ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={officer.photo}
               alt={officer.name}
@@ -37,47 +44,11 @@ function OfficerCard({ officer }: { officer: Officer }) {
 
           <h3>{officer.name}</h3>
 
-          <p className={styles.backRole}>
-            {officer.role}
-          </p>
+          <p className={styles.backRole}>{officer.role}</p>
 
-          <p className={styles.backText}>
-            More info coming soon!
-          </p>
+          <p className={styles.backText}>More info coming soon!</p>
         </div>
       </div>
-    </div>
-  );
-}
-
-function SectionDecor({ committee }: { committee: string }) {
-  const icons: Record<string, string[]> = {
-    Leads: ["✦", "⚛", "◌"],
-    External: ["◎", "✦", "↗"],
-    Internal: ["✧", "◉", "⌁"],
-    Media: ["✦", "◈", "✧"],
-    Logistics: ["⬡", "✦", "◌"],
-    "Web Dev": ["</>", "{ }", "✦"],
-  };
-
-  const sectionIcons = icons[committee] ?? ["✦", "◌"];
-
-  return (
-    <div className={styles.sectionDecor} aria-hidden="true">
-      {sectionIcons.map((icon, index) => (
-        <span
-          key={`${committee}-${index}`}
-          className={`${styles.floatingIcon} ${
-            index === 0
-              ? styles.iconOne
-              : index === 1
-                ? styles.iconTwo
-                : styles.iconThree
-          }`}
-        >
-          {icon}
-        </span>
-      ))}
     </div>
   );
 }
@@ -87,102 +58,73 @@ export default function OfficersPage() {
 
   return (
     <div className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroOverlay} />
-
-        <div className={styles.heroGlow} />
-
-        <div className={styles.heroContent}>
-          <p className={styles.eyebrow}>
-            Virginia Tech SASE
-          </p>
-
-          <h1>Officers</h1>
-
-          <p className={styles.heroSubtitle}>
-            Meet the students leading SASE at Virginia Tech this year.
+      <section className={styles.hero} aria-labelledby="officers-page-heading">
+        <div className={styles.heroCopy}>
+          <span className="pageEyebrow">Virginia Tech SASE</span>
+          <h1 id="officers-page-heading" className="pageTitle">
+            Officers
+          </h1>
+          <p className="pageLede">
+            Meet the students leading SASE at Virginia Tech this year — the
+            board, every committee on it, and the people who keep the chapter
+            running.
           </p>
         </div>
+
+        <figure className={styles.heroVisual}>
+          <div className={styles.heroPhoto}>
+            <Image
+              src="/images/officers/full_officers.JPG"
+              alt="The Virginia Tech SASE officer board together"
+              fill
+              priority
+              sizes="(max-width: 900px) 95vw, 560px"
+            />
+          </div>
+          <figcaption className={styles.photoCaption}>
+            <span className={styles.liveDot} /> This year&rsquo;s board
+            <span>Blacksburg, VA</span>
+          </figcaption>
+        </figure>
       </section>
 
-      <main className={styles.board}>
-        <div className={styles.backgroundGlowOne} />
-        <div className={styles.backgroundGlowTwo} />
-        <div className={styles.backgroundGlowThree} />
+      <div className={styles.board}>
+        <p className={styles.flipHint}>Hover over any card to see more.</p>
 
-        <div className={styles.backgroundSymbols} aria-hidden="true">
-          <span className={styles.bgSymbolOne}>⚛</span>
-          <span className={styles.bgSymbolTwo}>✦</span>
-          <span className={styles.bgSymbolThree}>{"</>"}</span>
-          <span className={styles.bgSymbolFour}>⬡</span>
-          <span className={styles.bgSymbolFive}>◌</span>
-        </div>
+        {groups.map(({ committee, members }) => {
+          const isWebDev = committee === "Web Dev";
 
-        <div className={styles.boardContent}>
-          {groups.map(({ committee, members }) => {
-            const isWebDev = committee === "Web Dev";
+          return (
+            <section className={styles.committee} key={committee}>
+              <h2 className={`sectionTitle ${styles.committeeHeading}`}>
+                {committeeTitle(committee)}
+              </h2>
 
-            return (
-              <section
-                key={committee}
-                className={styles.committee}
-              >
-                <SectionDecor committee={committee} />
+              {isWebDev ? (
+                <div className={styles.webGrid}>
+                  {members.map((officer) => (
+                    <div key={officer.name} className={styles.webCard}>
+                      <span className={styles.webCode}>{"<>"}</span>
 
-                <div className={styles.sectionHeading}>
-                  <span className={styles.headingLine} />
-
-                  <h2>
-                    {isWebDev
-                      ? "Web Development Team"
-                      : committee}
-                  </h2>
-
-                  <span className={styles.headingLine} />
+                      <span>{officer.name}</span>
+                    </div>
+                  ))}
                 </div>
-
-                {!isWebDev && (
-                  <p className={styles.flipHint}>
-                    Hover over a card to learn more
-                  </p>
-                )}
-
-                {isWebDev ? (
-                  <div className={styles.webGrid}>
-                    {members.map((officer) => (
-                      <div
-                        key={officer.name}
-                        className={styles.webCard}
-                      >
-                        <span className={styles.webCode}>
-                          {"<>"}
-                        </span>
-
-                        <span>{officer.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div
-                    className={`${styles.grid} ${
-                      committee === "Leads"
-                        ? styles.leadsGrid
-                        : ""
-                    }`}
-                  >
-                    {members.map((officer) => (
-                      <OfficerCard
-                        key={officer.name}
-                        officer={officer}
-                      />
-                    ))}
-                  </div>
-                )}
-              </section>
-            );
-          })}
-        </div>
-      </main>
+              ) : (
+                <div
+                  className={`${styles.grid} ${
+                    committee === "Leads" ? styles.leadsGrid : ""
+                  }`}
+                >
+                  {members.map((officer) => (
+                    <OfficerCard key={officer.name} officer={officer} />
+                  ))}
+                </div>
+              )}
+            </section>
+          );
+        })}
+      </div>
     </div>
   );
 }

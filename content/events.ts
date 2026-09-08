@@ -16,6 +16,8 @@
  *   description: "A short description of the event.",
  *   image: "/images/events/event-name.jpg",
  *   signupUrl: "https://example.com/signup",
+ *   postUrl: "https://www.instagram.com/p/XXXXXXXXXXX/",
+ *   partners: [{ name: "AASU", url: "https://www.instagram.com/aasuvt/" }],
  * },
  *
  * REQUIRED FIELDS
@@ -32,6 +34,12 @@
  *   with `/images/events/`. Without it, the card shows a gray placeholder.
  * - signupUrl: Use the complete RSVP URL, including `https://`. Without it,
  *   the Sign Up button is disabled. Do not use `#` for a finished event.
+ * - postUrl: Link to the event's Instagram post. Adds a "Details on Instagram"
+ *   link next to the Sign Up button, which is the place to send people when
+ *   there is no RSVP form yet.
+ * - partners: The other organizations running the event, listed on the card as
+ *   "With ...". Each one needs a `name`; add a `url` — usually their Instagram
+ *   — and the name becomes a link. Leave `url` off and it stays plain text.
  *
  * DATE AND TIME NOTES
  *
@@ -54,6 +62,8 @@ export type SaseEvent = {
   description: string;
   image?: string;
   signupUrl?: string;
+  postUrl?: string;
+  partners?: { name: string; url?: string }[];
 };
 
 // Current term
@@ -62,10 +72,49 @@ export const TERM_LABEL = "Fall 2026";
 const TIME_ZONE = "America/New_York";
 
 // Events are sorted by date automatically. Add new events to the array below.
-// SAMPLE DATA — delete everything between the markers below before launch.
-// ---- BEGIN SAMPLE EVENTS ----
-export const events: SaseEvent[] = [];
-// ---- END SAMPLE EVENTS ----
+export const events: SaseEvent[] = [
+  {
+    name: "Altec Info Session",
+    date: "2026-09-08T17:30:00-04:00",
+    endDate: "2026-09-08T19:00:00-04:00",
+    location: "Surge 108A",
+    description:
+      "Bring questions, build your career. Talk with representatives from Altec about resumes and applications, career paths and industry advice, and internship and job opportunities. Free pizza provided.",
+    image: "/images/events/altec-info-session.jpg",
+    postUrl: "https://www.instagram.com/p/Dc9DEVUBP4B/",
+  },
+  {
+    name: '"How I Got My Internship" Panel',
+    date: "2026-09-11T18:30:00-04:00",
+    endDate: "2026-09-11T20:00:00-04:00",
+    location: "Goodwin 145",
+    description:
+      "A panel with NSBE and ColorStack answering your internship questions, so you stand out at Engineering Expo. Have internship experience? Fill out the panelist interest form on the post.",
+    image: "/images/events/internship-panel.jpg",
+    postUrl: "https://www.instagram.com/p/Dc6Rr01RsNj/",
+    partners: [
+      { name: "NSBE", url: "https://www.instagram.com/nsbe_vt/" },
+      { name: "ColorStack", url: "https://www.instagram.com/colorstackvt/" },
+    ],
+  },
+  {
+    name: "Pickleball Tournament",
+    date: "2026-09-13T13:00:00-04:00",
+    location: "Washington Street Courts",
+    description:
+      "A genderblind doubles tournament: pool play then playoffs, in competitive and casual divisions. Check in at 1pm, play starts at 1:30pm. Prizes, merch, water, and snacks. Registration is $5 for Asian-org affiliated students and $10 otherwise, and closes Sept 11 at 11:59pm. Open to all.",
+    image: "/images/events/pickleball-tournament.jpg",
+    signupUrl: "https://linktr.ee/aasuvt",
+    postUrl: "https://www.instagram.com/p/Dc87d9vChbw/",
+    partners: [
+      { name: "AASU", url: "https://www.instagram.com/aasuvt/" },
+      { name: "CAS" },
+      { name: "FASA", url: "https://www.instagram.com/vt_fasa/" },
+      { name: "KASA" },
+      { name: "VSA", url: "https://www.instagram.com/vsahokies/" },
+    ],
+  },
+];
 
 export function upcomingEvents(limit?: number): SaseEvent[] {
   const now = Date.now();

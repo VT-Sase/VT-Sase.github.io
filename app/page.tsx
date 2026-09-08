@@ -1,327 +1,378 @@
 import Image from "next/image";
 import Link from "next/link";
 import FaqSection from "@/components/FaqSection";
-import HeroField from "@/components/HeroField";
-import Reveal from "@/components/Reveal";
 import SisterChapters from "@/components/SisterChapters";
 import { initials, leads } from "@/content/officers";
 import { formatEventDate, upcomingEvents } from "@/content/events";
-import {
-  ABOUT_PHOTOS,
-  CHAPTER_PILLARS,
-  COVER_PHOTOS,
-  HERO_PHRASES,
-  HOME_STATS,
-  JOIN_URL,
-  MISSION_CARDS,
-  MISSION_STATEMENT,
-} from "@/content/site";
+import { JOIN_URL, MISSION_CARDS, MISSION_STATEMENT } from "@/content/site";
 import { sponsors } from "@/content/sponsors";
-
+import StatRotator from "@/components/StatRotator";
 import styles from "./page.module.css";
-
-/** The ticker under the cover: facts first, then what the chapter is for. */
-const TICKER = [
-  ...HOME_STATS.map((stat) => `${stat.value} ${stat.label}`),
-  ...HERO_PHRASES,
-];
 
 export default function Home() {
   const nextEvents = upcomingEvents(2);
-
   return (
     <div className={styles.page}>
-      {/* COVER — a full-bleed opening rather than a centred hero block. The
-          copy hangs off the bottom-left corner and the type runs to the edge;
-          the field behind it is the only thing that is centred. */}
-      <section className={styles.cover}>
-        <HeroField />
+      <section className={styles.hero} aria-labelledby="home-heading">
+        <div className={styles.heroTop}>
+          <div className={styles.heroCopy}>
+            <h1 id="home-heading">
+              <span>SASE</span>
+              <br />
+              at Virginia Tech
+            </h1>
+            <p className={styles.heroLede}>
+              Building community, creating opportunities, and empowering
+              Asian-heritage students in STEM!
+            </p>
+            <div className={styles.actions}>
+              <a
+                className={styles.primary}
+                href={JOIN_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Join the chapter <span aria-hidden="true">↗</span>
+              </a>
+              <Link className={styles.secondary} href="/events">
+                Explore events <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
 
-        {/* Photographs first: this is a club, and a club page should open on
-            faces. They are tiled across the top only, so the copy below sits
-            on the field rather than on top of a photograph. */}
-        <div className={styles.mosaic} aria-hidden="true">
-          {COVER_PHOTOS.map((photo, index) => (
-            <div
-              key={photo.src}
-              className={`${styles.tile} ${styles[`tile${index + 1}`]}`}
-            >
+          <figure className={styles.heroVisual}>
+            <div className={styles.heroPhoto}>
               <Image
-                src={photo.src}
-                alt=""
+                src="/images/group-lawn.jpg"
+                alt="SASE at Virginia Tech members together on the lawn"
                 fill
-                sizes="(max-width: 780px) 50vw, 30vw"
-                priority={index < 2}
-                className={styles.tileImage}
+                priority
+                sizes="(max-width: 900px) 95vw, 560px"
               />
             </div>
-          ))}
+          </figure>
         </div>
 
-        <div className={styles.coverInner}>
-          <p className={styles.eyebrow}>
-            <span className={styles.eyebrowRule} aria-hidden="true" />
-            Society of Asian Scientists &amp; Engineers
+        <div className={styles.stats}>
+          <p>
+            What we run,
+            <br />
+            <strong>every semester.</strong>
           </p>
 
-          <h1 className={styles.coverTitle}>
-            <span className={styles.coverMark}>SASE</span>
-            <span className={styles.coverLine}>at Virginia</span>
-            <span className={styles.coverLineIndent}>Tech</span>
-          </h1>
-
-          <div className={styles.coverFoot}>
-            <p className={styles.coverBlurb}>
-              Everyone is welcome at our meetings — whether you came for the
-              career workshops or just for the people.
-            </p>
-
-            <a
-              className={styles.coverAction}
-              href={JOIN_URL}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Join the chapter
-              <span aria-hidden="true">&#8594;</span>
-            </a>
-          </div>
+          {/* Three columns that trade places: each cycles the whole set from
+              a different starting point, so all three stay on screen. */}
+          <StatRotator />
         </div>
-
-        <span className={styles.scrollCue} aria-hidden="true">
-          scroll
-        </span>
       </section>
 
-      {/* TICKER — the chapter's numbers, running rather than sitting in a row
-          of three with dividers. */}
-      <div className={styles.ticker} aria-hidden="true">
-        <div className={styles.tickerTrack}>
-          {[0, 1].map((copy) => (
-            <ul key={copy} className={styles.tickerGroup}>
-              {TICKER.map((entry) => (
-                <li key={entry} className={styles.tickerItem}>
-                  {entry}
-                </li>
-              ))}
-            </ul>
-          ))}
-        </div>
-      </div>
-
-      <p className="srOnly">
-        {TICKER.join(". ")}.
-      </p>
-
-      {/* ABOUT — a spread, but a disciplined one. Everything in the text
-          block hangs off a single left spine and only the size changes down
-          the page; the photographs are one deliberate band underneath rather
-          than five tiles scattered through the copy. */}
-      <section id="about" className={styles.about}>
-        <Reveal className={styles.aboutInner} deep>
-          <p className={styles.aboutRail} data-reveal-item>
-            <span className={styles.aboutRailIndex}>01</span>
-            <span className={styles.aboutRailRule} aria-hidden="true" />
-            <span className={styles.aboutRailLabel}>About</span>
-          </p>
-
-          <div className={styles.aboutMain}>
-            <h2 className={styles.aboutTitle} data-reveal-item>
-              What is <em className={styles.aboutTitleEm}>SASE</em>
+      <section
+        id="about"
+        className={styles.section}
+        aria-labelledby="about-heading"
+      >
+        <header className={styles.sectionHead}>
+          <div>
+            <h2 id="about-heading">
+              What is
+              <br />
+              <span>SASE</span>?
             </h2>
-
-            <p className={styles.aboutLede} data-reveal-item>
-              The Society of Asian Scientists and Engineers is a national
-              organization for students and professionals of Asian heritage in
-              STEM. Our chapter runs the local side of it.
-            </p>
-
-            <div className={styles.aboutColumns} data-reveal-item>
-              <p>
-                General body meetings, résumé and interview workshops, info
-                sessions with the companies that sponsor us, and the regional
-                conferences that come with being part of SASE Southeast.
-              </p>
-
-              <p>
-                We want members to leave Virginia Tech with the skills to get
-                hired, a network that outlasts graduation, and a reason to come
-                back and help the students behind them.
-              </p>
-            </div>
-
-            <p className={styles.doing} data-reveal-item>
-              <span className={styles.doingLabel}>What we run</span>
-              {CHAPTER_PILLARS.join(", ").toLowerCase()}.
-            </p>
           </div>
-        </Reveal>
-
-        {/* One band, one shared top and bottom edge, unequal widths. */}
-        <Reveal className={styles.aboutPhotos} stagger>
-          {ABOUT_PHOTOS.map((photo) => (
-            <figure key={photo.src} className={styles.plate}>
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                sizes="(max-width: 780px) 80vw, 30vw"
-                className={styles.plateImage}
-              />
-            </figure>
-          ))}
-        </Reveal>
-      </section>
-
-      {/* MISSION — the statement stays pinned while the three pillars pass it,
-          each one a full statement rather than a card in a row of three. */}
-      <section className={styles.mission}>
-        <div className={styles.missionInner}>
-          <div className={styles.missionStick}>
-            <h2 className={styles.missionTitle}>Our Mission</h2>
-
-            <p className={styles.missionStatement}>{MISSION_STATEMENT}</p>
-          </div>
-
-          <ol className={styles.pillars}>
-            {MISSION_CARDS.map((card, index) => (
-              <li key={card.title} className={styles.pillar}>
-                <span className={styles.pillarNumber} aria-hidden="true">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-
-                <h3 className={styles.pillarTitle}>{card.title}</h3>
-
-                <p className={styles.pillarBody}>{card.body}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* OFFICERS — centred, and named for what it is. */}
-      <Reveal className={styles.officers} stagger>
-        <header className={styles.officersHead}>
-          <h2 className={styles.officersTitle}>Officers</h2>
-
-          <p className={styles.officersLede}>
-            The students who run the chapter this year.
+          <p>
+            SASE is where we come to meet people, grow professionally, celebrate
+            our culture, and make Virginia Tech feel a little smaller. We want
+            members to leave with more than just another club on their resume.
+            We want them to leave with real friendships, useful experience, and
+            a community they can always come back to.
           </p>
         </header>
+        <div className={styles.featureGrid}>
+          <article className={`${styles.feature} ${styles.mint}`}>
+            <div className={styles.featureCopy}>
+              <span className={styles.eyebrow}>01 / Professional Growth</span>
+              <h3>
+                Get ready for
+                <br />
+                what&rsquo;s next.
+              </h3>
+              <p>
+                From resume reviews and mock interviews to company info
+                sessions, we create opportunities for members to learn,
+                practice, and feel more confident going into recruiting.
+              </p>
+              <Link className={styles.textLink} href="/events">
+                See what&rsquo;s coming up <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+            <div className={styles.featurePhoto}>
+              <Image
+                src="/images/altec-session.jpg"
+                alt="SASE members at a company info session with Altec"
+                fill
+                sizes="(max-width: 700px) 90vw, 550px"
+              />
+            </div>
+          </article>
+          <article className={`${styles.feature} ${styles.lime}`}>
+            <div className={styles.featureCopy}>
+              <span className={styles.eyebrow}>02 / Community</span>
+              <h3>Find your people.</h3>
+              <p>
+                Some of the best parts of SASE happen outside the workshops and
+                meetings. It&rsquo;s the people you meet, the conversations
+                after events, and having a group on campus that you actually
+                look forward to seeing.
+              </p>
+              <a
+                className={styles.textLink}
+                href={JOIN_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Join the chapter <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <div className={styles.featurePhoto}>
+              <Image
+                src="/images/find-your-people.jpg"
+                alt="SASE members hanging out with pizza at an outdoor social"
+                fill
+                sizes="(max-width: 700px) 90vw, 550px"
+              />
+            </div>
+          </article>
+        </div>
+      </section>
 
-        <ul className={styles.officersList}>
+      <section className={styles.section} aria-labelledby="mission-heading">
+        <header className={styles.sectionHead}>
+          <div>
+            <h2 id="mission-heading">
+              Grow together.
+              <br />
+              Go further!
+            </h2>
+          </div>
+          <p>{MISSION_STATEMENT}</p>
+        </header>
+        <div className={styles.pillars}>
+          {MISSION_CARDS.map((card, i) => (
+            <article className={styles.pillar} key={card.title}>
+              <div className={styles.pillarCopy}>
+                <span className={styles.pillarNumber}>0{i + 1}</span>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
+              </div>
+              <div className={styles.pillarPhoto}>
+                <Image
+                  src={card.photo}
+                  alt={card.alt}
+                  fill
+                  sizes="(max-width: 900px) 90vw, 380px"
+                />
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.eventSection} aria-labelledby="events-heading">
+        <div>
+          <h2 id="events-heading">
+            Come see what
+            <br />
+            we&rsquo;re up to!
+          </h2>
+          <p>
+            From general body meetings and career workshops to socials, company
+            events, and conferences, there&rsquo;s always something happening
+            with SASE.
+          </p>
+          <Link className={styles.primary} href="/events">
+            See what&rsquo;s coming up <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+        <div className={styles.eventPanel}>
+          <div className={styles.eventPanelHead}>
+            <span>Coming up at SASE</span>
+          </div>
+          {nextEvents.length ? (
+            <div className={styles.eventFlyers}>
+              {nextEvents.map((event) => (
+                <Link
+                  href="/events"
+                  className={styles.eventFlyerLink}
+                  key={event.name}
+                  aria-label={`${event.name} — ${formatEventDate(event)}, ${
+                    event.location
+                  }`}
+                >
+                  {event.image ? (
+                    <Image
+                      className={styles.eventFlyer}
+                      src={event.image}
+                      alt=""
+                      width={480}
+                      height={600}
+                      sizes="(min-width: 900px) 15rem, 45vw"
+                    />
+                  ) : (
+                    <div
+                      className={styles.eventFlyerEmpty}
+                      aria-hidden="true"
+                    />
+                  )}
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className={styles.eventEmpty}>
+              <h3>
+                Nothing on the calendar
+                <br />
+                right now.
+              </h3>
+              <p>
+                Check the events page and our chapter channels for the next
+                general body meeting, workshop, or social.
+              </p>
+              <a
+                className={styles.textLink}
+                href={JOIN_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Stay in the loop <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className={styles.section} aria-labelledby="officers-heading">
+        <header className={styles.sectionHead}>
+          <div>
+            <h2 id="officers-heading">The team behind SASE!</h2>
+          </div>
+          <div>
+            <p>
+              These are some of the students helping make SASE happen this year,
+              from planning events to working with companies and building our
+              community.
+            </p>
+            <Link className={styles.textLink} href="/officers">
+              Meet the full board <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </header>
+        <ul className={styles.officers}>
           {leads().map((lead) => (
-            <li key={lead.name} className={styles.officer}>
-              <span className={styles.officerPhoto}>
+            <li className={styles.officer} key={lead.name}>
+              <div className={styles.officerPhoto}>
                 {lead.photo ? (
                   <Image
                     src={lead.photo}
-                    alt=""
+                    alt={lead.name}
                     fill
-                    sizes="10rem"
-                    className={styles.officerPhotoImage}
+                    sizes="(max-width: 600px) 80vw, 350px"
                   />
                 ) : (
-                  <span className={styles.officerInitials}>
-                    {initials(lead.name)}
-                  </span>
+                  <span>{initials(lead.name)}</span>
                 )}
-              </span>
-
-              <span className={styles.officerName}>{lead.name}</span>
-              <span className={styles.officerRole}>{lead.role}</span>
+              </div>
+              <div className={styles.officerInfo}>
+                <h3>{lead.name}</h3>
+                <p>{lead.role}</p>
+              </div>
             </li>
           ))}
         </ul>
+      </section>
 
-        <div className={styles.officersFoot}>
-          <Link className={styles.textLink} href="/officers">
-            Meet the team
-            <span aria-hidden="true">&#8594;</span>
-          </Link>
-        </div>
-      </Reveal>
-
-      {/* EVENTS — one line across the page, not a panel. */}
-      <Reveal className={styles.events} stagger>
-        <div className={styles.eventsHead}>
-          <h2 className={styles.sectionTitle}>
-            Keep up with our latest events
-          </h2>
-
-          <Link className={styles.textLink} href="/events">
-            See what&rsquo;s coming up
-            <span aria-hidden="true">&#8594;</span>
-          </Link>
-        </div>
-
-        {nextEvents.length > 0 ? (
-          <ul className={styles.eventsList}>
-            {nextEvents.map((event) => (
-              <li key={event.name} className={styles.eventsItem}>
-                <span className={styles.eventsDate}>
-                  {formatEventDate(event)}
-                </span>
-                <span className={styles.eventsName}>{event.name}</span>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-      </Reveal>
-
-      {/* SASE SOUTHEAST */}
-      <Reveal className={styles.southeastBand} stagger>
+      <section
+        className={`${styles.section} ${styles.region}`}
+        aria-label="SASE Southeast"
+      >
         <SisterChapters />
-      </Reveal>
+      </section>
 
-      {/* SPONSORS */}
-      <Reveal id="sponsors" className={styles.sponsorBand} stagger>
-        <header className={styles.bandHeader}>
-          <h2 className={styles.bandTitle}>Our sponsors</h2>
-
-          <p className={styles.bandTagline}>
-            These companies fund our events and send engineers to meet our
-            members.
-          </p>
+      <section
+        className={styles.section}
+        aria-labelledby="opportunities-heading"
+      >
+        <header className={styles.sectionHead}>
+          <div>
+            <h2 id="opportunities-heading">
+              Opportunities beyond
+              <br />
+              our chapter!
+            </h2>
+          </div>
+          <div className={styles.stackedCopy}>
+            <p>
+              A big part of SASE is helping members connect with people and
+              opportunities they might not find on their own. That includes
+              students at other universities, SASE alumni, and professionals
+              from companies across STEM.
+            </p>
+            <p>
+              Those connections are possible because of the organizations that
+              continue to support our chapter.
+            </p>
+          </div>
         </header>
+      </section>
 
+      <section
+        id="sponsors"
+        className={`${styles.section} ${styles.sponsors}`}
+        aria-labelledby="sponsor-heading"
+      >
+        <h2 id="sponsor-heading">Our sponsors!</h2>
+        <p>
+          Our sponsors help make our workshops, events, and professional
+          opportunities possible. They also give members the chance to connect
+          directly with engineers, recruiters, and professionals throughout the
+          year.
+        </p>
+        {/* The strip scrolls: one group plus an aria-hidden duplicate, so the
+            loop has no seam. Hover or focus pauses it. */}
         <div className={styles.marqueeWrap}>
           <div className={styles.marquee}>
             <div className={styles.track}>
-            {[false, true].map((isDuplicate) => (
-              <ul
-                key={isDuplicate ? "duplicate" : "sponsors"}
-                className={styles.trackGroup}
-                aria-hidden={isDuplicate || undefined}
-              >
-                {sponsors.map((sponsor) => (
-                  <li key={sponsor.name}>
-                    <a
-                      href={sponsor.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.sponsorItem}
-                      aria-label={`Visit ${sponsor.name}`}
-                      tabIndex={isDuplicate ? -1 : undefined}
-                    >
-                      <Image
-                        src={sponsor.logo}
-                        alt={isDuplicate ? "" : `${sponsor.name} logo`}
-                        width={260}
-                        height={120}
-                        className={styles.sponsorLogo}
-                      />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ))}
+              {[false, true].map((isDuplicate) => (
+                <ul
+                  key={isDuplicate ? "duplicate" : "sponsors"}
+                  className={styles.trackGroup}
+                  aria-hidden={isDuplicate || undefined}
+                >
+                  {sponsors.map((sponsor) => (
+                    <li key={sponsor.name}>
+                      <a
+                        href={sponsor.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.sponsorItem}
+                        aria-label={`Visit ${sponsor.name}`}
+                        tabIndex={isDuplicate ? -1 : undefined}
+                      >
+                        <Image
+                          src={sponsor.logo}
+                          alt={isDuplicate ? "" : `${sponsor.name} logo`}
+                          width={260}
+                          height={120}
+                          className={styles.sponsorLogo}
+                        />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
           </div>
         </div>
-        </div>
-      </Reveal>
-
-      {/* FAQS */}
+      </section>
       <FaqSection />
     </div>
   );

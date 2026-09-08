@@ -184,8 +184,8 @@ export default function Navbar() {
           <Image
             src="/images/logo.png"
             alt="VT SASE"
-            width={660}
-            height={352}
+            width={1400}
+            height={795}
             loading="eager"
           />
         </Link>
