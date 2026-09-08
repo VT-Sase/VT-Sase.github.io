@@ -30,7 +30,9 @@ function OfficerCard({ officer }: { officer: Officer }) {
               className={styles.photo}
             />
           ) : (
-            <div className={styles.photoPlaceholder} />
+            <div className={styles.photoPlaceholder}>
+              <span className={styles.photoSoon}>Photo coming soon</span>
+            </div>
           )}
 
           <div className={styles.cardInfo}>

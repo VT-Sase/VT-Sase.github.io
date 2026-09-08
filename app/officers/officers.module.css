@@ -210,7 +210,27 @@
   width: 100%;
   height: 145px;
 
+  display: grid;
+  place-items: center;
+
+  padding: 0 0.75rem;
+
   background: linear-gradient(135deg, #24495c, #163a4d);
+}
+
+/* Says why the space is empty, rather than leaving a blank panel that reads
+   as a loading failure. Sits on the fixed navy placeholder in both themes. */
+.photoSoon {
+  color: rgb(255 255 255 / 62%);
+
+  font-size: 0.58rem;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .cardInfo {

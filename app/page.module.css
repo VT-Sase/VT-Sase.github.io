@@ -4,7 +4,17 @@
   padding: 0 28px 80px;
 }
 .hero {
-  padding-top: 64px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 104px;
+  /* Viewport less the header, plus a little, so the stats row lands just above
+     the fold rather than exactly on it. */
+  min-height: calc(100vh - 7rem);
+  min-height: calc(100svh - 7rem);
+}
+/* Pushed to the foot of that first screen; the gap above it flexes. */
+.stats {
+  margin-top: auto;
 }
 .heroTop {
   display: grid;
@@ -536,7 +546,8 @@
     padding-bottom: 48px;
   }
   .hero {
-    padding-top: 35px;
+    padding-top: 40px;
+    min-height: 0;
   }
   .heroTop,
   .sectionHead,
