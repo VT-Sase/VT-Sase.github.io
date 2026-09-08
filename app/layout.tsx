@@ -15,9 +15,9 @@ const clientInitializer = `
   try {
     const savedTheme = localStorage.getItem("vt-sase-theme");
     document.documentElement.dataset.theme =
-      savedTheme === "dark" ? "dark" : "light";
+      savedTheme === "light" ? "light" : "dark";
   } catch {
-    document.documentElement.dataset.theme = "light";
+    document.documentElement.dataset.theme = "dark";
   }
 
   // Reveal hides a section until its observer shows it, so it must only arm
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="light"
+      data-theme="dark"
       suppressHydrationWarning
       className={onest.variable}
     >
