@@ -1,0 +1,270 @@
+/* Centred, like every other section title on the page — the band's own header
+   pattern, not a variant of it. */
+.header {
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  color: var(--southeast-title);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.body {
+  max-width: 44rem;
+  margin: 0.9rem auto 0;
+  color: var(--southeast-ink);
+  font-size: clamp(1.02rem, 1.6vw, 1.14rem);
+  line-height: 1.65;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.body strong {
+  font-weight: 700;
+}
+
+.mapRow {
+  display: flex;
+  justify-content: center;
+}
+
+/* Matches the PNG's own proportions, so a pin's percentage lands on the same
+   spot in the artwork as it does in the box. Sits directly above the card
+   row, which is the thing that moves the pin. */
+.map {
+  position: relative;
+  width: 100%;
+  max-width: 20rem;
+  aspect-ratio: 1322 / 1374;
+}
+
+/* The artwork is one flat silhouette, so it is used as a mask and the colour
+   comes from a token — which is what lets the region follow the theme instead
+   of staying the olive it was drawn in. The state lines are gaps in the
+   silhouette, so they show whatever the page is painting behind it. */
+.land {
+  position: absolute;
+  inset: 0;
+  background-color: var(--map-land);
+  -webkit-mask-image: url("/images/about/southeast-map.png");
+  mask-image: url("/images/about/southeast-map.png");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: background-color var(--theme-duration) var(--theme-easing);
+}
+
+/* Stem and ball, stacked bottom-up and anchored at the wrapper's bottom edge,
+   so the coordinate the caller sets is where the stem stands. The travel is
+   what sells the hover — the pin walks to the school rather than blinking
+   there. */
+.pin {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -100%);
+  transition:
+    left 520ms var(--pop-easing),
+    top 520ms var(--pop-easing);
+}
+
+/* The halo is a ring rather than a glow, so the ball keeps a hard edge against
+   whichever state it is standing on. */
+.pinBall {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--map-marker);
+  box-shadow:
+    0 0 0 0.2rem var(--map-marker-halo),
+    0 1px 2px rgb(0 0 0 / 35%);
+}
+
+.pinStem {
+  width: 2px;
+  height: 1.05rem;
+  background: var(--map-marker);
+}
+
+.chaptersTitle {
+  margin-block: 0;
+  color: var(--southeast-ink);
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* The heading and the card row are one block, spaced tighter than the band's
+   own rhythm between children — a list and its label, not two sections. */
+.chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+/* All seven on one row, so the region reads as a set rather than as a grid
+   with a straggler on a line of its own. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: clamp(0.7rem, 1.5vw, 1.1rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cell {
+  display: flex;
+}
+
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+/* Both of the school's colors, top into bottom, framing the whole tile. The
+   border stays transparent and two stacked backgrounds do the work: the flat
+   white is clipped to the padding box, the gradient underneath to the border
+   box, which leaves it showing only in the 4px the border occupies. */
+.tile {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  padding: 0.85rem 0.7rem;
+  border: 4px solid transparent;
+  border-radius: 1rem;
+  background-image:
+    linear-gradient(#ffffff, #ffffff),
+    linear-gradient(
+      to bottom,
+      var(--chapter-accent) 0%,
+      var(--chapter-accent-end) 100%
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition:
+    transform 260ms var(--pop-easing),
+    box-shadow 200ms ease;
+}
+
+.card:hover .tile,
+.card:focus-visible .tile {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow);
+}
+
+.logo {
+  width: auto;
+  max-width: 100%;
+  height: 3.1rem;
+  object-fit: contain;
+}
+
+.cardName {
+  color: var(--southeast-ink);
+  font-family: var(--font-heading);
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.allChaptersRow {
+  display: flex;
+  justify-content: center;
+}
+
+.allChapters {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1.6rem;
+  border: 2px solid var(--panel-border);
+  border-radius: 999px;
+  color: var(--fg);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition:
+    border-color 200ms ease,
+    background-color 200ms ease,
+    transform 260ms var(--pop-easing),
+    color var(--theme-duration) var(--theme-easing);
+}
+
+.allChapters::after {
+  content: "\2192" / "";
+  transition: transform 200ms var(--pop-easing);
+}
+
+.allChapters:hover,
+.allChapters:focus-visible {
+  border-color: var(--panel-border-hover);
+  background: var(--tile-bg);
+  transform: translateY(-2px);
+}
+
+.allChapters:hover::after,
+.allChapters:focus-visible::after {
+  transform: translateX(0.25rem);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .map {
+    max-width: 16rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 400px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pin,
+  .tile,
+  .allChapters,
+  .allChapters::after {
+    transition: none;
+  }
+
+  .card:hover .tile,
+  .card:focus-visible .tile,
+  .allChapters:hover,
+  .allChapters:focus-visible,
+  .allChapters:hover::after {
+    transform: none;
+  }
+}

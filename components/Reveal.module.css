@@ -18,10 +18,82 @@
   transform: none;
 }
 
+/* A staggered section animates its children instead of itself, so the wrapper
+   has to stay put — otherwise the block slides up while the children do too
+   and the travel doubles. Two class names, so this outranks .reveal above. */
+:global(html[data-js="on"]) .reveal.stagger,
+:global(html[data-js="on"]) .reveal.deep {
+  opacity: 1;
+  transform: none;
+}
+
+/* The nested variant. Reveal.tsx numbers every [data-reveal-item] in DOM order
+   and writes it to --reveal-order, so one sequence runs across the whole
+   section however its pieces are nested — nth-child would start over inside
+   each column. */
+:global(html[data-js="on"]) .deep [data-reveal-item] {
+  opacity: 0;
+  /* Further down and a touch smaller than the flat variant, on the overshoot
+     easing: the piece arrives past its resting place and settles back, which
+     is what reads as a pop rather than a fade. */
+  transform: translateY(34px) scale(0.94);
+  transition:
+    opacity 480ms var(--theme-easing),
+    transform 720ms var(--pop-easing);
+  transition-delay: calc(var(--reveal-order, 0) * 95ms);
+}
+
+:global(html[data-js="on"]) .deep.revealIn [data-reveal-item] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Children arrive with a slight overshoot rather than easing flat into place —
+   the difference between a page that feels built and one that feels alive. */
+:global(html[data-js="on"]) .stagger > * {
+  opacity: 0;
+  transform: translateY(24px) scale(0.985);
+  transition:
+    opacity 520ms var(--theme-easing),
+    transform 620ms var(--pop-easing);
+}
+
+:global(html[data-js="on"]) .stagger.revealIn > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* Roughly a tenth of a second between children: enough to read as a sequence,
+   short enough that the last one is not still arriving after the eye has
+   moved on. Past the sixth the delay stops growing, so a long list never
+   leaves its tail hanging. */
+:global(html[data-js="on"]) .stagger > *:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+:global(html[data-js="on"]) .stagger > *:nth-child(3) {
+  transition-delay: 180ms;
+}
+
+:global(html[data-js="on"]) .stagger > *:nth-child(4) {
+  transition-delay: 270ms;
+}
+
+:global(html[data-js="on"]) .stagger > *:nth-child(5) {
+  transition-delay: 360ms;
+}
+
+:global(html[data-js="on"]) .stagger > *:nth-child(n + 6) {
+  transition-delay: 450ms;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  :global(html[data-js="on"]) .reveal {
+  :global(html[data-js="on"]) .reveal,
+  :global(html[data-js="on"]) .stagger > *,
+  :global(html[data-js="on"]) .deep [data-reveal-item] {
     opacity: 1;
     transform: none;
     transition: none;
+    transition-delay: 0s;
   }
 }

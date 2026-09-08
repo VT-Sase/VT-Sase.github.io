@@ -1,0 +1,37 @@
+/* Sits behind the hero copy and takes no clicks. The gradient underneath is
+   what the page falls back to when three.js is skipped, so the hero is never
+   an empty box. */
+.field {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Faded out across the lower half. The field is texture for the gaps between
+     the photographs, not something to set a headline over — additive points
+     drifting behind white type are what made the title hard to read. */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000000 0%,
+    #000000 46%,
+    transparent 78%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000000 0%,
+    #000000 46%,
+    transparent 78%
+  );
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 50% 78%,
+      var(--field-glow) 0%,
+      transparent 70%
+    );
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

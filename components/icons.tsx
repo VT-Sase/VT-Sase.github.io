@@ -79,6 +79,40 @@ export function CloseIcon({ className }: IconProps) {
   );
 }
 
+export function SunIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className} viewBox="0 0 24 24" fill="none">
+      <circle
+        cx="12"
+        cy="12"
+        r="4.25"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <path
+        d="M12 2.5v2.25M12 19.25v2.25M4.22 4.22l1.6 1.6M18.18 18.18l1.6 1.6M2.5 12h2.25M19.25 12h2.25M4.22 19.78l1.6-1.6M18.18 5.82l1.6-1.6"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function MoonIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className} viewBox="0 0 24 24" fill="none">
+      <path
+        d="M20.5 14.4A8.6 8.6 0 0 1 9.6 3.5a8.6 8.6 0 1 0 10.9 10.9Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function ChevronLeftIcon({ className }: IconProps) {
   return (
     <svg {...base} className={className} viewBox="0 0 24 24" fill="none">
@@ -183,6 +217,40 @@ export function LinktreeIcon({ className }: IconProps) {
 /* The R is the first two subpaths of Remind's own wordmark SVG — outer form
    plus its counter — recolored to currentColor and inset to match the other
    brand glyphs. */
+export function PeopleIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className} viewBox="0 0 16 16" fill="none">
+      <circle cx="5.75" cy="4.75" r="2.25" stroke="currentColor" strokeWidth="1.3" />
+      <path
+        d="M1.5 13.25c0-2.35 1.9-3.75 4.25-3.75s4.25 1.4 4.25 3.75"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
+      <circle cx="11.75" cy="5.25" r="1.75" stroke="currentColor" strokeWidth="1.3" />
+      <path
+        d="M10.25 13.25c.35-1.65 1.45-2.75 3.25-2.75 1.15 0 2.05.45 2.65 1.2"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function LinkIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className} viewBox="0 0 16 16" fill="none">
+      <path
+        d="M6.25 9.25 9.25 6.25M7.1 4.6l1.55-1.55a2.25 2.25 0 0 1 3.18 3.18L9.1 8.05M8.9 7.95l1.63 1.63a2.25 2.25 0 0 1-3.18 3.18L7.9 11.15"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function RemindIcon({ className }: IconProps) {
   return (
     <svg {...base} className={className} viewBox="0 0 24 24" fill="none">

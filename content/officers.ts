@@ -29,6 +29,14 @@ export type Officer = {
   photo?: string;
 };
 
+/** "Ritisha Ghimire Kshetri" -> "RK". Used when an officer has no headshot. */
+export function initials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  const first = parts[0]?.[0] ?? "";
+  const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+  return (first + last).toUpperCase();
+}
+
 export const officers: Officer[] = [
   // LEADS
   {
@@ -185,6 +193,11 @@ export const officers: Officer[] = [
     committee: "Web Dev",
   },
 ];
+
+/** The four chapter leads, for the home page's "Meet the officers" tie-in. */
+export function leads() {
+  return officers.filter((officer) => officer.committee === "Leads");
+}
 
 export function officersByCommittee() {
   return COMMITTEES.map((committee) => ({

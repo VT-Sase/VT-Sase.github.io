@@ -4,11 +4,8 @@
    is layout and theme tokens now. */
 
 .page {
-  width: 100%;
-  min-height: 100vh;
-
-  background: #073d59;
-  color: white;
+  composes: pageShell from global;
+  composes: pageShellFlush from global;
 
   overflow: hidden;
 }
@@ -95,26 +92,6 @@
   letter-spacing: 0.16em;
 
   text-transform: uppercase;
-  composes: pageShell from global;
-}
-
-/* =========================================================
-   HEADING
-   ========================================================= */
-
-.intro {
-  composes: pageSection from global;
-}
-
-.intro h1 {
-  margin: 0;
-
-  color: white;
-
-  font-size: clamp(50px, 7vw, 78px);
-  font-weight: 800;
-
-  line-height: 0.95;
 }
 
 .heroSubtitle {
@@ -136,24 +113,7 @@
 .board {
   position: relative;
 
-  min-height: 100vh;
-
   overflow: hidden;
-
-  background:
-    linear-gradient(
-      rgba(8, 80, 111, 0.9),
-      rgba(7, 65, 91, 0.95)
-    ),
-    url("/images/doodles-tile.png");
-
-  background-repeat:
-    repeat,
-    repeat;
-
-  background-size:
-    auto,
-    500px;
 }
 
 /* =========================
@@ -387,23 +347,15 @@
 }
 
 /* =========================
-   CARD GRID
+   HERO TITLE
    ========================= */
+
+.hero h1 {
   color: var(--lime);
 
   font-size: clamp(2rem, 6vw, 3.25rem);
   font-weight: 800;
   line-height: 1;
-
-  transition: color var(--theme-duration) var(--theme-easing);
-}
-
-.intro p {
-  margin: 0.75rem 0 0;
-
-  color: var(--fg-muted);
-
-  font-size: 1rem;
 
   transition: color var(--theme-duration) var(--theme-easing);
 }
@@ -681,10 +633,6 @@
    LEADS
    ========================= */
 
-.leadsGrid {
-  max-width: 530px;
-
-/* LEADS */
 /* President centered by itself, then 3 VP cards below */
 .leadsGrid {
   max-width: 33rem;
@@ -699,14 +647,6 @@
 /* =========================
    WEB DEVELOPMENT
    ========================= */
-
-.webGrid {
-  max-width: 520px;
-
-  margin: 25px auto 0;
-/* =========================================================
-   WEB DEVELOPMENT
-   ========================================================= */
 
 .webGrid {
   max-width: 32.5rem;
@@ -827,33 +767,6 @@
 
     background-position: center;
   }
-  padding: 0.75rem;
-
-  background: var(--surface);
-  border: 1px solid var(--card-border);
-  border-radius: 0.75rem;
-
-  box-shadow: var(--card-shadow);
-
-  color: var(--card-text);
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 600;
-
-  transition:
-    background-color var(--theme-duration) var(--theme-easing),
-    border-color var(--theme-duration) var(--theme-easing),
-    color var(--theme-duration) var(--theme-easing);
-}
-
-/* =========================================================
-   LIGHT THEME
-   ========================================================= */
-
-:global(html[data-theme="light"]) .committee h2 {
-  color: var(--card-text);
-}
-
   .hero h1 {
     font-size: 46px;
   }
@@ -925,6 +838,35 @@
     opacity: 0.6;
   }
 }
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+:global(html[data-theme="light"]) .committee h2 {
+  color: var(--card-text);
+}
+
+:global(html[data-theme="light"]) .webCard {
+  padding: 0.75rem;
+
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+
+  box-shadow: var(--card-shadow);
+
+  color: var(--card-text);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing);
+}
+
 
 /* =========================
    REDUCED MOTION

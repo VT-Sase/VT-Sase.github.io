@@ -2,21 +2,29 @@
 
 import { useState } from "react";
 import { faqs } from "@/content/faqs";
-import { SOCIALS } from "@/content/site";
 import { toggleFaqIndex } from "./faq-state";
 import Reveal from "./Reveal";
-import SectionHeading from "./SectionHeading";
 import styles from "./FaqSection.module.css";
 
 export default function FaqSection() {
-  const [openFaqs, setOpenFaqs] = useState<Set<number>>(() => new Set());
+  const [openFaqs, setOpenFaqs] = useState<Set<number>>(() => new Set([0]));
 
   return (
-    <Reveal id="faqs" className={styles.section} aria-labelledby="faq-heading">
-      <SectionHeading
-        title="Frequently Asked Questions"
-        id="faq-heading"
-      />
+    <Reveal
+      id="faqs"
+      className={styles.section}
+      aria-labelledby="faq-heading"
+      stagger
+    >
+      <header className={styles.header}>
+        <h2 id="faq-heading" className={styles.title}>
+          Frequently asked questions
+        </h2>
+
+        <p className={styles.tagline}>
+          Everything you might want to know before your first meeting.
+        </p>
+      </header>
 
       <div className={styles.list}>
         {faqs.map((faq, index) => {
@@ -42,9 +50,7 @@ export default function FaqSection() {
                 >
                   <span>{faq.question}</span>
 
-                  <span className={styles.icon} aria-hidden="true">
-                    <span className={styles.arrow} />
-                  </span>
+                  <span className={styles.icon} aria-hidden="true" />
                 </button>
               </h3>
 
@@ -65,18 +71,6 @@ export default function FaqSection() {
           );
         })}
       </div>
-
-      <p className={styles.contact}>
-        Still have questions?{" "}
-        <a
-          href={SOCIALS.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.contactLink}
-        >
-          DM us on Instagram
-        </a>
-      </p>
     </Reveal>
   );
 }

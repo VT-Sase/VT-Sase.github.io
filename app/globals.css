@@ -11,7 +11,22 @@
 
 :root {
   --theme-duration: 460ms;
+  --theme-color-duration: 850ms;
+  --theme-bg-duration: var(--theme-color-duration);
   --theme-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  /* How far a colored band's surface takes to fade in at its top edge and back
+     out at its bottom, so neighbouring sections blend rather than butt. Long
+     enough that the ramp itself reads as the transition — a short one still
+     looks like an edge, just a soft one. */
+  --band-fade: clamp(4rem, 9vw, 7.5rem);
+
+  /* Vertical breathing room inside every full-bleed section. Kept a shade
+     longer than --band-fade so a band's copy always sits on fully opaque
+     surface rather than partway up its own ramp. */
+  --band-pad: clamp(5rem, 10vw, 8.5rem);
+  /* Overshoots slightly past its end value before settling, which is what
+     makes a card arrive with a pop instead of just sliding into place. */
+  --pop-easing: cubic-bezier(0.2, 1.1, 0.35, 1);
 
   /* Fixed gradient values used by the cross-fade layers. */
   --dark-bg-start: #03253f;
@@ -54,6 +69,55 @@
   --mobile-menu-active: rgb(143 197 63 / 82%);
   --mobile-menu-text: #ffffff;
 
+  /* SASE Southeast sits on the page's own surface now, so its type takes the
+     page's own ink rather than a colour picked to sit on a band that is no
+     longer there. The map marker is the one deliberate exception — a red that
+     holds against both the light and the dark map artwork. */
+  --southeast-title: var(--fg);
+  --southeast-ink: var(--fg);
+  --map-marker: #e02b2b;
+  --map-marker-halo: rgb(224 43 43 / 22%);
+  /* The region itself, painted through the artwork's silhouette. White: the
+     state lines are gaps in the artwork, so whatever colour goes here has to
+     hold against the page showing through them, and nothing separates from
+     the navy as cleanly. */
+  --map-land: #ffffff;
+
+  /* Full-bleed section bands. --band-edge is the hairline between them. */
+  /* The home page's cover. Dark in BOTH themes on purpose: the field behind it
+     is drawn with additive light, which needs a dark ground to read at all,
+     and an opening that does not flip with the toggle reads as a deliberate
+     cover rather than as a section that forgot to theme. */
+  --cover-bg: #05141f;
+  --cover-ink: #f6faf4;
+  --cover-ink-muted: rgb(246 250 244 / 58%);
+  --cover-rule: rgb(246 250 244 / 16%);
+  --field-glow: rgb(22 138 173 / 24%);
+
+  /* One accent doing real work, rather than a gradient doing a little. */
+  --accent: #8fc53f;
+  --accent-ink: #05141f;
+  --rule: rgb(255 255 255 / 14%);
+  --rule-strong: rgb(255 255 255 / 30%);
+
+  --band-edge: rgb(255 255 255 / 9%);
+  --tile-bg: rgb(255 255 255 / 6%);
+  --tile-bg-hover: rgb(255 255 255 / 10%);
+
+  /* Panels are outlined in 2px rather than a hairline: the edge is part of the
+     look, not a seam you are meant to miss. */
+  --panel-border: rgb(255 255 255 / 20%);
+  --panel-border-hover: var(--green);
+
+  /* Section background variants. --band-solid is opaque enough to cover the
+     doodle layer, which is how a band gets a texture of its own instead of
+     the page's. The grid pair is GridPattern's rule and its filled cells —
+     a filled cell reads far heavier than a 1px line at the same alpha, so the
+     two are not set to the same value. */
+  --band-solid: rgb(3 25 41 / 88%);
+  --grid-line: rgb(255 255 255 / 16%);
+  --grid-square: rgb(255 255 255 / 20%);
+
   /* The sponsor marquee: a neutral wash rather than an accent, so the logos
      inside it are the only color in the band. */
   --marquee-bg: rgb(255 255 255 / 7%);
@@ -78,11 +142,17 @@
      different fraction of the page at every viewport width. */
   --doodle-fade: max(var(--gutter), calc((100% - var(--content-max)) / 2));
 
+  /* The sticky bar's own height — padding-block twice plus the logo. Needed to
+     work out how much viewport is left underneath it. */
+  --nav-height: 2.8rem;
+
   /* Vertical rhythm every page shell shares, so no page sets its own. */
   --page-top: 3rem;
   --page-bottom: 4.5rem;
   --section-gap: 3.5rem;
-  --nav-offset: 3rem;
+  /* Clears the sticky header so a section jumped to from the nav doesn't land
+     underneath it: bar height is padding-block x2 plus the logo. */
+  --nav-offset: 3.5rem;
 }
 
 :root[data-theme="light"] {
@@ -113,6 +183,27 @@
   --mobile-menu-hover: rgb(255 255 255 / 92%);
   --mobile-menu-active: rgb(143 197 63 / 82%);
   --mobile-menu-text: #0d314b;
+
+  --southeast-title: var(--fg);
+  --southeast-ink: var(--fg);
+  --map-marker: #c81f1f;
+  --map-marker-halo: rgb(200 31 31 / 20%);
+  --map-land: #ffffff;
+
+  --accent: #2f7d24;
+  --accent-ink: #ffffff;
+  --rule: rgb(13 49 75 / 16%);
+  --rule-strong: rgb(13 49 75 / 34%);
+
+  --band-edge: rgb(13 49 75 / 10%);
+  --tile-bg: rgb(255 255 255 / 52%);
+  --tile-bg-hover: rgb(255 255 255 / 72%);
+
+  --panel-border: rgb(13 49 75 / 22%);
+  --panel-border-hover: var(--teal);
+  --band-solid: rgb(255 255 255 / 78%);
+  --grid-line: rgb(13 49 75 / 15%);
+  --grid-square: rgb(13 49 75 / 22%);
 
   --marquee-bg: rgb(13 49 75 / 6%);
   --marquee-border: rgb(13 49 75 / 12%);
@@ -180,7 +271,7 @@ body::before {
   );
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--theme-duration) var(--theme-easing);
+  transition: opacity var(--theme-bg-duration) var(--theme-easing);
 }
 
 html[data-theme="light"] body::before {
@@ -206,6 +297,10 @@ body::after {
   background-repeat: repeat;
   background-size: 34rem;
   pointer-events: none;
+  opacity: 0.88;
+  transition:
+    opacity var(--theme-bg-duration) var(--theme-easing),
+    filter var(--theme-bg-duration) var(--theme-easing);
   -webkit-mask-image: linear-gradient(
     to right,
     rgb(0 0 0 / 100%) 0,
@@ -228,6 +323,8 @@ body::after {
    of the tonal range and never compete. It is only in dark mode, where the text
    and the pattern are both light, that they collide. */
 html[data-theme="light"] body::after {
+  opacity: 1;
+  filter: brightness(1);
   mix-blend-mode: screen;
   -webkit-mask-image: none;
   mask-image: none;
@@ -289,7 +386,8 @@ main {
     --page-top: 4rem;
     --page-bottom: 5rem;
     --section-gap: 5rem;
-    --nav-offset: 3rem;
+    --nav-offset: 4.5rem;
+    --nav-height: 3.5rem;
   }
 }
 
@@ -306,5 +404,36 @@ main {
 @media (prefers-reduced-motion: reduce) {
   :root {
     --theme-duration: 0ms;
+    --theme-color-duration: 0ms;
+    --theme-bg-duration: 0ms;
+  }
+}
+
+/* While the palette is changing, every color-bearing property eases together
+   instead of some tokens jumping before others. Only active for the toggle
+   beat — hovers keep their shorter durations the rest of the time. */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition-duration: var(--theme-color-duration) !important;
+  transition-timing-function: var(--theme-easing) !important;
+  transition-property:
+    background-color,
+    border-color,
+    color,
+    fill,
+    stroke,
+    box-shadow,
+    outline-color,
+    opacity !important;
+}
+
+/* View Transition API: dissolve the old palette into the new one. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: var(--theme-color-duration);
+    animation-timing-function: var(--theme-easing);
   }
 }

@@ -1,0 +1,58 @@
+/* Clips the word while it is still above or already below the line, so each one
+   arrives and leaves from behind the edge rather than fading in mid-air. */
+.viewport {
+  display: grid;
+  grid-template-areas: "word";
+  overflow: hidden;
+  padding-block: 0.35rem;
+}
+
+.sizer,
+.wordIn,
+.wordOut {
+  grid-area: word;
+}
+
+.sizer {
+  visibility: hidden;
+}
+
+.wordIn {
+  animation: enter 250ms ease-out both;
+}
+
+.wordOut {
+  animation: leave 250ms ease-out both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes leave {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+/* Nothing rotates, so the first word simply sits there. */
+@media (prefers-reduced-motion: reduce) {
+  .wordIn,
+  .wordOut {
+    animation: none;
+  }
+}

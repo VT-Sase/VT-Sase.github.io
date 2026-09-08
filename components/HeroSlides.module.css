@@ -12,7 +12,8 @@
   aspect-ratio: 3 / 2;
 
   overflow: hidden;
-  border-radius: 1.75rem;
+  border: 2px solid var(--panel-border);
+  border-radius: 1.5rem;
 
   background: var(--placeholder);
 

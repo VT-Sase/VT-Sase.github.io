@@ -1,350 +1,156 @@
-@keyframes pageFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
+/**
+ * Home page styles.
+ *
+ * The page is built as a sequence of sections that deliberately do not share a
+ * rhythm: a full-bleed dark cover, a running ticker, an asymmetric editorial
+ * spread, a pinned mission, then the quieter blocks. Uniform section height,
+ * one shared card shape and a single centre axis are what made the old version
+ * read as a template, so none of those survive here.
+ */
 
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
+/* =========================================================
+   PAGE
+   ========================================================= */
 
 .page {
-  composes: pageShell from global;
-  animation: pageFadeUp 620ms var(--theme-easing) both;
-}
-
-/* =========================================================
-   HERO
-   ========================================================= */
-
-.hero {
-  composes: pageSection from global;
-}
-
-.heroInner {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  align-items: center;
-  gap: 4.5rem;
-}
-
-.heroContent {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.heroTitle {
-  margin: 0;
-
-  font-family: var(--font-heading);
-  font-size: clamp(3.5rem, 7vw, 6.5rem);
-  font-weight: 800;
-  line-height: 0.98;
-  letter-spacing: -0.05em;
-}
-
-.heroTitle span {
-  display: block;
-  text-shadow: var(--button-shadow);
-}
-
-.heroTitle span:first-child {
-  color: var(--green);
-  text-shadow:
-    0 0 1.5rem color-mix(in srgb, var(--green) 28%, transparent),
-    var(--button-shadow);
-}
-
-.heroTitle span:last-child {
-  margin-top: 0.4rem;
-  color: var(--green-selected);
-  font-size: 0.66em;
-  line-height: 1.02;
-  letter-spacing: -0.02em;
-}
-
-:global(html[data-theme="light"]) .heroTitle span:first-child {
-  color: var(--teal);
-  text-shadow: var(--button-shadow);
-}
-
-:global(html[data-theme="light"]) .heroTitle span:last-child {
-  color: var(--lime);
-}
-
-.heroText {
-  max-width: 31rem;
-  margin: 1.75rem 0 0;
-  color: var(--fg-muted);
-  font-size: 1.05rem;
-  line-height: 1.65;
-}
-
-/* =========================================================
-   MISSION + ABOUT CARDS
-   ========================================================= */
-
-.infoGrid {
-  composes: pageSection from global;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-areas: "about mission";
-  gap: 2rem;
-  align-items: stretch;
-}
-
-.aboutCard {
-  grid-area: about;
-}
-
-.missionCard {
-  grid-area: mission;
-}
-
-.infoCard {
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
-  border-radius: 1.75rem;
-  background: var(--surface);
-  color: var(--card-text);
-  box-shadow: var(--card-shadow);
-  transition:
-    background-color var(--theme-duration) var(--theme-easing),
-    color var(--theme-duration) var(--theme-easing);
-}
-
-.infoCard h2 {
-  align-self: flex-start;
-  margin: 0 0 1.25rem;
-  padding-bottom: 0.65rem;
-  color: var(--card-text);
-  font-family: var(--font-heading);
-  font-size: clamp(1.4rem, 3vw, 1.9rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-}
-
-.infoCard h2::after {
-  content: "";
-  display: block;
-  width: 2.5rem;
-  height: 2px;
-  margin-top: 0.65rem;
-  border-radius: 999px;
-  background: var(--green);
-}
-
-:global(html[data-theme="light"]) .infoCard h2::after {
-  background: var(--teal);
-}
-
-.infoCard p {
-  margin: 0;
-
-  font-size: 1rem;
-  line-height: 1.65;
-}
-
-.cardPhoto {
-  position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  margin-top: 1.5rem;
-  overflow: hidden;
-  border-radius: 1.25rem;
-}
-
-.cardImage {
-  object-fit: cover;
-  object-position: center;
+  /* clip, not hidden: hidden here would make this a scroll container and the
+     sticky navbar would stick to it instead of the viewport. */
+  overflow-x: clip;
 }
 
 /* =========================================================
-   ABOUT — SASE Southeast and the sister chapters
+   BANDS
    ========================================================= */
 
-.aboutSection {
-  composes: pageSection from global;
-}
-
-.southeastGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
-  align-items: start;
-  gap: 4rem;
-}
-
-.southeastCopy p {
-  max-width: 34rem;
-  margin: 0;
-  color: var(--fg);
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.southeastCopy strong {
-  font-weight: 700;
-}
-
-.mapImage {
-  position: relative;
+.band {
   width: 100%;
-  max-width: 14.5rem;
-  aspect-ratio: 1.05 / 1;
-  justify-self: end;
+  padding-block: var(--band-pad);
+  scroll-margin-top: var(--nav-offset);
 }
 
-.mapImagePhoto {
-  object-fit: contain;
-}
-
-.chaptersSection {
-  margin-top: 0.75rem;
-}
-
-.chaptersSection h3 {
-  margin: 0 0 2rem;
-  color: var(--fg);
-  font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 600;
-}
-
-.chapterGrid {
-  width: min(100%, 58rem);
+/* Constraining the direct children rather than wrapping them in one inner div
+   keeps them as separate children, which is what <Reveal stagger> animates. */
+.band > * {
+  width: 100%;
+  max-width: var(--content-max);
   margin-inline: auto;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 1.5rem;
+  padding-inline: var(--gutter);
 }
 
-.chapterCard:nth-child(1),
-.chapterCard:nth-child(2),
-.chapterCard:nth-child(3) {
-  grid-column: span 4;
+.band > * + * {
+  margin-top: clamp(2rem, 4vw, 3rem);
 }
 
-.chapterCard:nth-child(4),
-.chapterCard:nth-child(5),
-.chapterCard:nth-child(6),
-.chapterCard:nth-child(7) {
-  grid-column: span 3;
+/* Bands paint their surface on a layer of their own rather than on the element,
+   so it can be masked. Butting two opaque bands together draws a hard seam
+   across the page; ramping each one's alpha to nothing over its first and last
+   few rem lets the page gradient come back through in between, and one band
+   dissolves into the next instead of switching. */
+.fadedBand {
+  position: relative;
+  isolation: isolate;
 }
 
-.chapterCard {
-  min-height: 10.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.8rem;
-  border: 1px solid var(--border);
-  border-radius: 0.9rem;
-  background: var(--button-on-teal);
-  box-shadow: var(--card-shadow);
-  text-decoration: none;
-  transition:
-    transform 160ms ease,
-    box-shadow 160ms ease;
+.fadedBand::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000000 var(--band-fade),
+    #000000 calc(100% - var(--band-fade)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000000 var(--band-fade),
+    #000000 calc(100% - var(--band-fade)),
+    transparent 100%
+  );
 }
 
-.chapterCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 1rem 2rem -0.5rem rgb(0 0 0 / 38%);
+/* No fill of its own — the same open surface the sponsor and FAQ bands use, so
+   the bottom two thirds of the page are one continuous background rather than
+   three. The grid band above it is the last opaque one, and its mask ramps its
+   fill away over the last few rem, which is where the doodle layer comes back
+   in: a fade rather than an edge. */
+.southeastBand {
+  composes: band;
 }
 
-.chapterLogo {
-  width: 100%;
-  min-height: 7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* =========================================================
+   BAND TYPOGRAPHY
+   ========================================================= */
 
-.chapterLogoImage {
-  width: 100%;
-  max-width: 8.5rem;
-  height: 5.8rem;
-  object-fit: contain;
-}
-
-.visitButton {
-  width: 100%;
-  padding: 0.35rem 0.6rem;
-  border: 1px solid var(--chapter-button-green);
-  border-radius: 999px;
-  color: var(--chapter-button-green);
-  font-size: 0.72rem;
-  line-height: 1;
-  letter-spacing: 0.18em;
+.bandHeader {
   text-align: center;
 }
 
-.allChaptersButton {
-  display: block;
-  width: fit-content;
-  margin: 2.25rem auto 0;
-  padding: 0.55rem 1.8rem;
-  border: 1px solid var(--green);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--green-selected);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-decoration: none;
-  transition: transform 160ms ease;
+.bandTitle {
+  margin: 0;
+  color: var(--fg);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  transition: color var(--theme-duration) var(--theme-easing);
 }
 
-.allChaptersButton:hover {
-  transform: translateY(-2px);
+.bandTagline {
+  max-width: 40rem;
+  margin: 0.85rem auto 0;
+  color: var(--fg-muted);
+  font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+  line-height: 1.55;
+  transition: color var(--theme-duration) var(--theme-easing);
 }
 
 /* =========================================================
    SPONSORS
    ========================================================= */
 
-.sponsorsSection {
-  composes: pageSection from global;
+/* No opaque band background — the body doodle layer shows through. The logos
+   scroll edge to edge in the open, with only a soft fade at the sides so they
+   do not read as a floating card dropped on top of the page. */
+.sponsorBand {
+  composes: band;
 }
 
-/* The band the logos travel through. The mask fades them out at both ends so
-   they arrive and leave rather than being cut off at a hard edge. */
+/* Break the marquee out of the content column so it spans the viewport. */
+.marqueeWrap {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+
 .marquee {
   overflow: hidden;
-  padding: 1.75rem 0;
-  border: 1px solid var(--marquee-border);
-  border-radius: 1.25rem;
-  background: var(--marquee-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  padding-block: 1.1rem;
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0,
-    #000000 4rem,
-    #000000 calc(100% - 4rem),
+    #000000 6rem,
+    #000000 calc(100% - 6rem),
     transparent 100%
   );
   mask-image: linear-gradient(
     to right,
     transparent 0,
-    #000000 4rem,
-    #000000 calc(100% - 4rem),
+    #000000 6rem,
+    #000000 calc(100% - 6rem),
     transparent 100%
   );
-  transition:
-    background-color var(--theme-duration) var(--theme-easing),
-    border-color var(--theme-duration) var(--theme-easing);
 }
 
 .track {
   display: flex;
   width: max-content;
-  animation: marquee 40s linear infinite;
+  animation: marquee 52s linear infinite;
 }
 
 @keyframes marquee {
@@ -352,6 +158,7 @@
     transform: translateX(-50%);
   }
 }
+
 .marquee:hover .track,
 .marquee:focus-within .track {
   animation-play-state: paused;
@@ -360,9 +167,9 @@
 .trackGroup {
   display: flex;
   align-items: center;
-  gap: 3.5rem;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
   margin: 0;
-  padding: 0 1.75rem;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
   list-style: none;
 }
 
@@ -370,160 +177,921 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
+  padding: 0.65rem 1.1rem;
+  border: 2px solid transparent;
+  border-radius: 0.85rem;
   transition:
-    transform 160ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease,
+    transform 260ms var(--pop-easing),
     filter 160ms ease;
 }
 
-.sponsorItem:hover {
-  transform: translateY(-4px);
+.sponsorItem:hover,
+.sponsorItem:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--panel-border);
+  background: var(--tile-bg);
 }
 
 .sponsorLogo {
   width: auto;
-  max-width: 11.5rem;
-  height: 3.5rem;
+  max-width: 10.5rem;
+  height: 3rem;
   object-fit: contain;
-  filter: grayscale(1) opacity(0.75);
+  filter: grayscale(1) opacity(0.62);
   transition: filter 220ms ease;
 }
 
 .sponsorItem:hover .sponsorLogo,
 .sponsorItem:focus-visible .sponsorLogo {
-  filter: none;
+  filter: grayscale(0.35) opacity(0.95);
+}
+
+/* Headings are filled with a gradient clipped to the glyphs. Guarded: without
+   background-clip support a transparent fill would leave the heading invisible
+   rather than merely flat. */
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .bandTitle {
+    background-image: linear-gradient(
+      100deg,
+      var(--green) 0%,
+      var(--green-selected) 58%,
+      var(--lime) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  :global(html[data-theme="light"]) .bandTitle {
+    background-image: linear-gradient(
+      100deg,
+      var(--teal) 0%,
+      var(--teal) 42%,
+      var(--green-selected) 100%
+    );
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 /* =========================================================
-   LIGHT MODE
+   COVER
+   =========================================================
+   Not a hero block. The copy hangs off the bottom-left corner, the type runs
+   toward the edge rather than sitting centred in a column, and there is one
+   link instead of a row of buttons. The only centred thing is the field. */
+
+.cover {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: min(96svh, 62rem);
+  padding-block: clamp(7rem, 14vh, 11rem) clamp(3rem, 7vh, 5.5rem);
+  overflow: hidden;
+  background: var(--cover-bg);
+  color: var(--cover-ink);
+}
+
+/* The photographs sit in the top two thirds; the bottom third is left to the
+   field and the copy, so nothing is set over a face. */
+.mosaic {
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 auto;
+  height: 64%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: clamp(0.4rem, 1vw, 0.75rem);
+  padding: clamp(0.4rem, 1vw, 0.75rem);
+  pointer-events: none;
+}
+
+.tile {
+  position: relative;
+  overflow: hidden;
+  background: rgb(255 255 255 / 4%);
+}
+
+.tileImage {
+  object-fit: cover;
+}
+
+/* Placed by hand so the sizes differ and the gaps between them are irregular —
+   the field shows through those gaps, which is the whole point of the gaps. */
+.tile1 {
+  grid-column: 1 / 4;
+  grid-row: 1 / 5;
+}
+
+.tile2 {
+  grid-column: 4 / 8;
+  grid-row: 1 / 4;
+}
+
+.tile3 {
+  grid-column: 9 / 13;
+  grid-row: 1 / 5;
+}
+
+.tile4 {
+  grid-column: 3 / 7;
+  grid-row: 4 / 7;
+}
+
+.tile5 {
+  grid-column: 8 / 12;
+  grid-row: 5 / 7;
+}
+
+/* Fades the photographs into the ground so the wordmark below has somewhere
+   quiet to sit, without dimming the faces at the top of the frame. */
+.cover::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(5 20 31 / 100%) 0%,
+    rgb(5 20 31 / 100%) 30%,
+    rgb(5 20 31 / 78%) 46%,
+    rgb(5 20 31 / 22%) 66%,
+    transparent 88%
+  );
+  pointer-events: none;
+}
+
+.coverInner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0 0 clamp(1.25rem, 3vw, 2.25rem);
+  color: var(--cover-ink-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.eyebrowRule {
+  display: block;
+  width: clamp(1.75rem, 5vw, 3.5rem);
+  height: 1px;
+  background: var(--accent);
+}
+
+/* Set as large as the line will bear, with the leading pulled under the cap
+   height so the three lines lock into one block of texture. */
+.coverTitle {
+  display: grid;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(3.4rem, 13.5vw, 11rem);
+  font-weight: 800;
+  line-height: 0.84;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.coverMark,
+.coverLine,
+.coverLineIndent {
+  display: block;
+}
+
+.coverLineIndent {
+  margin-left: clamp(1.5rem, 7vw, 7rem);
+}
+
+/* SASE carries the chapter's green ombre; the two lines under it stay white,
+   so there is one coloured moment in the type rather than two competing.
+   The stops are literal rather than tokens on purpose: the cover keeps its
+   dark ground in both themes, and the light theme's greens would come out
+   near-black against it. */
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .coverMark {
+    background-image: linear-gradient(
+      100deg,
+      #8fc53f 0%,
+      #d1e7b0 52%,
+      #ebffa9 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.coverFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+  border-top: 1px solid var(--cover-rule);
+}
+
+.coverBlurb {
+  flex: 1 1 22rem;
+  max-width: 30rem;
+  margin: 0;
+  color: var(--cover-ink-muted);
+  font-size: clamp(0.98rem, 1.5vw, 1.08rem);
+  line-height: 1.6;
+}
+
+/* A text link with a rule under it, not a filled pill. */
+.coverAction {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--accent);
+  color: var(--cover-ink);
+  font-family: var(--font-heading);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+.coverAction span {
+  display: inline-block;
+  transition: transform 260ms var(--pop-easing);
+}
+
+.coverAction:hover,
+.coverAction:focus-visible {
+  color: var(--accent);
+}
+
+.coverAction:hover span,
+.coverAction:focus-visible span {
+  transform: translateX(0.35rem);
+}
+
+/* Set on its side against the right edge — a margin note rather than a
+   centred chevron. */
+.scrollCue {
+  position: absolute;
+  right: clamp(0.75rem, 2vw, 1.75rem);
+  bottom: clamp(3rem, 8vh, 6rem);
+  z-index: 3;
+  color: var(--cover-ink-muted);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+
+/* =========================================================
+   TICKER
+   =========================================================
+   The chapter's numbers, running past instead of sitting in a row of three
+   with hairline dividers between them. */
+
+.ticker {
+  overflow: hidden;
+  padding-block: 0.9rem;
+  border-block: 1px solid var(--rule);
+  background: var(--cover-bg);
+  color: var(--cover-ink);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000000 6rem,
+    #000000 calc(100% - 6rem),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000000 6rem,
+    #000000 calc(100% - 6rem),
+    transparent 100%
+  );
+}
+
+.tickerTrack {
+  display: flex;
+  width: max-content;
+  animation: ticker 42s linear infinite;
+}
+
+.tickerGroup {
+  display: flex;
+  gap: 3.5rem;
+  margin: 0;
+  padding: 0 1.75rem;
+  list-style: none;
+}
+
+.tickerItem {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tickerItem::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================================================
+   ABOUT
+   =========================================================
+   An editorial spread with an alignment spine. Everything in the text block
+   starts on the same left edge and only its size changes down the page, which
+   is the difference between a composition and a scatter. The photographs are
+   one band underneath rather than tiles dropped between the paragraphs. */
+
+.about {
+  width: 100%;
+  padding-block: clamp(5rem, 12vw, 9rem);
+  scroll-margin-top: var(--nav-offset);
+}
+
+.aboutInner {
+  display: grid;
+  grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* A margin note: the section's number, a rule, then its name. It anchors the
+   spine the copy hangs from without competing with the heading. */
+.aboutRail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin: 0.5rem 0 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.aboutRailIndex {
+  color: var(--accent);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.aboutRailRule {
+  width: 100%;
+  max-width: 3rem;
+  height: 1px;
+  background: var(--rule-strong);
+  transition: background-color var(--theme-duration) var(--theme-easing);
+}
+
+.aboutRailLabel {
+  color: var(--fg-muted);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.aboutMain {
+  min-width: 0;
+}
+
+.aboutTitle {
+  margin: 0;
+  color: var(--fg);
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.aboutTitleEm {
+  color: var(--accent);
+  font-style: normal;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* Bigger than the body and held to a short measure — the one paragraph a
+   visitor reads if they read nothing else. */
+.aboutLede {
+  max-width: 34rem;
+  margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+  color: var(--fg);
+  font-size: clamp(1.12rem, 2.1vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.45;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* Two text columns: it fills the measure without moving the copy off the
+   spine, which is what the old scattered placement was doing badly. */
+.aboutColumns {
+  columns: 2;
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--rule);
+  color: var(--fg-muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  transition:
+    color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing);
+}
+
+.aboutColumns p {
+  margin: 0;
+  break-inside: avoid;
+}
+
+.aboutColumns p + p {
+  margin-top: 1.1rem;
+}
+
+.doing {
+  max-width: 42rem;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  color: var(--fg-muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.doingLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* One row, one height, three unequal widths. Sharing a top and a bottom edge
+   is what keeps it ordered; the differing widths are what keep it from
+   looking like a stock three-up. */
+.aboutPhotos {
+  display: grid;
+  grid-template-columns: 1.15fr 1.55fr 1fr;
+  grid-auto-rows: clamp(13rem, 24vw, 21rem);
+  gap: clamp(0.5rem, 1.2vw, 0.9rem);
+  width: 100%;
+  max-width: var(--content-max);
+  margin: clamp(3rem, 7vw, 5rem) auto 0;
+  padding-inline: var(--gutter);
+}
+
+.plate {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  background: var(--placeholder);
+}
+
+.plateImage {
+  object-fit: cover;
+}
+
+/* =========================================================
+   MISSION — pinned
+   =========================================================
+   The statement stays put while the three pillars pass it, so the section is
+   one continuous idea instead of a row of three equal cards. */
+
+.mission {
+  width: 100%;
+  padding-block: clamp(5rem, 11vw, 8rem);
+}
+
+.missionInner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.missionStick {
+  position: sticky;
+  top: calc(var(--nav-offset) + 3rem);
+  align-self: start;
+}
+
+.missionTitle {
+  margin: 0;
+  color: var(--fg);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.missionStatement {
+  max-width: 26rem;
+  margin: clamp(1rem, 2.5vw, 1.75rem) 0 0;
+  color: var(--fg-muted);
+  font-size: 1.02rem;
+  line-height: 1.65;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.pillars {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Tall enough that the pinned column has something to hold still against. */
+.pillar {
+  position: relative;
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+  border-top: 1px solid var(--rule);
+  transition: border-color var(--theme-duration) var(--theme-easing);
+}
+
+.pillar:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Big enough to be texture rather than a label, set behind the heading. */
+.pillarNumber {
+  position: absolute;
+  top: clamp(1rem, 3vw, 2.25rem);
+  right: 0;
+  color: var(--rule-strong);
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.pillarTitle {
+  position: relative;
+  margin: 0;
+  color: var(--fg);
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.pillarBody {
+  position: relative;
+  max-width: 30rem;
+  margin: 1rem 0 0;
+  color: var(--fg-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* =========================================================
+   SECTION FURNITURE
    ========================================================= */
 
-:global(html[data-theme="light"]) .visitButton {
-  border-color: var(--teal);
-  color: var(--teal);
+.sectionTitle {
+  margin: 0;
+  color: var(--fg);
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3.4vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  transition: color var(--theme-duration) var(--theme-easing);
 }
 
-:global(html[data-theme="light"]) .allChaptersButton {
-  border-color: var(--teal);
-  color: var(--teal);
+.textLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid var(--accent);
+  color: var(--fg);
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: color 200ms ease;
 }
 
-:global(html[data-theme="light"]) .chapterCard:hover {
-  box-shadow: 0 1rem 2rem -0.5rem rgb(13 49 75 / 26%);
+.textLink span {
+  display: inline-block;
+  transition: transform 260ms var(--pop-easing);
+}
+
+.textLink:hover,
+.textLink:focus-visible {
+  color: var(--accent);
+}
+
+.textLink:hover span,
+.textLink:focus-visible span {
+  transform: translateX(0.35rem);
 }
 
 /* =========================================================
-   TABLET
+   OFFICERS
+   ========================================================= */
+
+.officers {
+  composes: band;
+}
+
+.officersHead {
+  text-align: center;
+}
+
+.officersTitle {
+  margin: 0;
+  color: var(--fg);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.officersLede {
+  max-width: 32rem;
+  margin: 0.9rem auto 0;
+  color: var(--fg-muted);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* Sized to its own content and centred, rather than stretched across four
+   equal columns of a full-width grid. */
+.officersList {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 11rem));
+  justify-content: center;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.officer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  text-align: center;
+}
+
+.officerPhoto {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 0.9rem;
+  aspect-ratio: 4 / 5;
+  background: var(--placeholder);
+  transition: background-color var(--theme-duration) var(--theme-easing);
+}
+
+.officerPhotoImage {
+  object-fit: cover;
+}
+
+.officerInitials {
+  color: var(--fg-muted);
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.officerName {
+  color: var(--fg);
+  font-family: var(--font-heading);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.officerRole {
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.officersFoot {
+  display: flex;
+  justify-content: center;
+}
+
+/* =========================================================
+   EVENTS
+   ========================================================= */
+
+.events {
+  composes: band;
+}
+
+.eventsHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.eventsList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eventsItem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1.75rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.eventsDate {
+  flex: 0 0 12rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.eventsName {
+  color: var(--fg);
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* =========================================================
+   RESPONSIVE
    ========================================================= */
 
 @media (max-width: 900px) {
-  .heroInner {
-    gap: 2.5rem;
+  .missionInner {
+    grid-template-columns: 1fr;
   }
 
-  .southeastGrid {
-    grid-template-columns: 1fr 0.8fr;
-    gap: 2.5rem;
+  /* Nothing to pin against once the columns stack. */
+  .missionStick {
+    position: static;
   }
 
-  .chapterGrid {
-    width: 100%;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .chapterCard:nth-child(n) {
-    grid-column: auto;
+  .officersList {
+    grid-template-columns: repeat(2, minmax(0, 11rem));
   }
 }
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 700px) {
-  .heroInner {
+@media (max-width: 780px) {
+  /* The spine folds away: the margin note becomes a line above the heading,
+     the two text columns become one, and the photo band scrolls sideways
+     rather than squeezing three frames into a phone's width. */
+  .aboutInner {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.25rem;
   }
 
-  .heroContent {
+  .aboutRail {
+    flex-direction: row;
     align-items: center;
-    text-align: center;
+    gap: 0.75rem;
+    margin-top: 0;
   }
 
-  .heroTitle {
-    font-size: clamp(3.2rem, 17vw, 5rem);
+  .aboutRailRule {
+    max-width: 2rem;
   }
 
-  .heroText {
-    margin-top: 1.25rem;
+  .aboutColumns {
+    columns: 1;
   }
 
-  .infoGrid {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "mission"
-      "about";
+  .aboutPhotos {
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    grid-auto-columns: 72vw;
+    grid-auto-rows: clamp(12rem, 46vw, 18rem);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
   }
 
-  .infoCard {
-    padding: 1.1rem;
-    border-radius: 1.4rem;
+  .plate {
+    scroll-snap-align: center;
   }
 
-  .cardPhoto {
-    border-radius: 1rem;
+  .mosaic {
+    height: 50%;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
   }
 
-  .southeastGrid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .tile1 {
+    grid-column: 1 / 4;
+    grid-row: 1 / 4;
   }
 
-  .mapImage {
-    max-width: 18rem;
-    justify-self: center;
+  .tile2 {
+    grid-column: 4 / 7;
+    grid-row: 1 / 3;
   }
 
-  .chaptersSection {
-    margin-top: 1.5rem;
+  .tile3 {
+    grid-column: 4 / 7;
+    grid-row: 3 / 5;
   }
 
-  .chapterGrid {
-    gap: 1rem;
+  /* Two of the five would only shrink the rest at this width. */
+  .tile4,
+  .tile5 {
+    display: none;
   }
 
-  .chapterCard {
-    min-height: 9rem;
-    padding: 0.7rem;
+  .coverTitle {
+    line-height: 0.9;
   }
 
-  .marquee {
-    padding: 1.25rem 0;
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0,
-      #000000 1.5rem,
-      #000000 calc(100% - 1.5rem),
-      transparent 100%
-    );
-    mask-image: linear-gradient(
-      to right,
-      transparent 0,
-      #000000 1.5rem,
-      #000000 calc(100% - 1.5rem),
-      transparent 100%
-    );
+  .coverLineAccent {
+    margin-left: 0;
   }
 
-  .trackGroup {
-    gap: 2.25rem;
-    padding: 0 1.125rem;
+  .scrollCue {
+    display: none;
   }
 
-  .sponsorLogo {
-    max-width: 8rem;
-    height: 2.75rem;
+  .eventsDate {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .officersList {
+    grid-template-columns: minmax(0, 11rem);
+    gap: 1.75rem;
   }
 }
 
@@ -532,26 +1100,25 @@
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .page {
-    animation: none;
-  }
-
-  .marquee {
-    overflow-x: auto;
-  }
-
+  .tickerTrack,
   .track {
     animation: none;
   }
 
-  .chapterCard,
-  .allChaptersButton,
+  .ticker,
+  .marquee {
+    overflow-x: auto;
+  }
+
+  .coverAction span,
+  .textLink span,
   .sponsorItem,
   .sponsorLogo {
     transition: none;
   }
 
-  .chapterCard:hover,
+  .coverAction:hover span,
+  .textLink:hover span,
   .sponsorItem:hover {
     transform: none;
   }
