@@ -8,7 +8,7 @@ page is just the short version.
 
 ## The short version
 
-1. **Pick an issue** from the [Issues tab](https://github.com/VT-Sase/vt-sase-website/issues)
+1. **Pick an issue** from the [Issues tab](https://github.com/VT-Sase/VT-Sase.github.io/issues)
    and assign yourself. Filter by `good first issue` if it's your first time.
 2. **Branch off `main`** — `feature/`, `fix/`, or `update/` (see
    [Branch Naming](../README.md#branch-naming)).

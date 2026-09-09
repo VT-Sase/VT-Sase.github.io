@@ -7,7 +7,7 @@ Built with [Next.js](https://nextjs.org/) (App Router) and TypeScript. We're
 rebuilding the old React + Vite site; this repo is the new version.
 
 **New here?** Start with [Getting Started](#-getting-started), then pick something
-from the [Issues tab](https://github.com/VT-Sase/vt-sase-website/issues). No prior
+from the [Issues tab](https://github.com/VT-Sase/VT-Sase.github.io/issues). No prior
 experience with this repo assumed.
 
 ## Contents
@@ -39,8 +39,8 @@ node --version    # should print v22.something
 ### 2. Download the code
 
 ```bash
-git clone https://github.com/VT-Sase/vt-sase-website.git
-cd vt-sase-website
+git clone https://github.com/VT-Sase/VT-Sase.github.io.git
+cd VT-Sase.github.io
 ```
 
 ### 3. Run it
@@ -123,17 +123,18 @@ Use `merge`, not `rebase` — rebase rewrites history and is much harder to undo
 Every folder under `app/` is a page on the live site.
 
 ```
-vt-sase-website/
+VT-Sase.github.io/
 ├── app/                    every folder here = one page
 │   ├── layout.tsx          wraps EVERY page (navbar + footer)
 │   ├── globals.css         colors, fonts, resets
-│   ├── page.tsx            /            Home
-│   ├── about/page.tsx      /about       About
+│   ├── page.tsx            /            Home (about, FAQs and sponsors
+│   │                                     are sections on this page)
 │   ├── events/page.tsx     /events      Events
 │   └── officers/page.tsx   /officers    Officers
 ├── components/             shared UI (Navbar, Footer)
 ├── content/                the words and data ← you probably want this
 ├── public/images/          compressed photos
+├── archive/                past years' sites — read-only, don't edit
 └── .github/                contributor guide — Webmaster's area
 ```
 
@@ -163,7 +164,7 @@ touching any of it — a broken config breaks the build for everyone.
 
 ## 📋 Issues
 
-The **[Issues tab](https://github.com/VT-Sase/vt-sase-website/issues)** is our
+The **[Issues tab](https://github.com/VT-Sase/VT-Sase.github.io/issues)** is our
 to-do list, and it's how you know what everyone else is working on.
 
 **Before you start anything: comment on the issue and assign yourself.** That's
