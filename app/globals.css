@@ -1,0 +1,553 @@
+/**
+ * Global styles — applies to every page.
+ *
+ * Keep this file for resets and site-wide tokens only (colors, fonts,
+ * spacing). Page- and component-specific styles belong in a CSS Module
+ * next to the file that uses them, e.g. app/about/page.module.css.
+ *
+ * Dark is the default. Light mode redefines these semantic variable names,
+ * so components do not need separate markup for each theme.
+ */
+
+:root {
+  --theme-duration: 460ms;
+  --theme-color-duration: 850ms;
+  --theme-bg-duration: var(--theme-color-duration);
+  --theme-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  /* How far a colored band's surface takes to fade in at its top edge and back
+     out at its bottom, so neighbouring sections blend rather than butt. Long
+     enough that the ramp itself reads as the transition — a short one still
+     looks like an edge, just a soft one. */
+  --band-fade: clamp(4rem, 9vw, 7.5rem);
+
+  /* Vertical breathing room inside every full-bleed section. Kept a shade
+     longer than --band-fade so a band's copy always sits on fully opaque
+     surface rather than partway up its own ramp. */
+  --band-pad: clamp(5rem, 10vw, 8.5rem);
+  /* Overshoots slightly past its end value before settling, which is what
+     makes a card arrive with a pop instead of just sliding into place. */
+  --pop-easing: cubic-bezier(0.2, 1.1, 0.35, 1);
+
+  /* Fixed gradient values used by the cross-fade layers. */
+  --dark-bg-start: #03253f;
+  --dark-bg-end: #1d5d8d;
+  --light-bg-start: #97d7cf;
+  --light-bg-middle: #e3f3ad;
+  --light-bg-end: #d8fcc8;
+
+  /* Surfaces */
+  --bg: #03253f;
+  --bg-gradient-end: #1d5d8d;
+  --surface: #0d2333; /* cards and translucent navbar */
+  --surface-deep: #001727;
+  --footer: #0d314b;
+  --footer-text: #ffffff;
+  --placeholder: rgb(255 255 255 / 12%);
+
+  /* Text */
+  --fg: #ffffff;
+  --fg-muted: rgba(255, 255, 255, 0.72);
+  --card-text: #ffffff;
+  --card-muted: rgba(255, 255, 255, 0.72);
+
+  /* Accents */
+  --green: #8fc53f; /* inactive navigation */
+  --green-selected: #d1e7b0;
+  --chapter-button-green: #366d34;
+  --lime: #ebffa9; /* events headings */
+  --cyan: #00c4ff; /* active underline, links */
+  --cyan-pale: #9be8ff;
+  --teal: #168aad; /* Join Us / Sign Up buttons */
+  --teal-light: #46a7c4;
+  --divider: #ffffff;
+  --button-on-teal: #ffffff;
+  --signup-bg: rgb(22 138 173 / 78%);
+  --signup-text: #ffffff;
+  --signup-border: rgb(255 255 255 / 22%);
+  --mobile-menu-bg: rgb(13 49 75 / 78%);
+  --mobile-menu-hover: rgb(13 49 75 / 92%);
+  --mobile-menu-active: rgb(143 197 63 / 82%);
+  --mobile-menu-text: #ffffff;
+
+  /* SASE Southeast sits on the page's own surface now, so its type takes the
+     page's own ink rather than a colour picked to sit on a band that is no
+     longer there. The map marker is the one deliberate exception — a red that
+     holds against both the light and the dark map artwork. */
+  --southeast-title: var(--fg);
+  --southeast-ink: var(--fg);
+  --map-marker: #e02b2b;
+  --map-marker-halo: rgb(224 43 43 / 22%);
+  /* The region itself, painted through the artwork's silhouette. White: the
+     state lines are gaps in the artwork, so whatever colour goes here has to
+     hold against the page showing through them, and nothing separates from
+     the navy as cleanly. */
+  --map-land: #ffffff;
+
+  /* Full-bleed section bands. --band-edge is the hairline between them. */
+  /* The home page's cover. Dark in BOTH themes on purpose: the field behind it
+     is drawn with additive light, which needs a dark ground to read at all,
+     and an opening that does not flip with the toggle reads as a deliberate
+     cover rather than as a section that forgot to theme. */
+  --cover-bg: #05141f;
+  --cover-ink: #f6faf4;
+  --cover-ink-muted: rgb(246 250 244 / 58%);
+  --cover-rule: rgb(246 250 244 / 16%);
+  --field-glow: rgb(22 138 173 / 24%);
+
+  /* One accent doing real work, rather than a gradient doing a little. */
+  --accent: #8fc53f;
+  --accent-ink: #05141f;
+  --rule: rgb(255 255 255 / 14%);
+  --rule-strong: rgb(255 255 255 / 30%);
+
+  --band-edge: rgb(255 255 255 / 9%);
+  --tile-bg: rgb(255 255 255 / 6%);
+  --tile-bg-hover: rgb(255 255 255 / 10%);
+
+  /* Panels are outlined in 2px rather than a hairline: the edge is part of the
+     look, not a seam you are meant to miss. */
+  --panel-border: rgb(255 255 255 / 20%);
+  --panel-border-hover: var(--green);
+
+  /* Section background variants. --band-solid is opaque enough to cover the
+     doodle layer, which is how a band gets a texture of its own instead of
+     the page's. The grid pair is GridPattern's rule and its filled cells —
+     a filled cell reads far heavier than a 1px line at the same alpha, so the
+     two are not set to the same value. */
+  --band-solid: rgb(3 25 41 / 88%);
+  --grid-line: rgb(255 255 255 / 16%);
+  --grid-square: rgb(255 255 255 / 20%);
+
+  /* The sponsor marquee: a neutral wash rather than an accent, so the logos
+     inside it are the only color in the band. */
+  --marquee-bg: rgb(255 255 255 / 7%);
+  --marquee-border: rgb(255 255 255 / 12%);
+
+  --border: rgba(155, 232, 255, 0.25);
+  --card-border: rgb(255 255 255 / 14%);
+  --card-shadow: 0 0.65rem 1.6rem -0.4rem rgb(0 0 0 / 32%);
+  --button-shadow: 0 0.25rem 0.65rem rgb(0 0 0 / 26%);
+
+  /* Fonts — the --font-* variables come from next/font in app/layout.tsx. */
+  --font-heading: var(--font-onest), system-ui, sans-serif;
+  --font-body: var(--font-onest), system-ui, sans-serif;
+
+  /* Layout */
+  --content-max: 75rem;
+  --gutter: 1.5rem;
+
+  /* Where the doodle fade finishes: the content column's left edge, so the
+     pattern is quiet everywhere a word can land and full strength only out in
+     the margin. Percentage stops alone can't do this — the margin is a
+     different fraction of the page at every viewport width. */
+  --doodle-fade: max(var(--gutter), calc((100% - var(--content-max)) / 2));
+
+  /* The sticky bar's own height — padding-block twice plus the logo. Needed to
+     work out how much viewport is left underneath it. */
+  --nav-height: 2.8rem;
+
+  /* Vertical rhythm every page shell shares, so no page sets its own. */
+  --page-top: 3rem;
+  --page-bottom: 4.5rem;
+  --section-gap: 3.5rem;
+  /* Clears the sticky header so a section jumped to from the nav doesn't land
+     underneath it: bar height is padding-block x2 plus the logo. */
+  --nav-offset: 3.5rem;
+}
+
+:root[data-theme="light"] {
+  /* Surfaces */
+  --bg: #97d7cf;
+  --bg-gradient-end: #d8fcc8;
+  --surface: #ffffff;
+  --surface-deep: #ffffff;
+  --footer: #cce792;
+  --footer-text: #000000;
+  --placeholder: rgb(13 49 75 / 10%);
+
+  /* Text */
+  --fg: #323232;
+  --fg-muted: rgb(50 50 50 / 72%);
+  --card-text: #323232;
+  --card-muted: rgb(50 50 50 / 72%);
+
+  /* Accents */
+  --green: #8fc53f;
+  --green-selected: #366d34;
+  --lime: #194a65;
+  --divider: #0d314b;
+  --signup-bg: #cfe7dc;
+  --signup-text: #168aad;
+  --signup-border: rgb(22 138 173 / 28%);
+  --mobile-menu-bg: rgb(255 255 255 / 78%);
+  --mobile-menu-hover: rgb(255 255 255 / 92%);
+  --mobile-menu-active: rgb(143 197 63 / 82%);
+  --mobile-menu-text: #0d314b;
+
+  --southeast-title: var(--fg);
+  --southeast-ink: var(--fg);
+  --map-marker: #c81f1f;
+  --map-marker-halo: rgb(200 31 31 / 20%);
+  --map-land: #ffffff;
+
+  --accent: #2f7d24;
+  --accent-ink: #ffffff;
+  --rule: rgb(13 49 75 / 16%);
+  --rule-strong: rgb(13 49 75 / 34%);
+
+  --band-edge: rgb(13 49 75 / 10%);
+  --tile-bg: rgb(255 255 255 / 52%);
+  --tile-bg-hover: rgb(255 255 255 / 72%);
+
+  --panel-border: rgb(13 49 75 / 22%);
+  --panel-border-hover: var(--teal);
+  --band-solid: rgb(255 255 255 / 78%);
+  --grid-line: rgb(13 49 75 / 15%);
+  --grid-square: rgb(13 49 75 / 22%);
+
+  --marquee-bg: rgb(13 49 75 / 6%);
+  --marquee-border: rgb(13 49 75 / 12%);
+
+  --border: rgb(13 49 75 / 25%);
+  --card-border: rgb(13 49 75 / 14%);
+  --card-shadow: 0 0.65rem 1.6rem -0.4rem rgb(13 49 75 / 20%);
+  --button-shadow: 0 0.25rem 0.65rem rgb(13 49 75 / 24%);
+}
+
+html {
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* clip rather than hidden: `overflow-x: hidden` turns the body into a scroll
+   container, and the sticky navbar then sticks to that container instead of
+   the viewport — which is to say it scrolls away. `clip` cuts off stray
+   horizontal overflow the same way without creating one. */
+html,
+body {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: var(--fg);
+  background-color: var(--dark-bg-start);
+  background-image: linear-gradient(
+    to bottom,
+    var(--dark-bg-start) 0%,
+    var(--dark-bg-end) 100%
+  );
+  background-attachment: fixed;
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color var(--theme-duration),
+    color var(--theme-duration);
+}
+
+/* The site's three background layers, restored. The dark gradient sits on the
+   body itself; ::before is the light-theme gradient that cross-fades over it
+   on the toggle; ::after is the doodle tile — absolute rather than fixed so the
+   texture scrolls with the page and runs the full document height, including
+   behind the translucent navbar. */
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--light-bg-start) 0%,
+    var(--light-bg-middle) 55%,
+    var(--light-bg-end) 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--theme-bg-duration) var(--theme-easing);
+}
+
+html[data-theme="light"] body::before {
+  opacity: 1;
+}
+
+/* The mask is a scrim: full strength at the margins, dropping to about a third
+   across the middle where headlines and body copy sit. */
+body::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: url("/images/doodles-tile.png");
+  background-repeat: repeat;
+  background-size: 34rem;
+  pointer-events: none;
+  opacity: 0.88;
+  transition:
+    opacity var(--theme-bg-duration) var(--theme-easing),
+    filter var(--theme-bg-duration) var(--theme-easing);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgb(0 0 0 / 100%) 0,
+    rgb(0 0 0 / 34%) var(--doodle-fade),
+    rgb(0 0 0 / 34%) calc(100% - var(--doodle-fade)),
+    rgb(0 0 0 / 100%) 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgb(0 0 0 / 100%) 0,
+    rgb(0 0 0 / 34%) var(--doodle-fade),
+    rgb(0 0 0 / 34%) calc(100% - var(--doodle-fade)),
+    rgb(0 0 0 / 100%) 100%
+  );
+}
+
+html[data-theme="light"] body::after {
+  opacity: 1;
+  filter: brightness(1);
+  mix-blend-mode: screen;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+/* Every route's root element. Pages own their content, not their background:
+   the three background layers live on the body above, and a page that paints
+   its own opaque background would hide them. */
+.pageShell {
+  width: 100%;
+  padding: var(--page-top) 0 var(--page-bottom);
+  overflow-x: hidden;
+}
+
+/* A page whose first section is a full-bleed hero starts flush instead. */
+.pageShellFlush {
+  padding-top: 0;
+}
+
+.pageSection {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  scroll-margin-top: var(--nav-offset);
+}
+
+.pageSection + .pageSection {
+  margin-top: var(--section-gap);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-top: 4rem;
+    --page-bottom: 5rem;
+    --section-gap: 5rem;
+    --nav-offset: 4.5rem;
+    --nav-height: 3.5rem;
+  }
+}
+
+/* =========================================================
+   SHARED PAGE SYSTEM
+
+   The home page's type scale and card face, lifted out so every route reads
+   as the same site. Global class names (like .pageShell and .srOnly above),
+   used as plain strings in JSX. The home page keeps its own copies of these
+   token values on .page, which are identical — so nothing there changes.
+   ========================================================= */
+
+:root {
+  --card-face: #f1f4ea;
+  --card-face-ink: #0d314b;
+  --card-face-muted: rgb(13 49 75 / 68%);
+  --card-face-rule: rgb(13 49 75 / 14%);
+  --card-lift: none;
+}
+
+html[data-theme="light"] {
+  --card-face: #ffffff;
+  --card-face-ink: #0d314b;
+  --card-face-muted: rgb(13 49 75 / 70%);
+  --card-face-rule: rgb(13 49 75 / 12%);
+  --card-lift: 0 10px 26px -14px rgb(13 49 75 / 22%);
+}
+
+.pageTitle {
+  font-size: clamp(48px, 6vw, 82px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+}
+
+.sectionTitle {
+  font-size: clamp(32px, 3.7vw, 47px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+
+.pageEyebrow {
+  display: block;
+  margin-bottom: 13px;
+  color: var(--fg-muted);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.pageLede {
+  color: var(--fg-muted);
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.pageBody {
+  color: var(--fg-muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+/* Heading left, supporting copy right — the home page's section rhythm. */
+.headRow {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 700px) {
+  .headRow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* Visible only to screen readers. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --theme-duration: 0ms;
+    --theme-color-duration: 0ms;
+    --theme-bg-duration: 0ms;
+  }
+}
+
+/* While the palette is changing, every color-bearing property eases together
+   instead of some tokens jumping before others. Only active for the toggle
+   beat — hovers keep their shorter durations the rest of the time. */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition-duration: var(--theme-color-duration) !important;
+  transition-timing-function: var(--theme-easing) !important;
+  transition-property:
+    background-color, border-color, color, fill, stroke, box-shadow,
+    outline-color, opacity !important;
+}
+
+/* View Transition API: dissolve the old palette into the new one. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: var(--theme-color-duration);
+    animation-timing-function: var(--theme-easing);
+  }
+}
+
+/* Shared SASE palette: navy structure, teal and lime contained accents. */
+:root {
+  --font-heading: var(--font-onest), system-ui, sans-serif;
+  --bg: #0b2435;
+  --fg: #edf4f2;
+  --fg-muted: #adc0c8;
+  --surface: #123145;
+  --surface-deep: #0b2435;
+  --footer: #081d2d;
+  --footer-text: #edf4f2;
+  --rule: rgb(218 238 238 / 15%);
+  --rule-strong: rgb(218 238 238 / 35%);
+  --badge-bg: #24483f;
+  --heading-accent: #badb8b;
+  --mint-surface: #c7e7e3;
+  --lime-surface: #e4edc7;
+  --feature-ink: #0d314b;
+  --feature-muted: #415d67;
+  --cta-bg: #d5e9b4;
+  --cta-fg: #0d314b;
+  --card-shadow:
+    0 8px 24px -12px rgb(13 49 75 / 8%), 0 0 0 1px rgb(13 49 75 / 4%);
+  --map-land: #7da9b6;
+  --nav-offset: 6rem;
+}
+:root[data-theme="light"] {
+  --bg: #f5f7f3;
+  --fg: #0d314b;
+  --fg-muted: #536974;
+  --surface: #fff;
+  --surface-deep: #f5f7f3;
+  --footer: #0d314b;
+  --footer-text: #edf4f2;
+  --rule: rgb(13 49 75 / 13%);
+  --rule-strong: rgb(13 49 75 / 32%);
+  --badge-bg: #e1edce;
+  --heading-accent: #397969;
+  --mint-surface: #dceeea;
+  --lime-surface: #eaf0d7;
+  --cta-bg: #0d314b;
+  --cta-fg: #fff;
+  --map-land: #7da9b6;
+  --card-shadow:
+    0 8px 24px -12px rgb(13 49 75 / 8%), 0 0 0 1px rgb(13 49 75 / 4%);
+}
+:focus-visible {
+  outline: 2px solid var(--heading-accent);
+  outline-offset: 4px;
+}
+::selection {
+  background: #c9e7b0;
+  color: #0d314b;
+}

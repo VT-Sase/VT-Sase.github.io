@@ -1,0 +1,624 @@
+/* Mobile is the base case here; the desktop pill lives in the media query
+   at the bottom. Breakpoint is 768px, same as the footer. */
+
+.header {
+  position: relative;
+  z-index: 50;
+  width: 100%;
+}
+
+.bar {
+  /* Text takes the page's own ink and accent — muted for idle links, full
+     strength on hover, the heading accent for the current page. */
+  --nav-link: var(--fg-muted);
+  --nav-link-strong: var(--fg);
+  --nav-link-active: var(--heading-accent);
+  --nav-hover-bg: rgb(255 255 255 / 14%);
+  --nav-hover-bevel:
+    inset 2px 2px 5px -2px rgb(255 255 255 / 40%),
+    inset -2px -1px 5px 0 rgb(255 255 255 / 34%),
+    inset 0 -2px 0 rgb(255 255 255 / 18%);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  gap: 0.75rem;
+  padding: 0.75rem var(--gutter);
+  font-family: var(--font-body);
+  /* Sheen: sits above the theme tints on ::before/::after and reads as light
+     catching the top of the glass. */
+  background: linear-gradient(
+    to bottom,
+    rgb(255 255 255 / 20%),
+    rgb(255 255 255 / 6%) 48%,
+    rgb(255 255 255 / 0%)
+  );
+  /* saturate() is what separates glass from frosted plastic — colors behind the
+     bar stay vivid through the blur instead of washing out to grey. */
+  backdrop-filter: blur(40px) saturate(190%) contrast(160%);
+  -webkit-backdrop-filter: blur(40px) saturate(190%) contrast(160%);
+  /* Specular edges, then a soft lift off the page. */
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 34%),
+    inset 0 -1px 0 0 rgb(255 255 255 / 8%),
+    0 10px 30px -12px rgb(0 0 0 / 45%);
+  transition: box-shadow var(--theme-duration) var(--theme-easing);
+}
+
+.bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgb(18 49 69 / 55%) 0%,
+    rgb(18 49 69 / 42%) 50%,
+    rgb(18 49 69 / 55%) 100%
+  );
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity var(--theme-duration) var(--theme-easing);
+}
+
+.bar::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 62%) 0%,
+    rgb(255 255 255 / 50%) 50%,
+    rgb(255 255 255 / 62%) 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--theme-duration) var(--theme-easing);
+}
+
+:global(html[data-theme="light"]) .bar::before {
+  opacity: 1;
+}
+
+:global(html[data-theme="light"]) .bar::after {
+  opacity: 0;
+}
+
+:global(html[data-theme="light"]) .bar {
+  --nav-hover-bg: rgb(255 255 255 / 58%);
+  --nav-hover-bevel:
+    inset 2px 2px 5px -2px rgb(255 255 255 / 95%),
+    inset -2px -1px 5px 0 rgb(255 255 255 / 70%),
+    inset 0 -2px 0 rgb(255 255 255 / 45%);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 70%),
+    inset 0 -1px 0 0 rgb(255 255 255 / 30%),
+    0 10px 30px -14px rgb(13 49 75 / 30%);
+}
+
+.brand {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.brand img {
+  width: auto;
+  height: 1.75rem;
+}
+
+/* The horizontal link row is desktop-only — mobile uses .mobileMenu. */
+.links {
+  display: none;
+}
+
+.join {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  background-color: var(--cta-bg);
+  color: var(--cta-fg);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing),
+    transform 160ms var(--pop-easing),
+    box-shadow 160ms ease;
+}
+
+.join:active {
+  transform: scale(0.97);
+}
+
+.join:hover,
+.join:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px -8px rgb(0 0 0 / 45%);
+}
+
+.menuButton {
+  display: grid;
+  place-items: center;
+  padding: 0.25rem;
+  border: 0;
+  background: none;
+  color: var(--mobile-menu-text);
+  cursor: pointer;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.menuIcon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.mobileMenuShell {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    max-height 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease,
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 300ms;
+}
+
+.mobileMenuShellOpen {
+  max-height: 26rem;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.mobileMenu {
+  list-style: none;
+  font-family: var(--font-body);
+  background: var(--mobile-menu-bg);
+  border-bottom: 1px solid var(--border);
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing);
+}
+
+.mobileLink,
+.mobileLinkActive {
+  display: block;
+  padding: 0.6rem var(--gutter);
+  background: var(--mobile-menu-bg);
+  color: var(--mobile-menu-text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing);
+}
+
+.mobileLink:hover,
+.mobileLink:focus-visible {
+  background: var(--mobile-menu-hover);
+}
+
+.mobileLinkActive {
+  background: var(--mobile-menu-active);
+  color: var(--mobile-menu-text);
+  font-weight: 600;
+}
+
+:global(html[data-theme="light"]) .mobileLinkActive {
+  background: color-mix(in srgb, var(--teal) 82%, transparent);
+}
+
+/* Same glass recipe as .bar: sheen on the element, theme tint on the
+   pseudo-elements, specular inset edges instead of a hard border. */
+.themeToggle {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 auto;
+  overflow: hidden;
+  /* Sized to sit inside the bar without growing it; the desktop pill restores
+     the full 4.5rem track further down. */
+  width: 3.5rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to bottom,
+    rgb(255 255 255 / 20%),
+    rgb(255 255 255 / 6%) 48%,
+    rgb(255 255 255 / 0%)
+  );
+  color: #ffffff;
+  cursor: pointer;
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 34%),
+    inset 0 -1px 0 0 rgb(255 255 255 / 8%),
+    inset 0 0 0 1px rgb(255 255 255 / 14%),
+    0 10px 30px -12px rgb(0 0 0 / 45%);
+  transition:
+    box-shadow var(--theme-duration) var(--theme-easing),
+    filter 180ms ease;
+}
+
+.themeToggle::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgb(18 49 69 / 55%) 0%,
+    rgb(18 49 69 / 42%) 50%,
+    rgb(18 49 69 / 55%) 100%
+  );
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity var(--theme-duration) var(--theme-easing);
+}
+
+.themeToggle::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 62%) 0%,
+    rgb(255 255 255 / 50%) 50%,
+    rgb(255 255 255 / 62%) 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--theme-duration) var(--theme-easing);
+}
+
+:global(html[data-theme="light"]) .themeToggle::before {
+  opacity: 1;
+}
+
+:global(html[data-theme="light"]) .themeToggle::after {
+  opacity: 0;
+}
+
+:global(html[data-theme="light"]) .themeToggle {
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 70%),
+    inset 0 -1px 0 0 rgb(255 255 255 / 30%),
+    inset 0 0 0 1px rgb(255 255 255 / 45%),
+    0 10px 30px -14px rgb(13 49 75 / 30%);
+}
+
+.themeToggle:hover,
+.themeToggle:focus-visible {
+  filter: brightness(1.12);
+}
+
+/* The knob is the same glass as the track, one layer brighter so it reads as
+   a separate piece and the icon sitting on top of it stays legible. */
+.themeThumb {
+  position: absolute;
+  isolation: isolate;
+  /* 0.175rem inset on every side: a 1.75rem track less a 1.4rem knob leaves
+     0.35rem, and the travel below lands the knob on the same inset at the
+     right end. Desktop scales all four numbers up together. */
+  top: 0.175rem;
+  left: 0.175rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background: linear-gradient(
+    to bottom,
+    rgb(255 255 255 / 58%),
+    rgb(255 255 255 / 38%) 55%,
+    rgb(255 255 255 / 30%)
+  );
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 72%),
+    inset 0 -1px 0 0 rgb(255 255 255 / 18%),
+    inset 0 0 0 1px rgb(255 255 255 / 28%),
+    0 2px 6px -1px rgb(0 0 0 / 40%);
+  transform: translateX(1.75rem);
+  transition:
+    transform var(--theme-duration) var(--theme-easing),
+    box-shadow var(--theme-duration) var(--theme-easing);
+}
+
+/* Light tint layer, cross-faded the same way the track's tints are. */
+.themeThumb::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: rgb(255 255 255 / 52%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--theme-duration) var(--theme-easing);
+}
+
+:global(html[data-theme="light"]) .themeThumb::before {
+  opacity: 1;
+}
+
+:global(html[data-theme="light"]) .themeThumb {
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 90%),
+    inset 0 -1px 0 0 rgb(255 255 255 / 40%),
+    inset 0 0 0 1px rgb(255 255 255 / 58%),
+    0 2px 6px -1px rgb(13 49 75 / 26%);
+}
+
+.sunIcon,
+.moonIcon {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  color: currentColor;
+  transform: translateY(-50%);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.sunIcon {
+  left: 0.175rem;
+  color: #ffffff;
+}
+
+/* Core dot plus eight rays drawn as spread-in box-shadows; the ray ring spans
+   1.18rem, which still clears the 1.6rem knob it sits on. */
+.sunIcon::before {
+  content: "";
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow:
+    0 -0.52rem 0 -0.14rem currentColor,
+    0.37rem -0.37rem 0 -0.14rem currentColor,
+    0.52rem 0 0 -0.14rem currentColor,
+    0.37rem 0.37rem 0 -0.14rem currentColor,
+    0 0.52rem 0 -0.14rem currentColor,
+    -0.37rem 0.37rem 0 -0.14rem currentColor,
+    -0.52rem 0 0 -0.14rem currentColor,
+    -0.37rem -0.37rem 0 -0.14rem currentColor;
+}
+
+.moonIcon {
+  right: 0.175rem;
+  background-color: rgb(3 37 63 / 76%);
+  -webkit-mask: url("/images/moon.svg") center / 0.85rem 0.85rem no-repeat;
+  mask: url("/images/moon.svg") center / 0.85rem 0.85rem no-repeat;
+  transition: background-color var(--theme-duration) var(--theme-easing);
+}
+
+:global(html[data-theme="light"]) .themeThumb {
+  transform: translateX(0);
+}
+
+/* Light glass is white-tinted, so the icons take the navy the light navbar
+   uses for text instead of the white that reads on the dark glass. */
+:global(html[data-theme="light"]) .sunIcon {
+  color: var(--teal);
+}
+
+:global(html[data-theme="light"]) .moonIcon {
+  background-color: rgb(13 49 75 / 72%);
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 1rem var(--gutter) 0;
+  }
+
+  .bar {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    gap: 1.5rem;
+    border-radius: 9999px;
+    box-shadow:
+      inset 0 1px 1px 0 rgb(255 255 255 / 44%),
+      inset 0 0 0 1px rgb(255 255 255 / 14%),
+      0 14px 36px -10px rgb(0 0 0 / 48%);
+  }
+
+  .brand {
+    flex: 0 0 auto;
+  }
+
+  .brand img {
+    height: 2.9rem;
+  }
+
+  .links {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: clamp(1rem, 2.6vw, 2.25rem);
+    list-style: none;
+  }
+
+  /* Slides between items on the row's baseline. */
+  .links::after {
+    content: "";
+    position: absolute;
+    bottom: -0.15rem;
+    left: 0;
+    width: var(--indicator-width, 0);
+    height: 2px;
+    border-radius: 9999px;
+    background: var(--nav-link-active);
+    opacity: var(--indicator-opacity, 0);
+    pointer-events: none;
+    transform: translateX(var(--indicator-x, 0));
+    transition:
+      width 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 160ms ease,
+      background-color var(--theme-duration) var(--theme-easing);
+  }
+
+  /* Heavier than the page's 500 so 15px of nav type still reads as solid,
+     and negatively tracked like everything else on the site. */
+  .link,
+  .linkActive {
+    display: block;
+    padding: 0.3rem 0.7rem 0.4rem;
+    margin-bottom: -0.15rem;
+    border-radius: 999rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    white-space: nowrap;
+    transition:
+      color var(--theme-duration) var(--theme-easing),
+      background-color 180ms var(--pop-easing),
+      box-shadow 260ms ease,
+      transform 180ms var(--pop-easing);
+  }
+
+  .link {
+    color: var(--nav-link);
+  }
+
+  /* The reference's item treatment: a soft glass pill carrying the same bevel
+     as the bar. Hover only — the current page keeps its underline, since a
+     bubble sitting there permanently was the part that read as odd. */
+  .link:hover,
+  .link:focus-visible {
+    background-color: var(--nav-hover-bg);
+    box-shadow: var(--nav-hover-bevel);
+    color: var(--nav-link-strong);
+  }
+
+  /* Presses in slightly, the way the reference's items do. */
+  .link:active,
+  .linkActive:active {
+    transform: scale(0.97);
+  }
+
+  /* Current page: the hero's accent, so the bar points at the page it opens. */
+  .linkActive {
+    color: var(--nav-link-active);
+  }
+
+  .join {
+    padding: 0.62rem 1.3rem;
+    font-size: 0.8125rem;
+  }
+
+  .themeToggle {
+    width: 4.5rem;
+    height: 2rem;
+  }
+
+  .themeThumb {
+    top: 0.2rem;
+    left: 0.2rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    transform: translateX(2.5rem);
+  }
+
+  .sunIcon,
+  .moonIcon {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  .sunIcon {
+    left: 0.2rem;
+  }
+
+  .moonIcon {
+    right: 0.2rem;
+    -webkit-mask-size: 1rem 1rem;
+    mask-size: 1rem 1rem;
+  }
+
+  :global(html[data-theme="light"]) .themeThumb {
+    transform: translateX(0);
+  }
+
+  .join:hover {
+    filter: brightness(1.12);
+  }
+
+  .menuButton,
+  .mobileMenuShell {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobileMenuShell,
+  .links::after,
+  .themeThumb {
+    transition: none;
+  }
+}
+
+/* The bar was a centred capsule at the content width. It now runs nearly the
+   full viewport as a soft-cornered pane of glass — same glass treatment, wider
+   measure, squarer corners. */
+@media (min-width: 768px) {
+  .header {
+    padding: 0.9rem clamp(1rem, 2.2vw, 1.75rem) 0;
+  }
+
+  .bar {
+    max-width: min(100%, 89.5rem);
+    padding: 0.85rem 0.9rem 0.85rem 1.65rem;
+    border-radius: 1.75rem;
+    box-shadow:
+      inset 2px 2px 6px -2px rgb(255 255 255 / 44%),
+      inset -2px -2px 6px 1px rgb(255 255 255 / 30%),
+      inset 0 -2px 0 rgb(255 255 255 / 18%),
+      inset 0 0 0 1px rgb(255 255 255 / 16%),
+      0 18px 44px -20px rgb(0 0 0 / 55%),
+      0 4px 14px -8px rgb(0 0 0 / 35%);
+  }
+
+  /* Light glass needs a real hairline instead of a white specular edge — on a
+     pale page the inset white reads as nothing at all. */
+  :global(html[data-theme="light"]) .bar {
+    box-shadow:
+      inset 2px 2px 6px -2px rgb(255 255 255 / 95%),
+      inset -2px -2px 6px 1px rgb(255 255 255 / 70%),
+      inset 0 -2px 0 rgb(255 255 255 / 45%),
+      inset 0 0 0 1px rgb(255 255 255 / 50%),
+      0 16px 38px -20px rgb(13 49 75 / 30%),
+      0 3px 10px -6px rgb(13 49 75 / 14%);
+  }
+}

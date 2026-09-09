@@ -1,0 +1,55 @@
+/* Background lives on the body (see app/globals.css) — the dark gradient, the
+   light-theme crossfade and the doodle tile are painted once, site-wide, so
+   every page shares this page's look. Only layout belongs here. */
+
+.page {
+  composes: pageShell from global;
+}
+
+.section {
+  composes: pageSection from global;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  list-style: none;
+}
+
+.empty {
+  padding: 2.5rem 1.5rem;
+  border: 1px solid var(--card-face-rule);
+  border-radius: 18px;
+  background: var(--card-face);
+  box-shadow: var(--card-lift);
+  color: var(--card-face-muted);
+  text-align: center;
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing);
+}
+
+/* Same grid shape as the home page's card rows: columns that fill the content
+   column rather than fixed-width cards centred in it. */
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 20px;
+  }
+}
+
+@media (min-width: 980px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .calendarWrap {
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+}
