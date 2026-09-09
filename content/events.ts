@@ -74,6 +74,15 @@ const TIME_ZONE = "America/New_York";
 // Events are sorted by date automatically. Add new events to the array below.
 export const events: SaseEvent[] = [
   {
+    name: "Sweetopia Fundraiser",
+    date: "2026-09-10T16:00:00-04:00",
+    endDate: "2026-09-10T23:00:00-04:00",
+    location: "Sweetopia \u2014 209 College Ave",
+    description:
+      "Our first fundraiser of the year. Come by any time between 4 and 11pm, use the code SASE at the register, and bring your friends \u2014 it runs right through the GBM, so come get ice cream after.",
+    // Flyer still to be added as public/images/events/sweetopia-fundraiser.jpg
+  },
+  {
     name: "First GBM: Mean Girls",
     date: "2026-09-10T18:30:00-04:00",
     endDate: "2026-09-10T20:30:00-04:00",
