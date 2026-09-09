@@ -1,0 +1,543 @@
+/* Background lives on the body (see app/globals.css) — the dark gradient, the
+   light-theme crossfade and the doodle tile are painted once, site-wide.
+
+   Two things are deliberately kept apart in this file:
+   - The officer cards and their grids are the original design, unchanged.
+   - The hero, the section headings and the supporting copy use the shared
+     page system in globals.css, so this route's type matches the home page.
+   The decorative layers that used to sit behind the board — blurred glow
+   blobs and floating glyphs — are gone with the old hero. */
+
+.page {
+  composes: pageShell from global;
+}
+
+/* =========================================================
+   HERO — copy left, photograph right, as on the home page
+   ========================================================= */
+
+.hero {
+  composes: pageSection from global;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 56px;
+  }
+}
+
+.heroCopy p {
+  max-width: 34rem;
+}
+
+/* The same pastel frame the home page's hero photograph sits in. */
+.heroVisual {
+  padding: 18px 18px 0;
+  border-radius: 24px;
+  background: radial-gradient(
+    ellipse at 25% 15%,
+    #d3ecc0,
+    #a5d9d3 65%,
+    #77bfc8
+  );
+}
+
+.heroPhoto {
+  position: relative;
+  height: clamp(240px, 30vw, 400px);
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: var(--card-shadow);
+}
+
+.heroPhoto img {
+  object-fit: cover;
+  object-position: center 43%;
+}
+
+.photoCaption {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  padding: 14px 2px;
+  color: #0d314b;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.photoCaption > span:last-child {
+  margin-left: auto;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #366d34;
+}
+
+/* =========================================================
+   BOARD
+   ========================================================= */
+
+.board {
+  composes: pageSection from global;
+}
+
+.committee + .committee {
+  margin-top: 3.5rem;
+}
+
+/* Heading sits left at the page's own scale, so the flanking rules and the
+   centred, cyan, weight-700 treatment are gone. */
+.committeeHeading {
+  margin-bottom: 1.4rem;
+}
+
+/* Said once above the whole board, in the page's muted body voice. */
+.flipHint {
+  margin: 0 0 2.5rem;
+  color: var(--fg-muted);
+  font-size: 13px;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* The first committee heading follows the hint, so it does not also need the
+   full section gap above it. */
+.flipHint + .committee {
+  margin-top: 0;
+}
+
+/* =========================================================
+   OFFICER CARDS
+   ========================================================= */
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 18px;
+  gap: 1.15rem;
+}
+
+/* =========================
+   FLIP CARDS
+   ========================= */
+
+.card {
+  width: 150px;
+  height: 198px;
+
+  flex: 0 0 150px;
+
+  perspective: 1000px;
+}
+
+.cardInner {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+
+  transition: transform 0.65s ease;
+
+  border-radius: 9px;
+
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+}
+
+.card:hover .cardInner {
+  transform: rotateY(180deg);
+}
+
+.cardFront,
+.cardBack {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 9px;
+
+  overflow: hidden;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.cardFront {
+  background: #062f46;
+}
+
+.photo {
+  display: block;
+
+  width: 100%;
+  height: 145px;
+
+  object-fit: cover;
+  object-position: center;
+  width: 9.4rem;
+  flex: 0 0 9.4rem;
+
+  overflow: hidden;
+
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+
+  box-shadow: var(--card-shadow);
+
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing);
+}
+
+.photoPlaceholder {
+  width: 100%;
+  height: 145px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0 0.75rem;
+
+  background: linear-gradient(135deg, #24495c, #163a4d);
+}
+
+/* Says why the space is empty, rather than leaving a blank panel that reads
+   as a loading failure. Sits on the fixed navy placeholder in both themes. */
+.photoSoon {
+  color: rgb(255 255 255 / 62%);
+
+  font-size: 0.58rem;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cardInfo {
+  height: 53px;
+
+  padding: 0 6px 9px;
+  height: 9rem;
+
+  background: var(--placeholder);
+
+  transition: background-color var(--theme-duration) var(--theme-easing);
+}
+
+.cardInfo {
+  min-height: 3.3rem;
+  padding: 0 0.4rem 0.6rem;
+
+  text-align: center;
+
+  background: #062f46;
+}
+
+.role {
+  position: relative;
+
+  top: -8px;
+
+  display: inline-block;
+
+  padding: 3px 9px;
+
+  background: #19b7cf;
+
+  border-radius: 999px;
+
+  color: white;
+
+  font-size: 10px;
+  top: -0.5rem;
+
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+
+  background: var(--teal);
+  border-radius: 999px;
+
+  color: var(--button-on-teal);
+  font-size: 0.65rem;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+.name {
+  margin: -0.12rem 0 0;
+
+  /* The card front is a fixed navy in both themes, so the name is a fixed
+     white — the themed --card-text it used to take is near-black in light
+     mode, which made the names disappear on the card. */
+  color: #ffffff;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  line-height: 1.25;
+
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* =========================
+   CARD BACK
+   ========================= */
+
+.cardBack {
+  transform: rotateY(180deg);
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 15px;
+
+  background: linear-gradient(145deg, #073b54, #052b40);
+
+  border: 1px solid rgba(25, 183, 207, 0.42);
+
+  text-align: center;
+}
+
+.backSpark {
+  margin-bottom: 8px;
+
+  color: #66dce8;
+
+  font-size: 18px;
+}
+
+.cardBack h3 {
+  margin: 0 0 8px;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.backRole {
+  margin: 0 0 14px;
+
+  padding: 4px 9px;
+
+  border-radius: 999px;
+
+  background: #19b7cf;
+
+  color: white;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.backText {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.68);
+
+  font-size: 11px;
+
+  line-height: 1.4;
+}
+
+/* =========================
+   LEADS
+   ========================= */
+
+/* President centered by itself, then 3 VP cards below */
+.leadsGrid {
+  max-width: 33rem;
+  margin: 0 auto;
+}
+
+.leadsGrid .card:first-child {
+  margin-left: calc(50% - 4.7rem);
+  margin-right: calc(50% - 4.7rem);
+}
+
+/* =========================
+   WEB DEVELOPMENT
+   ========================= */
+
+.webGrid {
+  max-width: 32.5rem;
+  margin: 0 auto;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 16px;
+}
+
+.webCard {
+  box-sizing: border-box;
+
+  width: 150px;
+  min-height: 74px;
+
+  flex: 0 0 150px;
+  gap: 1rem;
+}
+
+.webCard {
+  width: 9.4rem;
+  min-height: 4.4rem;
+  flex: 0 0 9.4rem;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  padding: 12px;
+
+  background: linear-gradient(145deg, #073b54, #062f46);
+
+  border: 1px solid rgba(25, 183, 207, 0.16);
+
+  border-radius: 9px;
+
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.24);
+
+  color: white;
+
+  text-align: center;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.webCard:hover {
+  transform: translateY(-5px);
+
+  background: linear-gradient(145deg, #084864, #07354c);
+
+  border-color: rgba(25, 183, 207, 0.5);
+}
+
+.webCode {
+  color: #62dbe7;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* =========================
+   ANIMATIONS
+   ========================= */
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 650px) {
+  .grid {
+    gap: 12px;
+  }
+
+  .card {
+    width: 135px;
+    height: 183px;
+
+    flex-basis: 135px;
+  }
+
+  .photo,
+  .photoPlaceholder {
+    height: 130px;
+  }
+
+  .leadsGrid .card:first-child {
+    margin-left: calc(50% - 67.5px);
+    margin-right: calc(50% - 67.5px);
+  }
+
+  .webCard {
+    width: 135px;
+
+    flex-basis: 135px;
+  }
+}
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+:global(html[data-theme="light"]) .webCard {
+  padding: 0.75rem;
+
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+
+  box-shadow: var(--card-shadow);
+
+  color: var(--card-text);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing);
+}
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .cardInner {
+    transition: none;
+  }
+}
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+  .committee + .committee {
+    margin-top: 2.75rem;
+  }
+
+  .grid {
+    gap: 0.75rem;
+  }
+}

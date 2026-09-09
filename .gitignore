@@ -1,36 +1,45 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Compiled output
-/dist
-
-# Node
+# dependencies
 /node_modules
-npm-debug.log
 
-# IDEs and editors
+# lockfiles — this project standardizes on npm, so package-lock.json is the only
+# lockfile we commit. Anything else means someone used the wrong package manager.
+pnpm-lock.yaml
+yarn.lock
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# production
+/build
+
+# testing
+/coverage
+
+# typescript
+*.tsbuildinfo
+
+# env files — ignore local/secret env files, but keep the committed template
+.env
+.env*.local
+!.env.example
+
+# vercel
+.vercel
+
+# logs
+*.log
+npm-debug.log*
+.pnpm-debug.log*
+
+# editors
+.vscode/
 .idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+*.swp
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
-
-# System files
+# os
 .DS_Store
 Thumbs.db
-
-# Enviornment files
-.env*
-!.env.sample
-
-# Logging files
-logs/

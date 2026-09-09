@@ -1,0 +1,256 @@
+/* Mobile first: image on the left, text on the right. The stacked desktop
+   card is in the media query at the bottom. */
+
+.card {
+  /* The band behind a contained flyer. */
+  --flyer-mat: rgb(255 255 255 / 6%);
+  display: flex;
+  overflow: hidden;
+  /* 1px, not the 0.63px the mock exported — subpixel borders alias into a
+     harder line than a full pixel at low alpha. */
+  border: 1px solid var(--card-border);
+  border-radius: 1.25rem;
+  background: var(--surface);
+  color: var(--card-text);
+  box-shadow: var(--card-shadow);
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing),
+    box-shadow var(--theme-duration) var(--theme-easing);
+}
+
+.image,
+.imagePlaceholder {
+  flex: 0 0 45%;
+  align-self: start;
+  width: 45%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  /* contain, not cover: the whole flyer has to be readable, so a poster that
+     is not 4:5 sits on the mat rather than losing its edges. */
+  object-fit: contain;
+  background: var(--flyer-mat);
+}
+
+:global(html[data-theme="light"]) .card {
+  --flyer-mat: rgb(13 49 75 / 5%);
+}
+
+.imagePlaceholder {
+  background: var(--placeholder);
+  transition: background-color var(--theme-duration) var(--theme-easing);
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.85rem 1rem 1rem;
+  min-width: 0;
+}
+
+.name {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.75rem;
+  color: var(--card-muted);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.metaIcon {
+  flex: 0 0 auto;
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+/* The collaborating orgs, each linked to their own account. */
+.partners {
+  font-size: 0.72rem;
+  color: var(--card-muted);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.partnersLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+.partnerLink {
+  color: var(--card-text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--card-muted);
+  transition:
+    color var(--theme-duration) var(--theme-easing),
+    text-decoration-color 160ms ease;
+}
+
+.partnerLink:hover,
+.partnerLink:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.description {
+  font-size: 0.8rem;
+  color: var(--card-muted);
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+/* Only the desktop card clamps, so the toggle only exists there. */
+.showMore {
+  display: none;
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--card-text);
+  font: inherit;
+  font-size: 0.75rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.showMore:hover,
+.showMore:focus-visible {
+  color: var(--cyan);
+}
+
+/* Pushed to the bottom so the buttons line up across a row of cards whose
+   descriptions are different lengths. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.postLink {
+  color: var(--card-muted);
+  font-size: 0.75rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color var(--theme-duration) var(--theme-easing);
+}
+
+.postLink:hover,
+.postLink:focus-visible {
+  color: var(--card-text);
+}
+
+.signup {
+  align-self: flex-start;
+  padding: 0.3rem 1.1rem;
+  border: 1px solid var(--signup-border);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  color: var(--signup-text);
+  box-shadow: var(--button-shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background-color var(--theme-duration) var(--theme-easing),
+    border-color var(--theme-duration) var(--theme-easing),
+    color var(--theme-duration) var(--theme-easing),
+    box-shadow var(--theme-duration) var(--theme-easing),
+    filter 180ms ease;
+}
+
+.signup {
+  background: var(--signup-bg);
+}
+
+.signup:hover,
+.signup:focus-visible {
+  filter: brightness(1.12);
+  box-shadow: 0 0.35rem 0.85rem rgb(0 0 0 / 30%);
+}
+
+@media (min-width: 768px) {
+  .card {
+    flex-direction: column;
+    /* The grid sizes the column now, so the card fills it. */
+    width: 100%;
+    max-width: 100%;
+    /* Fills its grid row, so cards whose flyers differ in height still end
+       level and their Sign Up buttons line up. */
+    height: 100%;
+    min-height: 506px;
+  }
+
+  .showMore {
+    display: block;
+    align-self: center;
+  }
+
+  .image,
+  .imagePlaceholder {
+    flex: 0 0 auto;
+    align-self: stretch;
+    width: 100%;
+    height: auto;
+  }
+
+  .body {
+    align-items: center;
+    gap: 0.5rem;
+    /* Lets the description shrink inside the fixed-height card instead of
+       pushing the Sign Up button past the clipped edge. */
+    min-height: 0;
+    padding: 1rem 1.1rem 1.25rem;
+    text-align: center;
+  }
+
+  .meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .signup {
+    align-self: center;
+  }
+
+  .description {
+    /* Keeps a long description from stretching one card taller than its
+       neighbours; the full text still shows on mobile, where the card has no
+       fixed height, and on the event's own page later. Four lines is what the
+       506px card leaves once the image, name, meta row and button are placed. */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
+    min-height: 0;
+    width: 100%;
+  }
+
+  .cardExpanded .description {
+    display: block;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: visible;
+  }
+}

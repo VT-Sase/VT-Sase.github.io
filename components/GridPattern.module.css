@@ -1,0 +1,52 @@
+/* Base placement only. Everything that makes the pattern sit the way a given
+   section wants it — the skew, the overhang, the mask — is the caller's, passed
+   in through className. */
+.pattern {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--grid-square);
+  stroke: var(--grid-line);
+  pointer-events: none;
+  transition:
+    fill var(--theme-duration) var(--theme-easing),
+    stroke var(--theme-duration) var(--theme-easing);
+}
+
+/* The lit cells are placed on the pattern's grid rather than this inner svg's
+   own box, so they have to be allowed to paint outside it. */
+.squares {
+  overflow: visible;
+}
+
+/* Up and back down in one run. The component listens for the end of this and
+   moves the cell somewhere else, so the pattern drifts rather than blinking
+   the same squares on and off in place. */
+@keyframes squarePulse {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: var(--max-opacity, 0.65);
+  }
+}
+
+.square {
+  opacity: 0;
+  animation-name: squarePulse;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
+
+/* No animation means no animationend, so the cells simply hold their first
+   positions — a still grid with a few filled squares, which is the right
+   picture rather than a degraded one. */
+@media (prefers-reduced-motion: reduce) {
+  .square {
+    opacity: var(--max-opacity, 0.65);
+    animation: none;
+  }
+}

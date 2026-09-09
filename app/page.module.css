@@ -1,0 +1,1015 @@
+.page {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 28px 80px;
+}
+.hero {
+  display: flex;
+  flex-direction: column;
+  padding-top: 104px;
+  /* Viewport less the header, plus a little, so the stats row lands just above
+     the fold rather than exactly on it. */
+  min-height: calc(100vh - 7rem);
+  min-height: calc(100svh - 7rem);
+}
+/* Pushed to the foot of that first screen; the gap above it flexes. */
+.stats {
+  margin-top: auto;
+}
+.heroTop {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 56px;
+  align-items: end;
+  margin-bottom: 44px;
+}
+.page h1 {
+  font-size: clamp(48px, 6vw, 82px);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+}
+.page {
+  --sase-1: #d3ecc0;
+  --sase-2: #a5d9d3;
+  --sase-3: #77bfc8;
+}
+
+:global(html[data-theme="light"]) .page {
+  --sase-1: #5e8f3d;
+  --sase-2: #2f7d78;
+  --sase-3: #1f6f86;
+}
+
+.page h1 > span {
+  background-image: linear-gradient(
+    100deg,
+    var(--sase-1) 0%,
+    var(--sase-2) 30%,
+    var(--sase-3) 50%,
+    var(--sase-2) 70%,
+    var(--sase-1) 100%
+  );
+  background-size: 260% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page h1 > span {
+    animation: saseOmbre 11s ease-in-out infinite;
+  }
+}
+
+@keyframes saseOmbre {
+  from {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0% 50%;
+  }
+}
+
+/* The hero arrives a piece at a time — headline, then copy, then buttons, then
+   the photograph — rather than all at once with the rest of the page. */
+@media (prefers-reduced-motion: no-preference) {
+  .heroCopy > *,
+  .heroVisual {
+    animation: heroRise 780ms var(--pop-easing) both;
+  }
+  .heroCopy > h1 {
+    animation-delay: 80ms;
+  }
+  .heroVisual {
+    animation-delay: 180ms;
+  }
+  .heroCopy > .heroLede {
+    animation-delay: 260ms;
+  }
+  .heroCopy > .actions {
+    animation-delay: 380ms;
+  }
+}
+
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.page h2 {
+  font-size: clamp(32px, 3.7vw, 47px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+.page h3 {
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.18;
+}
+.page p {
+  color: var(--fg-muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+.heroIntro > p:not(.eyebrow) {
+  font-size: 17px;
+  max-width: 430px;
+}
+.page .eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin-bottom: 13px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 25px;
+}
+.primary,
+.secondary {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 11px 20px;
+  border-radius: 29px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--cta-bg);
+  transition:
+    transform 160ms,
+    background 160ms;
+}
+.primary {
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+}
+.secondary {
+  color: var(--fg);
+  background: transparent;
+  border-color: var(--rule-strong);
+}
+.primary:hover,
+.secondary:hover {
+  transform: translateY(-2px);
+}
+.secondary:hover {
+  background: var(--badge-bg);
+}
+.heroVisual {
+  padding: 26px;
+  border-radius: 24px;
+  background: radial-gradient(
+    ellipse at 25% 15%,
+    #d3ecc0,
+    #a5d9d3 65%,
+    #77bfc8
+  );
+}
+.heroPhoto {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: var(--card-shadow);
+}
+.heroPhoto img {
+  object-fit: cover;
+  object-position: center 43%;
+}
+.photoCaption {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  padding: 14px 2px;
+  color: #0d314b;
+  font-size: 11px;
+  font-weight: 500;
+}
+.photoCaption > span:last-child {
+  margin-left: auto;
+}
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #366d34;
+}
+.stats {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 28px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.stats > p {
+  font-size: 13px;
+  line-height: 1.55;
+}
+.stats > p strong {
+  font-weight: 500;
+  color: var(--fg);
+}
+.stats > div {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--rule);
+  padding-left: 28px;
+}
+.stats > div strong {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+.stats > div span {
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+.section {
+  margin-top: 88px;
+  scroll-margin-top: 105px;
+}
+.sectionHead {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 32px;
+}
+.sectionHead .sectionHead p {
+  max-width: 480px;
+}
+.stackedCopy > p + p {
+  margin-top: 16px;
+}
+.featureGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.feature {
+  border-radius: 20px;
+  overflow: hidden;
+  color: var(--feature-ink);
+}
+.mint {
+  background: var(--mint-surface);
+}
+.lime {
+  background: var(--lime-surface);
+}
+.featureCopy {
+  padding: 30px 32px 25px;
+}
+.feature h3 {
+  font-size: 31px;
+  margin: 13px 0;
+}
+.feature p {
+  color: var(--feature-muted);
+  font-size: 14px;
+  max-width: 390px;
+}
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 20px;
+  text-underline-offset: 4px;
+}
+.textLink:hover {
+  text-decoration: underline;
+}
+.featurePhoto {
+  position: relative;
+  height: 265px;
+  margin: 0 20px 20px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.featurePhoto img {
+  object-fit: cover;
+}
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.pillar {
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+}
+.pillarCopy {
+  flex: 1;
+  padding: 28px 28px 22px;
+}
+.pillarPhoto {
+  position: relative;
+  height: 190px;
+  margin: 0 20px 20px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.pillarPhoto img {
+  object-fit: cover;
+}
+.pillarNumber {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--badge-bg);
+  font-size: 12px;
+  margin-bottom: 22px;
+}
+.pillar h3 {
+  font-size: 21px;
+  margin-bottom: 14px;
+}
+.pillar p {
+  font-size: 14px;
+}
+.eventSection {
+  margin-top: 88px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 64px;
+  padding: 40px;
+  background: var(--mint-surface);
+  border-radius: 22px;
+  color: var(--feature-ink);
+}
+.eventSection > div > p {
+  margin: 18px 0 24px;
+  color: var(--feature-muted);
+}
+/* The panel's surface and ink come from the card-face block further down,
+   which the redesign made the owner of every card-shaped thing on the page. */
+.eventPanel {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+.eventPanelHead {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--rule);
+  padding: 17px 24px;
+  font-size: 12px;
+}
+.eventEmpty {
+  padding: 28px;
+}
+.eventEmpty h3 {
+  font-size: 26px;
+  margin-bottom: 14px;
+}
+.eventEmpty p {
+  font-size: 13px;
+}
+.eventItem {
+  display: block;
+  padding: 24px;
+}
+.eventItem + .eventItem {
+  border-top: 1px solid var(--rule);
+}
+.eventItem:hover {
+  background: var(--tile-bg-hover);
+}
+.eventItem h3 {
+  font-size: 22px;
+  margin-block: 8px;
+}
+/* The flyers stand in for the listing: side by side, whole, and large enough
+   to read. Each one is the link to the events page. */
+.eventFlyers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 14px;
+  padding: 18px;
+}
+.eventFlyerLink {
+  display: block;
+  border-radius: 11px;
+  overflow: hidden;
+  /* The panel is the inverted card face, so the flyer's edge takes that
+     card's rule rather than the page's. */
+  border: 1px solid var(--card-face-rule);
+  transition:
+    transform 160ms var(--pop-easing),
+    box-shadow 160ms ease;
+}
+.eventFlyerLink:hover,
+.eventFlyerLink:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -12px rgb(0 0 0 / 45%);
+}
+.eventFlyer,
+.eventFlyerEmpty {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  /* The whole poster, never a crop. */
+  object-fit: contain;
+  /* The mat behind a poster that is not 4:5 — lighter than the card's rule,
+     which reads as grey blocks at this size. */
+  background: var(--flyer-mat, rgb(13 49 75 / 5%));
+}
+.officers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  list-style: none;
+}
+.officer {
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.officerPhoto {
+  position: relative;
+  /* A square photo area, which makes the card itself portrait — at 1.45 the
+     card came out very nearly square. */
+  aspect-ratio: 1;
+  background: var(--mint-surface);
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+}
+.officerPhoto img {
+  object-fit: cover;
+  object-position: center 35%;
+}
+.officerInfo {
+  padding: 14px 16px 16px;
+}
+.officerInfo h3 {
+  font-size: 15px;
+  margin-bottom: 3px;
+}
+.officerInfo p {
+  font-size: 11px;
+}
+.region {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  /* Top-aligned, so the copy does not float in the middle of the map's row. */
+  align-items: start;
+  gap: 22px 44px;
+  padding: 38px;
+  border-radius: 22px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+.sponsors {
+  text-align: center;
+}
+.sponsors > p {
+  max-width: 550px;
+  margin: 18px auto 32px;
+}
+.sponsorGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  gap: 24px;
+  padding: 25px 0;
+  border-block: 1px solid var(--rule);
+}
+.sponsorGrid a {
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  background: #fff;
+  transition: transform 160ms;
+}
+.sponsorGrid a:hover {
+  transform: translateY(-3px);
+}
+.sponsorGrid img {
+  width: 100%;
+  height: 50px;
+  object-fit: contain;
+}
+@media (max-width: 900px) {
+  .heroTop {
+    gap: 28px;
+  }
+  .heroIntro > p:not(.eyebrow) {
+    font-size: 15px;
+  }
+  .sectionHead {
+    gap: 30px;
+  }
+  .eventSection {
+    gap: 28px;
+    padding: 28px;
+  }
+  .sponsorGrid {
+    gap: 14px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .page {
+    padding-inline: 20px;
+    padding-bottom: 48px;
+  }
+  .hero {
+    padding-top: 40px;
+    min-height: 0;
+  }
+  .heroTop,
+  .sectionHead,
+  .featureGrid,
+  .eventSection,
+  .region {
+    grid-template-columns: 1fr;
+  }
+  .heroTop {
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+  .heroIntro > p:not(.eyebrow) {
+    max-width: none;
+  }
+  .heroVisual {
+    padding: 12px 12px 0;
+    border-radius: 18px;
+  }
+  .heroPhoto {
+    height: 270px;
+  }
+  .photoCaption {
+    font-size: 10px;
+  }
+  .photoCaption > span:last-child {
+    display: none;
+  }
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding-block: 24px;
+  }
+  .stats > p {
+    grid-column: 1 / -1;
+  }
+  .stats > p br {
+    display: none;
+  }
+  .stats > p strong {
+    margin-left: 5px;
+  }
+  .stats > div {
+    padding-left: 14px;
+  }
+  .stats > div strong {
+    font-size: 26px;
+  }
+  .section,
+  .eventSection {
+    margin-top: 60px;
+  }
+  .sectionHead {
+    gap: 20px;
+  }
+  .featureCopy {
+    padding: 26px;
+  }
+  .featurePhoto {
+    height: 235px;
+  }
+  .pillars {
+    grid-template-columns: 1fr;
+  }
+  .pillarNumber {
+    margin-bottom: 18px;
+  }
+  .eventSection {
+    padding: 24px;
+  }
+  .officers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .officerInfo {
+    padding: 16px;
+  }
+  .officerInfo h3 {
+    font-size: 17px;
+  }
+  .region {
+    padding: 24px;
+  }
+}
+@media (max-width: 420px) {
+  .officers {
+    grid-template-columns: 1fr;
+  }
+  .sponsorGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .primary,
+  .secondary,
+  .sponsorGrid a {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* =========================================================
+   SPONSOR MARQUEE
+   =========================================================
+   Breaks the content column to span the viewport, and scrolls one group plus
+   an aria-hidden duplicate so the loop has no seam. Pauses on hover/focus. */
+
+.marqueeWrap {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+
+.marquee {
+  overflow: hidden;
+  padding-block: 1.1rem;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000000 6rem,
+    #000000 calc(100% - 6rem),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000000 6rem,
+    #000000 calc(100% - 6rem),
+    transparent 100%
+  );
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 52s linear infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee:hover .track,
+.marquee:focus-within .track {
+  animation-play-state: paused;
+}
+
+.trackGroup {
+  display: flex;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+  margin: 0;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+  list-style: none;
+}
+
+.sponsorItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.1rem;
+  border: 2px solid transparent;
+  border-radius: 0.85rem;
+  transition:
+    border-color 200ms ease,
+    background-color 200ms ease,
+    transform 260ms var(--pop-easing),
+    filter 160ms ease;
+}
+
+.sponsorItem:hover,
+.sponsorItem:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--panel-border);
+  background: var(--tile-bg);
+}
+
+.sponsorLogo {
+  width: auto;
+  max-width: 10.5rem;
+  height: 3rem;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.62);
+  transition: filter 220ms ease;
+}
+
+.sponsorItem:hover .sponsorLogo,
+.sponsorItem:focus-visible .sponsorLogo {
+  filter: grayscale(0.35) opacity(0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   HERO — copy left, photograph right
+   ========================================================= */
+
+.heroTop {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+}
+
+/* Specificity has to match `.page p`, which was overriding the size here. */
+.page .heroLede {
+  max-width: 34rem;
+  margin-bottom: 30px;
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+/* The hero's own buttons scale with its type; the same classes stay at their
+   original size everywhere else on the page. */
+.heroCopy .primary,
+.heroCopy .secondary {
+  min-height: 52px;
+  padding: 13px 24px;
+  font-size: 14px;
+}
+
+@media (min-width: 900px) {
+  .heroTop {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+}
+
+/* The photograph now sits in a column rather than across the page, so it wants
+   its own height rather than the full-bleed one. */
+@media (min-width: 900px) {
+  .heroVisual {
+    padding: 18px;
+  }
+
+  .heroPhoto {
+    height: auto;
+  }
+}
+
+/* =========================================================
+   OFFICERS — the four leads on one row
+   ========================================================= */
+
+.officers {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 900px) {
+  .officers {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   CARD CONTRAST
+   =========================================================
+
+   The cards deliberately run against the page: on the dark canvas they take
+   the light theme's surfaces, and on the light canvas they take the dark
+   theme's. The doodle never reaches them either way — they are opaque, so the
+   texture stops at their edge and the contrast stays clean. */
+
+.page {
+  --card-face: #f1f4ea;
+  --card-face-ink: #0d314b;
+  --card-face-muted: rgb(13 49 75 / 68%);
+  --card-face-rule: rgb(13 49 75 / 14%);
+}
+
+:global(html[data-theme="light"]) .page {
+  --card-face: #0d2333;
+  --card-face-ink: #ffffff;
+  --card-face-muted: rgb(255 255 255 / 72%);
+  --card-face-rule: rgb(255 255 255 / 16%);
+}
+
+.officer,
+.eventPanel,
+.pillar {
+  background: var(--card-face);
+  border-color: var(--card-face-rule);
+  color: var(--card-face-ink);
+}
+
+.officerInfo h3,
+.eventPanelHead,
+.eventItem h3,
+.pillar h3 {
+  color: var(--card-face-ink);
+}
+
+.officerInfo p,
+.eventItem p,
+.eventItem .eyebrow,
+.pillar p {
+  color: var(--card-face-muted);
+}
+
+.eventItem + .eventItem {
+  border-color: var(--card-face-rule);
+}
+
+.eventItem:hover {
+  background: rgb(13 49 75 / 6%);
+}
+
+:global(html[data-theme="light"]) .eventItem:hover {
+  background: rgb(255 255 255 / 8%);
+}
+
+/* The numeral badge sits on the inverted card face, so it needs the card's own
+   ink rather than the page's — on a cream card the page's white was invisible. */
+.pillarNumber {
+  background: var(--card-face-ink);
+  color: var(--card-face);
+  font-weight: 600;
+}
+
+/* =========================================================
+   CARD THEMING
+   =========================================================
+
+   The hero's ombré is the page's one piece of colour, so the mission cards
+   pick it up and read as a set tied back to it. Everything that carries a
+   photograph or a list stays on the neutral face, so the colour stays a
+   deliberate accent rather than wallpaper. */
+
+.page {
+  --flyer-mat: rgb(255 255 255 / 8%);
+  --card-ombre: radial-gradient(
+    ellipse at 20% 10%,
+    #d3ecc0 0%,
+    #a5d9d3 58%,
+    #77bfc8 100%
+  );
+  --ombre-ink: #0d314b;
+}
+
+/* Light mode: the navy card read as a hole punched in the page. A warm
+   near-white sits cleanly on the light gradient canvas and lets the ombré
+   cards be the thing that carries colour. */
+:global(html[data-theme="light"]) .page {
+  --card-face: #fbfdf6;
+  --card-face-ink: #0d314b;
+  --card-face-muted: rgb(13 49 75 / 70%);
+  --card-face-rule: rgb(13 49 75 / 16%);
+}
+
+/* An ombré ring rather than a hairline: a 2px transparent border with the
+   card face painted inside it and the gradient painted through it. The
+   gradient runs from the top-left corner and fades out, so the colour reads as
+   light catching the edge instead of an outline drawn all the way round. */
+.officer {
+  border: 4px solid transparent;
+  background-image:
+    linear-gradient(var(--card-face), var(--card-face)),
+    linear-gradient(
+      135deg,
+      var(--sase-1) 0%,
+      var(--sase-2) 26%,
+      var(--sase-3) 44%,
+      var(--card-face-rule) 72%,
+      var(--card-face-rule) 100%
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: var(--card-face-ink);
+  box-shadow: var(--card-lift);
+}
+
+/* Light mode: the ombré is the same lime-to-teal family as the light canvas,
+   so a coloured card there half-dissolves into the page. The colour belongs to
+   the background in this theme — every card on top of it is the neutral face,
+   which is what dark mode does with its own ground. */
+:global(html[data-theme="light"]) .pillar {
+  background: var(--card-face);
+  border-color: var(--card-face-rule);
+  color: var(--card-face-ink);
+  box-shadow: 0 10px 26px -14px rgb(13 49 75 / 22%);
+}
+
+:global(html[data-theme="light"]) .pillar h3 {
+  color: var(--card-face-ink);
+}
+
+:global(html[data-theme="light"]) .pillar p {
+  color: var(--card-face-muted);
+}
+
+/* The ombré is light in both themes, so its ink is fixed rather than themed. */
+.pillar {
+  background: var(--card-ombre);
+  border-color: rgb(13 49 75 / 14%);
+  color: var(--ombre-ink);
+}
+
+.pillar h3 {
+  color: var(--ombre-ink);
+}
+
+.pillar p {
+  color: rgb(13 49 75 / 74%);
+}
+
+.pillarNumber {
+  background: var(--ombre-ink);
+  color: #d3ecc0;
+}
+
+/* The canvas is near-neutral now, so a white card reads as a raised surface
+   against it — the mirror of dark mode's cream card on navy. The rule and the
+   card shadow give the separation the mid-navy fill used to. */
+:global(html[data-theme="light"]) .page {
+  --flyer-mat: rgb(13 49 75 / 5%);
+  --card-face: #ffffff;
+  --card-face-ink: #0d314b;
+  --card-face-muted: rgb(13 49 75 / 70%);
+  --card-face-rule: rgb(13 49 75 / 12%);
+}
+
+:global(html[data-theme="light"]) .officer,
+:global(html[data-theme="light"]) .eventPanel,
+:global(html[data-theme="light"]) .mint,
+:global(html[data-theme="light"]) .lime {
+  box-shadow: 0 10px 26px -14px rgb(13 49 75 / 22%);
+}
+
+/* Headings carried the display face at 500, which read light at these sizes. */
+.page h1 {
+  font-weight: 600;
+}
+
+.page h2 {
+  font-weight: 600;
+}
+
+.page h3 {
+  font-weight: 600;
+}
+
+/* The two feature cards were on their own mint/lime surfaces, which put four
+   different card colours on one page. They join the themed system: the neutral
+   face, so the ombré mission cards stay the only coloured surfaces. */
+.mint,
+.lime {
+  background: var(--card-face);
+  border: 1px solid var(--card-face-rule);
+  color: var(--card-face-ink);
+}
+
+.feature h3,
+.feature .eyebrow {
+  color: var(--card-face-ink);
+}
+
+.feature p {
+  color: var(--card-face-muted);
+}
+
+.feature .textLink {
+  color: var(--card-face-ink);
+}
