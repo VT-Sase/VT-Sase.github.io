@@ -24,10 +24,10 @@
   margin: 0;
   color: var(--fg);
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 4.5vw, 3.25rem);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  font-size: clamp(32px, 3.7vw, 47px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
   transition: color var(--theme-duration) var(--theme-easing);
 }
 
@@ -38,32 +38,6 @@
   font-size: clamp(1.02rem, 1.6vw, 1.15rem);
   line-height: 1.55;
   transition: color var(--theme-duration) var(--theme-easing);
-}
-
-@supports ((background-clip: text) or (-webkit-background-clip: text)) {
-  .title {
-    background-image: linear-gradient(
-      100deg,
-      var(--green) 0%,
-      var(--green-selected) 58%,
-      var(--lime) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-  }
-
-  :global(html[data-theme="light"]) .title {
-    background-image: linear-gradient(
-      100deg,
-      var(--teal) 0%,
-      var(--teal) 42%,
-      var(--green-selected) 100%
-    );
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-  }
 }
 
 .list {
@@ -85,13 +59,9 @@
 }
 
 .itemOpen {
-  border-color: var(--green);
+  border-color: var(--heading-accent);
   background: var(--tile-bg-hover);
   box-shadow: var(--card-shadow);
-}
-
-:global(html[data-theme="light"]) .itemOpen {
-  border-color: var(--teal);
 }
 
 .questionHeading {
@@ -120,7 +90,7 @@
 }
 
 .question:focus-visible {
-  outline: 2px solid var(--green);
+  outline: 2px solid var(--heading-accent);
   outline-offset: -2px;
 }
 
@@ -144,7 +114,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  background: var(--green);
+  background: var(--heading-accent);
   border-radius: 1px;
   transform: translate(-50%, -50%);
   transition:
@@ -163,37 +133,18 @@
 }
 
 .itemOpen .icon {
-  border-color: var(--green);
-  background: var(--green);
+  border-color: var(--heading-accent);
+  background: var(--heading-accent);
   transform: rotate(90deg);
 }
 
 .itemOpen .icon::before,
 .itemOpen .icon::after {
-  background: var(--surface-deep);
+  background: var(--bg);
 }
 
 .itemOpen .icon::after {
   transform: translate(-50%, -50%) scaleY(0);
-}
-
-:global(html[data-theme="light"]) .icon::before,
-:global(html[data-theme="light"]) .icon::after {
-  background: var(--teal);
-}
-
-:global(html[data-theme="light"]) .itemOpen .icon {
-  border-color: var(--teal);
-  background: var(--teal);
-}
-
-:global(html[data-theme="light"]) .itemOpen .icon::before,
-:global(html[data-theme="light"]) .itemOpen .icon::after {
-  background: var(--button-on-teal);
-}
-
-:global(html[data-theme="light"]) .question:focus-visible {
-  outline-color: var(--teal);
 }
 
 .answerPanel {

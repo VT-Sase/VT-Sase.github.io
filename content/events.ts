@@ -74,6 +74,16 @@ const TIME_ZONE = "America/New_York";
 // Events are sorted by date automatically. Add new events to the array below.
 export const events: SaseEvent[] = [
   {
+    name: "First GBM: Mean Girls",
+    date: "2026-09-10T18:30:00-04:00",
+    endDate: "2026-09-10T20:30:00-04:00",
+    location: "Hitt 340",
+    description:
+      "Our first general body meeting of the year \u2014 come dressed in pink for games, snacks, and raffles with a gift basket prize. New members welcome.",
+    image: "/images/events/first-gbm.jpg",
+    postUrl: "https://www.instagram.com/p/DdB6T-ZRtbh/",
+  },
+  {
     name: "Altec Info Session",
     date: "2026-09-08T17:30:00-04:00",
     endDate: "2026-09-08T19:00:00-04:00",

@@ -155,8 +155,7 @@
   color: var(--card-text);
 }
 
-.signup,
-.signupDisabled {
+.signup {
   align-self: flex-start;
   padding: 0.3rem 1.1rem;
   border: 1px solid var(--signup-border);
@@ -182,12 +181,6 @@
 .signup:focus-visible {
   filter: brightness(1.12);
   box-shadow: 0 0.35rem 0.85rem rgb(0 0 0 / 30%);
-}
-
-.signupDisabled {
-  background: var(--signup-bg);
-  opacity: 0.45;
-  cursor: not-allowed;
 }
 
 @media (min-width: 768px) {
@@ -236,8 +229,7 @@
     justify-content: center;
   }
 
-  .signup,
-  .signupDisabled {
+  .signup {
     align-self: center;
   }
 

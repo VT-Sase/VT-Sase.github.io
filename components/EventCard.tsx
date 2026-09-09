@@ -105,11 +105,7 @@ export default function EventCard({ event }: { event: SaseEvent }) {
             >
               Sign Up
             </a>
-          ) : (
-            <span className={styles.signupDisabled} aria-disabled="true">
-              Sign Up
-            </span>
-          )}
+          ) : null}
 
           {event.postUrl ? (
             <a
