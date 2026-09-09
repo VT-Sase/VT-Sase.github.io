@@ -55,7 +55,7 @@ export const officers: Officer[] = [
     name: "Rhea Rajmanna",
     role: "Media VP",
     committee: "Leads",
-    photo: "/images/officers/rhea.JPG",
+    photo: "/images/officers/rhea-2026.JPG",
   },
   {
     name: "Han Nguyen",
