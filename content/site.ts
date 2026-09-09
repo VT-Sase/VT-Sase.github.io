@@ -189,6 +189,19 @@ export const CHAPTER_PILLARS = [
   "Study nights and social events",
 ] as const;
 
-/** Public feed for the chapter's Google Calendar. */
-export const GOOGLE_CALENDAR_ICS_URL =
-  "https://calendar.google.com/calendar/ical/vtsase%40gmail.com/public/basic.ics";
+/** The chapter's public Google Calendar. */
+export const GOOGLE_CALENDAR_ID = "vtsase@gmail.com";
+
+/**
+ * Browser key for the Google Calendar API, read live by components/Calendar.tsx.
+ *
+ * This is a PUBLIC key — it ships in the JS bundle, which is unavoidable for a
+ * static site. It is locked down in the Google Cloud console by HTTP referrer
+ * (sase-vt.org) and to the Calendar API alone, and the calendar it reads is
+ * already public. It is not a secret; it is not in .env.local for that reason.
+ *
+ * When it is unset (a local checkout without .env.local), the calendar quietly
+ * falls back to the hand-maintained events in content/events.ts.
+ */
+export const GOOGLE_CALENDAR_API_KEY =
+  process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY ?? "";

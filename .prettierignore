@@ -4,3 +4,6 @@ package-lock.json
 public/
 *.min.js
 next-env.d.ts
+
+# Previous years' sites — kept as-is, not reformatted.
+archive/

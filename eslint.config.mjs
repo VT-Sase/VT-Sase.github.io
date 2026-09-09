@@ -16,6 +16,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Previous years' sites, kept for reference but not linted.
+    "archive/**",
   ]),
 ]);
 

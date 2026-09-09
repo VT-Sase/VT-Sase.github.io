@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "./icons";
 import styles from "./Calendar.module.css";
 import type { SaseEvent } from "@/content/events";
+import { GOOGLE_CALENDAR_API_KEY, GOOGLE_CALENDAR_ID } from "@/content/site";
 
 type Cursor = { year: number; month: number };
 
@@ -11,6 +12,14 @@ type CalendarEvent = {
   id: string;
   name: string;
   day: string;
+};
+
+/** The slice of a Google Calendar API event resource this component asks for. */
+type GoogleCalendarItem = {
+  id: string;
+  summary?: string;
+  status?: string;
+  start: { date?: string; dateTime?: string };
 };
 
 type CalendarCell = {
@@ -100,16 +109,50 @@ export default function Calendar({ siteEvents }: { siteEvents: SaseEvent[] }) {
   const rangeKey = `${rangeStart}:${rangeEnd}`;
 
   useEffect(() => {
+    // No key in a local checkout — just show the hand-maintained events.
+    if (!GOOGLE_CALENDAR_API_KEY) return;
+
     const controller = new AbortController();
 
-    fetch(`/api/calendar?from=${rangeStart}&to=${rangeEnd}`, {
-      signal: controller.signal,
-    })
+    // Read the chapter's calendar straight from the browser. The ICS feed sends
+    // no CORS headers so it cannot be fetched here, but the Calendar API does,
+    // which is what lets this stay live on a static host. `singleEvents` makes
+    // Google expand recurring events for us.
+    const endpoint = new URL(
+      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(
+        GOOGLE_CALENDAR_ID
+      )}/events`
+    );
+    endpoint.search = new URLSearchParams({
+      key: GOOGLE_CALENDAR_API_KEY,
+      timeMin: `${rangeStart}T00:00:00Z`,
+      timeMax: `${rangeEnd}T23:59:59Z`,
+      singleEvents: "true",
+      orderBy: "startTime",
+      maxResults: "250",
+      fields: "items(id,summary,status,start)",
+    }).toString();
+
+    fetch(endpoint, { signal: controller.signal })
       .then((response) => {
         if (!response.ok) throw new Error("Calendar feed unavailable");
-        return response.json() as Promise<{ events: CalendarEvent[] }>;
+        return response.json() as Promise<{ items?: GoogleCalendarItem[] }>;
       })
-      .then((data) => setRemoteRange({ key: rangeKey, events: data.events }))
+      .then((data) => {
+        const events = (data.items ?? [])
+          .filter((item) => item.status !== "cancelled")
+          .map((item) => ({
+            id: item.id,
+            name: item.summary ?? "SASE event",
+            // All-day events carry a bare date that is already the right day;
+            // timed ones are instants, so read them in the chapter's timezone.
+            day: item.start.date
+              ? item.start.date
+              : dateKeyInEastern(new Date(item.start.dateTime ?? "")),
+          }));
+
+        setRemoteRange({ key: rangeKey, events });
+      })
       .catch((error: unknown) => {
         if (error instanceof DOMException && error.name === "AbortError")
           return;

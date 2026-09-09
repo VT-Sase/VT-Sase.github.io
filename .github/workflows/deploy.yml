@@ -1,4 +1,4 @@
-# Simple workflow for deploying static content to GitHub Pages
+# Builds the Next.js static export and publishes it to GitHub Pages (sase-vt.org).
 name: Deploy static content to Pages
 
 on:
@@ -34,19 +34,25 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version-file: ".nvmrc"
+          cache: "npm"
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Build
         run: npm run build
+        env:
+          # NEXT_PUBLIC_* values are inlined into the bundle at build time, so
+          # this has to be set here rather than at runtime. Set it under
+          # Settings -> Secrets and variables -> Actions -> Variables.
+          # It is a public, HTTP-referrer-restricted browser key, not a secret.
+          NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY: ${{ vars.GOOGLE_CALENDAR_API_KEY }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload dist folder
-          path: './dist'
+          # `output: "export"` in next.config.ts writes the site to ./out
+          path: "./out"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

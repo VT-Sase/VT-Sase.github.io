@@ -1,13 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async redirects() {
-    return [
-      { source: "/about", destination: "/#about", permanent: true },
-      { source: "/faqs", destination: "/#faqs", permanent: true },
-      { source: "/sponsors", destination: "/#sponsors", permanent: true },
-    ];
-  },
+  // The site is served by GitHub Pages, which only hosts static files.
+  output: "export",
+
+  // Emit `out/events/index.html` rather than `out/events.html` so Pages
+  // resolves /events/ without extra rewrite rules.
+  trailingSlash: true,
+
+  // The Next image optimizer needs a server; Pages has none.
+  images: { unoptimized: true },
 };
 
 export default nextConfig;
